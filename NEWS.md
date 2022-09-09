@@ -1,3 +1,10 @@
+# manymome 0.1.4.3
+
+- Updated README.md with code for installing from CRAN. (0.1.4.1).
+- Fixed a typo in README.md. (0.1.4.2)
+- Fixed tests that should be done by `expect_equal` on numbers rather
+  than on characters. No change in the functions. (0.1.4.3)
+
 # manymome 0.1.4.0
 
 - Checked examples and vignettes to ensure

@@ -12,7 +12,7 @@
 
 <meta name="author" content="Shu Fai Cheung &amp; Sing-Hang Cheung" />
 
-<meta name="date" content="2022-09-06" />
+<meta name="date" content="2022-09-08" />
 
 <title>Generating Bootstrap Estimates</title>
 
@@ -356,7 +356,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Generating Bootstrap Estimates</h1>
 <h4 class="author">Shu Fai Cheung &amp; Sing-Hang Cheung</h4>
-<h4 class="date">2022-09-06</h4>
+<h4 class="date">2022-09-08</h4>
 
 
 
@@ -472,33 +472,33 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>This is the content of <code>est</code> of the first list:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>boot_out_lavaan[[<span class="dv">1</span>]]<span class="op">$</span>est</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="co">#&gt;    lhs op rhs    est</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co">#&gt; 1    m  ~   x  1.092</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#&gt; 2    m  ~  c1  0.108</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt; 3    m  ~  c2 -0.258</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; 4    y  ~   m  0.972</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt; 5    y  ~   x  0.211</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; 6    y  ~  c1  0.007</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt; 7    y  ~  c2 -0.294</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt; 8    m ~~   m  0.666</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt; 9    y ~~   y  4.326</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt; 10   x ~~   x  1.100</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt; 11   x ~~  c1  0.221</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt; 12   x ~~  c2  0.240</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt; 13  c1 ~~  c1  1.203</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt; 14  c1 ~~  c2 -0.055</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt; 15  c2 ~~  c2  0.751</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="co">#&gt; 16   m r2   m  0.661</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="co">#&gt; 17   y r2   y  0.355</span></span></code></pre></div>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">#&gt; 1    m  ~   x  0.966</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#&gt; 2    m  ~  c1  0.126</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt; 3    m  ~  c2  0.053</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; 4    y  ~   m  0.454</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt; 5    y  ~   x  0.814</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; 6    y  ~  c1 -0.035</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt; 7    y  ~  c2  0.222</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt; 8    m ~~   m  0.736</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt; 9    y ~~   y  3.330</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt; 10   x ~~   x  1.112</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt; 11   x ~~  c1 -0.040</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt; 12   x ~~  c2  0.127</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt; 13  c1 ~~  c1  1.245</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt; 14  c1 ~~  c2  0.004</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt; 15  c2 ~~  c2  0.719</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="co">#&gt; 16   m r2   m  0.591</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="co">#&gt; 17   y r2   y  0.377</span></span></code></pre></div>
 <p>The content is just the first four columns of the output of <code>lavaan::parameterEstimates()</code>.</p>
 <p>This is the content of <code>implied_stats</code> of the first list:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>boot_out_lavaan[[<span class="dv">1</span>]]<span class="op">$</span>implied_stats</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="co">#&gt; $cov</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="co">#&gt;    m      y      x      c1     c2    </span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; m   1.961                            </span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt; y   2.136  6.711                     </span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt; x   1.163  1.293  1.100              </span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt; c1  0.385  0.446  0.221  1.203       </span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt; c2  0.063 -0.110  0.240 -0.055  0.751</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; m   1.800                            </span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt; y   1.724  5.345                     </span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt; x   1.076  1.423  1.112              </span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt; c1  0.118 -0.022 -0.040  1.245       </span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt; c2  0.162  0.337  0.127  0.004  0.719</span></span>
 <span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt; </span></span>
 <span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt; $mean</span></span>
 <span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt; numeric(0)</span></span>
@@ -523,7 +523,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt;                                      </span></span>
 <span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt;  Path:               x -&gt; m -&gt; y     </span></span>
 <span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt;  Indirect Effect     0.733           </span></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.264 to 1.350]</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.233 to 1.221]</span></span>
 <span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&gt; </span></span>
 <span id="cb7-15"><a href="#cb7-15"></a><span class="co">#&gt; Computation Formula:</span></span>
 <span id="cb7-16"><a href="#cb7-16"></a><span class="co">#&gt;   (b.m~x)*(b.y~m)</span></span>
