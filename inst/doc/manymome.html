@@ -12,7 +12,7 @@
 
 <meta name="author" content="Shu Fai Cheung &amp; Sing-Hang Cheung" />
 
-<meta name="date" content="2022-09-08" />
+<meta name="date" content="2022-11-06" />
 
 <title>manymome</title>
 
@@ -29,46 +29,31 @@ document.addEventListener('DOMContentLoaded', function(e) {
   }
 });
 </script>
-<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
-// v0.0.1
-// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
-
-document.addEventListener('DOMContentLoaded', function() {
-  const codeList = document.getElementsByClassName("sourceCode");
-  for (var i = 0; i < codeList.length; i++) {
-    var linkList = codeList[i].getElementsByTagName('a');
-    for (var j = 0; j < linkList.length; j++) {
-      if (linkList[j].innerHTML === "") {
-        linkList[j].setAttribute('aria-hidden', 'true');
-      }
-    }
-  }
-});
-</script>
 
 <style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
 
 
 
 <style type="text/css">
-  code {
-    white-space: pre;
-  }
-  .sourceCode {
-    overflow: visible;
-  }
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -80,55 +65,54 @@ pre > code.sourceCode { white-space: pre-wrap; }
 pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-  { counter-reset: source-line 0; }
+{ counter-reset: source-line 0; }
 pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {   }
+{ }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -356,63 +340,109 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">manymome</h1>
 <h4 class="author">Shu Fai Cheung &amp; Sing-Hang Cheung</h4>
-<h4 class="date">2022-09-08</h4>
+<h4 class="date">2022-11-06</h4>
 
 
 
 <div id="introduction" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Introduction</h1>
-<p>This article is a brief illustration of how <code>manymome</code> functions are used in some typical cases. It assumes that readers have basic understanding of mediation, moderation, moderated mediation, structural equation modeling (SEM), and bootstrapping.</p>
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>This article is a brief illustration of how <code>manymome</code>
+functions are used in some typical cases. It assumes that readers have
+basic understanding of mediation, moderation, moderated mediation,
+structural equation modeling (SEM), and bootstrapping.</p>
 <div id="workflow" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Workflow</h2>
+<h2><span class="header-section-number">1.1</span> Workflow</h2>
 <p>The use of <code>manymome</code> adopts a two-stage workflow:</p>
 <ul>
 <li><p>Stage 1: <strong>Fit the model</strong></p>
 <ul>
-<li><p>This can be done by SEM (using <code>lavaan::sem()</code>) or a series of regression (using <code>lm()</code>).</p></li>
-<li><p>When <code>lavaan::sem()</code> is used, no need to label any parameters or denote any variables as the predictors, mediators, moderators, or outcome variables for computing indirect effects or conditional indirect effects. Stage 2 will take care of this.</p></li>
+<li><p>This can be done by SEM (using <code>lavaan::sem()</code>) or a
+series of regression (using <code>lm()</code>).</p></li>
+<li><p>When <code>lavaan::sem()</code> is used, no need to label any
+parameters or denote any variables as the predictors, mediators,
+moderators, or outcome variables for computing indirect effects or
+conditional indirect effects. Stage 2 will take care of this.</p></li>
 </ul></li>
-<li><p>Stage 2: <strong>Compute the indirect effects and conditional indirect effects</strong></p>
+<li><p>Stage 2: <strong>Compute the indirect effects and conditional
+indirect effects</strong></p>
 <ul>
-<li><p>This can be done along nearly any path in the model for any levels of the moderators.</p></li>
-<li><p>Just specify the start (<code>x</code>), the mediator(s) (<code>m</code>, if any), and the end (<code>y</code>) for indirect effects. The functions will find the coefficients automatically.</p></li>
-<li><p>If a path has one or more moderators, conditional indirect effects can be computed. Product terms will be identified automatically.</p></li>
-<li><p>The levels of the moderators can be decided in this stage and can be changed as often as needed.</p></li>
+<li><p>This can be done along nearly any path in the model for any
+levels of the moderators.</p></li>
+<li><p>Just specify the start (<code>x</code>), the mediator(s)
+(<code>m</code>, if any), and the end (<code>y</code>) for indirect
+effects. The functions will find the coefficients
+automatically.</p></li>
+<li><p>If a path has one or more moderators, conditional indirect
+effects can be computed. Product terms will be identified
+automatically.</p></li>
+<li><p>The levels of the moderators can be decided in this stage and can
+be changed as often as needed.</p></li>
 </ul></li>
 </ul>
-<p><strong>Bootstrapping confidence intervals</strong>: All main functions support bootstrap confidence intervals for the effects. Bootstrapping can done in Stage 1 (e.g., by <code>lavaan::sem()</code> using <code>se = &quot;boot&quot;</code>) or in Stage 2 in the first call to the main functions, and only needs to be conducted once. Alternatively, <code>do_boot()</code> can be use (see <code>vignette(&quot;do_boot&quot;)</code>). The bootstrap estimates can be reused by most main functions of <code>manymome</code> for any path and any level of the moderators.</p>
-<p><strong>Standardized effects</strong>: All main functions in Stage 2 support standardized effects and form their bootstrap confidence interval correctly (Cheung, 2009; Friedrich, 1982). No need to standardize the variables in advance in Stage 1, even for paths with moderators.</p>
+<p><strong>Bootstrapping confidence intervals</strong>: All main
+functions support bootstrap confidence intervals for the effects.
+Bootstrapping can done in Stage 1 (e.g., by <code>lavaan::sem()</code>
+using <code>se = &quot;boot&quot;</code>) or in Stage 2 in the first call to the
+main functions, and only needs to be conducted once. Alternatively,
+<code>do_boot()</code> can be use (see
+<code>vignette(&quot;do_boot&quot;)</code>). The bootstrap estimates can be reused
+by most main functions of <code>manymome</code> for any path and any
+level of the moderators.</p>
+<p><strong>Standardized effects</strong>: All main functions in Stage 2
+support standardized effects and form their bootstrap confidence
+interval correctly (Cheung, 2009; Friedrich, 1982). No need to
+standardize the variables in advance in Stage 1, even for paths with
+moderators.</p>
 </div>
 <div id="what-will-be-covered-in-this-get-started-article" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> What Will Be Covered In This Get-Started Article</h2>
+<h2><span class="header-section-number">1.2</span> What Will Be Covered
+In This Get-Started Article</h2>
 <ul>
-<li><p>Use <code>cond_indirect_effects()</code> to compute <em>conditional</em> <em>indirect</em> <em>effects</em>, with bootstrap confidence intervals.</p></li>
-<li><p>Use <code>indirect_effect()</code> to compute an <em>indirect</em> <em>effect</em>, with bootstrap confidence interval.</p></li>
-<li><p>Use <code>+</code> and <code>-</code> to compute a <em>function</em> of effects, such as total indirect effects or total effects.</p></li>
-<li><p>Use <code>do_boot()</code> to generate bootstrap estimates for <code>cond_indirect_effects()</code>, <code>indirect_effect()</code>, and some other functions in <code>manymome</code>.</p></li>
-<li><p>Use <code>index_of_mome()</code> and <code>index_of_momome()</code> to compute the index of moderated mediation and the index of moderated moderated mediation, respectively, with bootstrap confidence intervals.</p></li>
-<li><p>Compute <em>standardized</em> conditional indirect effects and <em>standardized</em> indirect effect using <code>cond_indirect_effects()</code> and <code>indirect_effect()</code>, respectively.</p></li>
+<li><p>Use <code>cond_indirect_effects()</code> to compute
+<em>conditional</em> <em>indirect</em> <em>effects</em>, with bootstrap
+confidence intervals.</p></li>
+<li><p>Use <code>indirect_effect()</code> to compute an
+<em>indirect</em> <em>effect</em>, with bootstrap confidence
+interval.</p></li>
+<li><p>Use <code>+</code> and <code>-</code> to compute a
+<em>function</em> of effects, such as total indirect effects or total
+effects.</p></li>
+<li><p>Use <code>do_boot()</code> to generate bootstrap estimates for
+<code>cond_indirect_effects()</code>, <code>indirect_effect()</code>,
+and some other functions in <code>manymome</code>.</p></li>
+<li><p>Use <code>index_of_mome()</code> and
+<code>index_of_momome()</code> to compute the index of moderated
+mediation and the index of moderated moderated mediation, respectively,
+with bootstrap confidence intervals.</p></li>
+<li><p>Compute <em>standardized</em> conditional indirect effects and
+<em>standardized</em> indirect effect using
+<code>cond_indirect_effects()</code> and <code>indirect_effect()</code>,
+respectively.</p></li>
 </ul>
 </div>
 </div>
 <div id="moderated-mediation-by-sem-using-lavaan" class="section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> Moderated Mediation by SEM using <code>lavaan</code></h1>
+<h1><span class="header-section-number">2</span> Moderated Mediation by
+SEM using <code>lavaan</code></h1>
 <p>This is the sample data set comes with the package:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(manymome)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>dat &lt;-<span class="st"> </span>data_med_mod_ab</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">print</span>(<span class="kw">head</span>(dat), <span class="dt">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#&gt;       x   w1   w2    m    y    c1   c2</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#&gt; 1  9.27 4.97 2.66 3.46 8.80  9.26 3.14</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt; 2 10.79 4.13 3.33 4.05 7.37 10.71 5.80</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#&gt; 3 11.10 5.91 3.32 4.04 8.24 10.60 5.45</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt; 4  9.53 4.78 2.32 3.54 8.37  9.22 3.83</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#&gt; 5 10.00 4.38 2.95 4.65 8.39  9.58 4.26</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#&gt; 6 12.25 5.81 4.04 4.73 9.65  9.51 4.01</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(manymome)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data_med_mod_ab</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(dat), <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       x   w1   w2    m    y    c1   c2</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  9.27 4.97 2.66 3.46 8.80  9.26 3.14</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 10.79 4.13 3.33 4.05 7.37 10.71 5.80</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 11.10 5.91 3.32 4.04 8.24 10.60 5.45</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  9.53 4.78 2.32 3.54 8.37  9.22 3.83</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 10.00 4.38 2.95 4.65 8.39  9.58 4.26</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 12.25 5.81 4.04 4.73 9.65  9.51 4.01</span></span></code></pre></div>
 <p>Suppose this is the model being fitted:</p>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
-<p>The models are intended to be simple enough for illustration but complicated enough to show the flexibility of <code>manymome</code>. More complicated models are also supported, discussed later.</p>
+<p>The models are intended to be simple enough for illustration but
+complicated enough to show the flexibility of <code>manymome</code>.
+More complicated models are also supported, discussed later.</p>
 <div id="fitting-the-model" class="section level2" number="2.1">
-<h2 number="2.1"><span class="header-section-number">2.1</span> Fitting the Model</h2>
+<h2><span class="header-section-number">2.1</span> Fitting the
+Model</h2>
 <p>The model fitted above is a moderated mediation model with</p>
 <ul>
 <li><p>a mediation path <code>x -&gt; m -&gt; y</code>, and</p></li>
@@ -422,608 +452,825 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <li><p><code>m -&gt; y</code> moderated by <code>w2</code>.</p></li>
 </ul></li>
 </ul>
-<p>The effects of interest are the <em>conditional</em> <em>indirect</em> <em>effects</em>: the indirect effects</p>
+<p>The effects of interest are the <em>conditional</em>
+<em>indirect</em> <em>effects</em>: the indirect effects</p>
 <ul>
 <li><p>from <code>x</code> to <code>y</code></p></li>
 <li><p>through <code>m</code></p></li>
-<li><p>for different levels of <code>w1</code> and <code>w2</code>.</p></li>
+<li><p>for different levels of <code>w1</code> and
+<code>w2</code>.</p></li>
 </ul>
-<p><code>cond_indirect_effects()</code> can estimate these effects in the model fitted by <code>lavaan::sem()</code>. There is no need to label any path coefficients or define any user parameters (but users can, if so desired; they have no impact on the functions in <code>manymome</code>). To illustrate a more realistic scenario, two control variables, <code>c1</code> and <code>c2</code>, are also included.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(lavaan)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># Form the product terms</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>dat<span class="op">$</span>w1x &lt;-<span class="st"> </span>dat<span class="op">$</span>w1 <span class="op">*</span><span class="st"> </span>dat<span class="op">$</span>x</span>
-<span id="cb2-4"><a href="#cb2-4"></a>dat<span class="op">$</span>w2m &lt;-<span class="st"> </span>dat<span class="op">$</span>w2 <span class="op">*</span><span class="st"> </span>dat<span class="op">$</span>m</span>
-<span id="cb2-5"><a href="#cb2-5"></a>mod &lt;-</span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="st">&quot;</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="st">m ~ x + w1 + w1x + c1 + c2</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="st">y ~ m + w2 + w2m + x + c1 + c2</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="st"># Covariances of the error term of m with w2m and w2</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="st">m ~~ w2m + w2</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="st"># Covariance between other variables</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="st"># They need to be added due to the covariances added above</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="st"># See Kwan and Chan (2018) and Miles et al. (2015)</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="st">w2m ~~ w2 + x + w1 + w1x + c1 + c2</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="st">w2  ~~ x + w1 + w1x + c1 + c2</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="st">x   ~~ w1 + w1x + c1 + c2</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="st">w1  ~~ w1x + c1 + c2</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="st">w1x ~~ c1 + c2</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="st">c1  ~~ c2</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="st">&quot;</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>fit &lt;-<span class="st"> </span><span class="kw">sem</span>(<span class="dt">model =</span> mod,</span>
-<span id="cb2-22"><a href="#cb2-22"></a>           <span class="dt">data =</span> dat,</span>
-<span id="cb2-23"><a href="#cb2-23"></a>           <span class="dt">fixed.x =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb2-24"><a href="#cb2-24"></a>           <span class="dt">estimator =</span> <span class="st">&quot;MLR&quot;</span>)</span></code></pre></div>
-<p><code>MLR</code> is used to take into account probable nonnormality due to the product terms. <code>fixed.x = FALSE</code> is used to allow the predictors to be random variables. This is usually necessary when the values of the predictor are also sampled from the populations, and so their standard deviations are sample statistics.</p>
+<p><code>cond_indirect_effects()</code> can estimate these effects in
+the model fitted by <code>lavaan::sem()</code>. There is no need to
+label any path coefficients or define any user parameters (but users
+can, if so desired; they have no impact on the functions in
+<code>manymome</code>). To illustrate a more realistic scenario, two
+control variables, <code>c1</code> and <code>c2</code>, are also
+included.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Form the product terms</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>w1x <span class="ot">&lt;-</span> dat<span class="sc">$</span>w1 <span class="sc">*</span> dat<span class="sc">$</span>x</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>w2m <span class="ot">&lt;-</span> dat<span class="sc">$</span>w2 <span class="sc">*</span> dat<span class="sc">$</span>m</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">m ~ x + w1 + w1x + c1 + c2</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">y ~ m + w2 + w2m + x + c1 + c2</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st"># Covariances of the error term of m with w2m and w2</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">m ~~ w2m + w2</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st"># Covariance between other variables</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st"># They need to be added due to the covariances added above</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st"># See Kwan and Chan (2018) and Miles et al. (2015)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">w2m ~~ w2 + x + w1 + w1x + c1 + c2</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">w2  ~~ x + w1 + w1x + c1 + c2</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">x   ~~ w1 + w1x + c1 + c2</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="st">w1  ~~ w1x + c1 + c2</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="st">w1x ~~ c1 + c2</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="st">c1  ~~ c2</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(<span class="at">model =</span> mod,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> dat,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>           <span class="at">fixed.x =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">estimator =</span> <span class="st">&quot;MLR&quot;</span>)</span></code></pre></div>
+<p><code>MLR</code> is used to take into account probable nonnormality
+due to the product terms. <code>fixed.x = FALSE</code> is used to allow
+the predictors to be random variables. This is usually necessary when
+the values of the predictor are also sampled from the populations, and
+so their standard deviations are sample statistics.</p>
 <p>These are the parameter estimates of the paths:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">parameterEstimates</span>(fit)[<span class="kw">parameterEstimates</span>(fit)<span class="op">$</span>op <span class="op">==</span><span class="st"> &quot;~&quot;</span>, ]</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt;    lhs op rhs    est    se      z pvalue ci.lower ci.upper</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; 1    m  ~   x -0.663 0.533 -1.244  0.213   -1.707    0.381</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; 2    m  ~  w1 -2.290 1.010 -2.267  0.023   -4.269   -0.310</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; 3    m  ~ w1x  0.204 0.101  2.023  0.043    0.006    0.401</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; 4    m  ~  c1 -0.020 0.079 -0.251  0.801   -0.175    0.135</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; 5    m  ~  c2 -0.130 0.090 -1.444  0.149   -0.306    0.046</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; 6    y  ~   m -0.153 0.248 -0.616  0.538   -0.638    0.333</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; 7    y  ~  w2 -0.921 0.401 -2.300  0.021   -1.706   -0.136</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; 8    y  ~ w2m  0.204 0.079  2.579  0.010    0.049    0.359</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; 9    y  ~   x  0.056 0.086  0.653  0.514   -0.113    0.225</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt; 10   y  ~  c1 -0.102 0.081 -1.261  0.207   -0.261    0.056</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt; 11   y  ~  c2 -0.108 0.087 -1.249  0.212   -0.279    0.062</span></span></code></pre></div>
-<p>The moderation effects of both <code>w1</code> and <code>w2</code> are significant. The indirect effect from <code>x</code> to <code>y</code> through <code>m</code> depends on the level of <code>w1</code> and <code>w2</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parameterEstimates</span>(fit)[<span class="fu">parameterEstimates</span>(fit)<span class="sc">$</span>op <span class="sc">==</span> <span class="st">&quot;~&quot;</span>, ]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    lhs op rhs    est    se      z pvalue ci.lower ci.upper</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    m  ~   x -0.663 0.533 -1.244  0.213   -1.707    0.381</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2    m  ~  w1 -2.290 1.010 -2.267  0.023   -4.269   -0.310</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    m  ~ w1x  0.204 0.101  2.023  0.043    0.006    0.401</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4    m  ~  c1 -0.020 0.079 -0.251  0.801   -0.175    0.135</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    m  ~  c2 -0.130 0.090 -1.444  0.149   -0.306    0.046</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    y  ~   m -0.153 0.248 -0.616  0.538   -0.638    0.333</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7    y  ~  w2 -0.921 0.401 -2.300  0.021   -1.706   -0.136</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8    y  ~ w2m  0.204 0.079  2.579  0.010    0.049    0.359</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9    y  ~   x  0.056 0.086  0.653  0.514   -0.113    0.225</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10   y  ~  c1 -0.102 0.081 -1.261  0.207   -0.261    0.056</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11   y  ~  c2 -0.108 0.087 -1.249  0.212   -0.279    0.062</span></span></code></pre></div>
+<p>The moderation effects of both <code>w1</code> and <code>w2</code>
+are significant. The indirect effect from <code>x</code> to
+<code>y</code> through <code>m</code> depends on the level of
+<code>w1</code> and <code>w2</code>.</p>
 </div>
 <div id="conditional-indirect-effects" class="section level2" number="2.2">
-<h2 number="2.2"><span class="header-section-number">2.2</span> Conditional Indirect Effects</h2>
-<p>To form bootstrap confidence intervals, bootstrapping needs to be done. There are several ways to do this. We first illustrate using <code>do_boot()</code>.</p>
+<h2><span class="header-section-number">2.2</span> Conditional Indirect
+Effects</h2>
+<p>To form bootstrap confidence intervals, bootstrapping needs to be
+done. There are several ways to do this. We first illustrate using
+<code>do_boot()</code>.</p>
 <div id="do-bootstrapping-once" class="section level3" number="2.2.1">
-<h3 number="2.2.1"><span class="header-section-number">2.2.1</span> Do Bootstrapping (Once)</h3>
-<p>Using <code>do_boot()</code> instead of setting <code>se</code> to <code>&quot;boot&quot;</code> when calling <code>lavaan::sem()</code> allows users to use other method for standard errors and confidence intervals for other parameters, such as the various types of robust standard errors provided by <code>lavaan::sem()</code>.</p>
-<p>The function <code>do_boot()</code> is used to generate and store bootstrap estimates as well as implied variances of variables, which are needed to estimate standardized effects.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>fit_boot &lt;-<span class="st"> </span><span class="kw">do_boot</span>(<span class="dt">fit =</span> fit,</span>
-<span id="cb4-2"><a href="#cb4-2"></a>                    <span class="dt">R =</span> <span class="dv">100</span>,</span>
-<span id="cb4-3"><a href="#cb4-3"></a>                    <span class="dt">seed =</span> <span class="dv">53253</span>,</span>
-<span id="cb4-4"><a href="#cb4-4"></a>                    <span class="dt">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
+<h3><span class="header-section-number">2.2.1</span> Do Bootstrapping
+(Once)</h3>
+<p>Using <code>do_boot()</code> instead of setting <code>se</code> to
+<code>&quot;boot&quot;</code> when calling <code>lavaan::sem()</code> allows users
+to use other method for standard errors and confidence intervals for
+other parameters, such as the various types of robust standard errors
+provided by <code>lavaan::sem()</code>.</p>
+<p>The function <code>do_boot()</code> is used to generate and store
+bootstrap estimates as well as implied variances of variables, which are
+needed to estimate standardized effects.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fit_boot <span class="ot">&lt;-</span> <span class="fu">do_boot</span>(<span class="at">fit =</span> fit,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">R =</span> <span class="dv">100</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">seed =</span> <span class="dv">53253</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>These are the major arguments:</p>
 <ul>
-<li><p><code>fit</code>: The output of <code>lavaan::sem()</code>.</p></li>
-<li><p><code>R</code>: The number of bootstrap samples, which should be 2000 or even 5000 in real research. <code>R</code> is set to 100 here just for illustration.</p></li>
+<li><p><code>fit</code>: The output of
+<code>lavaan::sem()</code>.</p></li>
+<li><p><code>R</code>: The number of bootstrap samples, which should be
+2000 or even 5000 in real research. <code>R</code> is set to 100 here
+just for illustration.</p></li>
 <li><p><code>seed</code>: The seed to reproduce the results.</p></li>
-<li><p><code>ncores</code>: The number of processes in parallel processing. The default number is the number of detected physical cores minus 1. Can be omitted in real studies. Set to 1 here for illustration.</p></li>
+<li><p><code>ncores</code>: The number of processes in parallel
+processing. The default number is the number of detected physical cores
+minus 1. Can be omitted in real studies. Set to 1 here for
+illustration.</p></li>
 </ul>
-<p>By default, parallel processing is used, and so the results are reproducible with the same seed only if the number of processes is the same. See <code>do_boot()</code> for other options and <code>vignette(&quot;do_boot&quot;)</code> on the output of <code>do_boot()</code>.</p>
-<p>The output, <code>fit_boot</code> in this case, can then be used for all subsequent analyses on this model.</p>
+<p>By default, parallel processing is used, and so the results are
+reproducible with the same seed only if the number of processes is the
+same. See <code>do_boot()</code> for other options and
+<code>vignette(&quot;do_boot&quot;)</code> on the output of
+<code>do_boot()</code>.</p>
+<p>The output, <code>fit_boot</code> in this case, can then be used for
+all subsequent analyses on this model.</p>
 </div>
 <div id="estimate-conditional-indirect-effects" class="section level3" number="2.2.2">
-<h3 number="2.2.2"><span class="header-section-number">2.2.2</span> Estimate Conditional Indirect Effects</h3>
-<p>To compute conditional indirect effects and form bootstrap confidence intervals, we can use <code>cond_indirect_effects()</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>out_cond &lt;-<span class="st"> </span><span class="kw">cond_indirect_effects</span>(<span class="dt">wlevels =</span><span class="kw">c</span>(<span class="st">&quot;w1&quot;</span>, <span class="st">&quot;w2&quot;</span>),</span>
-<span id="cb5-2"><a href="#cb5-2"></a>                                  <span class="dt">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb5-3"><a href="#cb5-3"></a>                                  <span class="dt">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb5-4"><a href="#cb5-4"></a>                                  <span class="dt">m =</span> <span class="st">&quot;m&quot;</span>,</span>
-<span id="cb5-5"><a href="#cb5-5"></a>                                  <span class="dt">fit =</span> fit,</span>
-<span id="cb5-6"><a href="#cb5-6"></a>                                  <span class="dt">boot_ci =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb5-7"><a href="#cb5-7"></a>                                  <span class="dt">boot_out =</span> fit_boot)</span></code></pre></div>
+<h3><span class="header-section-number">2.2.2</span> Estimate
+Conditional Indirect Effects</h3>
+<p>To compute conditional indirect effects and form bootstrap confidence
+intervals, we can use <code>cond_indirect_effects()</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>out_cond <span class="ot">&lt;-</span> <span class="fu">cond_indirect_effects</span>(<span class="at">wlevels =</span><span class="fu">c</span>(<span class="st">&quot;w1&quot;</span>, <span class="st">&quot;w2&quot;</span>),</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">fit =</span> fit,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">boot_out =</span> fit_boot)</span></code></pre></div>
 <p>These are the major arguments:</p>
 <ul>
-<li><code>wlevels</code>: The vector of the names of the moderators. Order does not matter. If the default levels are not suitable, custom levels can be created by functions like <code>mod_levels()</code> and <code>merge_mod_levels()</code> (see <code>vignette(&quot;mod_levels&quot;)</code>).</li>
+<li><code>wlevels</code>: The vector of the names of the moderators.
+Order does not matter. If the default levels are not suitable, custom
+levels can be created by functions like <code>mod_levels()</code> and
+<code>merge_mod_levels()</code> (see
+<code>vignette(&quot;mod_levels&quot;)</code>).</li>
 <li><code>x</code>: The name of the predictor.</li>
 <li><code>y</code>: The name of the outcome variable.</li>
-<li><code>m</code>: The name of the mediator, or a vector of names if the path has more than one mediator (see <a href="#est_indirect">this example</a>).</li>
+<li><code>m</code>: The name of the mediator, or a vector of names if
+the path has more than one mediator (see <a href="#est_indirect">this
+example</a>).</li>
 <li><code>fit</code>: The output of <code>lavaan::sem()</code>.</li>
-<li><code>boot_ci</code>: Set to <code>TRUE</code> to request bootstrap confidence intervals. Default is <code>FALSE</code>.</li>
-<li><code>boot_out</code>: The pregenerated bootstrap estimates generated by <code>do_boot()</code> or previous call to <code>cond_indirect_effects()</code> or <code>indirect_effect()</code>.</li>
+<li><code>boot_ci</code>: Set to <code>TRUE</code> to request bootstrap
+confidence intervals. Default is <code>FALSE</code>.</li>
+<li><code>boot_out</code>: The pregenerated bootstrap estimates
+generated by <code>do_boot()</code> or previous call to
+<code>cond_indirect_effects()</code> or
+<code>indirect_effect()</code>.</li>
 </ul>
 <p>This is the output:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>out_cond</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#&gt; </span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; </span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt;  Conditional on moderator(s): w1, w2</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt;  Moderator(s) represented by: w1, w2</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt; </span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt;      [w1]    [w2]  (w1)  (w2)   ind  CI.lo CI.hi Sig   m~x   y~m</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt; 1 M+1.0SD M+1.0SD 6.173 4.040 0.399  0.121 0.654 Sig 0.596 0.671</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt; 2 M+1.0SD M-1.0SD 6.173 2.055 0.158 -0.012 0.359     0.596 0.266</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt; 3 M-1.0SD M+1.0SD 4.038 4.040 0.107 -0.166 0.372     0.160 0.671</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt; 4 M-1.0SD M-1.0SD 4.038 2.055 0.043 -0.066 0.216     0.160 0.266</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt; </span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt;  - [CI.lo to CI.hi] are 95.0% percentile confidence intervals by</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt;    nonparametric bootstrapping with 100 samples.</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt;  - The &#39;ind&#39; column shows the indirect effects.</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt;  - &#39;m~x&#39;,&#39;y~m&#39; is/are the path coefficient(s) along the path conditional</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="co">#&gt;    on the moderators.</span></span></code></pre></div>
-<p>For two or more moderators, the default levels for numeric moderators are one standard deviation (SD) below mean and one SD above mean. For two moderators, there are four combinations.</p>
-<p>As shown above, among these four sets of levels, the indirect effect from <code>x</code> to <code>y</code> through <code>m</code> is significant only when both <code>w1</code> and <code>w2</code> are one SD above their means. The indirect effect at these levels of <code>w1</code> and <code>w2</code> are 0.399, with 95% bootstrap confidence interval [0.121, 0.654].</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>out_cond</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Conditional on moderator(s): w1, w2</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Moderator(s) represented by: w1, w2</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [w1]    [w2]  (w1)  (w2)   ind  CI.lo CI.hi Sig   m~x   y~m</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 M+1.0SD M+1.0SD 6.173 4.040 0.399  0.121 0.654 Sig 0.596 0.671</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 M+1.0SD M-1.0SD 6.173 2.055 0.158 -0.012 0.359     0.596 0.266</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 M-1.0SD M+1.0SD 4.038 4.040 0.107 -0.166 0.372     0.160 0.671</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 M-1.0SD M-1.0SD 4.038 2.055 0.043 -0.066 0.216     0.160 0.266</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo to CI.hi] are 95.0% percentile confidence intervals by</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    nonparametric bootstrapping with 100 samples.</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - The &#39;ind&#39; column shows the indirect effects.</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - &#39;m~x&#39;,&#39;y~m&#39; is/are the path coefficient(s) along the path conditional</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    on the moderators.</span></span></code></pre></div>
+<p>For two or more moderators, the default levels for numeric moderators
+are one standard deviation (SD) below mean and one SD above mean. For
+two moderators, there are four combinations.</p>
+<p>As shown above, among these four sets of levels, the indirect effect
+from <code>x</code> to <code>y</code> through <code>m</code> is
+significant only when both <code>w1</code> and <code>w2</code> are one
+SD above their means. The indirect effect at these levels of
+<code>w1</code> and <code>w2</code> are 0.399, with 95% bootstrap
+confidence interval [0.121, 0.654].</p>
 <div id="examine-the-effect-at-a-particular-set-of-levels-of-the-moderators" class="section level4" number="2.2.2.1">
-<h4 number="2.2.2.1"><span class="header-section-number">2.2.2.1</span> Examine the Effect at a Particular Set of Levels of the Moderators</h4>
-<p>To learn more about the conditional effect for one combination of the levels of the moderators, <code>get_one_cond_indirect_effect()</code> can be used, with the first argument the output of <code>cond_indirect_effects()</code> and the second argument the row number. For example, this shows the details on the computation of the indirect effect when both <code>w1</code> and <code>w2</code> are one SD above their means (row 1):</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">get_one_cond_indirect_effect</span>(out_cond, <span class="dv">1</span>)</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&gt; </span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; == Conditional Indirect Effect   ==</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt;                                                     </span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt;  Path:                        x -&gt; m -&gt; y           </span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt;  Moderators:                  w1, w2                </span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt;  Conditional Indirect Effect: 0.399                 </span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt;  95.0% Bootstrap CI:          [0.121 to 0.654]      </span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt;  When:                        w1 = 6.173, w2 = 4.040</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt; </span></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt;   (b.m~x + (b.w1x)*(w1))*(b.y~m + (b.w2m)*(w2))</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&gt;   ((-0.66304) + (0.20389)*(6.17316))*((-0.15271) + (0.20376)*(4.04049))</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a><span class="co">#&gt; </span></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a><span class="co">#&gt; </span></span>
-<span id="cb7-19"><a href="#cb7-19"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb7-20"><a href="#cb7-20"></a><span class="co">#&gt;  Path Conditional Effect Original Coefficient</span></span>
-<span id="cb7-21"><a href="#cb7-21"></a><span class="co">#&gt;   m~x              0.596               -0.663</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a><span class="co">#&gt;   y~m              0.671               -0.153</span></span></code></pre></div>
+<h4><span class="header-section-number">2.2.2.1</span> Examine the
+Effect at a Particular Set of Levels of the Moderators</h4>
+<p>To learn more about the conditional effect for one combination of the
+levels of the moderators, <code>get_one_cond_indirect_effect()</code>
+can be used, with the first argument the output of
+<code>cond_indirect_effects()</code> and the second argument the row
+number. For example, this shows the details on the computation of the
+indirect effect when both <code>w1</code> and <code>w2</code> are one SD
+above their means (row 1):</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_one_cond_indirect_effect</span>(out_cond, <span class="dv">1</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Conditional Indirect Effect   ==</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                                     </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                        x -&gt; m -&gt; y           </span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Moderators:                  w1, w2                </span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Conditional Indirect Effect: 0.399                 </span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI:          [0.121 to 0.654]      </span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  When:                        w1 = 6.173, w2 = 4.040</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m~x + (b.w1x)*(w1))*(b.y~m + (b.w2m)*(w2))</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ((-0.66304) + (0.20389)*(6.17316))*((-0.15271) + (0.20376)*(4.04049))</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path Conditional Effect Original Coefficient</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   m~x              0.596               -0.663</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   y~m              0.671               -0.153</span></span></code></pre></div>
 </div>
 <div id="changing-the-levels-of-the-moderators" class="section level4" number="2.2.2.2">
-<h4 number="2.2.2.2"><span class="header-section-number">2.2.2.2</span> Changing the Levels of the Moderators</h4>
-<p>The levels of the moderators, <code>w1</code> and <code>w2</code> in this example, can be controlled directly by users. For examples, percentiles or exact values of the moderators can be used. See <code>vignette(&quot;mod_levels&quot;)</code> on how to specify other levels of the moderators, and the arguments <code>w_method</code>, <code>sd_from_mean</code>, and <code>percentiles</code> of <code>cond_indirect_effects()</code>.</p>
+<h4><span class="header-section-number">2.2.2.2</span> Changing the
+Levels of the Moderators</h4>
+<p>The levels of the moderators, <code>w1</code> and <code>w2</code> in
+this example, can be controlled directly by users. For examples,
+percentiles or exact values of the moderators can be used. See
+<code>vignette(&quot;mod_levels&quot;)</code> on how to specify other levels of
+the moderators, and the arguments <code>w_method</code>,
+<code>sd_from_mean</code>, and <code>percentiles</code> of
+<code>cond_indirect_effects()</code>.</p>
 </div>
 </div>
 </div>
 <div id="standardized-conditional-indirect-effects" class="section level2" number="2.3">
-<h2 number="2.3"><span class="header-section-number">2.3</span> Standardized Conditional Indirect Effects</h2>
-<p>To compute the standardized conditional indirect effects, we can standardize only the predictor (<code>x</code>), only the outcome (<code>y</code>), or both.</p>
-<p>To standardize <code>x</code>, set <code>standardized_x</code> to <code>TRUE</code>. To standardize <code>y</code>, set <code>standardized_y</code> to <code>TRUE</code>. To standardize both, set both <code>standardized_x</code> and <code>standardized_y</code> to <code>TRUE</code>.</p>
-<p>This is the result when both <code>x</code> and <code>y</code> are standardized:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>out_cond_stdxy &lt;-<span class="st"> </span><span class="kw">cond_indirect_effects</span>(<span class="dt">wlevels =</span><span class="kw">c</span>(<span class="st">&quot;w1&quot;</span>, <span class="st">&quot;w2&quot;</span>),</span>
-<span id="cb8-2"><a href="#cb8-2"></a>                                        <span class="dt">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb8-3"><a href="#cb8-3"></a>                                        <span class="dt">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb8-4"><a href="#cb8-4"></a>                                        <span class="dt">m =</span> <span class="st">&quot;m&quot;</span>,</span>
-<span id="cb8-5"><a href="#cb8-5"></a>                                        <span class="dt">fit =</span> fit,</span>
-<span id="cb8-6"><a href="#cb8-6"></a>                                        <span class="dt">boot_ci =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb8-7"><a href="#cb8-7"></a>                                        <span class="dt">boot_out =</span> fit_boot,</span>
-<span id="cb8-8"><a href="#cb8-8"></a>                                        <span class="dt">standardized_x =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb8-9"><a href="#cb8-9"></a>                                        <span class="dt">standardized_y =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p>Note that <code>fit_boot</code> is used so that there is no need to do bootstrapping again.</p>
+<h2><span class="header-section-number">2.3</span> Standardized
+Conditional Indirect Effects</h2>
+<p>To compute the standardized conditional indirect effects, we can
+standardize only the predictor (<code>x</code>), only the outcome
+(<code>y</code>), or both.</p>
+<p>To standardize <code>x</code>, set <code>standardized_x</code> to
+<code>TRUE</code>. To standardize <code>y</code>, set
+<code>standardized_y</code> to <code>TRUE</code>. To standardize both,
+set both <code>standardized_x</code> and <code>standardized_y</code> to
+<code>TRUE</code>.</p>
+<p>This is the result when both <code>x</code> and <code>y</code> are
+standardized:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>out_cond_stdxy <span class="ot">&lt;-</span> <span class="fu">cond_indirect_effects</span>(<span class="at">wlevels =</span><span class="fu">c</span>(<span class="st">&quot;w1&quot;</span>, <span class="st">&quot;w2&quot;</span>),</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">fit =</span> fit,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">boot_out =</span> fit_boot,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">standardized_x =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">standardized_y =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Note that <code>fit_boot</code> is used so that there is no need to
+do bootstrapping again.</p>
 <p>This is the output:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>out_cond_stdxy</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="co">#&gt; </span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt; </span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt;  Conditional on moderator(s): w1, w2</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt;  Moderator(s) represented by: w1, w2</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt; </span></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt;      [w1]    [w2]  (w1)  (w2)   std  CI.lo CI.hi Sig   m~x   y~m   ind</span></span>
-<span id="cb9-10"><a href="#cb9-10"></a><span class="co">#&gt; 1 M+1.0SD M+1.0SD 6.173 4.040 0.401  0.129 0.607 Sig 0.596 0.671 0.399</span></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="co">#&gt; 2 M+1.0SD M-1.0SD 6.173 2.055 0.159 -0.013 0.351     0.596 0.266 0.158</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a><span class="co">#&gt; 3 M-1.0SD M+1.0SD 4.038 4.040 0.108 -0.154 0.416     0.160 0.671 0.107</span></span>
-<span id="cb9-13"><a href="#cb9-13"></a><span class="co">#&gt; 4 M-1.0SD M-1.0SD 4.038 2.055 0.043 -0.068 0.224     0.160 0.266 0.043</span></span>
-<span id="cb9-14"><a href="#cb9-14"></a><span class="co">#&gt; </span></span>
-<span id="cb9-15"><a href="#cb9-15"></a><span class="co">#&gt;  - [CI.lo to CI.hi] are 95.0% percentile confidence intervals by</span></span>
-<span id="cb9-16"><a href="#cb9-16"></a><span class="co">#&gt;    nonparametric bootstrapping with 100 samples.</span></span>
-<span id="cb9-17"><a href="#cb9-17"></a><span class="co">#&gt;  - std: The standardized indirect effects. </span></span>
-<span id="cb9-18"><a href="#cb9-18"></a><span class="co">#&gt;  - ind: The unstandardized indirect effects.</span></span>
-<span id="cb9-19"><a href="#cb9-19"></a><span class="co">#&gt;  - &#39;m~x&#39;,&#39;y~m&#39; is/are the path coefficient(s) along the path conditional</span></span>
-<span id="cb9-20"><a href="#cb9-20"></a><span class="co">#&gt;    on the moderators.</span></span></code></pre></div>
-<p>The standardized indirect effect when both <code>w1</code> and <code>w2</code> are one SD above mean is 0.401, with 95% bootstrap confidence interval [0.129, 0.607].</p>
-<p>That is, when both <code>w1</code> and <code>w2</code> are one SD above their means, if <code>x</code> increases by one SD, it leads to an increase of 0.401 SD of <code>y</code> through <code>m</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>out_cond_stdxy</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Conditional on moderator(s): w1, w2</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Moderator(s) represented by: w1, w2</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [w1]    [w2]  (w1)  (w2)   std  CI.lo CI.hi Sig   m~x   y~m   ind</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 M+1.0SD M+1.0SD 6.173 4.040 0.401  0.129 0.607 Sig 0.596 0.671 0.399</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 M+1.0SD M-1.0SD 6.173 2.055 0.159 -0.013 0.351     0.596 0.266 0.158</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 M-1.0SD M+1.0SD 4.038 4.040 0.108 -0.154 0.416     0.160 0.671 0.107</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 M-1.0SD M-1.0SD 4.038 2.055 0.043 -0.068 0.224     0.160 0.266 0.043</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo to CI.hi] are 95.0% percentile confidence intervals by</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    nonparametric bootstrapping with 100 samples.</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - std: The standardized indirect effects. </span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - ind: The unstandardized indirect effects.</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - &#39;m~x&#39;,&#39;y~m&#39; is/are the path coefficient(s) along the path conditional</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    on the moderators.</span></span></code></pre></div>
+<p>The standardized indirect effect when both <code>w1</code> and
+<code>w2</code> are one SD above mean is 0.401, with 95% bootstrap
+confidence interval [0.129, 0.607].</p>
+<p>That is, when both <code>w1</code> and <code>w2</code> are one SD
+above their means, if <code>x</code> increases by one SD, it leads to an
+increase of 0.401 SD of <code>y</code> through <code>m</code>.</p>
 </div>
 <div id="index-of-moderated-moderated-mediation" class="section level2" number="2.4">
-<h2 number="2.4"><span class="header-section-number">2.4</span> Index of Moderated Moderated Mediation</h2>
-<p>The index of moderated moderated mediation (Hayes, 2018) can be estimated, along with bootstrap confidence interval, using the function <code>index_of_momome()</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>out_momome &lt;-<span class="st"> </span><span class="kw">index_of_momome</span>(<span class="dt">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb10-2"><a href="#cb10-2"></a>                              <span class="dt">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb10-3"><a href="#cb10-3"></a>                              <span class="dt">m =</span> <span class="st">&quot;m&quot;</span>,</span>
-<span id="cb10-4"><a href="#cb10-4"></a>                              <span class="dt">w =</span> <span class="st">&quot;w1&quot;</span>,</span>
-<span id="cb10-5"><a href="#cb10-5"></a>                              <span class="dt">z =</span> <span class="st">&quot;w2&quot;</span>,</span>
-<span id="cb10-6"><a href="#cb10-6"></a>                              <span class="dt">fit =</span> fit,</span>
-<span id="cb10-7"><a href="#cb10-7"></a>                              <span class="dt">boot_ci =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb10-8"><a href="#cb10-8"></a>                              <span class="dt">boot_out =</span> fit_boot)</span></code></pre></div>
+<h2><span class="header-section-number">2.4</span> Index of Moderated
+Moderated Mediation</h2>
+<p>The index of moderated moderated mediation (Hayes, 2018) can be
+estimated, along with bootstrap confidence interval, using the function
+<code>index_of_momome()</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>out_momome <span class="ot">&lt;-</span> <span class="fu">index_of_momome</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">w =</span> <span class="st">&quot;w1&quot;</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">z =</span> <span class="st">&quot;w2&quot;</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">fit =</span> fit,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_out =</span> fit_boot)</span></code></pre></div>
 <p>These are the major arguments:</p>
 <ul>
 <li><code>x</code>: The name of the predictor.</li>
 <li><code>y</code>: The name of the outcome variable.</li>
-<li><code>m</code>: The name of the mediator, or a vector of names if the path has more than one mediator (see <a href="#est_indirect">this example</a>).</li>
+<li><code>m</code>: The name of the mediator, or a vector of names if
+the path has more than one mediator (see <a href="#est_indirect">this
+example</a>).</li>
 <li><code>w</code>: The name of one of the moderator.</li>
-<li><code>z</code>: The name of the other moderator. The order of <code>w</code> and <code>z</code> does not matter.</li>
+<li><code>z</code>: The name of the other moderator. The order of
+<code>w</code> and <code>z</code> does not matter.</li>
 <li><code>fit</code>: The output of <code>lavaan::sem()</code>.</li>
-<li><code>boot_ci</code>: Set to <code>TRUE</code> to request bootstrap confidence intervals. Default is <code>FALSE</code>.</li>
-<li><code>boot_out</code>: The pregenerated bootstrap estimates generated by <code>do_boot()</code> or previous call to <code>cond_indirect_effects()</code> and <code>indirect_effect()</code>.</li>
+<li><code>boot_ci</code>: Set to <code>TRUE</code> to request bootstrap
+confidence intervals. Default is <code>FALSE</code>.</li>
+<li><code>boot_out</code>: The pregenerated bootstrap estimates
+generated by <code>do_boot()</code> or previous call to
+<code>cond_indirect_effects()</code> and
+<code>indirect_effect()</code>.</li>
 </ul>
 <p>This is the result:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>out_momome</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="co">#&gt; </span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="co">#&gt; </span></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="co">#&gt;  Conditional on moderator(s): w1, w2</span></span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="co">#&gt;  Moderator(s) represented by: w1, w2</span></span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="co">#&gt; </span></span>
-<span id="cb11-9"><a href="#cb11-9"></a><span class="co">#&gt;   [w1] [w2] (w1) (w2)    ind  CI.lo CI.hi Sig    m~x    y~m</span></span>
-<span id="cb11-10"><a href="#cb11-10"></a><span class="co">#&gt; 1    1    1    1    1 -0.023 -0.244 0.353     -0.459  0.051</span></span>
-<span id="cb11-11"><a href="#cb11-11"></a><span class="co">#&gt; 2    1    0    1    0  0.070 -0.238 0.705     -0.459 -0.153</span></span>
-<span id="cb11-12"><a href="#cb11-12"></a><span class="co">#&gt; 3    0    1    0    1 -0.034 -0.335 0.496     -0.663  0.051</span></span>
-<span id="cb11-13"><a href="#cb11-13"></a><span class="co">#&gt; 4    0    0    0    0  0.101 -0.272 0.936     -0.663 -0.153</span></span>
-<span id="cb11-14"><a href="#cb11-14"></a><span class="co">#&gt; </span></span>
-<span id="cb11-15"><a href="#cb11-15"></a><span class="co">#&gt; == Index of Moderated Moderated Mediation ==</span></span>
-<span id="cb11-16"><a href="#cb11-16"></a><span class="co">#&gt; </span></span>
-<span id="cb11-17"><a href="#cb11-17"></a><span class="co">#&gt; Levels compared:</span></span>
-<span id="cb11-18"><a href="#cb11-18"></a><span class="co">#&gt; (Row 1 - Row 2) - (Row 3 - Row 4)</span></span>
-<span id="cb11-19"><a href="#cb11-19"></a><span class="co">#&gt; </span></span>
-<span id="cb11-20"><a href="#cb11-20"></a><span class="co">#&gt;       x y Index  CI.lo CI.hi</span></span>
-<span id="cb11-21"><a href="#cb11-21"></a><span class="co">#&gt; Index x y 0.042 -0.011 0.118</span></span>
-<span id="cb11-22"><a href="#cb11-22"></a><span class="co">#&gt; </span></span>
-<span id="cb11-23"><a href="#cb11-23"></a><span class="co">#&gt;  - [CI.lo, CI.hi]: 95% percentile confidence interval.</span></span></code></pre></div>
-<p>The index of moderated moderated mediation is 0.042, with 95% bootstrap confidence interval [-0.011, 0.118].</p>
-<p>Note that this index is specifically for the change when <code>w1</code> or <code>w2</code> increases by one unit.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>out_momome</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Conditional on moderator(s): w1, w2</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Moderator(s) represented by: w1, w2</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [w1] [w2] (w1) (w2)    ind  CI.lo CI.hi Sig    m~x    y~m</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    1    1    1    1 -0.023 -0.244 0.353     -0.459  0.051</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2    1    0    1    0  0.070 -0.238 0.705     -0.459 -0.153</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    0    1    0    1 -0.034 -0.335 0.496     -0.663  0.051</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4    0    0    0    0  0.101 -0.272 0.936     -0.663 -0.153</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Index of Moderated Moderated Mediation ==</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels compared:</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Row 1 - Row 2) - (Row 3 - Row 4)</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       x y Index  CI.lo CI.hi</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Index x y 0.042 -0.011 0.118</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo, CI.hi]: 95% percentile confidence interval.</span></span></code></pre></div>
+<p>The index of moderated moderated mediation is 0.042, with 95%
+bootstrap confidence interval [-0.011, 0.118].</p>
+<p>Note that this index is specifically for the change when
+<code>w1</code> or <code>w2</code> increases by one unit.</p>
 </div>
 <div id="index-of-moderated-mediation" class="section level2" number="2.5">
-<h2 number="2.5"><span class="header-section-number">2.5</span> Index of Moderated Mediation</h2>
-<p>The <code>manymome</code> package also has a function to compute the <em>index of moderated mediation</em> (Hayes, 2015). Suppose we modify the model and remove one of the moderators:</p>
+<h2><span class="header-section-number">2.5</span> Index of Moderated
+Mediation</h2>
+<p>The <code>manymome</code> package also has a function to compute the
+<em>index of moderated mediation</em> (Hayes, 2015). Suppose we modify
+the model and remove one of the moderators:</p>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
 <p>This is the <code>lavaan</code> model:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">library</span>(lavaan)</span>
-<span id="cb12-2"><a href="#cb12-2"></a>dat<span class="op">$</span>w1x &lt;-<span class="st"> </span>dat<span class="op">$</span>w1 <span class="op">*</span><span class="st"> </span>dat<span class="op">$</span>x</span>
-<span id="cb12-3"><a href="#cb12-3"></a>mod2 &lt;-</span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="st">&quot;</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="st">m ~ x + w1 + w1x + c1 + c2</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a><span class="st">y ~ m + x + c1 + c2</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="st">&quot;</span></span>
-<span id="cb12-8"><a href="#cb12-8"></a>fit2 &lt;-<span class="st"> </span><span class="kw">sem</span>(<span class="dt">model =</span> mod2,</span>
-<span id="cb12-9"><a href="#cb12-9"></a>           <span class="dt">data =</span> dat,</span>
-<span id="cb12-10"><a href="#cb12-10"></a>           <span class="dt">fixed.x =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb12-11"><a href="#cb12-11"></a>           <span class="dt">estimator =</span> <span class="st">&quot;MLR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>w1x <span class="ot">&lt;-</span> dat<span class="sc">$</span>w1 <span class="sc">*</span> dat<span class="sc">$</span>x</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="st">m ~ x + w1 + w1x + c1 + c2</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="st">y ~ m + x + c1 + c2</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">sem</span>(<span class="at">model =</span> mod2,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> dat,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">fixed.x =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">estimator =</span> <span class="st">&quot;MLR&quot;</span>)</span></code></pre></div>
 <p>These are the parameter estimates of the paths:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">parameterEstimates</span>(fit2)[<span class="kw">parameterEstimates</span>(fit2)<span class="op">$</span>op <span class="op">==</span><span class="st"> &quot;~&quot;</span>, ]</span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="co">#&gt;   lhs op rhs    est    se      z pvalue ci.lower ci.upper</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="co">#&gt; 1   m  ~   x -0.663 0.533 -1.244  0.213   -1.707    0.381</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="co">#&gt; 2   m  ~  w1 -2.290 1.010 -2.267  0.023   -4.269   -0.310</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="co">#&gt; 3   m  ~ w1x  0.204 0.101  2.023  0.043    0.006    0.401</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="co">#&gt; 4   m  ~  c1 -0.020 0.079 -0.251  0.801   -0.175    0.135</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a><span class="co">#&gt; 5   m  ~  c2 -0.130 0.090 -1.444  0.149   -0.306    0.046</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a><span class="co">#&gt; 6   y  ~   m  0.434 0.114  3.815  0.000    0.211    0.657</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a><span class="co">#&gt; 7   y  ~   x  0.053 0.093  0.570  0.569   -0.130    0.237</span></span>
-<span id="cb13-10"><a href="#cb13-10"></a><span class="co">#&gt; 8   y  ~  c1 -0.108 0.080 -1.352  0.177   -0.265    0.049</span></span>
-<span id="cb13-11"><a href="#cb13-11"></a><span class="co">#&gt; 9   y  ~  c2 -0.077 0.085 -0.904  0.366   -0.243    0.090</span></span></code></pre></div>
-<p>We generate the bootstrap estimates first (<code>R</code> should be 2000 or even 5000 in real research):</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>fit2_boot &lt;-<span class="st"> </span><span class="kw">do_boot</span>(<span class="dt">fit =</span> fit2,</span>
-<span id="cb14-2"><a href="#cb14-2"></a>                    <span class="dt">R =</span> <span class="dv">100</span>,</span>
-<span id="cb14-3"><a href="#cb14-3"></a>                    <span class="dt">seed =</span> <span class="dv">53253</span>,</span>
-<span id="cb14-4"><a href="#cb14-4"></a>                    <span class="dt">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p>The function <code>index_of_mome()</code> can be used to compute the index of moderated mediation of <code>w1</code> on the path <code>x -&gt; m -&gt; y</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>out_mome &lt;-<span class="st"> </span><span class="kw">index_of_mome</span>(<span class="dt">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb15-2"><a href="#cb15-2"></a>                          <span class="dt">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb15-3"><a href="#cb15-3"></a>                          <span class="dt">m =</span> <span class="st">&quot;m&quot;</span>,</span>
-<span id="cb15-4"><a href="#cb15-4"></a>                          <span class="dt">w =</span> <span class="st">&quot;w1&quot;</span>,</span>
-<span id="cb15-5"><a href="#cb15-5"></a>                          <span class="dt">fit =</span> fit2,</span>
-<span id="cb15-6"><a href="#cb15-6"></a>                          <span class="dt">boot_ci =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb15-7"><a href="#cb15-7"></a>                          <span class="dt">boot_out =</span> fit2_boot)</span></code></pre></div>
-<p>The arguments are nearly identical to those of <code>index_of_momome()</code>, except that only <code>w</code> needs to be specified. This is the output:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>out_mome</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="co">#&gt; </span></span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="co">#&gt; </span></span>
-<span id="cb16-5"><a href="#cb16-5"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
-<span id="cb16-6"><a href="#cb16-6"></a><span class="co">#&gt;  Conditional on moderator(s): w1</span></span>
-<span id="cb16-7"><a href="#cb16-7"></a><span class="co">#&gt;  Moderator(s) represented by: w1</span></span>
-<span id="cb16-8"><a href="#cb16-8"></a><span class="co">#&gt; </span></span>
-<span id="cb16-9"><a href="#cb16-9"></a><span class="co">#&gt;   [w1] (w1)    ind  CI.lo CI.hi Sig    m~x   y~m</span></span>
-<span id="cb16-10"><a href="#cb16-10"></a><span class="co">#&gt; 1    1    1 -0.199 -0.698 0.304     -0.459 0.434</span></span>
-<span id="cb16-11"><a href="#cb16-11"></a><span class="co">#&gt; 2    0    0 -0.288 -0.938 0.340     -0.663 0.434</span></span>
-<span id="cb16-12"><a href="#cb16-12"></a><span class="co">#&gt; </span></span>
-<span id="cb16-13"><a href="#cb16-13"></a><span class="co">#&gt; == Index of Moderated Mediation ==</span></span>
-<span id="cb16-14"><a href="#cb16-14"></a><span class="co">#&gt; </span></span>
-<span id="cb16-15"><a href="#cb16-15"></a><span class="co">#&gt; Levels compared: Row 1 - Row 2</span></span>
-<span id="cb16-16"><a href="#cb16-16"></a><span class="co">#&gt; </span></span>
-<span id="cb16-17"><a href="#cb16-17"></a><span class="co">#&gt;       x y Index  CI.lo CI.hi</span></span>
-<span id="cb16-18"><a href="#cb16-18"></a><span class="co">#&gt; Index x y 0.088 -0.032 0.228</span></span>
-<span id="cb16-19"><a href="#cb16-19"></a><span class="co">#&gt; </span></span>
-<span id="cb16-20"><a href="#cb16-20"></a><span class="co">#&gt;  - [CI.lo, CI.hi]: 95% percentile confidence interval.</span></span></code></pre></div>
-<p>In this model, the index of moderated mediation is 0.088, with 95% bootstrap confidence interval [-0.032, 0.228]. The indirect effect of <code>x</code> on <code>y</code> through <code>m</code> does not significantly change when <code>w1</code> increases by one unit.</p>
-<p>Note that this index is specifically for the change when <code>w1</code> increases by one unit. The index being not significant does not contradict with the significant moderation effect suggested by the product term.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parameterEstimates</span>(fit2)[<span class="fu">parameterEstimates</span>(fit2)<span class="sc">$</span>op <span class="sc">==</span> <span class="st">&quot;~&quot;</span>, ]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   lhs op rhs    est    se      z pvalue ci.lower ci.upper</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   m  ~   x -0.663 0.533 -1.244  0.213   -1.707    0.381</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   m  ~  w1 -2.290 1.010 -2.267  0.023   -4.269   -0.310</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3   m  ~ w1x  0.204 0.101  2.023  0.043    0.006    0.401</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4   m  ~  c1 -0.020 0.079 -0.251  0.801   -0.175    0.135</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5   m  ~  c2 -0.130 0.090 -1.444  0.149   -0.306    0.046</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6   y  ~   m  0.434 0.114  3.815  0.000    0.211    0.657</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7   y  ~   x  0.053 0.093  0.570  0.569   -0.130    0.237</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8   y  ~  c1 -0.108 0.080 -1.352  0.177   -0.265    0.049</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9   y  ~  c2 -0.077 0.085 -0.904  0.366   -0.243    0.090</span></span></code></pre></div>
+<p>We generate the bootstrap estimates first (<code>R</code> should be
+2000 or even 5000 in real research):</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fit2_boot <span class="ot">&lt;-</span> <span class="fu">do_boot</span>(<span class="at">fit =</span> fit2,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">R =</span> <span class="dv">100</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">seed =</span> <span class="dv">53253</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>The function <code>index_of_mome()</code> can be used to compute the
+index of moderated mediation of <code>w1</code> on the path
+<code>x -&gt; m -&gt; y</code>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>out_mome <span class="ot">&lt;-</span> <span class="fu">index_of_mome</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">w =</span> <span class="st">&quot;w1&quot;</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">fit =</span> fit2,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">boot_out =</span> fit2_boot)</span></code></pre></div>
+<p>The arguments are nearly identical to those of
+<code>index_of_momome()</code>, except that only <code>w</code> needs to
+be specified. This is the output:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>out_mome</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Conditional on moderator(s): w1</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Moderator(s) represented by: w1</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [w1] (w1)    ind  CI.lo CI.hi Sig    m~x   y~m</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    1    1 -0.199 -0.698 0.304     -0.459 0.434</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2    0    0 -0.288 -0.938 0.340     -0.663 0.434</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Index of Moderated Mediation ==</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels compared: Row 1 - Row 2</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       x y Index  CI.lo CI.hi</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Index x y 0.088 -0.032 0.228</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo, CI.hi]: 95% percentile confidence interval.</span></span></code></pre></div>
+<p>In this model, the index of moderated mediation is 0.088, with 95%
+bootstrap confidence interval [-0.032, 0.228]. The indirect effect of
+<code>x</code> on <code>y</code> through <code>m</code> does not
+significantly change when <code>w1</code> increases by one unit.</p>
+<p>Note that this index is specifically for the change when
+<code>w1</code> increases by one unit. The index being not significant
+does not contradict with the significant moderation effect suggested by
+the product term.</p>
 </div>
 </div>
 <div id="mediation-only" class="section level1" number="3">
-<h1 number="3"><span class="header-section-number">3</span> Mediation Only</h1>
+<h1><span class="header-section-number">3</span> Mediation Only</h1>
 <p>The package can also be used for a mediation model.</p>
 <p>This is the sample data set that comes with the package:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">library</span>(manymome)</span>
-<span id="cb17-2"><a href="#cb17-2"></a>dat &lt;-<span class="st"> </span>data_serial</span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="kw">print</span>(<span class="kw">head</span>(dat), <span class="dt">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="co">#&gt;       x   m1    m2     y        c1   c2</span></span>
-<span id="cb17-5"><a href="#cb17-5"></a><span class="co">#&gt; 1 12.12 20.6  9.33  9.00  0.109262 6.01</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a><span class="co">#&gt; 2  9.81 18.2  9.47 11.56 -0.124014 6.42</span></span>
-<span id="cb17-7"><a href="#cb17-7"></a><span class="co">#&gt; 3 10.11 20.3 10.05  9.35  4.278608 5.34</span></span>
-<span id="cb17-8"><a href="#cb17-8"></a><span class="co">#&gt; 4 10.07 19.7 10.17 11.41  1.245356 5.59</span></span>
-<span id="cb17-9"><a href="#cb17-9"></a><span class="co">#&gt; 5 11.91 20.5 10.05 14.26 -0.000932 5.34</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a><span class="co">#&gt; 6  9.13 16.5  8.93 10.01  1.802727 5.91</span></span></code></pre></div>
-<p>Suppose this is the model being fitted, with <code>c1</code> and <code>c2</code> the control variables.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(manymome)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data_serial</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(dat), <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       x   m1    m2     y        c1   c2</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 12.12 20.6  9.33  9.00  0.109262 6.01</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  9.81 18.2  9.47 11.56 -0.124014 6.42</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 10.11 20.3 10.05  9.35  4.278608 5.34</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 10.07 19.7 10.17 11.41  1.245356 5.59</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 11.91 20.5 10.05 14.26 -0.000932 5.34</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  9.13 16.5  8.93 10.01  1.802727 5.91</span></span></code></pre></div>
+<p>Suppose this is the model being fitted, with <code>c1</code> and
+<code>c2</code> the control variables.</p>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
 <div id="fitting-the-model-1" class="section level2" number="3.1">
-<h2 number="3.1"><span class="header-section-number">3.1</span> Fitting the Model</h2>
-<p>Fitting this model in <code>lavaan::sem()</code> is very simple. With <code>manymome</code>, there is no need to label paths or define user parameters for the indirect effects.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>mod_med &lt;-<span class="st"> &quot;</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="st">m1 ~ x + c1 + c2</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="st">m2 ~ m1 + x + c1 + c2</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a><span class="st">y ~ m2 + m1 + x + c1 + c2</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a><span class="st">&quot;</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a>fit_med &lt;-<span class="st"> </span><span class="kw">sem</span>(<span class="dt">model =</span> mod_med,</span>
-<span id="cb18-7"><a href="#cb18-7"></a>               <span class="dt">data =</span> dat,</span>
-<span id="cb18-8"><a href="#cb18-8"></a>               <span class="dt">fixed.x =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<h2><span class="header-section-number">3.1</span> Fitting the
+Model</h2>
+<p>Fitting this model in <code>lavaan::sem()</code> is very simple. With
+<code>manymome</code>, there is no need to label paths or define user
+parameters for the indirect effects.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mod_med <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="st">m1 ~ x + c1 + c2</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="st">m2 ~ m1 + x + c1 + c2</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="st">y ~ m2 + m1 + x + c1 + c2</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>fit_med <span class="ot">&lt;-</span> <span class="fu">sem</span>(<span class="at">model =</span> mod_med,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> dat,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">fixed.x =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>These are the estimates of the paths:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">parameterEstimates</span>(fit_med)[<span class="kw">parameterEstimates</span>(fit_med)<span class="op">$</span>op <span class="op">==</span><span class="st"> &quot;~&quot;</span>, ]</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="co">#&gt;    lhs op rhs    est    se      z pvalue ci.lower ci.upper</span></span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="co">#&gt; 1   m1  ~   x  0.822 0.092  8.907  0.000    0.641    1.003</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a><span class="co">#&gt; 2   m1  ~  c1  0.171 0.089  1.930  0.054   -0.003    0.346</span></span>
-<span id="cb19-5"><a href="#cb19-5"></a><span class="co">#&gt; 3   m1  ~  c2 -0.189 0.091 -2.078  0.038   -0.367   -0.011</span></span>
-<span id="cb19-6"><a href="#cb19-6"></a><span class="co">#&gt; 4   m2  ~  m1  0.421 0.099  4.237  0.000    0.226    0.615</span></span>
-<span id="cb19-7"><a href="#cb19-7"></a><span class="co">#&gt; 5   m2  ~   x -0.116 0.123 -0.946  0.344   -0.357    0.125</span></span>
-<span id="cb19-8"><a href="#cb19-8"></a><span class="co">#&gt; 6   m2  ~  c1  0.278 0.090  3.088  0.002    0.101    0.454</span></span>
-<span id="cb19-9"><a href="#cb19-9"></a><span class="co">#&gt; 7   m2  ~  c2 -0.162 0.092 -1.756  0.079   -0.343    0.019</span></span>
-<span id="cb19-10"><a href="#cb19-10"></a><span class="co">#&gt; 8    y  ~  m2  0.521 0.221  2.361  0.018    0.088    0.953</span></span>
-<span id="cb19-11"><a href="#cb19-11"></a><span class="co">#&gt; 9    y  ~  m1 -0.435 0.238 -1.830  0.067   -0.902    0.031</span></span>
-<span id="cb19-12"><a href="#cb19-12"></a><span class="co">#&gt; 10   y  ~   x  0.493 0.272  1.811  0.070   -0.040    1.026</span></span>
-<span id="cb19-13"><a href="#cb19-13"></a><span class="co">#&gt; 11   y  ~  c1  0.099 0.208  0.476  0.634   -0.308    0.506</span></span>
-<span id="cb19-14"><a href="#cb19-14"></a><span class="co">#&gt; 12   y  ~  c2 -0.096 0.207 -0.465  0.642   -0.501    0.309</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parameterEstimates</span>(fit_med)[<span class="fu">parameterEstimates</span>(fit_med)<span class="sc">$</span>op <span class="sc">==</span> <span class="st">&quot;~&quot;</span>, ]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    lhs op rhs    est    se      z pvalue ci.lower ci.upper</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   m1  ~   x  0.822 0.092  8.907  0.000    0.641    1.003</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   m1  ~  c1  0.171 0.089  1.930  0.054   -0.003    0.346</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3   m1  ~  c2 -0.189 0.091 -2.078  0.038   -0.367   -0.011</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4   m2  ~  m1  0.421 0.099  4.237  0.000    0.226    0.615</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5   m2  ~   x -0.116 0.123 -0.946  0.344   -0.357    0.125</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6   m2  ~  c1  0.278 0.090  3.088  0.002    0.101    0.454</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7   m2  ~  c2 -0.162 0.092 -1.756  0.079   -0.343    0.019</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8    y  ~  m2  0.521 0.221  2.361  0.018    0.088    0.953</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9    y  ~  m1 -0.435 0.238 -1.830  0.067   -0.902    0.031</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10   y  ~   x  0.493 0.272  1.811  0.070   -0.040    1.026</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11   y  ~  c1  0.099 0.208  0.476  0.634   -0.308    0.506</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12   y  ~  c2 -0.096 0.207 -0.465  0.642   -0.501    0.309</span></span></code></pre></div>
 </div>
 <div id="est_indirect" class="section level2" number="3.2">
-<h2 number="3.2"><span class="header-section-number">3.2</span> Estimate Indirect Effects</h2>
-<p><code>indirect_effect()</code> can be used to estimate an indirect effect and form its bootstrapping confidence interval along a path in a model that starts with any numeric variable, ends with any numeric variable, through any numeric variable(s).</p>
-<p>We illustrate another approach to generate bootstrap estimates: using <code>indirect_effect()</code> to do both bootstrapping and estimate the indirect effect.</p>
-<p>For example, this is the call for the indirect effect from <code>x</code> to <code>y</code> through <code>m1</code> and <code>m2</code>:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>out_med &lt;-<span class="st"> </span><span class="kw">indirect_effect</span>(<span class="dt">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb20-2"><a href="#cb20-2"></a>                           <span class="dt">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb20-3"><a href="#cb20-3"></a>                           <span class="dt">m =</span> <span class="kw">c</span>(<span class="st">&quot;m1&quot;</span>, <span class="st">&quot;m2&quot;</span>),</span>
-<span id="cb20-4"><a href="#cb20-4"></a>                           <span class="dt">fit =</span> fit_med,</span>
-<span id="cb20-5"><a href="#cb20-5"></a>                           <span class="dt">boot_ci =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb20-6"><a href="#cb20-6"></a>                           <span class="dt">R =</span> <span class="dv">100</span>,</span>
-<span id="cb20-7"><a href="#cb20-7"></a>                           <span class="dt">seed =</span> <span class="dv">43143</span>,</span>
-<span id="cb20-8"><a href="#cb20-8"></a>                           <span class="dt">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
+<h2><span class="header-section-number">3.2</span> Estimate Indirect
+Effects</h2>
+<p><code>indirect_effect()</code> can be used to estimate an indirect
+effect and form its bootstrapping confidence interval along a path in a
+model that starts with any numeric variable, ends with any numeric
+variable, through any numeric variable(s).</p>
+<p>We illustrate another approach to generate bootstrap estimates: using
+<code>indirect_effect()</code> to do both bootstrapping and estimate the
+indirect effect.</p>
+<p>For example, this is the call for the indirect effect from
+<code>x</code> to <code>y</code> through <code>m1</code> and
+<code>m2</code>:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>out_med <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">m =</span> <span class="fu">c</span>(<span class="st">&quot;m1&quot;</span>, <span class="st">&quot;m2&quot;</span>),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">fit =</span> fit_med,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">R =</span> <span class="dv">100</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">seed =</span> <span class="dv">43143</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>The main arguments are:</p>
 <ul>
-<li><code>x</code>: The name of the predictor. The start of the path.</li>
-<li><code>y</code>: The name of the outcome variable. The end of the path.</li>
-<li><code>m</code>: The name of the mediator, or the vector of names of the mediators if the path has more than one mediator, as in this example. The path moves from the first mediator to the last mediator. In this example, the correct order is <code>c(&quot;m1&quot;, &quot;m2&quot;)</code>.</li>
+<li><code>x</code>: The name of the predictor. The start of the
+path.</li>
+<li><code>y</code>: The name of the outcome variable. The end of the
+path.</li>
+<li><code>m</code>: The name of the mediator, or the vector of names of
+the mediators if the path has more than one mediator, as in this
+example. The path moves from the first mediator to the last mediator. In
+this example, the correct order is <code>c(&quot;m1&quot;, &quot;m2&quot;)</code>.</li>
 <li><code>fit</code>: The output of <code>lavaan::sem()</code>.</li>
-<li><code>boot_ci</code>: Set to <code>TRUE</code> to request bootstrapping confidence intervals. Default is <code>FALSE</code>.</li>
-<li><code>R</code>: The number of bootstrap samples. Only 100 bootstrap samples for illustration. Set <code>R</code> to 2000 or even 5000 in real research.</li>
+<li><code>boot_ci</code>: Set to <code>TRUE</code> to request
+bootstrapping confidence intervals. Default is <code>FALSE</code>.</li>
+<li><code>R</code>: The number of bootstrap samples. Only 100 bootstrap
+samples for illustration. Set <code>R</code> to 2000 or even 5000 in
+real research.</li>
 <li><code>seed</code>: The seed for the random number generator.</li>
-<li><code>ncores</code>: The number of processes in parallel processing. The default number is the number of detected physical cores minus 1. Can be omitted in real studies. Set to 1 here for illustration.</li>
+<li><code>ncores</code>: The number of processes in parallel processing.
+The default number is the number of detected physical cores minus 1. Can
+be omitted in real studies. Set to 1 here for illustration.</li>
 </ul>
-<p>Like <code>do_boot()</code>, by default, parallel processing is used, and so the results are reproducible with the same seed only if the number of processes (cores) is the same.</p>
+<p>Like <code>do_boot()</code>, by default, parallel processing is used,
+and so the results are reproducible with the same seed only if the
+number of processes (cores) is the same.</p>
 <p>This is the output:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>out_med</span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="co">#&gt; </span></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="co">#&gt;                                        </span></span>
-<span id="cb21-5"><a href="#cb21-5"></a><span class="co">#&gt;  Path:               x -&gt; m1 -&gt; m2 -&gt; y</span></span>
-<span id="cb21-6"><a href="#cb21-6"></a><span class="co">#&gt;  Indirect Effect     0.180             </span></span>
-<span id="cb21-7"><a href="#cb21-7"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.043 to 0.332]  </span></span>
-<span id="cb21-8"><a href="#cb21-8"></a><span class="co">#&gt; </span></span>
-<span id="cb21-9"><a href="#cb21-9"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb21-10"><a href="#cb21-10"></a><span class="co">#&gt;   (b.m1~x)*(b.m2~m1)*(b.y~m2)</span></span>
-<span id="cb21-11"><a href="#cb21-11"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb21-12"><a href="#cb21-12"></a><span class="co">#&gt;   (0.82244)*(0.42078)*(0.52077)</span></span>
-<span id="cb21-13"><a href="#cb21-13"></a><span class="co">#&gt; </span></span>
-<span id="cb21-14"><a href="#cb21-14"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb21-15"><a href="#cb21-15"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb21-16"><a href="#cb21-16"></a><span class="co">#&gt; </span></span>
-<span id="cb21-17"><a href="#cb21-17"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb21-18"><a href="#cb21-18"></a><span class="co">#&gt;   Path Coefficient</span></span>
-<span id="cb21-19"><a href="#cb21-19"></a><span class="co">#&gt;   m1~x       0.822</span></span>
-<span id="cb21-20"><a href="#cb21-20"></a><span class="co">#&gt;  m2~m1       0.421</span></span>
-<span id="cb21-21"><a href="#cb21-21"></a><span class="co">#&gt;   y~m2       0.521</span></span></code></pre></div>
-<p>The indirect effect from <code>x</code> to <code>y</code> through <code>m1</code> and <code>m2</code> is 0.180, with a 95% confidence interval of [0.043, 0.332], significantly different from zero (<em>p</em> &lt; .05).</p>
-<p>Because bootstrap confidence interval is requested, the bootstrap estimates are stored in <code>out_med</code>. This output from <code>indirect_effect()</code> can also be used in the argument <code>boot_out</code> of other functions.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>out_med</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                        </span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; m1 -&gt; m2 -&gt; y</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.180             </span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.043 to 0.332]  </span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m1~x)*(b.m2~m1)*(b.y~m2)</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.82244)*(0.42078)*(0.52077)</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   m1~x       0.822</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m2~m1       0.421</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   y~m2       0.521</span></span></code></pre></div>
+<p>The indirect effect from <code>x</code> to <code>y</code> through
+<code>m1</code> and <code>m2</code> is 0.180, with a 95% confidence
+interval of [0.043, 0.332], significantly different from zero
+(<em>p</em> &lt; .05).</p>
+<p>Because bootstrap confidence interval is requested, the bootstrap
+estimates are stored in <code>out_med</code>. This output from
+<code>indirect_effect()</code> can also be used in the argument
+<code>boot_out</code> of other functions.</p>
 </div>
 <div id="standardized-indirect-effect" class="section level2" number="3.3">
-<h2 number="3.3"><span class="header-section-number">3.3</span> Standardized Indirect Effect</h2>
-<p>To compute the indirect effect with the predictor standardized, set <code>standardized_x</code> to <code>TRUE</code>. To compute the indirect effect with the outcome variable standardized, set <code>standardized_y</code> to <code>TRUE</code>. To compute the (completely) standardized indirect effect, set both <code>standardized_x</code> and <code>standardized_y</code> to <code>TRUE</code>.</p>
-<p>This is the call to compute the (completely) standardized indirect effect:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>out_med_stdxy &lt;-<span class="st"> </span><span class="kw">indirect_effect</span>(<span class="dt">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb22-2"><a href="#cb22-2"></a>                                 <span class="dt">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb22-3"><a href="#cb22-3"></a>                                 <span class="dt">m =</span> <span class="kw">c</span>(<span class="st">&quot;m1&quot;</span>, <span class="st">&quot;m2&quot;</span>),</span>
-<span id="cb22-4"><a href="#cb22-4"></a>                                 <span class="dt">fit =</span> fit_med,</span>
-<span id="cb22-5"><a href="#cb22-5"></a>                                 <span class="dt">boot_ci =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb22-6"><a href="#cb22-6"></a>                                 <span class="dt">boot_out =</span> out_med,</span>
-<span id="cb22-7"><a href="#cb22-7"></a>                                 <span class="dt">standardized_x =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb22-8"><a href="#cb22-8"></a>                                 <span class="dt">standardized_y =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb22-9"><a href="#cb22-9"></a>out_med_stdxy</span>
-<span id="cb22-10"><a href="#cb22-10"></a><span class="co">#&gt; </span></span>
-<span id="cb22-11"><a href="#cb22-11"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb22-12"><a href="#cb22-12"></a><span class="co">#&gt;                                        </span></span>
-<span id="cb22-13"><a href="#cb22-13"></a><span class="co">#&gt;  Path:               x -&gt; m1 -&gt; m2 -&gt; y</span></span>
-<span id="cb22-14"><a href="#cb22-14"></a><span class="co">#&gt;  Indirect Effect     0.086             </span></span>
-<span id="cb22-15"><a href="#cb22-15"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.022 to 0.157]  </span></span>
-<span id="cb22-16"><a href="#cb22-16"></a><span class="co">#&gt; </span></span>
-<span id="cb22-17"><a href="#cb22-17"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb22-18"><a href="#cb22-18"></a><span class="co">#&gt;   (b.m1~x)*(b.m2~m1)*(b.y~m2)*sd_x/sd_y</span></span>
-<span id="cb22-19"><a href="#cb22-19"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb22-20"><a href="#cb22-20"></a><span class="co">#&gt;   (0.82244)*(0.42078)*(0.52077)*(0.95010)/(1.99960)</span></span>
-<span id="cb22-21"><a href="#cb22-21"></a><span class="co">#&gt; </span></span>
-<span id="cb22-22"><a href="#cb22-22"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb22-23"><a href="#cb22-23"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb22-24"><a href="#cb22-24"></a><span class="co">#&gt; </span></span>
-<span id="cb22-25"><a href="#cb22-25"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb22-26"><a href="#cb22-26"></a><span class="co">#&gt;   Path Coefficient</span></span>
-<span id="cb22-27"><a href="#cb22-27"></a><span class="co">#&gt;   m1~x       0.822</span></span>
-<span id="cb22-28"><a href="#cb22-28"></a><span class="co">#&gt;  m2~m1       0.421</span></span>
-<span id="cb22-29"><a href="#cb22-29"></a><span class="co">#&gt;   y~m2       0.521</span></span>
-<span id="cb22-30"><a href="#cb22-30"></a><span class="co">#&gt; </span></span>
-<span id="cb22-31"><a href="#cb22-31"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: The effects of the component paths are from the model, not standardized.</span></span></code></pre></div>
-<p>The indirect effect from <code>x</code> to <code>y</code> through <code>m1</code> and <code>m2</code> is 0.086, with a 95% confidence interval of [0.022, 0.157], significantly different from zero (<em>p</em> &lt; .05). One SD increase of <code>x</code> leads to 0.086 increase in SD of <code>y</code> through <code>m1</code> and <code>m2</code>.</p>
+<h2><span class="header-section-number">3.3</span> Standardized Indirect
+Effect</h2>
+<p>To compute the indirect effect with the predictor standardized, set
+<code>standardized_x</code> to <code>TRUE</code>. To compute the
+indirect effect with the outcome variable standardized, set
+<code>standardized_y</code> to <code>TRUE</code>. To compute the
+(completely) standardized indirect effect, set both
+<code>standardized_x</code> and <code>standardized_y</code> to
+<code>TRUE</code>.</p>
+<p>This is the call to compute the (completely) standardized indirect
+effect:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>out_med_stdxy <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">m =</span> <span class="fu">c</span>(<span class="st">&quot;m1&quot;</span>, <span class="st">&quot;m2&quot;</span>),</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">fit =</span> fit_med,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">boot_out =</span> out_med,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">standardized_x =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">standardized_y =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>out_med_stdxy</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                        </span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; m1 -&gt; m2 -&gt; y</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.086             </span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.022 to 0.157]  </span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m1~x)*(b.m2~m1)*(b.y~m2)*sd_x/sd_y</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.82244)*(0.42078)*(0.52077)*(0.95010)/(1.99960)</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   m1~x       0.822</span></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m2~m1       0.421</span></span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   y~m2       0.521</span></span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: The effects of the component paths are from the model, not standardized.</span></span></code></pre></div>
+<p>The indirect effect from <code>x</code> to <code>y</code> through
+<code>m1</code> and <code>m2</code> is 0.086, with a 95% confidence
+interval of [0.022, 0.157], significantly different from zero
+(<em>p</em> &lt; .05). One SD increase of <code>x</code> leads to 0.086
+increase in SD of <code>y</code> through <code>m1</code> and
+<code>m2</code>.</p>
 </div>
 <div id="estimating-indirect-effects-for-any-paths" class="section level2" number="3.4">
-<h2 number="3.4"><span class="header-section-number">3.4</span> Estimating Indirect Effects For <em>Any</em> Paths</h2>
-<p><code>indirect_effect()</code> can be used for the indirect effect in <em>any</em> path in a path model.</p>
-<p>For example, to estimate and test the indirect effect from <code>x</code> through <code>m2</code> to <code>y</code>, bypassing <code>m1</code>, simply set <code>x</code> to <code>&quot;x&quot;</code>, <code>y</code> to <code>&quot;y&quot;</code>, and <code>m</code> to <code>&quot;m2&quot;</code>:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>out_x_m2_y &lt;-<span class="st"> </span><span class="kw">indirect_effect</span>(<span class="dt">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb23-2"><a href="#cb23-2"></a>                              <span class="dt">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb23-3"><a href="#cb23-3"></a>                              <span class="dt">m =</span> <span class="st">&quot;m2&quot;</span>,</span>
-<span id="cb23-4"><a href="#cb23-4"></a>                              <span class="dt">fit =</span> fit_med,</span>
-<span id="cb23-5"><a href="#cb23-5"></a>                              <span class="dt">boot_ci =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb23-6"><a href="#cb23-6"></a>                              <span class="dt">boot_out =</span> out_med)</span>
-<span id="cb23-7"><a href="#cb23-7"></a>out_x_m2_y</span>
-<span id="cb23-8"><a href="#cb23-8"></a><span class="co">#&gt; </span></span>
-<span id="cb23-9"><a href="#cb23-9"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb23-10"><a href="#cb23-10"></a><span class="co">#&gt;                                       </span></span>
-<span id="cb23-11"><a href="#cb23-11"></a><span class="co">#&gt;  Path:               x -&gt; m2 -&gt; y     </span></span>
-<span id="cb23-12"><a href="#cb23-12"></a><span class="co">#&gt;  Indirect Effect     -0.060           </span></span>
-<span id="cb23-13"><a href="#cb23-13"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.233 to 0.066]</span></span>
-<span id="cb23-14"><a href="#cb23-14"></a><span class="co">#&gt; </span></span>
-<span id="cb23-15"><a href="#cb23-15"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb23-16"><a href="#cb23-16"></a><span class="co">#&gt;   (b.m2~x)*(b.y~m2)</span></span>
-<span id="cb23-17"><a href="#cb23-17"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb23-18"><a href="#cb23-18"></a><span class="co">#&gt;   (-0.11610)*(0.52077)</span></span>
-<span id="cb23-19"><a href="#cb23-19"></a><span class="co">#&gt; </span></span>
-<span id="cb23-20"><a href="#cb23-20"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb23-21"><a href="#cb23-21"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb23-22"><a href="#cb23-22"></a><span class="co">#&gt; </span></span>
-<span id="cb23-23"><a href="#cb23-23"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb23-24"><a href="#cb23-24"></a><span class="co">#&gt;  Path Coefficient</span></span>
-<span id="cb23-25"><a href="#cb23-25"></a><span class="co">#&gt;  m2~x      -0.116</span></span>
-<span id="cb23-26"><a href="#cb23-26"></a><span class="co">#&gt;  y~m2       0.521</span></span></code></pre></div>
+<h2><span class="header-section-number">3.4</span> Estimating Indirect
+Effects For <em>Any</em> Paths</h2>
+<p><code>indirect_effect()</code> can be used for the indirect effect in
+<em>any</em> path in a path model.</p>
+<p>For example, to estimate and test the indirect effect from
+<code>x</code> through <code>m2</code> to <code>y</code>, bypassing
+<code>m1</code>, simply set <code>x</code> to <code>&quot;x&quot;</code>,
+<code>y</code> to <code>&quot;y&quot;</code>, and <code>m</code> to
+<code>&quot;m2&quot;</code>:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>out_x_m2_y <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m2&quot;</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">fit =</span> fit_med,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_out =</span> out_med)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>out_x_m2_y</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; m2 -&gt; y     </span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.060           </span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.233 to 0.066]</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m2~x)*(b.y~m2)</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (-0.11610)*(0.52077)</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path Coefficient</span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m2~x      -0.116</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  y~m2       0.521</span></span></code></pre></div>
 <p>The indirect effect along this path is not significant.</p>
-<p>Similarly, indirect effects from <code>m1</code> through <code>m2</code> to <code>y</code> or from <code>x</code> through <code>m1</code> to <code>y</code> can also be tested by setting the three arguments accordingly. Although <code>c1</code> and <code>c2</code> are labelled as control variables, if appropriate, their indirect effects on <code>y</code> through <code>m1</code> and/or <code>m2</code> can also be computed and tested.</p>
+<p>Similarly, indirect effects from <code>m1</code> through
+<code>m2</code> to <code>y</code> or from <code>x</code> through
+<code>m1</code> to <code>y</code> can also be tested by setting the
+three arguments accordingly. Although <code>c1</code> and
+<code>c2</code> are labelled as control variables, if appropriate, their
+indirect effects on <code>y</code> through <code>m1</code> and/or
+<code>m2</code> can also be computed and tested.</p>
 </div>
 <div id="total-indirect-effects-and-total-effects" class="section level2" number="3.5">
-<h2 number="3.5"><span class="header-section-number">3.5</span> Total Indirect Effects and Total Effects</h2>
-<p>Addition (<code>+</code>) and subtraction (<code>-</code>) can be applied to the outputs of <code>indirect_effect()</code>. For example, the total <em>indirect</em> effect from <code>x</code> to <code>y</code> is the sum of these indirect effects:</p>
+<h2><span class="header-section-number">3.5</span> Total Indirect
+Effects and Total Effects</h2>
+<p>Addition (<code>+</code>) and subtraction (<code>-</code>) can be
+applied to the outputs of <code>indirect_effect()</code>. For example,
+the total <em>indirect</em> effect from <code>x</code> to <code>y</code>
+is the sum of these indirect effects:</p>
 <ul>
 <li><p><code>x -&gt; m1 -&gt; m2 -&gt; y</code></p></li>
 <li><p><code>x -&gt; m1 -&gt; y</code></p></li>
 <li><p><code>x -&gt; m2 -&gt; y</code></p></li>
 </ul>
-<p>Two of them have been computed above (<code>out_med</code> and <code>out_x_m2_y</code>). We compute the indirect effect in <code>x -&gt; m1 -&gt; y</code></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>out_x_m1_y &lt;-<span class="st"> </span><span class="kw">indirect_effect</span>(<span class="dt">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb24-2"><a href="#cb24-2"></a>                              <span class="dt">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb24-3"><a href="#cb24-3"></a>                              <span class="dt">m =</span> <span class="st">&quot;m1&quot;</span>,</span>
-<span id="cb24-4"><a href="#cb24-4"></a>                              <span class="dt">fit =</span> fit_med,</span>
-<span id="cb24-5"><a href="#cb24-5"></a>                              <span class="dt">boot_ci =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb24-6"><a href="#cb24-6"></a>                              <span class="dt">boot_out =</span> out_med)</span>
-<span id="cb24-7"><a href="#cb24-7"></a>out_x_m1_y</span>
-<span id="cb24-8"><a href="#cb24-8"></a><span class="co">#&gt; </span></span>
-<span id="cb24-9"><a href="#cb24-9"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb24-10"><a href="#cb24-10"></a><span class="co">#&gt;                                       </span></span>
-<span id="cb24-11"><a href="#cb24-11"></a><span class="co">#&gt;  Path:               x -&gt; m1 -&gt; y     </span></span>
-<span id="cb24-12"><a href="#cb24-12"></a><span class="co">#&gt;  Indirect Effect     -0.358           </span></span>
-<span id="cb24-13"><a href="#cb24-13"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.699 to 0.008]</span></span>
-<span id="cb24-14"><a href="#cb24-14"></a><span class="co">#&gt; </span></span>
-<span id="cb24-15"><a href="#cb24-15"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb24-16"><a href="#cb24-16"></a><span class="co">#&gt;   (b.m1~x)*(b.y~m1)</span></span>
-<span id="cb24-17"><a href="#cb24-17"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb24-18"><a href="#cb24-18"></a><span class="co">#&gt;   (0.82244)*(-0.43534)</span></span>
-<span id="cb24-19"><a href="#cb24-19"></a><span class="co">#&gt; </span></span>
-<span id="cb24-20"><a href="#cb24-20"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb24-21"><a href="#cb24-21"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb24-22"><a href="#cb24-22"></a><span class="co">#&gt; </span></span>
-<span id="cb24-23"><a href="#cb24-23"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb24-24"><a href="#cb24-24"></a><span class="co">#&gt;  Path Coefficient</span></span>
-<span id="cb24-25"><a href="#cb24-25"></a><span class="co">#&gt;  m1~x       0.822</span></span>
-<span id="cb24-26"><a href="#cb24-26"></a><span class="co">#&gt;  y~m1      -0.435</span></span></code></pre></div>
-<p>We can then “add” the indirect effects to get the total indirect effect:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>total_ind &lt;-<span class="st"> </span>out_med <span class="op">+</span><span class="st"> </span>out_x_m1_y <span class="op">+</span><span class="st"> </span>out_x_m2_y</span>
-<span id="cb25-2"><a href="#cb25-2"></a>total_ind</span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="co">#&gt; </span></span>
-<span id="cb25-4"><a href="#cb25-4"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb25-5"><a href="#cb25-5"></a><span class="co">#&gt;                                         </span></span>
-<span id="cb25-6"><a href="#cb25-6"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; m2 -&gt; y</span></span>
-<span id="cb25-7"><a href="#cb25-7"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; y      </span></span>
-<span id="cb25-8"><a href="#cb25-8"></a><span class="co">#&gt;  Path:                x -&gt; m2 -&gt; y      </span></span>
-<span id="cb25-9"><a href="#cb25-9"></a><span class="co">#&gt;  Function of Effects: -0.238            </span></span>
-<span id="cb25-10"><a href="#cb25-10"></a><span class="co">#&gt;  95.0% Bootstrap CI:  [-0.645 to 0.098] </span></span>
-<span id="cb25-11"><a href="#cb25-11"></a><span class="co">#&gt; </span></span>
-<span id="cb25-12"><a href="#cb25-12"></a><span class="co">#&gt; Computation of the Function of Effects:</span></span>
-<span id="cb25-13"><a href="#cb25-13"></a><span class="co">#&gt;  ((x-&gt;m1-&gt;m2-&gt;y)</span></span>
-<span id="cb25-14"><a href="#cb25-14"></a><span class="co">#&gt; +(x-&gt;m1-&gt;y))</span></span>
-<span id="cb25-15"><a href="#cb25-15"></a><span class="co">#&gt; +(x-&gt;m2-&gt;y) </span></span>
-<span id="cb25-16"><a href="#cb25-16"></a><span class="co">#&gt; </span></span>
-<span id="cb25-17"><a href="#cb25-17"></a><span class="co">#&gt; </span></span>
-<span id="cb25-18"><a href="#cb25-18"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb25-19"><a href="#cb25-19"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
-<p>The total indirect effect is -0.238, not significant. This is an example of inconsistent mediation: some of the indirect Effects are positive and some are negative:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">coef</span>(out_med)</span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="co">#&gt;       y~x </span></span>
-<span id="cb26-3"><a href="#cb26-3"></a><span class="co">#&gt; 0.1802238</span></span>
-<span id="cb26-4"><a href="#cb26-4"></a><span class="kw">coef</span>(out_x_m1_y)</span>
-<span id="cb26-5"><a href="#cb26-5"></a><span class="co">#&gt;        y~x </span></span>
-<span id="cb26-6"><a href="#cb26-6"></a><span class="co">#&gt; -0.3580391</span></span>
-<span id="cb26-7"><a href="#cb26-7"></a><span class="kw">coef</span>(out_x_m2_y)</span>
-<span id="cb26-8"><a href="#cb26-8"></a><span class="co">#&gt;       y~x </span></span>
-<span id="cb26-9"><a href="#cb26-9"></a><span class="co">#&gt; -0.060461</span></span></code></pre></div>
-<p>Similarly, the total effect of <code>x</code> on <code>y</code> can be computed by adding all the effects, direct or indirect. The direct effect can be computed with <code>m</code> not set:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>out_x_direct &lt;-<span class="st"> </span><span class="kw">indirect_effect</span>(<span class="dt">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb27-2"><a href="#cb27-2"></a>                                <span class="dt">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb27-3"><a href="#cb27-3"></a>                                <span class="dt">fit =</span> fit_med,</span>
-<span id="cb27-4"><a href="#cb27-4"></a>                                <span class="dt">boot_ci =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb27-5"><a href="#cb27-5"></a>                                <span class="dt">boot_out =</span> out_med)</span>
-<span id="cb27-6"><a href="#cb27-6"></a>out_x_direct</span>
-<span id="cb27-7"><a href="#cb27-7"></a><span class="co">#&gt; </span></span>
-<span id="cb27-8"><a href="#cb27-8"></a><span class="co">#&gt; ==  Effect ==</span></span>
-<span id="cb27-9"><a href="#cb27-9"></a><span class="co">#&gt;                                       </span></span>
-<span id="cb27-10"><a href="#cb27-10"></a><span class="co">#&gt;  Path:               x -&gt; y           </span></span>
-<span id="cb27-11"><a href="#cb27-11"></a><span class="co">#&gt;  Effect              0.493            </span></span>
-<span id="cb27-12"><a href="#cb27-12"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.075 to 1.014]</span></span>
-<span id="cb27-13"><a href="#cb27-13"></a><span class="co">#&gt; </span></span>
-<span id="cb27-14"><a href="#cb27-14"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb27-15"><a href="#cb27-15"></a><span class="co">#&gt;   (b.y~x)</span></span>
-<span id="cb27-16"><a href="#cb27-16"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb27-17"><a href="#cb27-17"></a><span class="co">#&gt;   (0.49285)</span></span>
-<span id="cb27-18"><a href="#cb27-18"></a><span class="co">#&gt; </span></span>
-<span id="cb27-19"><a href="#cb27-19"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb27-20"><a href="#cb27-20"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
+<p>Two of them have been computed above (<code>out_med</code> and
+<code>out_x_m2_y</code>). We compute the indirect effect in
+<code>x -&gt; m1 -&gt; y</code></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>out_x_m1_y <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m1&quot;</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">fit =</span> fit_med,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_out =</span> out_med)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>out_x_m1_y</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; m1 -&gt; y     </span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.358           </span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.699 to 0.008]</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m1~x)*(b.y~m1)</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.82244)*(-0.43534)</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path Coefficient</span></span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m1~x       0.822</span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  y~m1      -0.435</span></span></code></pre></div>
+<p>We can then “add” the indirect effects to get the total indirect
+effect:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>total_ind <span class="ot">&lt;-</span> out_med <span class="sc">+</span> out_x_m1_y <span class="sc">+</span> out_x_m2_y</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>total_ind</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                         </span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; m2 -&gt; y</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; y      </span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m2 -&gt; y      </span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Function of Effects: -0.238            </span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI:  [-0.645 to 0.098] </span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation of the Function of Effects:</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ((x-&gt;m1-&gt;m2-&gt;y)</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x-&gt;m1-&gt;y))</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x-&gt;m2-&gt;y) </span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
+<p>The total indirect effect is -0.238, not significant. This is an
+example of inconsistent mediation: some of the indirect Effects are
+positive and some are negative:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(out_med)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       y~x </span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.1802238</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(out_x_m1_y)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        y~x </span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -0.3580391</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(out_x_m2_y)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       y~x </span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -0.060461</span></span></code></pre></div>
+<p>Similarly, the total effect of <code>x</code> on <code>y</code> can
+be computed by adding all the effects, direct or indirect. The direct
+effect can be computed with <code>m</code> not set:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>out_x_direct <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">fit =</span> fit_med,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">boot_out =</span> out_med)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>out_x_direct</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ==  Effect ==</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; y           </span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Effect              0.493            </span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.075 to 1.014]</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.y~x)</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.49285)</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
 <p>This is the total effect:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>total_effect &lt;-<span class="st"> </span>out_med <span class="op">+</span><span class="st"> </span>out_x_m1_y <span class="op">+</span><span class="st"> </span>out_x_m2_y <span class="op">+</span><span class="st"> </span>out_x_direct</span>
-<span id="cb28-2"><a href="#cb28-2"></a>total_effect</span>
-<span id="cb28-3"><a href="#cb28-3"></a><span class="co">#&gt; </span></span>
-<span id="cb28-4"><a href="#cb28-4"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb28-5"><a href="#cb28-5"></a><span class="co">#&gt;                                         </span></span>
-<span id="cb28-6"><a href="#cb28-6"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; m2 -&gt; y</span></span>
-<span id="cb28-7"><a href="#cb28-7"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; y      </span></span>
-<span id="cb28-8"><a href="#cb28-8"></a><span class="co">#&gt;  Path:                x -&gt; m2 -&gt; y      </span></span>
-<span id="cb28-9"><a href="#cb28-9"></a><span class="co">#&gt;  Path:                x -&gt; y            </span></span>
-<span id="cb28-10"><a href="#cb28-10"></a><span class="co">#&gt;  Function of Effects: 0.255             </span></span>
-<span id="cb28-11"><a href="#cb28-11"></a><span class="co">#&gt;  95.0% Bootstrap CI:  [-0.239 to 0.661] </span></span>
-<span id="cb28-12"><a href="#cb28-12"></a><span class="co">#&gt; </span></span>
-<span id="cb28-13"><a href="#cb28-13"></a><span class="co">#&gt; Computation of the Function of Effects:</span></span>
-<span id="cb28-14"><a href="#cb28-14"></a><span class="co">#&gt;  (((x-&gt;m1-&gt;m2-&gt;y)</span></span>
-<span id="cb28-15"><a href="#cb28-15"></a><span class="co">#&gt; +(x-&gt;m1-&gt;y))</span></span>
-<span id="cb28-16"><a href="#cb28-16"></a><span class="co">#&gt; +(x-&gt;m2-&gt;y))</span></span>
-<span id="cb28-17"><a href="#cb28-17"></a><span class="co">#&gt; +(x-&gt;y) </span></span>
-<span id="cb28-18"><a href="#cb28-18"></a><span class="co">#&gt; </span></span>
-<span id="cb28-19"><a href="#cb28-19"></a><span class="co">#&gt; </span></span>
-<span id="cb28-20"><a href="#cb28-20"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb28-21"><a href="#cb28-21"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
-<p>The total effect is 0.255, not significant. This illustrates that total effect can be misleading when the component paths are of different signs.</p>
-<p>See <code>help(math_indirect)</code> for more information of addition and subtraction for the output of <code>indirect_effect()</code>.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>total_effect <span class="ot">&lt;-</span> out_med <span class="sc">+</span> out_x_m1_y <span class="sc">+</span> out_x_m2_y <span class="sc">+</span> out_x_direct</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>total_effect</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                         </span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; m2 -&gt; y</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; y      </span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m2 -&gt; y      </span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; y            </span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Function of Effects: 0.255             </span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI:  [-0.239 to 0.661] </span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation of the Function of Effects:</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  (((x-&gt;m1-&gt;m2-&gt;y)</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x-&gt;m1-&gt;y))</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x-&gt;m2-&gt;y))</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x-&gt;y) </span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
+<p>The total effect is 0.255, not significant. This illustrates that
+total effect can be misleading when the component paths are of different
+signs.</p>
+<p>See <code>help(math_indirect)</code> for more information of addition
+and subtraction for the output of <code>indirect_effect()</code>.</p>
 </div>
 </div>
 <div id="summary" class="section level1" number="4">
-<h1 number="4"><span class="header-section-number">4</span> Summary</h1>
+<h1><span class="header-section-number">4</span> Summary</h1>
 <div id="advantages" class="section level2" number="4.1">
-<h2 number="4.1"><span class="header-section-number">4.1</span> Advantages</h2>
+<h2><span class="header-section-number">4.1</span> Advantages</h2>
 <ul>
-<li><p>The model fitting stage is easier. No need to label any parameters or define any effects. Users can also use other methods for confidence interval and use bootstrapping only for indirect effects and conditional indirect effects.</p></li>
-<li><p>Missing data can be be handled by <code>missing = &quot;fiml&quot;</code> in calling <code>lavaan::sem()</code>. Because bootstrapping estimates are used in Stage 2, indirect effects and conditional indirect effects can also be computed with bootstrap confidence intervals, just like defining them in <code>lavaan</code>, in the presence of missing data.</p></li>
-<li><p>Bootstrapping only needs to be done once. The bootstrap estimates can be reused in computing indirect effects and conditional indirect effects. This is particularly useful when the sample size is large and there is missing data.</p></li>
-<li><p>Users can explore any path for any levels of the moderators without respecifying and refitting the model.</p></li>
-<li><p>Flexibility makes it difficult to test all possible scenarios. Therefore, the print methods will also print the details of the computation (e.g., how an indirect effect is computed) so that users can (a) understand how each effect is computed, and (b) verify the computation if necessary.</p></li>
+<li><p>The model fitting stage is easier. No need to label any
+parameters or define any effects. Users can also use other methods for
+confidence interval and use bootstrapping only for indirect effects and
+conditional indirect effects.</p></li>
+<li><p>Missing data can be be handled by <code>missing = &quot;fiml&quot;</code>
+in calling <code>lavaan::sem()</code>. Because bootstrapping estimates
+are used in Stage 2, indirect effects and conditional indirect effects
+can also be computed with bootstrap confidence intervals, just like
+defining them in <code>lavaan</code>, in the presence of missing
+data.</p></li>
+<li><p>Bootstrapping only needs to be done once. The bootstrap estimates
+can be reused in computing indirect effects and conditional indirect
+effects. This is particularly useful when the sample size is large and
+there is missing data.</p></li>
+<li><p>Users can explore any path for any levels of the moderators
+without respecifying and refitting the model.</p></li>
+<li><p>Flexibility makes it difficult to test all possible scenarios.
+Therefore, the print methods will also print the details of the
+computation (e.g., how an indirect effect is computed) so that users can
+(a) understand how each effect is computed, and (b) verify the
+computation if necessary.</p></li>
 </ul>
-<p>See <a href="https://sfcheung.github.io/manymome/index.html#advantages">this section</a> for other advantages.</p>
+<p>See <a href="https://sfcheung.github.io/manymome/index.html#advantages">this
+section</a> for other advantages.</p>
 </div>
 <div id="limitations" class="section level2" number="4.2">
-<h2 number="4.2"><span class="header-section-number">4.2</span> Limitations</h2>
-<p>The package <code>manymome</code> supports “many” models … but certainly not all. There are models that it does not yet support. For example, it does not support a path that starts with a nominal categorical variable. It also only supports percentile bootstrap confidence interval (although this is merely a preference of us). Other tools need to be used for these cases. See <a href="https://sfcheung.github.io/manymome/index.html#limitations">this section</a> for other limitations.</p>
+<h2><span class="header-section-number">4.2</span> Limitations</h2>
+<p>The package <code>manymome</code> supports “many” models … but
+certainly not all. There are models that it does not yet support. For
+example, it does not support a path that starts with a nominal
+categorical variable. It also only supports percentile bootstrap
+confidence interval (although this is merely a preference of us). Other
+tools need to be used for these cases. See <a href="https://sfcheung.github.io/manymome/index.html#limitations">this
+section</a> for other limitations.</p>
 </div>
 <div id="other-uses-and-scenarios" class="section level2" number="4.3">
-<h2 number="4.3"><span class="header-section-number">4.3</span> Other Uses and Scenarios</h2>
-<p>There are other options available in <code>manymome</code>. For example, it can be used for categorical moderators and models fitted by multiple regression. Please refer to the help page and examples of the functions, or other <a href="https://sfcheung.github.io/manymome/articles/">articles</a>. More articles will be added in the future for other scenarios.</p>
+<h2><span class="header-section-number">4.3</span> Other Uses and
+Scenarios</h2>
+<p>There are other options available in <code>manymome</code>. For
+example, it can be used for categorical moderators and models fitted by
+multiple regression. Please refer to the help page and examples of the
+functions, or other <a href="https://sfcheung.github.io/manymome/articles/">articles</a>. More
+articles will be added in the future for other scenarios.</p>
 </div>
 </div>
 <div id="references" class="section level1" number="5">
-<h1 number="5"><span class="header-section-number">5</span> References</h1>
-<p>Cheung, M. W.-L. (2009). Comparison of methods for constructing confidence intervals of standardized indirect effects. <em>Behavior Research Methods, 41</em>(2), 425-438. <a href="https://doi.org/10.3758/BRM.41.2.425" class="uri">https://doi.org/10.3758/BRM.41.2.425</a></p>
-<p>Friedrich, R. J. (1982). In defense of multiplicative terms in multiple regression equations. <em>American Journal of Political Science, 26</em>(4), 797-833. <a href="https://doi.org/10.2307/2110973" class="uri">https://doi.org/10.2307/2110973</a></p>
-<p>Hayes, A. F. (2015). An index and test of linear moderated mediation. <em>Multivariate Behavioral Research, 50</em>(1), 1-22. <a href="https://doi.org/10.1080/00273171.2014.962683" class="uri">https://doi.org/10.1080/00273171.2014.962683</a></p>
-<p>Hayes, A. F. (2018). Partial, conditional, and moderated moderated mediation: Quantification, inference, and interpretation. <em>Communication Monographs, 85</em>(1), 4-40. <a href="https://doi.org/10.1080/03637751.2017.1352100" class="uri">https://doi.org/10.1080/03637751.2017.1352100</a></p>
-<p>Kwan, J. L. Y., &amp; Chan, W. (2018). Variable system: An alternative approach for the analysis of mediated moderation. <em>Psychological Methods, 23</em>(2), 262-277. <a href="https://doi.org/10.1037/met0000160" class="uri">https://doi.org/10.1037/met0000160</a></p>
-<p>Miles, J. N. V., Kulesza, M., Ewing, B., Shih, R. A., Tucker, J. S., &amp; D’Amico, E. J. (2015). Moderated mediation analysis: An illustration using the association of gender with delinquency and mental health. <em>Journal of Criminal Psychology, 5</em>(2), 99-123. <a href="https://doi.org/10.1108/JCP-02-2015-0010" class="uri">https://doi.org/10.1108/JCP-02-2015-0010</a></p>
+<h1><span class="header-section-number">5</span> References</h1>
+<p>Cheung, M. W.-L. (2009). Comparison of methods for constructing
+confidence intervals of standardized indirect effects. <em>Behavior
+Research Methods, 41</em>(2), 425-438. <a href="https://doi.org/10.3758/BRM.41.2.425" class="uri">https://doi.org/10.3758/BRM.41.2.425</a></p>
+<p>Friedrich, R. J. (1982). In defense of multiplicative terms in
+multiple regression equations. <em>American Journal of Political
+Science, 26</em>(4), 797-833. <a href="https://doi.org/10.2307/2110973" class="uri">https://doi.org/10.2307/2110973</a></p>
+<p>Hayes, A. F. (2015). An index and test of linear moderated mediation.
+<em>Multivariate Behavioral Research, 50</em>(1), 1-22. <a href="https://doi.org/10.1080/00273171.2014.962683" class="uri">https://doi.org/10.1080/00273171.2014.962683</a></p>
+<p>Hayes, A. F. (2018). Partial, conditional, and moderated moderated
+mediation: Quantification, inference, and interpretation.
+<em>Communication Monographs, 85</em>(1), 4-40. <a href="https://doi.org/10.1080/03637751.2017.1352100" class="uri">https://doi.org/10.1080/03637751.2017.1352100</a></p>
+<p>Kwan, J. L. Y., &amp; Chan, W. (2018). Variable system: An
+alternative approach for the analysis of mediated moderation.
+<em>Psychological Methods, 23</em>(2), 262-277. <a href="https://doi.org/10.1037/met0000160" class="uri">https://doi.org/10.1037/met0000160</a></p>
+<p>Miles, J. N. V., Kulesza, M., Ewing, B., Shih, R. A., Tucker, J. S.,
+&amp; D’Amico, E. J. (2015). Moderated mediation analysis: An
+illustration using the association of gender with delinquency and mental
+health. <em>Journal of Criminal Psychology, 5</em>(2), 99-123. <a href="https://doi.org/10.1108/JCP-02-2015-0010" class="uri">https://doi.org/10.1108/JCP-02-2015-0010</a></p>
 </div>
 
 
