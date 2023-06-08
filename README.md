@@ -3,14 +3,15 @@
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CRAN status](https://www.r-pkg.org/badges/version/manymome?color=blue)](https://CRAN.R-project.org/package=manymome)
 [![CRAN: Release Date](https://www.r-pkg.org/badges/last-release/manymome?color=blue)](https://cran.r-project.org/package=manymome)
+[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/manymome?color=blue)](https://r-pkg.org/pkg/manymome)
 [![Code size](https://img.shields.io/github/languages/code-size/sfcheung/manymome.svg)](https://github.com/sfcheung/manymome)
 [![Last Commit at Main](https://img.shields.io/github/last-commit/sfcheung/manymome.svg)](https://github.com/sfcheung/manymome/commits/main)
 [![R-CMD-check](https://github.com/sfcheung/manymome/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/sfcheung/manymome/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-(Version 0.1.9, updated on 2023-01-06, [release history](https://sfcheung.github.io/manymome/news/index.html))
+(Version 0.1.10, updated on 2023-06-08, used a new color scheme and logo, [release history](https://sfcheung.github.io/manymome/news/index.html))
 
-# manymome
+# manymome  <img src="man/figures/logo.png" align="right" height="150" />
 
 Functions for estimating indirect effects, conditional indirect
 effects, and conditional effects in a model with
@@ -23,69 +24,78 @@ by multiple regression.
 - Compute an unstandardized or *standardized* *indirect* *effect* or
   *conditional* *indirect* *effect* in a path model.
 
-- Form the *bootstrap* *confidence* *interval* for this effect.
+- Form the *confidence* *interval* for this effect.
+  Nonparametric bootstrapping is fully supported,
+  while Monte Carlo is supported for models
+  fitted by `lavaan::sem()`.
 
 # Advantages
 
 - **A Simpler Workflow**
 
-No need to define any parameters or similar
-code when
-fitting a model in `lavaan::sem()`. Just focus on fitting
-the model first. After a model has
-been selected, users can compute the effect for nearly any path, from
-nearly any variable, to nearly any other variables, conditional on
-nearly any moderators,
-and at any levels of the moderators.
-(See `vignette("manymome")` for details.)
+  No need to define any parameters or similar
+  code when
+  fitting a model in `lavaan::sem()`. Just focus on fitting
+  the model first. After a model has
+  been selected, users can compute the effect for nearly any path, from
+  nearly any variable, to nearly any other variables, conditional on
+  nearly any moderators,
+  and at any levels of the moderators.
+  (See `vignette("manymome")` for details.)
 
 - **Supports Both SEM-Based and Regression-Based Analysis**
 
-Supports structural equation models fitted by `lavaan::sem()` or by
-path models fitted by regression using `lm()`, although the
-focus of this package is on structural equation models.
-The interface of the main functions are nearly the same for
-both approaches.
+  Supports structural equation models fitted by `lavaan::sem()` or by
+  path models fitted by regression using `lm()`, although the
+  focus of this package is on structural equation models.
+  The interface of the main functions are nearly the same for
+  both approaches.
 
 - **Flexible in the Form of Models**
 
-No limit on the number of predictors, mediators, and
-outcome variables, other than those by `lavaan::sem()` and `lm()`.
+  No limit on the number of predictors, mediators, and
+  outcome variables, other than those by `lavaan::sem()` and `lm()`.
 
 - **Supports Standardized Effects**
 
-Can estimate standardized indirect effects and standardized
-conditional indirect effects without the need to standardize
-the variables. The  bootstrap confidence intervals for standardized
-effects correctly take into account the sampling variation
-of the standardizers (the standard deviations of the predictor
-and the outcome variable).
+  Can estimate standardized indirect effects and standardized
+  conditional indirect effects without the need to standardize
+  the variables. The bootstrap and Monte Carlo
+  confidence intervals for standardized
+  effects correctly take into account the sampling variation
+  of the standardizers (the standard deviations of the predictor
+  and the outcome variable) by recomputing them in each bootstrap
+  sample or replication.
 
 - **Supports Missing Data**
 
-Supports dataset with missing data
-through `lavaan::sem()` with full information maximum likelihood (`fiml`).
+  Supports datasets with missing data
+  through `lavaan::sem()` with full information maximum likelihood (`fiml`).
+
+  Since version 0.1.9.8, it also supports missing data handled
+  by multiple imputation if the models are fitted by `semTools::sem.mi()`
+  or `semTools::runMI()` (see `vignette("do_mc_lavaan_mi")`).
 
 - **Supports Numeric and Categorical Moderators**
 
-Supports numeric and
-categorical moderators. It has a function (`factor2var()`) for the easy
-creation of dummy variables in `lavaan::sem()`, and can also capitalize on
-the native support of categorical moderators in `lm()`.
+  Supports numeric and
+  categorical moderators. It has a function (`factor2var()`) for the easy
+  creation of dummy variables in `lavaan::sem()`, and can also capitalize on
+  the native support of categorical moderators in `lm()`.
 
 - **Less Time for Bootstrapping**
 
-Bootstrapping, which can be time consuming, can
-be conducted just once. The main functions for computing indirect effects
-and conditional indirect effects can be called as many times as needed without redoing
-bootstrapping because they can reuse pregenerated bootstrap
-estimates (see `vignette("manymome")` and `vignette("do_boot")`).
+  Bootstrapping, which can be time consuming, can
+  be conducted just once. The main functions for computing indirect effects
+  and conditional indirect effects can be called as many times as needed without redoing
+  bootstrapping because they can reuse pregenerated bootstrap
+  estimates (see `vignette("manymome")` and `vignette("do_boot")`).
 
 - **Supports Latent Variables Mediation**
 
-Supports indirect effects among
-latent variables for models fitted by `lavaan::sem()` (see
-`vignette("med_lav")`).
+  Supports indirect effects among
+  latent variables for models fitted by `lavaan::sem()` (see
+  `vignette("med_lav")`).
 
 # Limitations
 
@@ -98,9 +108,8 @@ Despite the aforementioned advantages, the current version of
 
 - Does not support multilevel models (although `lavaan` does).
 
-- Only supports nonparametric bootstrapping and percentile
-confidence interval. Does not support other methods such as
-Monte Carlo confidence interval or parametric bootstrapping.
+- For bootstrapping, only supports nonparametric bootstrapping and percentile
+confidence interval. Does not support other bootstrapping methods such parametric bootstrapping.
 
 - Only supports OLS estimation when `lm()` is used.
 
@@ -127,13 +136,13 @@ https://sfcheung.github.io/manymome/
 
 The stable version at CRAN can be installed by `install.packages()`:
 
-```{r}
+```r
 install.packages("manymome")
 ```
 
-The latest developmental version at GitHub can be installed by `remotes::install_github()`:
+The latest developmental-but-stable version at GitHub can be installed by `remotes::install_github()`:
 
-```{r}
+```r
 remotes::install_github("sfcheung/manymome")
 ```
 

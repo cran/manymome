@@ -5,6 +5,36 @@
 #' output of [indirect_effect()] or
 #' [cond_indirect()].
 #'
+#' @details The `print` method of the
+#' `indirect`-class object.
+#'
+#' If bootstrapping confidence interval
+#' was requested, this method has the
+#' option to print a
+#' *p*-value computed by the
+#' method presented in Asparouhov and Muthén (2021).
+#' Note that this *p*-value is asymmetric
+#' bootstrap *p*-value based on the
+#' distribution of the bootstrap estimates.
+#' It is not computed based on the
+#' distribution under the null hypothesis.
+#'
+#' For a *p*-value of *a*, it means that
+#' a 100(1 - *a*)% bootstrapping confidence
+#' interval
+#' will have one of its limits equal to
+#' 0. A confidence interval
+#' with a higher confidence level will
+#' include zero, while a confidence
+#' interval with a lower confidence level
+#' will exclude zero.
+#'
+#' We recommend using confidence interval
+#' directly. Therefore, *p*-value is not
+#' printed by default. Nevertheless,
+#' users who need it can request it
+#' by setting `pvalue` to `TRUE`.
+#'
 #' @return `x` is returned invisibly.
 #' Called for its side effect.
 #'
@@ -15,9 +45,22 @@
 #' @param digits Number of digits to
 #' display. Default is 3.
 #'
+#' @param pvalue Logical. If `TRUE`,
+#' asymmetric *p*-value based on
+#' bootstrapping will be printed if
+#' available.
+#'
+#' @param pvalue_digits Number of decimal
+#' places to display for the *p*-value.
+#' Default is 3.
+#'
 #' @param ... Other arguments. Not used.
 #'
 #'
+#'
+#' @references
+#' Asparouhov, A., & Muthén, B. (2021). Bootstrap p-value computation.
+#' Retrieved from https://www.statmodel.com/download/FAQ-Bootstrap%20-%20Pvalue.pdf
 #'
 #' @seealso [indirect_effect()] and
 #' [cond_indirect()]
@@ -68,14 +111,31 @@
 #'
 #' @export
 
-print.indirect <- function(x, digits = 3, ...) {
+print.indirect <- function(x,
+                           digits = 3,
+                           pvalue = FALSE,
+                           pvalue_digits = 3,
+                           ...) {
     xold <- x
     my_call <- x$call
     wvalues <- x$wvalues
     standardized_x <- x$standardized_x
     standardized_y <- x$standardized_y
     standardized <- (standardized_x && standardized_y)
-    has_boot_ci <- isTRUE(!is.null(x$boot_ci))
+    has_ci <- FALSE
+    ci_type <- NULL
+    if (isTRUE(!is.null(x$boot_ci))) {
+        has_ci <- TRUE
+        ci_type <- "boot"
+        ci_name <- "boot_ci"
+        R <- length(x$boot_indirect)
+      }
+    if (isTRUE(!is.null(x$mc_ci))) {
+        has_ci <- TRUE
+        ci_type <- "mc"
+        ci_name <- "mc_ci"
+        R <- length(x$mc_indirect)
+      }
     has_w <- isTRUE(!is.null(wvalues))
     if (has_w) {
         w0 <- wvalues
@@ -152,20 +212,32 @@ print.indirect <- function(x, digits = 3, ...) {
       ptable <- rbind(ptable,
                       c("Moderators:", paste0(wnames, collapse = ", ")))
     }
-    if (has_boot_ci) {
+    if (has_ci) {
+        tmp1 <- switch(ci_type,
+                    boot = " Bootstrap CI:",
+                    mc = " Monte Carlo CI:")
         b_str1 <- paste0(formatC(x$level * 100, 1, format = "f"), "%",
-                         " Bootstrap CI:")
+                         tmp1)
         b_str2 <- paste0("[",
-                         paste0(formatC(x$boot_ci, digits, format = "f"),
+                         paste0(formatC(x[[ci_name]], digits, format = "f"),
                                 collapse = " to "),
                          "]")
         b_str1b <- "Null Hypothesis Significant Test:"
-        b_str2b <- ifelse((x$boot_ci[1] > 0) || (x$boo_ci[2] < 0),
+        b_str2b <- ifelse((x[[ci_name]][1] > 0) || (x[[ci_name]][2] < 0),
                           paste0("Sig. (Level of Significance ",
                                 formatC(1 - x$level, digits, format = "f"), ")"),
                           paste0("Not Sig. (Level of Significance ",
                                 formatC(1 - x$level, digits, format = "f"), ")"))
         b_row <- c(b_str1, b_str2)
+        if (isTRUE(ci_type == "boot") && pvalue) {
+            tmpp <- ifelse(!is.null(x$boot_p) && is.numeric(x$boot_p),
+                           formatC(x$boot_p, digits = pvalue_digits, format = "f"),
+                           "Not available"
+                           )
+            b_row2 <- c("Bootstrap p-value:", tmpp)
+          } else {
+            b_row2 <- NULL
+          }
       }
     if (has_w) {
         if (is.null(x$op)) {
@@ -181,7 +253,7 @@ print.indirect <- function(x, digits = 3, ...) {
         tmp <- paste(paste(wnames, "=", formatC(w0,
                                                 digits = digits,
                                                 format = "f")), collapse = ", ")
-        if (has_boot_ci) {ptable <- rbind(ptable, b_row)}
+        if (has_ci) {ptable <- rbind(ptable, b_row, b_row2)}
         ptable <- rbind(ptable,
                         c("When:", tmp))
       } else {
@@ -194,7 +266,7 @@ print.indirect <- function(x, digits = 3, ...) {
                             c("Function of Effects:",
                               formatC(x$indirect, digits = digits, format = "f")))
           }
-        if (has_boot_ci) {ptable <- rbind(ptable, b_row)}
+        if (has_ci) {ptable <- rbind(ptable, b_row)}
       }
     ptable <- data.frame(lapply(ptable, format))
     colnames(ptable) <- c("", "")
@@ -221,12 +293,18 @@ print.indirect <- function(x, digits = 3, ...) {
             cat("\n ", x$computation_values)
           }
       }
-    if (has_boot_ci) {
+    if (has_ci) {
         cat("\n\n")
-        cat(strwrap(paste("Percentile confidence interval formed by nonparametric bootstrapping",
+        tmp1 <- switch(ci_type,
+                  boot = paste("Percentile confidence interval formed by nonparametric bootstrapping",
                           "with ",
-                          length(x$boot_indirect),
-                          " bootstrap samples.")), sep = "\n")
+                          R,
+                          " bootstrap samples."),
+                  mc = paste("Monte Carlo confidence interval",
+                          "with ",
+                          R,
+                          " replications."))
+        cat(strwrap(tmp1), sep = "\n")
       }
     if (has_m & !is.list(mpathnames)) {
         if (has_w) {

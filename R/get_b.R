@@ -8,6 +8,11 @@
 #' @param fit The fit object. Currently
 #' only supports a
 #' [lavaan::lavaan-class] object.
+#' It can also be
+#' a `lavaan.mi` object
+#' returned by
+#' [semTools::runMI()] or
+#' its wrapper, such as [semTools::sem.mi()].
 #'
 #' @param est The output of
 #' [lavaan::parameterEstimates()]. If
@@ -27,7 +32,7 @@ get_b <- function(x,
                   fit,
                   est = NULL) {
     if (is.null(est)) {
-      est <- lavaan::parameterEstimates(fit)
+      est <- lav_est(fit, se = FALSE, ci = FALSE)
     }
     i <- (est$lhs == y) &
          (est$op == "~") &

@@ -4,6 +4,30 @@
 #' @description Print the content of the
 #' output of [many_indirect_effects()].
 #'
+#' @details The `print` method of the
+#' `indirect_list`-class object.
+#'
+#' If bootstrapping confidence interval
+#' was requested, this method has the
+#' option to print a
+#' *p*-value computed by the
+#' method presented in Asparouhov and Muthén (2021).
+#' Note that this *p*-value is asymmetric
+#' bootstrap *p*-value based on the
+#' distribution of the bootstrap estimates.
+#' It is not computed based on the
+#' distribution under the null hypothesis.
+#'
+#' For a *p*-value of *a*, it means that
+#' a 100(1 - *a*)% bootstrapping confidence
+#' interval
+#' will have one of its limits equal to
+#' 0. A confidence interval
+#' with a higher confidence level will
+#' include zero, while a confidence
+#' interval with a lower confidence level
+#' will exclude zero.
+#'
 #' @return `x` is returned invisibly.
 #' Called for its side effect.
 #'
@@ -18,8 +42,21 @@
 #' effects is to be printed. Default is
 #' `TRUE.`
 #'
+#' @param pvalue Logical. If `TRUE`,
+#' asymmetric *p*-values based on
+#' bootstrapping will be printed if
+#' available.
+#'
+#' @param pvalue_digits Number of decimal
+#' places to display for the *p*-values.
+#' Default is 3.
+#'
 #' @param ... Other arguments. Not used.
 #'
+#'
+#' @references
+#' Asparouhov, A., & Muthén, B. (2021). Bootstrap p-value computation.
+#' Retrieved from https://www.statmodel.com/download/FAQ-Bootstrap%20-%20Pvalue.pdf
 #'
 #'
 #' @seealso [many_indirect_effects()]
@@ -51,7 +88,10 @@
 #' @export
 
 print.indirect_list <- function(x, digits = 3,
-                                annotation = TRUE, ...) {
+                                annotation = TRUE,
+                                pvalue = FALSE,
+                                pvalue_digits = 3,
+                                ...) {
     xold <- x
     my_call <- attr(x, "call")
     x_paths <- attr(x, "paths")
@@ -60,10 +100,21 @@ print.indirect_list <- function(x, digits = 3,
     standardized_x <- x[[1]]$standardized_x
     standardized_y <- x[[1]]$standardized_y
     standardized <- (standardized_x && standardized_y)
-    has_boot_ci <- isTRUE(!is.null(x[[1]]$boot_ci))
+    has_ci <- FALSE
+    ci_type <- NULL
+    if (isTRUE(!is.null(x[[1]]$boot_ci))) {
+        has_ci <- TRUE
+        ci_type <- "boot"
+        ind_name <- "boot_indirect"
+      }
+    if (isTRUE(!is.null(x[[1]]$mc_ci))) {
+        has_ci <- TRUE
+        ci_type <- "mc"
+        ind_name <- "mc_indirect"
+      }
     level <- x[[1]]$level
-    R <- ifelse(has_boot_ci,
-                length(x[[1]]$boot_indirect),
+    R <- ifelse(has_ci,
+                length(x[[1]][[ind_name]]),
                 NA)
     # Does not support conditional indirect effects for now
     # has_w <- isTRUE(!is.null(wvalues))
@@ -77,7 +128,14 @@ print.indirect_list <- function(x, digits = 3,
       }
     # Should always have mediators
     has_m <- TRUE
-    coef0 <- indirect_effects_from_list(xold, add_sig = TRUE)
+    coef0 <- indirect_effects_from_list(xold,
+                                        add_sig = TRUE,
+                                        pvalue = pvalue)
+    if (has_ci && (ci_type == "boot") && pvalue) {
+        coef0$pvalue <- formatC(coef0$pvalue,
+                                digits = pvalue_digits,
+                                format = "f")
+      }
     std_str <- ""
     if (standardized) {
         std_str <- paste0("(Both ", "x-variable(s)",
@@ -109,15 +167,33 @@ print.indirect_list <- function(x, digits = 3,
     rownames(coef1) <- rownames(coef0)
     print(coef1)
     if (annotation) {
-        if (has_boot_ci) {
+        if (has_ci) {
+            level_str <- paste0(formatC(level * 100, 1, format = "f"), "%")
+            cat("\n ")
+            tmp1 <- switch(ci_type,
+                      boot = paste("percentile confidence intervals",
+                                   "by nonparametric bootstrapping with"),
+                      mc = "Monte Carlo confidence intervals with")
+            tmp2 <- switch(ci_type,
+                      boot = paste(R, "samples."),
+                      mc = paste(R, "replications."))
+            cat(strwrap(paste("- [CI.lo to CI.hi] are",
+                              level_str,
+                              tmp1,
+                              tmp2), exdent = 3), sep = "\n")
+            if (pvalue && (ci_type == "boot")) {
+                tmp1 <- " - [pvalue] are asymmetric bootstrap p-values."
+                cat(tmp1, sep = "\n")
+              }
+          } else if (has_ci && ci_type == "mc") {
             level_str <- paste0(formatC(level * 100, 1, format = "f"), "%")
             cat("\n ")
             cat(strwrap(paste("- [CI.lo to CI.hi] are",
                               level_str,
-                              "percentile confidence intervals",
-                              "by nonparametric bootstrapping with",
+                              "Monte Carlo confidence intervals",
+                              "with",
                               R,
-                              "samples."), exdent = 3), sep = "\n")
+                              "replications."), exdent = 3), sep = "\n")
           } else {
             cat("\n")
           }
@@ -152,12 +228,35 @@ print.indirect_list <- function(x, digits = 3,
 #' in the
 #' output of [many_indirect_effects()].
 #'
+#' @details
+#' If bootstrapping confidence interval
+#' was requested, this method has the
+#' option to add
+#' *p*-values computed by the
+#' method presented in Asparouhov and Muthén (2021).
+#' Note that these *p*-values is asymmetric
+#' bootstrap *p*-values based on the
+#' distribution of the bootstrap estimates.
+#' They are not computed based on the
+#' distribution under the null hypothesis.
+#'
+#' For a *p*-value of *a*, it means that
+#' a 100(1 - *a*)% bootstrapping confidence
+#' interval
+#' will have one of its limits equal to
+#' 0. A confidence interval
+#' with a higher confidence level will
+#' include zero, while a confidence
+#' interval with a lower confidence level
+#' will exclude zero.
+#'
+#'
 #' @return A data frame with the
 #' indirect effect estimates and
 #' confidence intervals (if available).
 #' It also has A string column, `"Sig"`,
 #' for #' significant test results
-#' if `add_sig` is `TRUE` and bootstrap
+#' if `add_sig` is `TRUE` and
 #' confidence intervals are available.
 #'
 #' @param object The output of
@@ -168,7 +267,17 @@ print.indirect_list <- function(x, digits = 3,
 #' of significance test results
 #' will be added. Default is `TRUE`.
 #'
+#' @param pvalue Logical. If `TRUE`,
+#' asymmetric *p*-values based on
+#' bootstrapping will be added
+#' available. Default is `FALSE`.
+#'
 #' @seealso [many_indirect_effects()]
+#'
+#'
+#' @references
+#' Asparouhov, A., & Muthén, B. (2021). Bootstrap p-value computation.
+#' Retrieved from https://www.statmodel.com/download/FAQ-Bootstrap%20-%20Pvalue.pdf
 #'
 #' @examples
 #'
@@ -203,7 +312,9 @@ print.indirect_list <- function(x, digits = 3,
 #'
 #' @export
 
-indirect_effects_from_list <- function(object, add_sig = TRUE) {
+indirect_effects_from_list <- function(object,
+                                       add_sig = TRUE,
+                                       pvalue = FALSE) {
     if (!inherits(object, "indirect_list")) {
         stop("object is not an indirect_list class object.")
       }
@@ -221,14 +332,28 @@ indirect_effects_from_list <- function(object, add_sig = TRUE) {
         out <- data.frame(ind = coef0)
       }
     rownames(out) <- path_names
-    has_boot_ci <- isTRUE(!is.null(object[[1]]$boot_ci))
-    if (has_boot_ci) {
+    has_ci <- FALSE
+    ci_type <- NULL
+    if (isTRUE(!is.null(object[[1]]$boot_ci))) {
+        has_ci <- TRUE
+        ci_type <- "boot"
+      }
+    if (isTRUE(!is.null(object[[1]]$mc_ci))) {
+        has_ci <- TRUE
+        ci_type <- "mc"
+      }
+    if (has_ci) {
         ci0 <- t(sapply(object, stats::confint))
         out$CI.lo <- ci0[, 1]
         out$CI.hi <- ci0[, 2]
         if (add_sig) {
             Sig <- ifelse((out$CI.lo > 0) | (out$CI.hi < 0), "Sig", "")
             out$Sig <- Sig
+          }
+        if (pvalue && (ci_type == "boot")) {
+            boot_p <- sapply(object, function(x) x$boot_p)
+            boot_p <- unname(boot_p)
+            out$pvalue <- boot_p
           }
       }
     out

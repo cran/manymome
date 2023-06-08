@@ -46,6 +46,11 @@
 #' output is implemented by high level
 #' functions such as [indirect_effect()]
 #' and [cond_indirect_effects()].
+#' It can also be
+#' a `lavaan.mi` object
+#' returned by
+#' [semTools::runMI()] or
+#' its wrapper, such as [semTools::sem.mi()].
 #'
 #' @param est The output of
 #' [lavaan::parameterEstimates()]. If
@@ -175,7 +180,7 @@ indirect_i <- function(x,
                      expand = TRUE,
                      warn = TRUE) {
     if (is.null(est)) {
-      est <- lavaan::parameterEstimates(fit)
+      est <- lav_est(fit)
     }
     chkpath <- check_path(x = x, y = y, m = m, fit = fit, est = est)
     if (!chkpath) {
@@ -217,7 +222,8 @@ indirect_i <- function(x,
                 if (!is.null(fit)) {
                     fit_type <- cond_indirect_check_fit(fit)
                     data <- switch(fit_type,
-                                  lavaan = lavaan::lavInspect(fit, "data"),
+                                  lavaan = lav_data_used(fit, drop_colon = FALSE),
+                                  lavaan.mi = lav_data_used(fit, drop_colon = FALSE),
                                   lm = lm2ptable(fit)$data)
                   }
               }

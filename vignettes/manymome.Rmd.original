@@ -21,7 +21,10 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-This article is a brief illustration of how `manymome` functions are
+This article is a brief illustration of how main functions
+from the package
+[manymome](https://sfcheung.github.io/manymome/index.html)
+can be
 used in some typical cases. It assumes that readers have
 basic understanding of mediation, moderation, moderated
 mediation, structural equation modeling (SEM), and bootstrapping.
@@ -68,6 +71,19 @@ to be conducted once. Alternatively, `do_boot()` can be use
 reused by
 most main functions of `manymome` for any path and any level
 of the moderators.
+
+**Monte Carlo confidence intervals**: Initial support for
+Monte Carlo confidence interval has been added to all main
+functions for the effects in a model fitted by
+`lavaan::sem()`. The recommended workflow
+is to use `do_mc()` to generate
+the simulated sampling estimates. The simulated estimates
+can be reused by
+most main functions of `manymome` for any path and any level
+of the moderators. To keep the length of this vignette short,
+it only covers bootstrapping confidence intervals.
+Please see `vignette("do_mc")` for an illustration on how
+to form Monte Carlo confidence intervals.
 
 **Standardized effects**: All main functions in Stage 2 support
 standardized effects and form their bootstrap confidence
@@ -823,6 +839,15 @@ and subtraction for the output of `indirect_effect()`.
   confidence intervals, just like defining them in
   `lavaan`, in the presence of missing data.
 
+- Missing data handled by multiple imputation
+  is also supported since version 0.1.9.8. Models fitted
+  by `semTools::sem.mi()`
+  or `semTools::runMI()` to multiple imputation datasets
+  can be used just like the output of `lavaan::sem()`.
+  Monte Carlo confidence intervals cna be formed for
+  effects computed for these models
+  (see `vignette("do_mc_lavaan_mi")`).
+
 - Bootstrapping only needs to be done once. The bootstrap
   estimates can be reused in computing indirect effects
   and conditional indirect effects. This is particularly
@@ -864,6 +889,20 @@ by multiple regression. Please
 refer to the help page and examples of the functions, or
 other [articles](https://sfcheung.github.io/manymome/articles/).
 More articles will be added in the future for other scenarios.
+
+## Monte Carlo Confidence Intervals
+
+Monte Carlo confidence intervals can also
+be formed using the functions illustrated
+above. First use `do_mc()` instead of
+`do_boot()` to generate simulated sample
+estimates. When calling other main
+functions, use `mc_ci = TRUE` and set
+`mc_out` to the output of `do_mc()`.
+Please refer to `vignette("do_mc")`
+for an illustration, and `vignette("do_mc_lavaan_mi")`
+on how to form Monte Carlo confidence intervals
+for models fitted to multiple imputation datasets.
 
 # References
 
