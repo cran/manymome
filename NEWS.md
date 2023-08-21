@@ -1,3 +1,52 @@
+# manymome 0.1.12
+
+## New Features
+
+### Can report standard errors (if requested)
+
+- All major print methods of effects support
+  printing standard errors (setting
+  `se = TRUE`). They are simply the
+  standard deviations of the bootstrap
+  estimates (if bootstrap confidence
+  intervals are requested) or simulated
+  estimates (if Monte Carlo confidence
+  intervals are requested). They should
+  be interpreted with cautions because
+  the sampling distribution of the
+  effect estimates may not be symmetric. (0.1.11.2)
+
+## Miscellaneous
+
+- Customized `linters`. (0.1.11.1)
+
+- Revised a test to accommodate a
+  behavior of MKL when `MASS::mvrnorm()`
+  is used to generate pseudo random
+  numbers. (0.1.11.4)
+
+- Finalized to 0.1.12. (0.1.12)
+
+## Bug Fixes
+
+- *P*-value were not computed when
+  mathematical operations are conducted
+  on effects using `+` and `-` before
+  version 0.1.11.2. This
+  has been fixed. (0.1.11.2)
+
+- `merge_model_matrix()` failed if all
+  variables in an `lm()` output is already
+  present in merged outputs. Fixed
+  in 0.1.11.3. (0.1.11.3)
+
+- `cond_indirect()` did not hide the
+  progress when Monte Carlo CIs were
+  requested and `do_mc()` was called
+  internally. Fixed. It now hides the
+  progress if `progress = TRUE`.
+  (0.1.11.5)
+
 # manymome 0.1.10
 
 ## New Features
