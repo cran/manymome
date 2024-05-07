@@ -51,7 +51,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -400,108 +400,108 @@ form Monte Carlo confidence intervals.</p></li>
 Imputation</h2>
 <p>This data set, with missing data introduced, will be used for
 illustration.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(manymome)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data_med</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dat[<span class="dv">1</span>, <span class="dv">1</span>] <span class="ot">&lt;-</span> dat[<span class="dv">2</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> dat[<span class="dv">3</span>, <span class="dv">5</span>] <span class="ot">&lt;-</span> dat[<span class="dv">4</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> dat[<span class="dv">5</span>, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           x        m        y       c1       c2</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1        NA 17.89644 20.73893 1.426513 6.103290</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  8.331493 17.92150       NA 2.940388 3.832698</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 10.327471 17.83178 22.14201 3.012678       NA</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 11.196969 20.01750       NA 3.120056 4.654931</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 11.887811       NA 28.47312 4.440018 3.959033</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  8.198297 16.95198 20.73549 2.495083 3.763712</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(manymome)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data_med</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>dat[<span class="dv">1</span>, <span class="dv">1</span>] <span class="ot">&lt;-</span> dat[<span class="dv">2</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> dat[<span class="dv">3</span>, <span class="dv">5</span>] <span class="ot">&lt;-</span> dat[<span class="dv">4</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> dat[<span class="dv">5</span>, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">head</span>(dat)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt;           x        m        y       c1       c2</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt; 1        NA 17.89644 20.73893 1.426513 6.103290</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co">#&gt; 2  8.331493 17.92150       NA 2.940388 3.832698</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co">#&gt; 3 10.327471 17.83178 22.14201 3.012678       NA</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co">#&gt; 4 11.196969 20.01750       NA 3.120056 4.654931</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co">#&gt; 5 11.887811       NA 28.47312 4.440018 3.959033</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co">#&gt; 6  8.198297 16.95198 20.73549 2.495083 3.763712</span></span></code></pre></div>
 <p>It has one predictor (<code>x</code>), one mediator (<code>m</code>),
 one outcome variable (<code>y</code>), and two control variables
 (<code>c1</code> and <code>c2</code>).</p>
 <p>The following simple mediation model with two control variables
 (<code>c1</code> and <code>c2</code>) will be fitted:</p>
-<div class="figure">
-<img src="data:image/png;base64,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" alt />
-<p class="caption">plot of chunk do_mc_lavaan_mi_draw_model</p>
+<div class="float">
+<img src="data:image/png;base64,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" alt="plot of chunk do_mc_lavaan_mi_draw_model" />
+<div class="figcaption">plot of chunk do_mc_lavaan_mi_draw_model</div>
 </div>
 <p>In practice, the imputation model needs to be decided and checked
 (van Buuren, 2018). For the sake of illustration, we just use the
 default of <code>mice::mice()</code> to do the imputation:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;mice&#39;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:stats&#39;:</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     filter</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     cbind, rbind</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">26245</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>out_mice <span class="ot">&lt;-</span> <span class="fu">mice</span>(dat, <span class="at">m =</span> <span class="dv">5</span>, <span class="at">printFlag =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>dat_mi <span class="ot">&lt;-</span> <span class="fu">complete</span>(out_mice, <span class="at">action =</span> <span class="st">&quot;all&quot;</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># The first imputed dataset</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat_mi[[<span class="dv">1</span>]])</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           x        m        y       c1       c2</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  9.762412 17.89644 20.73893 1.426513 6.103290</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  8.331493 17.92150 25.68452 2.940388 3.832698</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 10.327471 17.83178 22.14201 3.012678 3.969419</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 11.196969 20.01750 24.87107 3.120056 4.654931</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 11.887811 20.82502 28.47312 4.440018 3.959033</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  8.198297 16.95198 20.73549 2.495083 3.763712</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># The last imputed dataset</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat_mi[[<span class="dv">5</span>]])</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           x        m        y       c1       c2</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  8.301276 17.89644 20.73893 1.426513 6.103290</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  8.331493 17.92150 22.93143 2.940388 3.832698</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 10.327471 17.83178 22.14201 3.012678 6.238426</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 11.196969 20.01750 26.90840 3.120056 4.654931</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 11.887811 20.82502 28.47312 4.440018 3.959033</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  8.198297 16.95198 20.73549 2.495083 3.763712</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;mice&#39;</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:stats&#39;:</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt;     filter</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt;     cbind, rbind</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">26245</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>out_mice <span class="ot">&lt;-</span> <span class="fu">mice</span>(dat, <span class="at">m =</span> <span class="dv">5</span>, <span class="at">printFlag =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>dat_mi <span class="ot">&lt;-</span> <span class="fu">complete</span>(out_mice, <span class="at">action =</span> <span class="st">&quot;all&quot;</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co"># The first imputed dataset</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="fu">head</span>(dat_mi[[<span class="dv">1</span>]])</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt;           x        m        y       c1       c2</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; 1  9.762412 17.89644 20.73893 1.426513 6.103290</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt; 2  8.331493 17.92150 25.68452 2.940388 3.832698</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt; 3 10.327471 17.83178 22.14201 3.012678 3.969419</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt; 4 11.196969 20.01750 24.87107 3.120056 4.654931</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt; 5 11.887811 20.82502 28.47312 4.440018 3.959033</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt; 6  8.198297 16.95198 20.73549 2.495083 3.763712</span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co"># The last imputed dataset</span></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="fu">head</span>(dat_mi[[<span class="dv">5</span>]])</span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="co">#&gt;           x        m        y       c1       c2</span></span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="co">#&gt; 1  8.301276 17.89644 20.73893 1.426513 6.103290</span></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="co">#&gt; 2  8.331493 17.92150 22.93143 2.940388 3.832698</span></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="co">#&gt; 3 10.327471 17.83178 22.14201 3.012678 6.238426</span></span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="co">#&gt; 4 11.196969 20.01750 26.90840 3.120056 4.654931</span></span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="co">#&gt; 5 11.887811 20.82502 28.47312 4.440018 3.959033</span></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="co">#&gt; 6  8.198297 16.95198 20.73549 2.495083 3.763712</span></span></code></pre></div>
 </div>
 <div id="fit-a-model-by-semtoolssem.mi" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Fit a Model by
 <code>semTools::sem.mi()</code></h2>
 <p>We then fit the model by <code>semTools::sem.mi()</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTools)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ###############################################################################</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; This is semTools 0.5-6.920</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; All users of R (or SEM) are invited to submit functions or ideas for functions.</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ###############################################################################</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">m ~ x + c1 + c2</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">y ~ m + x + c1 + c2</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>fit_lavaan <span class="ot">&lt;-</span> <span class="fu">sem.mi</span>(<span class="at">model =</span> mod,</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> dat_mi)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_lavaan)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; lavaan.mi object based on 5 imputed data sets. </span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; See class?lavaan.mi help page for available methods. </span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Convergence information:</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The model converged on 5 imputed data sets </span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rubin&#39;s (1987) rules were used to pool point and SE estimates across 5 imputed data sets, and to calculate degrees of freedom for each parameter&#39;s t test and CI.</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Parameter Estimates:</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Standard errors                             Standard</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Information                                 Expected</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Information saturated (h1) model          Structured</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Regressions:</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    Estimate  Std.Err  t-value       df  P(&gt;|t|)</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   m ~                                                          </span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     x                 0.891    0.080   11.117      Inf    0.000</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     c1                0.162    0.077    2.118 5182.950    0.034</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     c2               -0.114    0.102   -1.117 6281.324    0.264</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   y ~                                                          </span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     m                 0.736    0.251    2.935 3642.608    0.003</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     x                 0.616    0.298    2.065  383.680    0.040</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     c1                0.181    0.193    0.939      Inf    0.348</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     c2               -0.156    0.254   -0.616 3050.071    0.538</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Variances:</span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    Estimate  Std.Err  t-value       df  P(&gt;|t|)</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    .m                 0.682    0.098    6.959      Inf    0.000</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    .y                 4.151    0.597    6.958 8812.141    0.000</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(semTools)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#&gt; ###############################################################################</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#&gt; This is semTools 0.5-6.920</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt; All users of R (or SEM) are invited to submit functions or ideas for functions.</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#&gt; ###############################################################################</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>mod <span class="ot">&lt;-</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="st">m ~ x + c1 + c2</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="st">y ~ m + x + c1 + c2</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>fit_lavaan <span class="ot">&lt;-</span> <span class="fu">sem.mi</span>(<span class="at">model =</span> mod,</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>                     <span class="at">data =</span> dat_mi)</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="fu">summary</span>(fit_lavaan)</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co">#&gt; lavaan.mi object based on 5 imputed data sets. </span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#&gt; See class?lavaan.mi help page for available methods. </span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co">#&gt; Convergence information:</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="co">#&gt; The model converged on 5 imputed data sets </span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="co">#&gt; Rubin&#39;s (1987) rules were used to pool point and SE estimates across 5 imputed data sets, and to calculate degrees of freedom for each parameter&#39;s t test and CI.</span></span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="co">#&gt; Parameter Estimates:</span></span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="co">#&gt;   Standard errors                             Standard</span></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="co">#&gt;   Information                                 Expected</span></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="co">#&gt;   Information saturated (h1) model          Structured</span></span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="co">#&gt; Regressions:</span></span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="co">#&gt;                    Estimate  Std.Err  t-value       df  P(&gt;|t|)</span></span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="co">#&gt;   m ~                                                          </span></span>
+<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="co">#&gt;     x                 0.891    0.080   11.117      Inf    0.000</span></span>
+<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="co">#&gt;     c1                0.162    0.077    2.118 5182.950    0.034</span></span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="co">#&gt;     c2               -0.114    0.102   -1.117 6281.324    0.264</span></span>
+<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a><span class="co">#&gt;   y ~                                                          </span></span>
+<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="co">#&gt;     m                 0.736    0.251    2.935 3642.608    0.003</span></span>
+<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="co">#&gt;     x                 0.616    0.298    2.065  383.680    0.040</span></span>
+<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a><span class="co">#&gt;     c1                0.181    0.193    0.939      Inf    0.348</span></span>
+<span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a><span class="co">#&gt;     c2               -0.156    0.254   -0.616 3050.071    0.538</span></span>
+<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a><span class="co">#&gt; Variances:</span></span>
+<span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a><span class="co">#&gt;                    Estimate  Std.Err  t-value       df  P(&gt;|t|)</span></span>
+<span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a><span class="co">#&gt;    .m                 0.682    0.098    6.959      Inf    0.000</span></span>
+<span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a><span class="co">#&gt;    .y                 4.151    0.597    6.958 8812.141    0.000</span></span></code></pre></div>
 </div>
 <div id="generate-monte-carlo-estimates" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Generate Monte Carlo
@@ -518,11 +518,11 @@ all free parameters <em>and</em> the implied statistics, such as the
 variances of <code>m</code> and <code>y</code>, which are not free
 parameters but are needed to form the confidence interval of the
 <em>standardized</em> indirect effect.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mc_out_lavaan <span class="ot">&lt;-</span> <span class="fu">do_mc</span>(<span class="at">fit =</span> fit_lavaan,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">R =</span> <span class="dv">10000</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">seed =</span> <span class="dv">4234</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Stage 1: Simulate estimates</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Stage 2: Compute implied statistics</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>mc_out_lavaan <span class="ot">&lt;-</span> <span class="fu">do_mc</span>(<span class="at">fit =</span> fit_lavaan,</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>                       <span class="at">R =</span> <span class="dv">10000</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>                       <span class="at">seed =</span> <span class="dv">4234</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt; Stage 1: Simulate estimates</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt; Stage 2: Compute implied statistics</span></span></code></pre></div>
 <p>Usually, just three arguments are needed:</p>
 <ul>
 <li><p><code>fit</code>: The output of
@@ -546,31 +546,31 @@ long because there is no need to refit the model many times.</p>
 can be assigned the output of <code>do_mc()</code>. They will then
 retrieve the stored simulated estimates to form the Monte Carlo
 confidence intervals, if requested.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>out_lavaan <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">fit =</span> fit_lavaan,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">mc_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">mc_out =</span> mc_out_lavaan)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>out_lavaan</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                        </span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                 x -&gt; m -&gt; y     </span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect       0.656           </span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Monte Carlo CI: [0.213 to 1.124]</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m~x)*(b.y~m)</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.89141)*(0.73569)</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Monte Carlo confidence interval with 10000 replications.</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path Coefficient</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   m~x       0.891</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   y~m       0.736</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>out_lavaan <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>                              <span class="at">fit =</span> fit_lavaan,</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>                              <span class="at">mc_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                              <span class="at">mc_out =</span> mc_out_lavaan)</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>out_lavaan</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt;                                        </span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt;  Path:                 x -&gt; m -&gt; y     </span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect       0.656           </span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Monte Carlo CI: [0.213 to 1.124]</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt;   (b.m~x)*(b.y~m)</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt;   (0.89141)*(0.73569)</span></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt; Monte Carlo confidence interval with 10000 replications.</span></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="co">#&gt;  Path Coefficient</span></span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="co">#&gt;   m~x       0.891</span></span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="co">#&gt;   y~m       0.736</span></span></code></pre></div>
 <p>Reusing the simulated estimates can ensure that all analysis with
 Monte Carlo confidence intervals are based on the same set of simulated
 estimates.</p>

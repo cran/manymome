@@ -1,3 +1,118 @@
+# manymome 0.2.1
+
+## New Features
+
+### Multigroup Models Supported
+
+- Support for mediation paths in
+  multigroup models fitted
+  by `lavaan` has been added.
+  Demonstrations can be found
+  in this [article](https://sfcheung.github.io/manymome/articles/med_mg.html)
+
+    - Many functions have been updated to
+      work for multigroup models with
+      mediators fitted
+      by `lavaan`.
+      Most common tasks
+      support multigroup models.
+      For functions that
+      support moderators, the group
+      variable will be used automatically
+      as a moderator.
+      Checks will be added to functions
+      not yet support multigroup models
+      to alert users.
+
+    - For paths moderated in multigroup
+      models, only some functions
+      (e.g., `cond_indirect_effect()`)
+      are supported. However, multigroup
+      models with moderators are rare.
+      Functions that do not yet support
+      multigroup models (e.g,
+      `mod_levels()`) will raise an error
+      if used on a multigroup model.
+      Support may be added in the future.
+
+    - The `+` and `-` operators can now be
+      used on different paths because
+      they may be
+      paths in different groups in
+      multigroup models.
+
+    - The `plot`-method of
+      `cond_indirect_effects`-class objects
+      will be forced to be a tumble graph
+      if the lines for different groups
+      are to be plotted. In these cases,
+      the data within each group will be used,
+      including standardization. This
+      approach, though leading to results
+      different from those in single-group
+      model using the group as a moderator,
+      makes more sense for multigroup
+      models, in which the distribution of
+      variables are allowed to be different
+      between groups. Since 0.1.14.10,
+      by default, the model implied statistics
+      are used to determine the means and SDs
+      used in drawing the plot. This approach
+      is useful when between-group
+      equality constraints
+      are present.
+
+    - The `plot`-method of
+      `cond_indirect_effects`-class objects
+      now supports plotting a path that
+      involves latent variables. The model
+      implied statistics will always be used
+      for the latent variables when determining
+      the means and SDs. This is useful
+      because the group-variable can
+      be treated as a moderator by
+      `cond_indirect_effects()`. (0.1.14.7)
+
+### Other New Features
+
+- Added `plot_effect_vs_w()`. It
+  can plot an effect (direct or indirect)
+  against a moderator, using the output
+  of `cond_indirect_effects()`. (0.1.14.14 - 0.1.14.15)
+
+- Added `pseudo_johnson_neyman()`. It
+  used the pseudo Johnson-Neyman approach
+  (Hayes, 2022) to find the value of
+  a moderator at which the conditional
+  effect (direct or indirect) changes
+  from nonsignificant to significant
+  (or vice versa), based on the
+  confidence interval selected.
+   (0.1.14.16)
+
+## Miscellaneous
+
+- If a dataset has a variable which
+  is a product of itself and another
+  variable (e.g., `x*y == x`),
+  `find_products()` will be trapped
+  in an infinite loop. This
+  "product term" will no longer be
+  treated as a "product term."
+  (0.1.14.1)
+
+- Bootstrapping and Monte Carlo
+  simulation will no longer be run
+  once for each path in
+  `many_indirect_effects()`. If
+  `do_boot()` or `do_mc()` is not used
+  first but bootstrapping or Monte
+  Carlo confidence intervals are
+  requested, this process will be done
+  only once, and the estimates will be
+  reused by all paths. (0.1.14.9,
+  a bug fixed in 0.2.1)
+
 # manymome 0.1.14
 
 ## New Features

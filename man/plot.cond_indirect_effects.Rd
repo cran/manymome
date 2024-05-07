@@ -19,6 +19,7 @@
   line_width = 1,
   point_size = 5,
   graph_type = c("default", "tumble"),
+  use_implied_stats = TRUE,
   ...
 )
 }
@@ -63,7 +64,9 @@ standard deviation of the focal
 variable, \code{"sd"}. If equal to
 \code{"percentile"}, then the percentiles
 of the focal variable in the dataset
-is used.}
+is used. If the focal variable is
+a latent variable, only
+\code{"sd"} can be used.}
 
 \item{x_percentiles}{If \code{x_method} is
 \code{"percentile"}, then this argument
@@ -115,9 +118,24 @@ points as used in
 \item{graph_type}{If \code{"default"}, the
 typical line-graph with equal
 end-points will be plotted. If
-\code{"tubmle"}, then the tumble graph
+\code{"tumble"}, then the tumble graph
 proposed by Bodner (2016) will be
-plotted. Default is \code{"default"}.}
+plotted. Default is \code{"default"}
+for single-group models, and
+\code{"tumble"} for multigroup models.}
+
+\item{use_implied_stats}{For a
+multigroup model, if \code{TRUE},
+the default,
+model implied statistics will be
+used in computing the means and SDs,
+which take into equality constraints,
+if any.
+If \code{FALSE}, then the raw
+data is
+used to compute the means and SDs.
+For latent variables, model implied
+statistics are always used.}
 
 \item{...}{Additional arguments.
 Ignored.}
@@ -142,12 +160,48 @@ output.
 
 It plots the conditional effect from
 \code{x} to \code{y} in a model for different
-levels of the moderators.
+levels of the moderators. For
+multigroup models, the group will
+be the 'moderator' and one line is
+drawn for each group.
 
 It does not support conditional
 indirect effects. If there is one or
 more mediators in \code{x}, it will raise
 an error.
+\subsection{Multigroup Models}{
+
+Since Version 0.1.14.2, support for
+multigroup models has been added for models
+fitted by \code{lavaan}. If the effect
+for each group is drawn, the
+\code{graph_type} is automatically switched
+to \code{"tumble"} and the means and SDs
+in each group will be used to determine
+the locations of the points.
+
+If the multigroup model has any equality
+constraints, the implied means and/or
+SDs may be different from those of
+the raw data. For example, the mean
+of the \code{x}-variable may be constrained
+to be equal in this model. To plot
+the tumble graph using the model implied
+means and SDs, set \code{use_implied_stats}
+to \code{TRUE}.
+}
+
+\subsection{Latent Variables}{
+
+A path that involves a latent \code{x}-variable
+and/or a latent \code{y}-variable can be
+plotted. Because the latent variables
+have no observed data, the model
+implied statistics will always be used
+to get the means and SDs to compute
+values such as the low and high points
+of the \code{x}-variable.
+}
 }
 \examples{
 library(lavaan)
@@ -189,6 +243,26 @@ out_mm_2
 out_2 <- cond_indirect_effects(wlevels = out_mm_2, x = "x", y = "m3", fit = fit2)
 plot(out_2)
 plot(out_2, graph_type = "tumble")
+
+# Multigroup models
+
+dat <- data_med_mg
+mod <-
+"
+m ~ x + c1 + c2
+y ~ m + x + c1 + c2
+"
+fit <- sem(mod, dat, meanstructure = TRUE, fixed.x = FALSE, se = "none", baseline = FALSE,
+           group = "group")
+
+# For a multigroup model, group will be used as
+# a moderator
+out <- cond_indirect_effects(x = "m",
+                             y = "y",
+                             fit = fit)
+out
+plot(out)
+
 
 
 }

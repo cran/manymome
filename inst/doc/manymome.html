@@ -51,7 +51,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -436,20 +436,20 @@ respectively.</p></li>
 <h1><span class="header-section-number">2</span> Moderated Mediation by
 SEM using <code>lavaan</code></h1>
 <p>This is the sample data set comes with the package:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(manymome)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data_med_mod_ab</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(dat), <span class="at">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       x   w1   w2    m    y    c1   c2</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  9.27 4.97 2.66 3.46 8.80  9.26 3.14</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 10.79 4.13 3.33 4.05 7.37 10.71 5.80</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 11.10 5.91 3.32 4.04 8.24 10.60 5.45</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  9.53 4.78 2.32 3.54 8.37  9.22 3.83</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 10.00 4.38 2.95 4.65 8.39  9.58 4.26</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 12.25 5.81 4.04 4.73 9.65  9.51 4.01</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(manymome)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data_med_mod_ab</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(dat), <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt;       x   w1   w2    m    y    c1   c2</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt; 1  9.27 4.97 2.66 3.46 8.80  9.26 3.14</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt; 2 10.79 4.13 3.33 4.05 7.37 10.71 5.80</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co">#&gt; 3 11.10 5.91 3.32 4.04 8.24 10.60 5.45</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co">#&gt; 4  9.53 4.78 2.32 3.54 8.37  9.22 3.83</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co">#&gt; 5 10.00 4.38 2.95 4.65 8.39  9.58 4.26</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co">#&gt; 6 12.25 5.81 4.04 4.73 9.65  9.51 4.01</span></span></code></pre></div>
 <p>Suppose this is the model being fitted:</p>
-<div class="figure">
-<img src="data:image/png;base64,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" alt />
-<p class="caption">plot of chunk manymome_draw_model</p>
+<div class="float">
+<img src="data:image/png;base64,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" alt="plot of chunk manymome_draw_model" />
+<div class="figcaption">plot of chunk manymome_draw_model</div>
 </div>
 <p>The models are intended to be simple enough for illustration but
 complicated enough to show the flexibility of <code>manymome</code>.
@@ -481,49 +481,49 @@ can, if so desired; they have no impact on the functions in
 <code>manymome</code>). To illustrate a more realistic scenario, two
 control variables, <code>c1</code> and <code>c2</code>, are also
 included.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Form the product terms</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>w1x <span class="ot">&lt;-</span> dat<span class="sc">$</span>w1 <span class="sc">*</span> dat<span class="sc">$</span>x</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>w2m <span class="ot">&lt;-</span> dat<span class="sc">$</span>w2 <span class="sc">*</span> dat<span class="sc">$</span>m</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">m ~ x + w1 + w1x + c1 + c2</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">y ~ m + w2 + w2m + x + c1 + c2</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st"># Covariances of the error term of m with w2m and w2</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">m ~~ w2m + w2</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st"># Covariance between other variables</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st"># They need to be added due to the covariances added above</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st"># See Kwan and Chan (2018) and Miles et al. (2015)</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">w2m ~~ w2 + x + w1 + w1x + c1 + c2</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">w2  ~~ x + w1 + w1x + c1 + c2</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">x   ~~ w1 + w1x + c1 + c2</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="st">w1  ~~ w1x + c1 + c2</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="st">w1x ~~ c1 + c2</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="st">c1  ~~ c2</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(<span class="at">model =</span> mod,</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> dat,</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>           <span class="at">fixed.x =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">estimator =</span> <span class="st">&quot;MLR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co"># Form the product terms</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>dat<span class="sc">$</span>w1x <span class="ot">&lt;-</span> dat<span class="sc">$</span>w1 <span class="sc">*</span> dat<span class="sc">$</span>x</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>dat<span class="sc">$</span>w2m <span class="ot">&lt;-</span> dat<span class="sc">$</span>w2 <span class="sc">*</span> dat<span class="sc">$</span>m</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>mod <span class="ot">&lt;-</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="st">m ~ x + w1 + w1x + c1 + c2</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="st">y ~ m + w2 + w2m + x + c1 + c2</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="st"># Covariances of the error term of m with w2m and w2</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="st">m ~~ w2m + w2</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="st"># Covariance between other variables</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="st"># They need to be added due to the covariances added above</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="st"># See Kwan and Chan (2018) and Miles et al. (2015)</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="st">w2m ~~ w2 + x + w1 + w1x + c1 + c2</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="st">w2  ~~ x + w1 + w1x + c1 + c2</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="st">x   ~~ w1 + w1x + c1 + c2</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="st">w1  ~~ w1x + c1 + c2</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="st">w1x ~~ c1 + c2</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="st">c1  ~~ c2</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">sem</span>(<span class="at">model =</span> mod,</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>           <span class="at">data =</span> dat,</span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>           <span class="at">fixed.x =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>           <span class="at">estimator =</span> <span class="st">&quot;MLR&quot;</span>)</span></code></pre></div>
 <p><code>MLR</code> is used to take into account probable nonnormality
 due to the product terms. <code>fixed.x = FALSE</code> is used to allow
 the predictors to be random variables. This is usually necessary when
 the values of the predictor are also sampled from the populations, and
 so their standard deviations are sample statistics.</p>
 <p>These are the parameter estimates of the paths:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parameterEstimates</span>(fit)[<span class="fu">parameterEstimates</span>(fit)<span class="sc">$</span>op <span class="sc">==</span> <span class="st">&quot;~&quot;</span>, ]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    lhs op rhs    est    se      z pvalue ci.lower ci.upper</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    m  ~   x -0.663 0.533 -1.244  0.213   -1.707    0.381</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2    m  ~  w1 -2.290 1.010 -2.267  0.023   -4.269   -0.310</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    m  ~ w1x  0.204 0.101  2.023  0.043    0.006    0.401</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4    m  ~  c1 -0.020 0.079 -0.251  0.801   -0.175    0.135</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    m  ~  c2 -0.130 0.090 -1.444  0.149   -0.306    0.046</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    y  ~   m -0.153 0.248 -0.616  0.538   -0.638    0.333</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7    y  ~  w2 -0.921 0.401 -2.300  0.021   -1.706   -0.136</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8    y  ~ w2m  0.204 0.079  2.579  0.010    0.049    0.359</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9    y  ~   x  0.056 0.086  0.653  0.514   -0.113    0.225</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10   y  ~  c1 -0.102 0.081 -1.261  0.207   -0.261    0.056</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11   y  ~  c2 -0.108 0.087 -1.249  0.212   -0.279    0.062</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">parameterEstimates</span>(fit)[<span class="fu">parameterEstimates</span>(fit)<span class="sc">$</span>op <span class="sc">==</span> <span class="st">&quot;~&quot;</span>, ]</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#&gt;    lhs op rhs    est    se      z pvalue ci.lower ci.upper</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#&gt; 1    m  ~   x -0.663 0.533 -1.244  0.213   -1.707    0.381</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#&gt; 2    m  ~  w1 -2.290 1.010 -2.267  0.023   -4.269   -0.310</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt; 3    m  ~ w1x  0.204 0.101  2.023  0.043    0.006    0.401</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#&gt; 4    m  ~  c1 -0.020 0.079 -0.251  0.801   -0.175    0.135</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt; 5    m  ~  c2 -0.130 0.090 -1.444  0.149   -0.306    0.046</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#&gt; 6    y  ~   m -0.153 0.248 -0.616  0.538   -0.638    0.333</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#&gt; 7    y  ~  w2 -0.921 0.401 -2.300  0.021   -1.706   -0.136</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt; 8    y  ~ w2m  0.204 0.079  2.579  0.010    0.049    0.359</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt; 9    y  ~   x  0.056 0.086  0.653  0.514   -0.113    0.225</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt; 10   y  ~  c1 -0.102 0.081 -1.261  0.207   -0.261    0.056</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">#&gt; 11   y  ~  c2 -0.108 0.087 -1.249  0.212   -0.279    0.062</span></span></code></pre></div>
 <p>The moderation effects of both <code>w1</code> and <code>w2</code>
 are significant. The indirect effect from <code>x</code> to
 <code>y</code> through <code>m</code> depends on the level of
@@ -546,10 +546,10 @@ provided by <code>lavaan::sem()</code>.</p>
 <p>The function <code>do_boot()</code> is used to generate and store
 bootstrap estimates as well as implied variances of variables, which are
 needed to estimate standardized effects.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fit_boot <span class="ot">&lt;-</span> <span class="fu">do_boot</span>(<span class="at">fit =</span> fit,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">R =</span> <span class="dv">100</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">seed =</span> <span class="dv">53253</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>fit_boot <span class="ot">&lt;-</span> <span class="fu">do_boot</span>(<span class="at">fit =</span> fit,</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>                    <span class="at">R =</span> <span class="dv">100</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>                    <span class="at">seed =</span> <span class="dv">53253</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>                    <span class="at">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>These are the major arguments:</p>
 <ul>
 <li><p><code>fit</code>: The output of
@@ -576,13 +576,13 @@ all subsequent analyses on this model.</p>
 Conditional Indirect Effects</h3>
 <p>To compute conditional indirect effects and form bootstrap confidence
 intervals, we can use <code>cond_indirect_effects()</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>out_cond <span class="ot">&lt;-</span> <span class="fu">cond_indirect_effects</span>(<span class="at">wlevels =</span><span class="fu">c</span>(<span class="st">&quot;w1&quot;</span>, <span class="st">&quot;w2&quot;</span>),</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">fit =</span> fit,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">boot_out =</span> fit_boot)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>out_cond <span class="ot">&lt;-</span> <span class="fu">cond_indirect_effects</span>(<span class="at">wlevels =</span><span class="fu">c</span>(<span class="st">&quot;w1&quot;</span>, <span class="st">&quot;w2&quot;</span>),</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>                                  <span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                                  <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>                                  <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>                                  <span class="at">fit =</span> fit,</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                                  <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>                                  <span class="at">boot_out =</span> fit_boot)</span></code></pre></div>
 <p>These are the major arguments:</p>
 <ul>
 <li><code>wlevels</code>: The vector of the names of the moderators.
@@ -604,25 +604,25 @@ generated by <code>do_boot()</code> or previous call to
 <code>indirect_effect()</code>.</li>
 </ul>
 <p>This is the output:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>out_cond</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Conditional on moderator(s): w1, w2</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Moderator(s) represented by: w1, w2</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [w1]    [w2]  (w1)  (w2)   ind  CI.lo CI.hi Sig   m~x   y~m</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 M+1.0SD M+1.0SD 6.173 4.040 0.399  0.121 0.654 Sig 0.596 0.671</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 M+1.0SD M-1.0SD 6.173 2.055 0.158 -0.012 0.359     0.596 0.266</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 M-1.0SD M+1.0SD 4.038 4.040 0.107 -0.166 0.372     0.160 0.671</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 M-1.0SD M-1.0SD 4.038 2.055 0.043 -0.066 0.216     0.160 0.266</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo to CI.hi] are 95.0% percentile confidence intervals by</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    nonparametric bootstrapping with 100 samples.</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - The &#39;ind&#39; column shows the indirect effects.</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - &#39;m~x&#39;,&#39;y~m&#39; is/are the path coefficient(s) along the path conditional</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    on the moderators.</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>out_cond</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt;  Conditional on moderator(s): w1, w2</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt;  Moderator(s) represented by: w1, w2</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt;      [w1]    [w2]  (w1)  (w2)   ind  CI.lo CI.hi Sig   m~x   y~m</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 1 M+1.0SD M+1.0SD 6.173 4.040 0.399  0.121 0.654 Sig 0.596 0.671</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 2 M+1.0SD M-1.0SD 6.173 2.055 0.158 -0.012 0.359     0.596 0.266</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; 3 M-1.0SD M+1.0SD 4.038 4.040 0.107 -0.166 0.372     0.160 0.671</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt; 4 M-1.0SD M-1.0SD 4.038 2.055 0.043 -0.066 0.216     0.160 0.266</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo to CI.hi] are 95.0% percentile confidence intervals by</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co">#&gt;    nonparametric bootstrapping with 100 samples.</span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co">#&gt;  - The &#39;ind&#39; column shows the indirect effects.</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">#&gt;  - &#39;m~x&#39;,&#39;y~m&#39; is/are the path coefficient(s) along the path conditional</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co">#&gt;    on the moderators.</span></span></code></pre></div>
 <p>For two or more moderators, the default levels for numeric moderators
 are one standard deviation (SD) below mean and one SD above mean. For
 two moderators, there are four combinations.</p>
@@ -642,28 +642,28 @@ can be used, with the first argument the output of
 number. For example, this shows the details on the computation of the
 indirect effect when both <code>w1</code> and <code>w2</code> are one SD
 above their means (row 1):</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_one_cond_indirect_effect</span>(out_cond, <span class="dv">1</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Conditional Indirect Effect   ==</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                                     </span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                        x -&gt; m -&gt; y           </span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Moderators:                  w1, w2                </span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Conditional Indirect Effect: 0.399                 </span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI:          [0.121 to 0.654]      </span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  When:                        w1 = 6.173, w2 = 4.040</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m~x + (b.w1x)*(w1))*(b.y~m + (b.w2m)*(w2))</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ((-0.66304) + (0.20389)*(6.17316))*((-0.15271) + (0.20376)*(4.04049))</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path Conditional Effect Original Coefficient</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   m~x              0.596               -0.663</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   y~m              0.671               -0.153</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">get_one_cond_indirect_effect</span>(out_cond, <span class="dv">1</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt; == Conditional Indirect Effect   ==</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt;                                                     </span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt;  Path:                        x -&gt; m -&gt; y           </span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt;  Moderators:                  w1, w2                </span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt;  Conditional Indirect Effect: 0.399                 </span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI:          [0.121 to 0.654]      </span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt;  When:                        w1 = 6.173, w2 = 4.040</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt;   (b.m~x + (b.w1x)*(w1))*(b.y~m + (b.w2m)*(w2))</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt;   ((-0.66304) + (0.20389)*(6.17316))*((-0.15271) + (0.20376)*(4.04049))</span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="co">#&gt;  Path Conditional Effect Original Coefficient</span></span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="co">#&gt;   m~x              0.596               -0.663</span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a><span class="co">#&gt;   y~m              0.671               -0.153</span></span></code></pre></div>
 </div>
 <div id="changing-the-levels-of-the-moderators" class="section level4" number="2.2.2.2">
 <h4><span class="header-section-number">2.2.2.2</span> Changing the
@@ -691,38 +691,38 @@ set both <code>standardized_x</code> and <code>standardized_y</code> to
 <code>TRUE</code>.</p>
 <p>This is the result when both <code>x</code> and <code>y</code> are
 standardized:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>out_cond_stdxy <span class="ot">&lt;-</span> <span class="fu">cond_indirect_effects</span>(<span class="at">wlevels =</span><span class="fu">c</span>(<span class="st">&quot;w1&quot;</span>, <span class="st">&quot;w2&quot;</span>),</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">fit =</span> fit,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">boot_out =</span> fit_boot,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">standardized_x =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">standardized_y =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>out_cond_stdxy <span class="ot">&lt;-</span> <span class="fu">cond_indirect_effects</span>(<span class="at">wlevels =</span><span class="fu">c</span>(<span class="st">&quot;w1&quot;</span>, <span class="st">&quot;w2&quot;</span>),</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>                                        <span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>                                        <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>                                        <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>                                        <span class="at">fit =</span> fit,</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>                                        <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>                                        <span class="at">boot_out =</span> fit_boot,</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>                                        <span class="at">standardized_x =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>                                        <span class="at">standardized_y =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Note that <code>fit_boot</code> is used so that there is no need to
 do bootstrapping again.</p>
 <p>This is the output:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>out_cond_stdxy</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Conditional on moderator(s): w1, w2</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Moderator(s) represented by: w1, w2</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [w1]    [w2]  (w1)  (w2)   std  CI.lo CI.hi Sig   m~x   y~m   ind</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 M+1.0SD M+1.0SD 6.173 4.040 0.401  0.129 0.607 Sig 0.596 0.671 0.399</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 M+1.0SD M-1.0SD 6.173 2.055 0.159 -0.013 0.351     0.596 0.266 0.158</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 M-1.0SD M+1.0SD 4.038 4.040 0.108 -0.154 0.416     0.160 0.671 0.107</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 M-1.0SD M-1.0SD 4.038 2.055 0.043 -0.068 0.224     0.160 0.266 0.043</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo to CI.hi] are 95.0% percentile confidence intervals by</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    nonparametric bootstrapping with 100 samples.</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - std: The standardized indirect effects. </span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - ind: The unstandardized indirect effects.</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - &#39;m~x&#39;,&#39;y~m&#39; is/are the path coefficient(s) along the path conditional</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    on the moderators.</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>out_cond_stdxy</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">#&gt;  Conditional on moderator(s): w1, w2</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt;  Moderator(s) represented by: w1, w2</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt;      [w1]    [w2]  (w1)  (w2)   std  CI.lo CI.hi Sig   m~x   y~m   ind</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt; 1 M+1.0SD M+1.0SD 6.173 4.040 0.401  0.129 0.607 Sig 0.596 0.671 0.399</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt; 2 M+1.0SD M-1.0SD 6.173 2.055 0.159 -0.013 0.351     0.596 0.266 0.158</span></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt; 3 M-1.0SD M+1.0SD 4.038 4.040 0.108 -0.154 0.416     0.160 0.671 0.107</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="co">#&gt; 4 M-1.0SD M-1.0SD 4.038 2.055 0.043 -0.068 0.224     0.160 0.266 0.043</span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo to CI.hi] are 95.0% percentile confidence intervals by</span></span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co">#&gt;    nonparametric bootstrapping with 100 samples.</span></span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="co">#&gt;  - std: The standardized indirect effects. </span></span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="co">#&gt;  - ind: The unstandardized indirect effects.</span></span>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="co">#&gt;  - &#39;m~x&#39;,&#39;y~m&#39; is/are the path coefficient(s) along the path conditional</span></span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="co">#&gt;    on the moderators.</span></span></code></pre></div>
 <p>The standardized indirect effect when both <code>w1</code> and
 <code>w2</code> are one SD above mean is 0.401, with 95% bootstrap
 confidence interval [0.129, 0.607].</p>
@@ -736,14 +736,14 @@ Moderated Mediation</h2>
 <p>The index of moderated moderated mediation (Hayes, 2018) can be
 estimated, along with bootstrap confidence interval, using the function
 <code>index_of_momome()</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>out_momome <span class="ot">&lt;-</span> <span class="fu">index_of_momome</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">w =</span> <span class="st">&quot;w1&quot;</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">z =</span> <span class="st">&quot;w2&quot;</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">fit =</span> fit,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_out =</span> fit_boot)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>out_momome <span class="ot">&lt;-</span> <span class="fu">index_of_momome</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>                              <span class="at">w =</span> <span class="st">&quot;w1&quot;</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>                              <span class="at">z =</span> <span class="st">&quot;w2&quot;</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>                              <span class="at">fit =</span> fit,</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>                              <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>                              <span class="at">boot_out =</span> fit_boot)</span></code></pre></div>
 <p>These are the major arguments:</p>
 <ul>
 <li><code>x</code>: The name of the predictor.</li>
@@ -763,29 +763,29 @@ generated by <code>do_boot()</code> or previous call to
 <code>indirect_effect()</code>.</li>
 </ul>
 <p>This is the result:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>out_momome</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Conditional on moderator(s): w1, w2</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Moderator(s) represented by: w1, w2</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [w1] [w2] (w1) (w2)    ind  CI.lo CI.hi Sig    m~x    y~m</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    1    1    1    1 -0.023 -0.244 0.353     -0.459  0.051</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2    1    0    1    0  0.070 -0.238 0.705     -0.459 -0.153</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    0    1    0    1 -0.034 -0.335 0.496     -0.663  0.051</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4    0    0    0    0  0.101 -0.272 0.936     -0.663 -0.153</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Index of Moderated Moderated Mediation ==</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels compared:</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Row 1 - Row 2) - (Row 3 - Row 4)</span></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       x y Index  CI.lo CI.hi</span></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Index x y 0.042 -0.011 0.118</span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo, CI.hi]: 95% percentile confidence interval.</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>out_momome</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt;  Conditional on moderator(s): w1, w2</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt;  Moderator(s) represented by: w1, w2</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt;   [w1] [w2] (w1) (w2)    ind  CI.lo CI.hi Sig    m~x    y~m</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt; 1    1    1    1    1 -0.023 -0.244 0.353     -0.459  0.051</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt; 2    1    0    1    0  0.070 -0.238 0.705     -0.459 -0.153</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt; 3    0    1    0    1 -0.034 -0.335 0.496     -0.663  0.051</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="co">#&gt; 4    0    0    0    0  0.101 -0.272 0.936     -0.663 -0.153</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co">#&gt; == Index of Moderated Moderated Mediation ==</span></span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt; Levels compared:</span></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt; (Row 1 - Row 2) - (Row 3 - Row 4)</span></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="co">#&gt;       x y Index  CI.lo CI.hi</span></span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="co">#&gt; Index x y 0.042 -0.011 0.118</span></span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo, CI.hi]: 95% percentile confidence interval.</span></span></code></pre></div>
 <p>The index of moderated moderated mediation is 0.042, with 95%
 bootstrap confidence interval [-0.011, 0.118].</p>
 <p>Note that this index is specifically for the change when
@@ -797,73 +797,73 @@ Mediation</h2>
 <p>The <code>manymome</code> package also has a function to compute the
 <em>index of moderated mediation</em> (Hayes, 2015). Suppose we modify
 the model and remove one of the moderators:</p>
-<div class="figure">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAAh1BMVEUAAAAAACsAAFUAKysAK1UAK4AAVaorAAArACsrKwArKysrVVUrVYArVaorgNRVAABVKwBVQEBVgNRVqoBVqqpVqtRVqv+AKwCAVaqAgFWAgICAgKqAqoCA1P+qVQCqVSuqgCuqgICq/6qq///UgCvUqlXU////qlX/1ID/1Kr//6r//9T///8KXqWpAAAACXBIWXMAAAsSAAALEgHS3X78AAAMxUlEQVR4nO3da1sbyRGGYeGNYXOCzWZjkk7MJjFrCOj//75INhgD02JmVN31VtfzfHAOvnqmu24jCyzEZksp23hvgHwCPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pAGfNOCTBnzSgE/aevjNqgy3Ptg+O3cEfN/brS7KPjsHvN2iUAFvtyhUwNstChXwdotCBbzdolABb7coVMDbLQoV8HaLQgW83aJQAW+3KFTA2y0KFfB2i0IFvN2iUAFvtyhUwNstChXwdotCBbzdolABb7coVMDbLQpVO/irU9PbrQ74yZrBX2+AV64R/P2vG+ClM4K/v3z/ef9Rfr7/r6fbu4uTv17owt+enf92dvLz9uZs86fPcxcNltVH/PXJx91f6/uP8t1Ut3d//3wnDf/Hs83m5F+7XyYfl4Cfv/L27MPu43zz7tP2Zv9HYLvVht/8bfvbZvf4dHv2fvJDHvi5K/fOtz/+Y4d+9XWU2vCn+w3uNvr1r6hZiwbL7Mndzvvm3X8vPtxdnH/539rw548bvAL+yJW7R/ir090Tu/1j/j7gtTODvz375fJ8e/3+37u/5vcBr50Z/P3lDz9+3H3c//7BG3jt7L6Ac71/Sr97vvz1kR548ezgb/afEt9fPjzSAy8e/zpntyhUwNstChXwdotCBbzdolABb7coVMDbLQoV8HaLQgW83aJQAW+3KFTA2y0KFfB2i0IFvN2iUAFvtyhUwNstChXwdotCBbzdolABb7coVMDbLQoV8HaLQnUEfJAf8hNln51rf8LS/A7zO7QXpX12KBV8Af5bHR7TZCZaDsLr7LNLieAL8N/V41mMxkTLW/Ai++xUGvgC/LO6fN4iMNEyA15hn91KAl+Af1Gfr1Q4T7SUefDe++xZBvgC/Os6fW3Sc6JlPnwi+fHhC/BT9frXCLeJlkXweeRHh1/oDrx5PhMtS+HTyI8NX4Cv1e8VBw4Tfek+awtJ5AeGf8UO/Hd1fI1R/4mugk8iPzT8mid3wNvn//xu5pK2O9JoePglX6p/XNB2Pxp1fR2x0+fy24XwKeRTwM98HcazFaPX9zsHXJ7fPfzHAvgM8mng33x19eSacev8vUIOn8t3XBUp4A1XRar3dwf2nuja+w0vD7ztujB1/37gvhNdf7fR5YE3Xxmj/u8A0HOix9xrcHngW6wNkMN7fvSb6HF3Glse+Ear1fN4l59eEz32PkPLA99uvXQu7+vVZ6LH32VkeeCbXkE3n3fy6zFRi3sMLA9862uI5vTene0nanOHceWB73AVxbzerbf1RK2uP6w88H2uI5fb+3O3najd1UeVB77blbTye0f+lhO1vPag8sD3vJZQjj+Do91Eba88pjzwna+mkudP3Wk1UevrDikPfP/rSeT6c7baTNT+qiPKA+9yRf98f7Jei4lGuaZzwHtd0znnn6UZ5WF5PHngHa/qmfdPz43yqddw8sD7Xtctb/gwX14dTR549yv75A4f5p9QB5MHXuHaDvnDh3mZ1FjywItcvXcC8GFeCj2UPPA61++aAnyYb3caSR54qTv0SwI+zLc0DyQPvNo9OqUBH+ZtS8aRB17wLj0SgQ/z1mTDyAOveZ/mqcCHefvRUeSBl71T22Tgj5poT41B5IFXvlfDdOCPmGhfizHkgRe/W6uE4FdPtLfEEPLA69+vSUrwKyfa32EEeeBD3NE+KfhVE/VQGEAe+DUBb93yifoYxJcHflXAW7d0ol4C4eWBXxfw1i2bqN/8o8sDvzLgrVsyUc/pB5cHfm3AWzd/or6zjy0P/OqAt27uRL0n733/owJ+fd73PypF+JkT9Z+7/w7WB/wR+e9gfZLwsyaqMHWFPawM+GNS2MPKNOFnTFRj5hq7WBPwR6WxizWJwr85UZWJq+xjccAfl8o+FqcK/8ZEdeats5NlAX9kOjtZliz8wYkqTVtpLwsC/tiU9rIgXfgDE9WatdZu5hYCvpRS+R2FtHYzN2H4x4mW8gJebdJq+5mVPHwpwLdIGX430VJew+vNWW9Hb6cNX4BvlTB8KZPwilNW3NMbycKXAnzLROHLy55+x3FX9TR3dShF+FfqwNunCD9F/+13PLd1INV9VdOErz/Uqw5YdV/VROFfyT/+366bOpTuzqZTha88q9cdr+7OppOF307BK09XeW8T6cI/p3/4f3w3dDDlvU2kDP/qS7bas9Xe3cuk4bfAN0sb/vm/zqlPVn1/zxKH3wLfKHX4716IoT9X/R0+JQ//9NIr/bHq7/CpAPDbr/ARphphjw9FgN8Cb18I+J18kJnG2OW+GPBb4K0LAr/dBNloGPkg8wTeuhjz/M9f/vnZew8ziyIfAz7MOOPsNAZ8lGnuC7JX4K0LstcQ8EFm+VCM3QJvXozdRoCPMcmnQuwXePtC7DcAfIg5PivCjoFvUIQd68NHmOLLAuwZ+BYF2LM8fIAZTqS/a+CbpL9rdXj9CU4nv2/g2yS/b3F4+flVU9858I1S37k2vPr0DiW+d+BbJb53aXjx2b2R9u6Bb5b27pXhtSf3dtL7B75d0vsXhpee26yUTwB8w5RPoAuvPLW5CZ8B+JYJn0EWXnhmC9I9BfBN0z2FKrzuxJYlew7g2yZ7DlF42XktTvUkwDdO9SSa8KrTWpPoWYBvnehZJOFFZ7UyzdMA3zzN0yjCa05qfZLnAb59kucRhJec01Epngj4DimeSA9ecUrHJngm4HskeCY5eMEZGaR3KuC7pHcqNXi9Cdkkdy7g+yR3LjF4ufmYpXYy4DuldjIteLXpWCZ2NuB7JXY2KXix2RindTrgu6V1OiV4rcnYJ3U+4PsldT4heKm5NEnphMB3TOmEOvBKU2mV0BmB75nQGWXghWbSMJ1TAt81nVOqwOtMpG0y5wS+bzLnFIGXmUfzVE4KfOdUTqoBrzKNHomcFfjeiZxVAl5kFp3SOC3w3dM4rQK8xiT6JXFe4PsncV4BeIk5dE3hxMA7pHBif3iFKfRO4MzAeyRwZnd4gRk45H9q4F3yP7U3vP8EfHI/N/A+uZ/bGd79/G55nxx4p7xP7gvvfXrPnM8OvFeZ4TO7e58eeLfywud2dz4/8H5lhc/u7jsB4B3LCY+76wyA9ywjPO77/KYAvGv54HH/mtscgPctGzzuj3lNAnjncsHj/pTTLID3LhM87t/nMw3g3csDj/vzXOYBvH9Z4HF/mcdEgBcoBzzur3OYCfAKZYDHfar+UwFeovHhcZ+u+1yA12h0eNxr9Z4M8CKNDY97vW+zKaXHmIBX6WE2pQwIj/uh9tMpBfh0lUf24eBxP1gpwCeslGHhca9XCvAJKy/rcM9+8LhXesUOfJaGhsf9QMBnbVx43A8HfNZ6y3eCx/3NgM/aiPC4zwn4rA0Hj/vcgM/aUPC4Lwj4rI0Dj/uygM/aIPC4Lw74rEnDb1ZluPXB6jzPziuBr9Z5nsCrBHzSgE8a8EkDPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pAE/dtUX1AE/dtVXTwM/dtVvkgJ+7KrfGAn82FXf/wD4sau+zRHwY1de9fAbweGvN+fb7c3+F+PbjdJr+Af6ydHcbD7sfr27sJ+n9cr7y3ef7i7efTK/3ShNwX+xnxzN3cXp7tebk4+Vq+nA7/6Mnl5/+WM6vahybirT87zafwxdvf+8DGFG9iuvNpvTBrcbpQp7bTT7x/r6I70U/O1Z9YEJ+Ar8/jemR7N/rK8/0kvB32zqj/TA19+kvDKa3WN9/ZFeCf7u4nc/VZ/bAV9/o+rqc6Zf6o/0SvDXJx/rn80BX3/P2spo7i//0OSvTuuVt2enXz6lM7/dKFXY66O53tQfQIXgr/Z/PPf61rcbpQr7oSfL9U+ShOCb3W6UptW3h54s158rAx+nCnt1NP/7qf6cHvhAVdirX7Ld1J8p1xbNCniVJkdzf7n58+JF62/XbiXw1YL/s2yz2w0f8EkDPmnAJw34pAGfNOCTBnzSgE8a8EkDPmnAJw34pAGftDjw/DAi08L8MCIKHfBJAz5pwCcN+KQBnzTgkwZ80oBPGvBJAz5pwCcN+KQBnzTgkwZ80oBPGvBJAz5pwCcN+KQBnzTgkwZ80oBPGvBJAz5pwCcN+KQBnzTgkwZ80oBPGvBJAz5pwCcN+KQBnzTgkwZ80oBPGvBJAz5pwCcN+KQBnzTgkwZ80oBPGvBJAz5pwCcN+KQBnzTgkwZ80oBP2v8B7WxX9k8StYIAAAAASUVORK5CYII=" alt />
-<p class="caption">plot of chunk manymome_plot_mome1</p>
+<div class="float">
+<img src="data:image/png;base64,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" alt="plot of chunk manymome_plot_mome1" />
+<div class="figcaption">plot of chunk manymome_plot_mome1</div>
 </div>
 <p>This is the <code>lavaan</code> model:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>w1x <span class="ot">&lt;-</span> dat<span class="sc">$</span>w1 <span class="sc">*</span> dat<span class="sc">$</span>x</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="st">m ~ x + w1 + w1x + c1 + c2</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="st">y ~ m + x + c1 + c2</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">sem</span>(<span class="at">model =</span> mod2,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> dat,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">fixed.x =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">estimator =</span> <span class="st">&quot;MLR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>dat<span class="sc">$</span>w1x <span class="ot">&lt;-</span> dat<span class="sc">$</span>w1 <span class="sc">*</span> dat<span class="sc">$</span>x</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="st">m ~ x + w1 + w1x + c1 + c2</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="st">y ~ m + x + c1 + c2</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">sem</span>(<span class="at">model =</span> mod2,</span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>           <span class="at">data =</span> dat,</span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>           <span class="at">fixed.x =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>           <span class="at">estimator =</span> <span class="st">&quot;MLR&quot;</span>)</span></code></pre></div>
 <p>These are the parameter estimates of the paths:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parameterEstimates</span>(fit2)[<span class="fu">parameterEstimates</span>(fit2)<span class="sc">$</span>op <span class="sc">==</span> <span class="st">&quot;~&quot;</span>, ]</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   lhs op rhs    est    se      z pvalue ci.lower ci.upper</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   m  ~   x -0.663 0.533 -1.244  0.213   -1.707    0.381</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   m  ~  w1 -2.290 1.010 -2.267  0.023   -4.269   -0.310</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3   m  ~ w1x  0.204 0.101  2.023  0.043    0.006    0.401</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4   m  ~  c1 -0.020 0.079 -0.251  0.801   -0.175    0.135</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5   m  ~  c2 -0.130 0.090 -1.444  0.149   -0.306    0.046</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6   y  ~   m  0.434 0.114  3.815  0.000    0.211    0.657</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7   y  ~   x  0.053 0.093  0.570  0.569   -0.130    0.237</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8   y  ~  c1 -0.108 0.080 -1.352  0.177   -0.265    0.049</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9   y  ~  c2 -0.077 0.085 -0.904  0.366   -0.243    0.090</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">parameterEstimates</span>(fit2)[<span class="fu">parameterEstimates</span>(fit2)<span class="sc">$</span>op <span class="sc">==</span> <span class="st">&quot;~&quot;</span>, ]</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="co">#&gt;   lhs op rhs    est    se      z pvalue ci.lower ci.upper</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="co">#&gt; 1   m  ~   x -0.663 0.533 -1.244  0.213   -1.707    0.381</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co">#&gt; 2   m  ~  w1 -2.290 1.010 -2.267  0.023   -4.269   -0.310</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="co">#&gt; 3   m  ~ w1x  0.204 0.101  2.023  0.043    0.006    0.401</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="co">#&gt; 4   m  ~  c1 -0.020 0.079 -0.251  0.801   -0.175    0.135</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="co">#&gt; 5   m  ~  c2 -0.130 0.090 -1.444  0.149   -0.306    0.046</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="co">#&gt; 6   y  ~   m  0.434 0.114  3.815  0.000    0.211    0.657</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="co">#&gt; 7   y  ~   x  0.053 0.093  0.570  0.569   -0.130    0.237</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="co">#&gt; 8   y  ~  c1 -0.108 0.080 -1.352  0.177   -0.265    0.049</span></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="co">#&gt; 9   y  ~  c2 -0.077 0.085 -0.904  0.366   -0.243    0.090</span></span></code></pre></div>
 <p>We generate the bootstrap estimates first (<code>R</code> should be
 2000 or even 5000 in real research):</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fit2_boot <span class="ot">&lt;-</span> <span class="fu">do_boot</span>(<span class="at">fit =</span> fit2,</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">R =</span> <span class="dv">100</span>,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">seed =</span> <span class="dv">53253</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>fit2_boot <span class="ot">&lt;-</span> <span class="fu">do_boot</span>(<span class="at">fit =</span> fit2,</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>                    <span class="at">R =</span> <span class="dv">100</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>                    <span class="at">seed =</span> <span class="dv">53253</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>                    <span class="at">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>The function <code>index_of_mome()</code> can be used to compute the
 index of moderated mediation of <code>w1</code> on the path
 <code>x -&gt; m -&gt; y</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>out_mome <span class="ot">&lt;-</span> <span class="fu">index_of_mome</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">w =</span> <span class="st">&quot;w1&quot;</span>,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">fit =</span> fit2,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">boot_out =</span> fit2_boot)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>out_mome <span class="ot">&lt;-</span> <span class="fu">index_of_mome</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>                          <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>                          <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>                          <span class="at">w =</span> <span class="st">&quot;w1&quot;</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>                          <span class="at">fit =</span> fit2,</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>                          <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>                          <span class="at">boot_out =</span> fit2_boot)</span></code></pre></div>
 <p>The arguments are nearly identical to those of
 <code>index_of_momome()</code>, except that only <code>w</code> needs to
 be specified. This is the output:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>out_mome</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Conditional on moderator(s): w1</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Moderator(s) represented by: w1</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [w1] (w1)    ind  CI.lo CI.hi Sig    m~x   y~m</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    1    1 -0.199 -0.698 0.304     -0.459 0.434</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2    0    0 -0.288 -0.938 0.340     -0.663 0.434</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Index of Moderated Mediation ==</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels compared: Row 1 - Row 2</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       x y Index  CI.lo CI.hi</span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Index x y 0.088 -0.032 0.228</span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo, CI.hi]: 95% percentile confidence interval.</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>out_mome</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a><span class="co">#&gt;  Conditional on moderator(s): w1</span></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a><span class="co">#&gt;  Moderator(s) represented by: w1</span></span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a><span class="co">#&gt;   [w1] (w1)    ind  CI.lo CI.hi Sig    m~x   y~m</span></span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="co">#&gt; 1    1    1 -0.199 -0.698 0.304     -0.459 0.434</span></span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a><span class="co">#&gt; 2    0    0 -0.288 -0.938 0.340     -0.663 0.434</span></span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a><span class="co">#&gt; == Index of Moderated Mediation ==</span></span>
+<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a><span class="co">#&gt; Levels compared: Row 1 - Row 2</span></span>
+<span id="cb16-16"><a href="#cb16-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-17"><a href="#cb16-17" tabindex="-1"></a><span class="co">#&gt;       x y Index  CI.lo CI.hi</span></span>
+<span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a><span class="co">#&gt; Index x y 0.088 -0.032 0.228</span></span>
+<span id="cb16-19"><a href="#cb16-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-20"><a href="#cb16-20" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo, CI.hi]: 95% percentile confidence interval.</span></span></code></pre></div>
 <p>In this model, the index of moderated mediation is 0.088, with 95%
 bootstrap confidence interval [-0.032, 0.228]. The indirect effect of
 <code>x</code> on <code>y</code> through <code>m</code> does not
@@ -878,21 +878,21 @@ the product term.</p>
 <h1><span class="header-section-number">3</span> Mediation Only</h1>
 <p>The package can also be used for a mediation model.</p>
 <p>This is the sample data set that comes with the package:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(manymome)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data_serial</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(dat), <span class="at">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       x   m1    m2     y        c1   c2</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 12.12 20.6  9.33  9.00  0.109262 6.01</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  9.81 18.2  9.47 11.56 -0.124014 6.42</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 10.11 20.3 10.05  9.35  4.278608 5.34</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 10.07 19.7 10.17 11.41  1.245356 5.59</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 11.91 20.5 10.05 14.26 -0.000932 5.34</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  9.13 16.5  8.93 10.01  1.802727 5.91</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">library</span>(manymome)</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data_serial</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(dat), <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="co">#&gt;       x   m1    m2     y        c1   c2</span></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="co">#&gt; 1 12.12 20.6  9.33  9.00  0.109262 6.01</span></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a><span class="co">#&gt; 2  9.81 18.2  9.47 11.56 -0.124014 6.42</span></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="co">#&gt; 3 10.11 20.3 10.05  9.35  4.278608 5.34</span></span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a><span class="co">#&gt; 4 10.07 19.7 10.17 11.41  1.245356 5.59</span></span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="co">#&gt; 5 11.91 20.5 10.05 14.26 -0.000932 5.34</span></span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="co">#&gt; 6  9.13 16.5  8.93 10.01  1.802727 5.91</span></span></code></pre></div>
 <p>Suppose this is the model being fitted, with <code>c1</code> and
 <code>c2</code> the control variables.</p>
-<div class="figure">
-<img src="data:image/png;base64,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" alt />
-<p class="caption">plot of chunk manymome_draw_med</p>
+<div class="float">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAAe1BMVEUAAAAAACsAAFUAK1UAK4AAVaorAAArKwArKysrVVUrVYArVaorgNRVAABVKwBVgNRVqoBVqqpVqtRVqv+AKwCAVaqAgICAqoCAqtSA1P+qVQCqVSuqgCuq1P+q///UgCvUqlXUqoDU////qlX/1ID/1Kr//6r//9T///8egWuOAAAACXBIWXMAAAsSAAALEgHS3X78AAAS60lEQVR4nO3d60LjRhIFYDEzkL1Akp0h2gxJBgIs7vd/wrUNBtlW36urqrvO+TGDbam70UfJutmaHGIyk/QAEJkA3mgAbzSANxrAGw3gjQbwRgN4owG80QDeaABvNIA3GsAbDeCNBvBGA3ijAbzRAN5oAG80gDcawBsN4I0G8EYDeKMBvNEA3mgAbzSANxrAGw3gjQbwRgN4owG80QDeaABvNIA3GsAbDeCNBvBGA3ijAbzRAN5oAG80gDcawBsN4I0G8EYDeKMBvNEA3mgAbzSANxrAGw3gjQbwRgN4o+kHfipKP/0xZ/CR1sAz98ecwUcKeF8GHyngfRl8pID3ZfCRAt6XwUcKeF8GHyngfRl8pID3ZfCRAt6XwUcKeF8GHyngfRl8pID3ZfCRAt6XwUcKeF8GHyngfRl8pID3ZfCRAt6XwUcKeF8GHyngfRl8pID3ZaCR3l0WzFTa398/TdPnvyj7Y844I72f6uHneU6b9Wl/Se3F98r+BDPKSDd/TDTw7/ShWTe3F7+7zZ/nPY6yODXleKTPV9cPVxe/uKer6V+Pzr3cXPx6QwT/Zh/qb/vI7fi/PNb1J5heR/p89c+r7br2v9t/dnX38tvjCyH8jj7Y3z6bW1Q8Q04hpq/uYZqutz+91t06/FycWH+7rYpv4UFqTq8jfb7a1fnN1uCwwm1d8af9bf8MzjvsdXFqztl77sH6jh4+ob/t1uTZO3y/i1Nz+OBT+tvcTtfRQWpOryNtB5/U33Yv4mt8kJrT60hbwSf2d3d+7KakP8H0OtI28Kn9PV+9fhr+0w+6/pjT60hl4e8nwLMFZ+dIM/hIAe/L4CMFvC+DjxTwvgw+UsD7MvhIAe/L4COd5vg0pP0Vd8edwUc6HR2MiyVwWja5v14y+Eh3M2XQL9xR8VpSAZFM7z8fn9VfDxl8pIeZUukXJ+QBrySVEEn0/gsxsvvTnsFHupwpSr+b4ONKDMArCQFEkP71Rd8VOEX9ac7gIz2dyUv//kLSByqS+9ObwUd6PtMq/eJJz6VXxf1pzeAjXZvpjH59NQB4JSGEOJL2rf0BrySkEOdv6W3705eORkp7c6C9eGgzHzcjUpFjonnxb0WTgQY+XsvrpXJMfOkDfp5X3pZzzrutthnauUt4L/DMWjMmxnQAv/xc0+EJFynYhEaX/3n7m/N76URePfzy8PnHM0UkyybWfjzv7/RPLq3x4mFxRjf88jTp0XNlJO8t+B6e9FfYSRfyuuHdOfzyIpnCJgNPLZsu76QHeeXwZ2v6uRLeM9NiW+7QdM1fVwfy2uFdwD1/8QZmWW7OHd5KKlYrRXNxpiv4ea6Cj8zwcV62ck2/b6ZwPrZoh59P9tvK4RMm31X6or8aePXyyuFXjtSUwSdOvDyQO1fuMhbPyRLd8GuHV15Lcs46gJN8reXpsdqag0S65VXDr14z4X/J20zy1dXLyevdVMtrhqdxTy/axb4DjZpmecXwq4stFz7n/eBoNhI0xfJ64UPuqUs064NzJ3MOLq8W3nOELfTi2cRZGwJnj0jo1cprhQ+6Jy3OPLfTc3QFTSQ1rCZK4T2LKx0+9+iO5yEBvVJ5nfC17pWXzRxv5uU1FW1cSVTC+xZVInz1RTPe8/VlUSmvET7mHl6S9ZfMnDVQS69RXiG8dzGlFHzJudqE/msv7Kyau0n0wUfdA4uR5EIpzw5FFZ4+eXXwAdXYJDSXSfn/8Gr01Mlrgy93J7pIivh9JKldiSiDDyyeMDzZJVLhdsY5P68LPsV99SR94VLNda/oSpu8KvjgatY/EeGFcfTHgjMbZ4sm+CT3870vyhJscPYnu3WeKIIPH5bxTEb7ppvcWP9XXeuBL3En3szOOo1LsxMhFjXwka3ptenId6wzz+iRHDaQihb4VHeqM6b17oVD0CKvBD52vu3spwYHz4sKuP7UgFB0wCe7E10as34MqKyp6pOBMlEBH1sUJ/BtTpCX7xXmzqlCXgN8nnujS2KqNhQzZ9YgrwA+fpR08WOzi+AqtxkydwiqOiOJPHyee6v+6lcjWS3Iy4vDxxfBYgdOr7vLpBeXl4ZPd6f5QJvvZH51w/tWMpqRlheGT/j1lztwbbbrCBUKP6onEFn4VHeqTy63dnc59LLyovBJZ78Xy7LJ/jtBuyetpTYnKi8Jn+a+/I67Nv2RA2R8AYdY5ODTls7RFx9Vdpj5fFVfaY0KyovBZ7NXH2OpGkl+d2m/YPqkxJGCT1rNz44OntndJXrORIcnsiMEn7I5f7rf3pm7S6Ov+hrFisjAJxy2Od9vrzqNUjGUmsRJTcEnLI2V6SqWjpS7i9JXfWNuTSTgo6dhV/fb+3R3Yfq6r0quiQB85Jc8/mrJ5NnKOuRZ4F7Xyu/Irgk/fGzV55uyeNmIu7tQ1UvJs8MHf8Oj338gdxenZxzKPtzwoV9wDlGXLplgh4VtliV4lwR2eWb44HZOcNLCBaPH3UXoGcexSzk87S04z39xkoJX5e6Cvsy3NGWe0zPTyvIgKfjwBkVRk7Xx0jPfxFgD/OqyoIBX6O689Obg15fDuO7O8ysbg/et+QjgIwcMClqky8pRKlPw/kNawYdJ0ezuPn7190VgCD60dxN8mBLl7s4d7nh1WApm4IPnLiKP44mdEMhusEXm5c2RjcCHD1hUF3wX7u79SP3uRxPwsZPUkcfR9OK+PEVjAD56eLIWPrd9sSxPyw4Pn3A1UuRx7vy5r/NlebvUweGTrj+MPM6cPfd1vhzdIXlw+IRpIqdrsmeva44tgK8r+F7dAV9X8N26A74KPj4t4EXmjM9k1R3w0Scy5i2YQizG4aOX4mTNW9EYewAfeSJ91qJJxGIbvqLgO3cHfPSZ1DnLpmHN8nJ60/DG3Bdn47uHv5+unXva/VPSXTF8n+5HH5xbXTRP07ftvy83hcszEOo5N7effrzcfPpR1N0KTZpW0lSK4b2nZV9uLrf/Pl189zSgB377N3p5v/8zXZ9pRjxZX553uxq6+/KYh5AQ+jnvpumyrLvSgu+13lMuxNit6/1relXwz1feFVMb+H7d4+/x+3W9f02vCv5p8q/pg921dFcN//qzZ9Fs1/X+Nb0m+Jebzz97t+0awPfsfvS5eO8203/8a3pN8PcX3/17c6Hu1myozroodT+6/tCzaDa3/yh96wyGes7nq8v9Ll1+d0UFT7ibLx3formf/CtQRfB3uz/PnX5ud0UFP5B7YGPZv5OkCL54phL4kdwDG8v+beUB4Bu6K4aPH8Bx//vZv01vFL5/9/gHKl5uJv+WshsAfhUn7wN2tdNJJHrkbnM7/TvUwJDwNO6q4Y19aPI8+QU/hPui3gEfeTLhtbIJ2bP3XhyztQjfzl0r/PzxFTjmvgplkVz4zt0XB+gXPxuEX9fxm3XtPh9/UDx6kiacAeG9Zj3dufc0c2Dw9uDzCj7HUpd7QD1w5C6cnuE9SyPv6eppW8evHjxyF8t48ATueuB96ssjtubgs4R7dA+9rwM+7en+3EPqb68bPWTbzF0BfEzdfbzBO8D7n+7LPUH9bTKTh2wzdtp6ck9UP3yL8f7nfuApbp6TXvCZkoLwqeqvg/w4Vt/LzYgokl7wvbinq6/fOZktncD34Z6hLv1mJAvfyl1koWap899g8DRdwOt3z1MXL3cnC+8/Z5E4XW67jZKrLl/uTid8pTsvfLa6hnJ3ovCJBa95uRaoqyh31wG8XvcSdSXl7iThG7kzLdkydS3l7tTD63QvVNdT7k4QPulaSo3uxeqKyt1phK9ybw1frq6q3J0cfErBa3OvUddV7k41vC73KnVt5e7E4Nu4N1u8lerqyt0phtfjXquusNydFHxgSczRKUpaLU69usZyd/rgK9zp4QnUdZa7E4KPFrwGdxJ1peXulMLLu9Ooqy13JwPfxJ1wGVOp6y13pxJe1p1MXXO5OxH40PKYZd0J1VWXu9MGX+xOAU+prrzcnQR8uOCl3GnVtZe7Uwcv406srr/cnQB8C/eqBU2u3kG5O23wDdqMzNkAqQd2fnhNK/oW6n2Uu1MFz7uib6LeS7k7dvjgrhxfwTdS76bcnSJ4vkM3rdR7YueGb+CeOVsz9Y7W8vsogec5Rt9Qva9yd8zwQffGJ2Pnluq9lbtTAt/8ZGxb9P7K3fHCB93bFXxr9Q7L3amAb3p5ZXv1HsvdscLTu8dmYlDvs9ydAvg5+GpJi4cXWSqxz3J3nPBhd+IPTPGod1vuThy+xt2/schVht2Wu2OED7vTFTybes/l7oTh5/DLBQ0y1mDP5e744Mndz2fhVO+83J0o/Bx+Oa9BXvXey92xwUfcC86tHj3gduieXRC+zn25Wcheff2Xu+OCj7iXFzy/+hDl7sTgSdwl1Mcod8cEH3EvghdRH6XcnRB87HG0PSH1Ycrd8cATu0upD1TuTgQ+tuIPtzUXX4Zdm4HK3bHAR9/Qc66by5mcNkOxC8AXux/W8Hh3J0l7+OieW+Z1c9iYJwkzfORcjaeFZblJEAxX7k78FqMu97o5EXeBPptH+m7S4cV6vucmcIR2SHfN8Gv76zgyTxVxeM+CXT9Kw64waLk7pfDeY3PsJ2CZ+2OMPvjAEVnuyy0GdheHz7mCCpfZEEYTfOzsC66qI4wa+Pg5N153zs4kIgz/tnxTzrSyXjs9vLsG+MTz64wW47PLwydfVYGPyNBGFD7jWhpGd7aeRCMHn3ctDReHjXJ3YvBvta6u4K2wy8C/r+G1uZspdycAv3xfVwZviJ0fvuiqChYRS+XuZLfqdblzdKIogH/twpp7D/Ac7u270JZW8HeX0ZnUuNsrd9cM/n7qB94ieyP4zR8TGXxrFpPl7mjhH66mz9+3/7/cXPx6E4VX4t64fbUhhH/afWDiYiv/8tvjSx/wVsvdUcJvbrfoD9P1/gEVfGP3pq3rDh3889X1x4M4vLy74XJ3tPDfPh50AG+aXTl8Qxvb5e7kVvXS7u2a7iTEG3fPN18edw90w5svd0e/Oze9ru8p4Nu5t2q4pxAfwLn4+vpjDF7QHeW+j9Q1d/FJG/mA/TVq4dsAodwPkYEXc2/SapexBI9yX0QpfAMisB9FBF7Enb7JrmMEHuV+GpXw9O7UDfYfkY9QRSaiZkK5r8QAPNjXohCeFgrlvh4BeF530tYGytjwKHdv1MGTuhO2NVr44dncUe6hjAsP9mCUwZNpodwj4f8qlNDLdO5UDQ2bIeFR7vFUwJfdjChkQuVO08zYKYcvS3t3lHtShoMHe1oUwVOQodxTwwzf2p2gDSMZCR7lnhE18ATu1S1YCi98Q3eUe15GgQd7ZpTAV7qh3LPDCt/MvW52k1EBXweHci9J//BgLwonfAt3lHthFMBXuVfMaztdw6Pcy8MIT+9ePCciD1+sh3KvSrfwYK8LHzypO8q9NsLwpe41A0F26REe5U4QNnhC97qBIPuIwpcQotxp0hs82InCBU/jjnIniyB8gTvBQJDXdASPcqcMEzyFO8lAkLeIwWc6otyJ0wk82KnDA1/pjnKnjxB8njvdQJBD9MOj3JuEBb7KnXIgyHtE4NMxUe6twgFfXvBgbxYJ+FROlHvDCMAnu5MPBPkIA3xZwaPc24YfPtG9wUCQRdjhk0RR7s3THr6g4MHePtzwCaYod44ww6e4txoIskxz+MyCR7kzhRc+7t5uIMhRWOFjrCh3vrSGzyl4sDOGEz4Mi3JnDSN8xL3xQJDjNIZPLXiUO3f44AO0YOcPG3zIve0YkLW0hU8peJS7SLjg/e5NB4D4wgTv40W5S6UpfLTgwS4WHnjPV53BXS7stxj9CNglw38b8beg3GUjBQ924cjAo9zFIwIPdvkIwKPcNYQfHuwqwg2PclcSsd05RDaANxrAGw3gjQbwRgN4owG80QDeaABvNIA3GsAbDeCNBvBG0wT+75+m6fNftN0htGkB/7S/nvbiO2l3CG0awG9uL353mz+nS9LuENpQwj9cTZ+3Zf58de12/F8eKbtDaEMI/3S0gt/couI1hw5+u4b/7h6m67eH99M30u4Q2tDBv67hD3lYfYsHvJpQwn+U+OaPae0dHvB60gR+cztdu9UAXktarOpfbi6+kneH0IZ44+75ZruKv1s9dlPZHUIb6t257bb889XrR+E//aDsDqEN8QGc3Tr+fgK8/uDsnNEA3mgAbzSANxrAGw3gjQbwRgN4owG80QDeaABvNIA3GsAbDeCNBvBGA3ijAbzRAN5oAG80FfC1NyNCJAMJowG80QDeaABvNIA3GsAbDeCNBvBGA3ijAbzRAN5oAG80gDcawBsN4I0G8EYDeKMBvNEA3mgAbzSANxrAGw3gjQbwRgN4owG80QDeaABvNIA3GsAbDeCNBvBGA3ijAbzRAN5oAG80gDcawBsN4I0G8EYDeKMBvNEA3mgAbzSANxrAGw3gjQbwRgN4owG80QDeaABvNIA3GsAbDeCNBvBGA3ij+T/tKUO6QwAFQwAAAABJRU5ErkJggg==" alt="plot of chunk manymome_draw_med" />
+<div class="figcaption">plot of chunk manymome_draw_med</div>
 </div>
 <div id="fitting-the-model-1" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Fitting the
@@ -900,29 +900,29 @@ Model</h2>
 <p>Fitting this model in <code>lavaan::sem()</code> is very simple. With
 <code>manymome</code>, there is no need to label paths or define user
 parameters for the indirect effects.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mod_med <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="st">m1 ~ x + c1 + c2</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="st">m2 ~ m1 + x + c1 + c2</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="st">y ~ m2 + m1 + x + c1 + c2</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>fit_med <span class="ot">&lt;-</span> <span class="fu">sem</span>(<span class="at">model =</span> mod_med,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> dat,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">fixed.x =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>mod_med <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="st">m1 ~ x + c1 + c2</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="st">m2 ~ m1 + x + c1 + c2</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="st">y ~ m2 + m1 + x + c1 + c2</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>fit_med <span class="ot">&lt;-</span> <span class="fu">sem</span>(<span class="at">model =</span> mod_med,</span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>               <span class="at">data =</span> dat,</span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>               <span class="at">fixed.x =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>These are the estimates of the paths:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parameterEstimates</span>(fit_med)[<span class="fu">parameterEstimates</span>(fit_med)<span class="sc">$</span>op <span class="sc">==</span> <span class="st">&quot;~&quot;</span>, ]</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    lhs op rhs    est    se      z pvalue ci.lower ci.upper</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   m1  ~   x  0.822 0.092  8.907  0.000    0.641    1.003</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   m1  ~  c1  0.171 0.089  1.930  0.054   -0.003    0.346</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3   m1  ~  c2 -0.189 0.091 -2.078  0.038   -0.367   -0.011</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4   m2  ~  m1  0.421 0.099  4.237  0.000    0.226    0.615</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5   m2  ~   x -0.116 0.123 -0.946  0.344   -0.357    0.125</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6   m2  ~  c1  0.278 0.090  3.088  0.002    0.101    0.454</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7   m2  ~  c2 -0.162 0.092 -1.756  0.079   -0.343    0.019</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8    y  ~  m2  0.521 0.221  2.361  0.018    0.088    0.953</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9    y  ~  m1 -0.435 0.238 -1.830  0.067   -0.902    0.031</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10   y  ~   x  0.493 0.272  1.811  0.070   -0.040    1.026</span></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11   y  ~  c1  0.099 0.208  0.476  0.634   -0.308    0.506</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12   y  ~  c2 -0.096 0.207 -0.465  0.642   -0.501    0.309</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">parameterEstimates</span>(fit_med)[<span class="fu">parameterEstimates</span>(fit_med)<span class="sc">$</span>op <span class="sc">==</span> <span class="st">&quot;~&quot;</span>, ]</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="co">#&gt;    lhs op rhs    est    se      z pvalue ci.lower ci.upper</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="co">#&gt; 1   m1  ~   x  0.822 0.092  8.907  0.000    0.641    1.003</span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="co">#&gt; 2   m1  ~  c1  0.171 0.089  1.930  0.054   -0.003    0.346</span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="co">#&gt; 3   m1  ~  c2 -0.189 0.091 -2.078  0.038   -0.367   -0.011</span></span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a><span class="co">#&gt; 4   m2  ~  m1  0.421 0.099  4.237  0.000    0.226    0.615</span></span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a><span class="co">#&gt; 5   m2  ~   x -0.116 0.123 -0.946  0.344   -0.357    0.125</span></span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a><span class="co">#&gt; 6   m2  ~  c1  0.278 0.090  3.088  0.002    0.101    0.454</span></span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a><span class="co">#&gt; 7   m2  ~  c2 -0.162 0.092 -1.756  0.079   -0.343    0.019</span></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a><span class="co">#&gt; 8    y  ~  m2  0.521 0.221  2.361  0.018    0.088    0.953</span></span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a><span class="co">#&gt; 9    y  ~  m1 -0.435 0.238 -1.830  0.067   -0.902    0.031</span></span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a><span class="co">#&gt; 10   y  ~   x  0.493 0.272  1.811  0.070   -0.040    1.026</span></span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a><span class="co">#&gt; 11   y  ~  c1  0.099 0.208  0.476  0.634   -0.308    0.506</span></span>
+<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a><span class="co">#&gt; 12   y  ~  c2 -0.096 0.207 -0.465  0.642   -0.501    0.309</span></span></code></pre></div>
 </div>
 <div id="est_indirect" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Estimate Indirect
@@ -937,14 +937,14 @@ indirect effect.</p>
 <p>For example, this is the call for the indirect effect from
 <code>x</code> to <code>y</code> through <code>m1</code> and
 <code>m2</code>:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>out_med <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">m =</span> <span class="fu">c</span>(<span class="st">&quot;m1&quot;</span>, <span class="st">&quot;m2&quot;</span>),</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">fit =</span> fit_med,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">R =</span> <span class="dv">100</span>,</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">seed =</span> <span class="dv">43143</span>,</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>out_med <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>                           <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>                           <span class="at">m =</span> <span class="fu">c</span>(<span class="st">&quot;m1&quot;</span>, <span class="st">&quot;m2&quot;</span>),</span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>                           <span class="at">fit =</span> fit_med,</span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>                           <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>                           <span class="at">R =</span> <span class="dv">100</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>                           <span class="at">seed =</span> <span class="dv">43143</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a>                           <span class="at">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>The main arguments are:</p>
 <ul>
 <li><code>x</code>: The name of the predictor. The start of the
@@ -970,27 +970,27 @@ be omitted in real studies. Set to 1 here for illustration.</li>
 and so the results are reproducible with the same seed only if the
 number of processes (cores) is the same.</p>
 <p>This is the output:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>out_med</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                        </span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; m1 -&gt; m2 -&gt; y</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.180             </span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.043 to 0.332]  </span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m1~x)*(b.m2~m1)*(b.y~m2)</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.82244)*(0.42078)*(0.52077)</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   m1~x       0.822</span></span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m2~m1       0.421</span></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   y~m2       0.521</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>out_med</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="co">#&gt;                                        </span></span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; m1 -&gt; m2 -&gt; y</span></span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.180             </span></span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.043 to 0.332]  </span></span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a><span class="co">#&gt;   (b.m1~x)*(b.m2~m1)*(b.y~m2)</span></span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a><span class="co">#&gt;   (0.82244)*(0.42078)*(0.52077)</span></span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb21-18"><a href="#cb21-18" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
+<span id="cb21-19"><a href="#cb21-19" tabindex="-1"></a><span class="co">#&gt;   m1~x       0.822</span></span>
+<span id="cb21-20"><a href="#cb21-20" tabindex="-1"></a><span class="co">#&gt;  m2~m1       0.421</span></span>
+<span id="cb21-21"><a href="#cb21-21" tabindex="-1"></a><span class="co">#&gt;   y~m2       0.521</span></span></code></pre></div>
 <p>The indirect effect from <code>x</code> to <code>y</code> through
 <code>m1</code> and <code>m2</code> is 0.180, with a 95% confidence
 interval of [0.043, 0.332], significantly different from zero
@@ -1012,37 +1012,37 @@ indirect effect with the outcome variable standardized, set
 <code>TRUE</code>.</p>
 <p>This is the call to compute the (completely) standardized indirect
 effect:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>out_med_stdxy <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">m =</span> <span class="fu">c</span>(<span class="st">&quot;m1&quot;</span>, <span class="st">&quot;m2&quot;</span>),</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">fit =</span> fit_med,</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">boot_out =</span> out_med,</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">standardized_x =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">standardized_y =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>out_med_stdxy</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                        </span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; m1 -&gt; m2 -&gt; y</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.086             </span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.021 to 0.156]  </span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m1~x)*(b.m2~m1)*(b.y~m2)*sd_x/sd_y</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.82244)*(0.42078)*(0.52077)*(0.95010)/(1.99960)</span></span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   m1~x       0.822</span></span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m2~m1       0.421</span></span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   y~m2       0.521</span></span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: The effects of the component paths are from the model, not standardized.</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>out_med_stdxy <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>                                 <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>                                 <span class="at">m =</span> <span class="fu">c</span>(<span class="st">&quot;m1&quot;</span>, <span class="st">&quot;m2&quot;</span>),</span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>                                 <span class="at">fit =</span> fit_med,</span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>                                 <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>                                 <span class="at">boot_out =</span> out_med,</span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a>                                 <span class="at">standardized_x =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a>                                 <span class="at">standardized_y =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a>out_med_stdxy</span>
+<span id="cb22-10"><a href="#cb22-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-11"><a href="#cb22-11" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb22-12"><a href="#cb22-12" tabindex="-1"></a><span class="co">#&gt;                                        </span></span>
+<span id="cb22-13"><a href="#cb22-13" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; m1 -&gt; m2 -&gt; y</span></span>
+<span id="cb22-14"><a href="#cb22-14" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.086             </span></span>
+<span id="cb22-15"><a href="#cb22-15" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.021 to 0.156]  </span></span>
+<span id="cb22-16"><a href="#cb22-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-17"><a href="#cb22-17" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb22-18"><a href="#cb22-18" tabindex="-1"></a><span class="co">#&gt;   (b.m1~x)*(b.m2~m1)*(b.y~m2)*sd_x/sd_y</span></span>
+<span id="cb22-19"><a href="#cb22-19" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb22-20"><a href="#cb22-20" tabindex="-1"></a><span class="co">#&gt;   (0.82244)*(0.42078)*(0.52077)*(0.95010)/(1.99960)</span></span>
+<span id="cb22-21"><a href="#cb22-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-22"><a href="#cb22-22" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb22-23"><a href="#cb22-23" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb22-24"><a href="#cb22-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-25"><a href="#cb22-25" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb22-26"><a href="#cb22-26" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
+<span id="cb22-27"><a href="#cb22-27" tabindex="-1"></a><span class="co">#&gt;   m1~x       0.822</span></span>
+<span id="cb22-28"><a href="#cb22-28" tabindex="-1"></a><span class="co">#&gt;  m2~m1       0.421</span></span>
+<span id="cb22-29"><a href="#cb22-29" tabindex="-1"></a><span class="co">#&gt;   y~m2       0.521</span></span>
+<span id="cb22-30"><a href="#cb22-30" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-31"><a href="#cb22-31" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: The effects of the component paths are from the model, not standardized.</span></span></code></pre></div>
 <p>The indirect effect from <code>x</code> to <code>y</code> through
 <code>m1</code> and <code>m2</code> is 0.086, with a 95% confidence
 interval of [0.021, 0.156], significantly different from zero
@@ -1060,32 +1060,32 @@ Effects For <em>Any</em> Paths</h2>
 <code>m1</code>, simply set <code>x</code> to <code>&quot;x&quot;</code>,
 <code>y</code> to <code>&quot;y&quot;</code>, and <code>m</code> to
 <code>&quot;m2&quot;</code>:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>out_x_m2_y <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m2&quot;</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">fit =</span> fit_med,</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_out =</span> out_med)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>out_x_m2_y</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; m2 -&gt; y     </span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.060           </span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.233 to 0.066]</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m2~x)*(b.y~m2)</span></span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (-0.11610)*(0.52077)</span></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path Coefficient</span></span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m2~x      -0.116</span></span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  y~m2       0.521</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>out_x_m2_y <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m2&quot;</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>                              <span class="at">fit =</span> fit_med,</span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>                              <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>                              <span class="at">boot_out =</span> out_med)</span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>out_x_m2_y</span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
+<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; m2 -&gt; y     </span></span>
+<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.060           </span></span>
+<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.233 to 0.066]</span></span>
+<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb23-16"><a href="#cb23-16" tabindex="-1"></a><span class="co">#&gt;   (b.m2~x)*(b.y~m2)</span></span>
+<span id="cb23-17"><a href="#cb23-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb23-18"><a href="#cb23-18" tabindex="-1"></a><span class="co">#&gt;   (-0.11610)*(0.52077)</span></span>
+<span id="cb23-19"><a href="#cb23-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb23-20"><a href="#cb23-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb23-21"><a href="#cb23-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb23-22"><a href="#cb23-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb23-23"><a href="#cb23-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb23-24"><a href="#cb23-24" tabindex="-1"></a><span class="co">#&gt;  Path Coefficient</span></span>
+<span id="cb23-25"><a href="#cb23-25" tabindex="-1"></a><span class="co">#&gt;  m2~x      -0.116</span></span>
+<span id="cb23-26"><a href="#cb23-26" tabindex="-1"></a><span class="co">#&gt;  y~m2       0.521</span></span></code></pre></div>
 <p>The indirect effect along this path is not significant.</p>
 <p>Similarly, indirect effects from <code>m1</code> through
 <code>m2</code> to <code>y</code> or from <code>x</code> through
@@ -1110,110 +1110,110 @@ is the sum of these indirect effects:</p>
 <p>Two of them have been computed above (<code>out_med</code> and
 <code>out_x_m2_y</code>). We compute the indirect effect in
 <code>x -&gt; m1 -&gt; y</code></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>out_x_m1_y <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m1&quot;</span>,</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">fit =</span> fit_med,</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_out =</span> out_med)</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>out_x_m1_y</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; m1 -&gt; y     </span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.358           </span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.699 to 0.008]</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m1~x)*(b.y~m1)</span></span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.82244)*(-0.43534)</span></span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path Coefficient</span></span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m1~x       0.822</span></span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  y~m1      -0.435</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>out_x_m1_y <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m1&quot;</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>                              <span class="at">fit =</span> fit_med,</span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>                              <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>                              <span class="at">boot_out =</span> out_med)</span>
+<span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a>out_x_m1_y</span>
+<span id="cb24-8"><a href="#cb24-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-9"><a href="#cb24-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb24-10"><a href="#cb24-10" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
+<span id="cb24-11"><a href="#cb24-11" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; m1 -&gt; y     </span></span>
+<span id="cb24-12"><a href="#cb24-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.358           </span></span>
+<span id="cb24-13"><a href="#cb24-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.699 to 0.008]</span></span>
+<span id="cb24-14"><a href="#cb24-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-15"><a href="#cb24-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb24-16"><a href="#cb24-16" tabindex="-1"></a><span class="co">#&gt;   (b.m1~x)*(b.y~m1)</span></span>
+<span id="cb24-17"><a href="#cb24-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb24-18"><a href="#cb24-18" tabindex="-1"></a><span class="co">#&gt;   (0.82244)*(-0.43534)</span></span>
+<span id="cb24-19"><a href="#cb24-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-20"><a href="#cb24-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb24-21"><a href="#cb24-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb24-22"><a href="#cb24-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-23"><a href="#cb24-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb24-24"><a href="#cb24-24" tabindex="-1"></a><span class="co">#&gt;  Path Coefficient</span></span>
+<span id="cb24-25"><a href="#cb24-25" tabindex="-1"></a><span class="co">#&gt;  m1~x       0.822</span></span>
+<span id="cb24-26"><a href="#cb24-26" tabindex="-1"></a><span class="co">#&gt;  y~m1      -0.435</span></span></code></pre></div>
 <p>We can then “add” the indirect effects to get the total indirect
 effect:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>total_ind <span class="ot">&lt;-</span> out_med <span class="sc">+</span> out_x_m1_y <span class="sc">+</span> out_x_m2_y</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>total_ind</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                         </span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; m2 -&gt; y</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; y      </span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m2 -&gt; y      </span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Function of Effects: -0.238            </span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI:  [-0.645 to 0.098] </span></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation of the Function of Effects:</span></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ((x-&gt;m1-&gt;m2-&gt;y)</span></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x-&gt;m1-&gt;y))</span></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x-&gt;m2-&gt;y) </span></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>total_ind <span class="ot">&lt;-</span> out_med <span class="sc">+</span> out_x_m1_y <span class="sc">+</span> out_x_m2_y</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>total_ind</span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="co">#&gt;                                         </span></span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; m2 -&gt; y</span></span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; y      </span></span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m2 -&gt; y      </span></span>
+<span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a><span class="co">#&gt;  Function of Effects: -0.238            </span></span>
+<span id="cb25-10"><a href="#cb25-10" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI:  [-0.645 to 0.098] </span></span>
+<span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb25-12"><a href="#cb25-12" tabindex="-1"></a><span class="co">#&gt; Computation of the Function of Effects:</span></span>
+<span id="cb25-13"><a href="#cb25-13" tabindex="-1"></a><span class="co">#&gt;  ((x-&gt;m1-&gt;m2-&gt;y)</span></span>
+<span id="cb25-14"><a href="#cb25-14" tabindex="-1"></a><span class="co">#&gt; +(x-&gt;m1-&gt;y))</span></span>
+<span id="cb25-15"><a href="#cb25-15" tabindex="-1"></a><span class="co">#&gt; +(x-&gt;m2-&gt;y) </span></span>
+<span id="cb25-16"><a href="#cb25-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb25-17"><a href="#cb25-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb25-18"><a href="#cb25-18" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb25-19"><a href="#cb25-19" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
 <p>The total indirect effect is -0.238, not significant. This is an
 example of inconsistent mediation: some of the indirect Effects are
 positive and some are negative:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(out_med)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       y~x </span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.1802238</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(out_x_m1_y)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        y~x </span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -0.3580391</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(out_x_m2_y)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       y~x </span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -0.060461</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">coef</span>(out_med)</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="co">#&gt;       y~x </span></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="co">#&gt; 0.1802238</span></span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a><span class="fu">coef</span>(out_x_m1_y)</span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a><span class="co">#&gt;        y~x </span></span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a><span class="co">#&gt; -0.3580391</span></span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a><span class="fu">coef</span>(out_x_m2_y)</span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a><span class="co">#&gt;       y~x </span></span>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a><span class="co">#&gt; -0.060461</span></span></code></pre></div>
 <p>Similarly, the total effect of <code>x</code> on <code>y</code> can
 be computed by adding all the effects, direct or indirect. The direct
 effect can be computed with <code>m</code> not set:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>out_x_direct <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">fit =</span> fit_med,</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">boot_out =</span> out_med)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>out_x_direct</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ==  Effect ==</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; y           </span></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Effect              0.493            </span></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.075 to 1.014]</span></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.y~x)</span></span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.49285)</span></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>out_x_direct <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>                                <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>                                <span class="at">fit =</span> fit_med,</span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a>                                <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a>                                <span class="at">boot_out =</span> out_med)</span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a>out_x_direct</span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a><span class="co">#&gt; ==  Effect ==</span></span>
+<span id="cb27-9"><a href="#cb27-9" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
+<span id="cb27-10"><a href="#cb27-10" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; y           </span></span>
+<span id="cb27-11"><a href="#cb27-11" tabindex="-1"></a><span class="co">#&gt;  Effect              0.493            </span></span>
+<span id="cb27-12"><a href="#cb27-12" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.075 to 1.014]</span></span>
+<span id="cb27-13"><a href="#cb27-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb27-14"><a href="#cb27-14" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb27-15"><a href="#cb27-15" tabindex="-1"></a><span class="co">#&gt;   (b.y~x)</span></span>
+<span id="cb27-16"><a href="#cb27-16" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb27-17"><a href="#cb27-17" tabindex="-1"></a><span class="co">#&gt;   (0.49285)</span></span>
+<span id="cb27-18"><a href="#cb27-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb27-19"><a href="#cb27-19" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb27-20"><a href="#cb27-20" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
 <p>This is the total effect:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>total_effect <span class="ot">&lt;-</span> out_med <span class="sc">+</span> out_x_m1_y <span class="sc">+</span> out_x_m2_y <span class="sc">+</span> out_x_direct</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>total_effect</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                         </span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; m2 -&gt; y</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; y      </span></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m2 -&gt; y      </span></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; y            </span></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Function of Effects: 0.255             </span></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI:  [-0.239 to 0.661] </span></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation of the Function of Effects:</span></span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  (((x-&gt;m1-&gt;m2-&gt;y)</span></span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x-&gt;m1-&gt;y))</span></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x-&gt;m2-&gt;y))</span></span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x-&gt;y) </span></span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>total_effect <span class="ot">&lt;-</span> out_med <span class="sc">+</span> out_x_m1_y <span class="sc">+</span> out_x_m2_y <span class="sc">+</span> out_x_direct</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>total_effect</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a><span class="co">#&gt;                                         </span></span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; m2 -&gt; y</span></span>
+<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m1 -&gt; y      </span></span>
+<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; m2 -&gt; y      </span></span>
+<span id="cb28-9"><a href="#cb28-9" tabindex="-1"></a><span class="co">#&gt;  Path:                x -&gt; y            </span></span>
+<span id="cb28-10"><a href="#cb28-10" tabindex="-1"></a><span class="co">#&gt;  Function of Effects: 0.255             </span></span>
+<span id="cb28-11"><a href="#cb28-11" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI:  [-0.239 to 0.661] </span></span>
+<span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb28-13"><a href="#cb28-13" tabindex="-1"></a><span class="co">#&gt; Computation of the Function of Effects:</span></span>
+<span id="cb28-14"><a href="#cb28-14" tabindex="-1"></a><span class="co">#&gt;  (((x-&gt;m1-&gt;m2-&gt;y)</span></span>
+<span id="cb28-15"><a href="#cb28-15" tabindex="-1"></a><span class="co">#&gt; +(x-&gt;m1-&gt;y))</span></span>
+<span id="cb28-16"><a href="#cb28-16" tabindex="-1"></a><span class="co">#&gt; +(x-&gt;m2-&gt;y))</span></span>
+<span id="cb28-17"><a href="#cb28-17" tabindex="-1"></a><span class="co">#&gt; +(x-&gt;y) </span></span>
+<span id="cb28-18"><a href="#cb28-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb28-19"><a href="#cb28-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb28-20"><a href="#cb28-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb28-21"><a href="#cb28-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
 <p>The total effect is 0.255, not significant. This illustrates that
 total effect can be misleading when the component paths are of different
 signs.</p>

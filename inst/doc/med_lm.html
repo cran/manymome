@@ -51,7 +51,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -356,33 +356,33 @@ estimated by ordinary least squares (OLS) multiple regression using
 <div id="data-set-and-model" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Data Set and Model</h1>
 <p>This is the sample dataset used for illustration:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(manymome)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data_med_complicated</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(<span class="fu">head</span>(dat), <span class="dv">2</span>))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      x1   x2  m11  m12   m2   y1    y2   c1    c2</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 10.16 4.00 5.84 6.78 7.11 6.06 10.38 5.01  8.20</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 10.89 4.79 4.95 5.81 7.92 5.15  8.52 3.92  9.90</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  9.99 5.79 4.95 4.47 8.21 3.25  7.81 5.91 11.36</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 12.36 4.80 5.56 6.21 8.88 6.27  9.41 6.06 10.49</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 10.85 6.39 6.19 5.39 8.76 5.36  9.84 4.28  9.81</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 10.28 4.58 4.88 4.28 8.50 4.57 10.42 4.71 11.38</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(manymome)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>dat <span class="ot">&lt;-</span> data_med_complicated</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(<span class="fu">head</span>(dat), <span class="dv">2</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt;      x1   x2  m11  m12   m2   y1    y2   c1    c2</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt; 1 10.16 4.00 5.84 6.78 7.11 6.06 10.38 5.01  8.20</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt; 2 10.89 4.79 4.95 5.81 7.92 5.15  8.52 3.92  9.90</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co">#&gt; 3  9.99 5.79 4.95 4.47 8.21 3.25  7.81 5.91 11.36</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co">#&gt; 4 12.36 4.80 5.56 6.21 8.88 6.27  9.41 6.06 10.49</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co">#&gt; 5 10.85 6.39 6.19 5.39 8.76 5.36  9.84 4.28  9.81</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co">#&gt; 6 10.28 4.58 4.88 4.28 8.50 4.57 10.42 4.71 11.38</span></span></code></pre></div>
 <p>This dataset has 9 variables: 2 predictors (<code>x1</code> and
 <code>x2</code>), three mediators (<code>m11</code>, <code>m12</code>,
 and <code>m2</code>), two outcome variables (<code>y1</code> and
 <code>y2</code>), and two control variables (<code>c1</code> and
 <code>c2</code>).</p>
 <p>Suppose this is the model to be fitted:</p>
-<div class="figure">
-<img src="data:image/png;base64,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" alt />
-<p class="caption">plot of chunk med_lm_draw_model</p>
+<div class="float">
+<img src="data:image/png;base64,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" alt="plot of chunk med_lm_draw_model" />
+<div class="figcaption">plot of chunk med_lm_draw_model</div>
 </div>
 <p>Despite the apparent complexity, the path parameters can be estimated
 by five multiple regression models:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lm_m11 <span class="ot">&lt;-</span> <span class="fu">lm</span>(m11 <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> c1 <span class="sc">+</span> c2, dat)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>lm_m12 <span class="ot">&lt;-</span> <span class="fu">lm</span>(m12 <span class="sc">~</span> m11 <span class="sc">+</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> c1 <span class="sc">+</span> c2, dat)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>lm_m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(m2 <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> c1 <span class="sc">+</span> c2, dat)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>lm_y1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y1 <span class="sc">~</span> m12 <span class="sc">+</span> m2 <span class="sc">+</span> m11 <span class="sc">+</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> c1 <span class="sc">+</span> c2, dat)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>lm_y2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y2 <span class="sc">~</span> m12 <span class="sc">+</span> m2 <span class="sc">+</span> m11 <span class="sc">+</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> c1 <span class="sc">+</span> c2, dat)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>lm_m11 <span class="ot">&lt;-</span> <span class="fu">lm</span>(m11 <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> c1 <span class="sc">+</span> c2, dat)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>lm_m12 <span class="ot">&lt;-</span> <span class="fu">lm</span>(m12 <span class="sc">~</span> m11 <span class="sc">+</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> c1 <span class="sc">+</span> c2, dat)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>lm_m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(m2 <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> c1 <span class="sc">+</span> c2, dat)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>lm_y1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y1 <span class="sc">~</span> m12 <span class="sc">+</span> m2 <span class="sc">+</span> m11 <span class="sc">+</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> c1 <span class="sc">+</span> c2, dat)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>lm_y2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y2 <span class="sc">~</span> m12 <span class="sc">+</span> m2 <span class="sc">+</span> m11 <span class="sc">+</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> c1 <span class="sc">+</span> c2, dat)</span></code></pre></div>
 <p>These are the regression coefficient estimates of the paths (those of
 control variables omitted):</p>
 <pre><code>#&gt;        m11    m12    m2     y1     y2
@@ -394,15 +394,15 @@ control variables omitted):</p>
 <p>Although not mandatory, it is recommended to combine these five
 models into one object (a system of regression models) using
 <code>lm2list()</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fit_lm <span class="ot">&lt;-</span> <span class="fu">lm2list</span>(lm_m11, lm_m12, lm_m2, lm_y1, lm_y2)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fit_lm</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The models:</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; m11 ~ x1 + x2 + c1 + c2</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; m12 ~ m11 + x1 + x2 + c1 + c2</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; m2 ~ x1 + x2 + c1 + c2</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y1 ~ m12 + m2 + m11 + x1 + x2 + c1 + c2</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y2 ~ m12 + m2 + m11 + x1 + x2 + c1 + c2</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>fit_lm <span class="ot">&lt;-</span> <span class="fu">lm2list</span>(lm_m11, lm_m12, lm_m2, lm_y1, lm_y2)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>fit_lm</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt; The models:</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt; m11 ~ x1 + x2 + c1 + c2</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt; m12 ~ m11 + x1 + x2 + c1 + c2</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt; m2 ~ x1 + x2 + c1 + c2</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt; y1 ~ m12 + m2 + m11 + x1 + x2 + c1 + c2</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt; y2 ~ m12 + m2 + m11 + x1 + x2 + c1 + c2</span></span></code></pre></div>
 <p>Simply use the <code>lm()</code> outputs as arguments. Order does not
 matter. To ensure that the regression outputs can be validly combined,
 <code>lm2list()</code> will also check:</p>
@@ -420,10 +420,10 @@ Estimates</h1>
 effects to be computed, <code>do_boot()</code> can be used to generate
 bootstrap estimates for all regression coefficients first. These
 estimates can be reused for any indirect effects to be estimated.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>boot_out_lm <span class="ot">&lt;-</span> <span class="fu">do_boot</span>(fit_lm,</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">R =</span> <span class="dv">100</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">seed =</span> <span class="dv">54532</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>boot_out_lm <span class="ot">&lt;-</span> <span class="fu">do_boot</span>(fit_lm,</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>                       <span class="at">R =</span> <span class="dv">100</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                       <span class="at">seed =</span> <span class="dv">54532</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>                       <span class="at">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>Please see <code>vignette(&quot;do_boot&quot;)</code> or the help page of
 <code>do_boot()</code> on how to use this function. In real research,
 <code>R</code>, the number of bootstrap samples, should be set to 2000
@@ -441,95 +441,95 @@ need to repeat the resampling.</p>
 to <code>y1</code> through <code>m11</code> and <code>m12</code>:</p>
 <p>(Refer to <code>vignette(&quot;manymome&quot;)</code> and the help page of
 <code>indirect_effect()</code> on the arguments.)</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>out_x1m11m12y1 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">m =</span> <span class="fu">c</span>(<span class="st">&quot;m11&quot;</span>, <span class="st">&quot;m12&quot;</span>),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">fit =</span> fit_lm,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">boot_out =</span> boot_out_lm)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>out_x1m11m12y1</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                            </span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.037                 </span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.003 to 0.077]      </span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m11~x1)*(b.m12~m11)*(b.y1~m12)</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.45408)*(0.23402)</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   m11~x1       0.352</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m12~m11       0.454</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   y1~m12       0.234</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>out_x1m11m12y1 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>                                  <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>                                  <span class="at">m =</span> <span class="fu">c</span>(<span class="st">&quot;m11&quot;</span>, <span class="st">&quot;m12&quot;</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>                                  <span class="at">fit =</span> fit_lm,</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>                                  <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>                                  <span class="at">boot_out =</span> boot_out_lm)</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>out_x1m11m12y1</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt;                                            </span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt;  Path:               x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.037                 </span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.003 to 0.077]      </span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co">#&gt;   (b.m11~x1)*(b.m12~m11)*(b.y1~m12)</span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.45408)*(0.23402)</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co">#&gt;   m11~x1       0.352</span></span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="co">#&gt;  m12~m11       0.454</span></span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="co">#&gt;   y1~m12       0.234</span></span></code></pre></div>
 <p>The indirect effect is 0.037, with 95% confidence interval [0.003,
 0.077].</p>
 <p>Similarly, we can estimate the indirect effect from <code>x2</code>
 to <code>y2</code> through <code>m2</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>out_x2m2y2 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x2&quot;</span>,</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y2&quot;</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m2&quot;</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">fit =</span> fit_lm,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_out =</span> boot_out_lm)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>out_x2m2y2</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                        </span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x2 -&gt; m2 -&gt; y2    </span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.126            </span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.233 to -0.043]</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m2~x2)*(b.y2~m2)</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.28901)*(-0.43598)</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m2~x2       0.289</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  y2~m2      -0.436</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>out_x2m2y2 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x2&quot;</span>,</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y2&quot;</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m2&quot;</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>                              <span class="at">fit =</span> fit_lm,</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>                              <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>                              <span class="at">boot_out =</span> boot_out_lm)</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>out_x2m2y2</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt;                                        </span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt;  Path:               x2 -&gt; m2 -&gt; y2    </span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.126            </span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.233 to -0.043]</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co">#&gt;   (b.m2~x2)*(b.y2~m2)</span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">#&gt;   (0.28901)*(-0.43598)</span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a><span class="co">#&gt;  m2~x2       0.289</span></span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a><span class="co">#&gt;  y2~m2      -0.436</span></span></code></pre></div>
 <p>The indirect effect is -0.126, with 95% confidence interval [-0.233,
 -0.043].</p>
 <p>Note that any indirect path in the model can be estimated this way.
 Suppose, after doing the regression analysis, we want to estimate the
 indirect effect from <code>x2</code> to <code>m12</code> through
 <code>m11</code>, we just call <code>indirect_effect()</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>out_x2m11m12 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x2&quot;</span>,</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y =</span> <span class="st">&quot;m12&quot;</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">m =</span> <span class="st">&quot;m11&quot;</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">fit =</span> fit_lm,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">boot_out =</span> boot_out_lm)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>out_x2m11m12</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x2 -&gt; m11 -&gt; m12 </span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.020           </span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.139 to 0.110]</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m11~x2)*(b.m12~m11)</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (-0.04471)*(0.45408)</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   m11~x2     -0.0447</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m12~m11      0.4541</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>out_x2m11m12 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x2&quot;</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>                                <span class="at">y =</span> <span class="st">&quot;m12&quot;</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>                                <span class="at">m =</span> <span class="st">&quot;m11&quot;</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>                                <span class="at">fit =</span> fit_lm,</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>                                <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>                                <span class="at">boot_out =</span> boot_out_lm)</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>out_x2m11m12</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co">#&gt;  Path:               x2 -&gt; m11 -&gt; m12 </span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.020           </span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.139 to 0.110]</span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="co">#&gt;   (b.m11~x2)*(b.m12~m11)</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="co">#&gt;   (-0.04471)*(0.45408)</span></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="co">#&gt;   m11~x2     -0.0447</span></span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="co">#&gt;  m12~m11      0.4541</span></span></code></pre></div>
 <p>The indirect effect is -0.020, with 95% confidence interval [-0.139,
 0.110].</p>
 <p>There is no limit on the path to be estimated, as long as all
@@ -546,71 +546,71 @@ effects</h1>
 <code>y1</code> through <code>m11</code> and <code>m12</code> can be
 estimated by setting <code>standardized_x</code> and
 <code>standardized_y</code> to `TRUE:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>std_x1m11m12y1 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">m =</span> <span class="fu">c</span>(<span class="st">&quot;m11&quot;</span>, <span class="st">&quot;m12&quot;</span>),</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">fit =</span> fit_lm,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">boot_out =</span> boot_out_lm,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">standardized_x =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">standardized_y =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>std_x1m11m12y1</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                            </span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.039                 </span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.004 to 0.085]      </span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m11~x1)*(b.m12~m11)*(b.y1~m12)*sd_x1/sd_y1</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.45408)*(0.23402)*(1.11605)/(1.06579)</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   m11~x1       0.352</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m12~m11       0.454</span></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   y1~m12       0.234</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: The effects of the component paths are from the model, not standardized.</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>std_x1m11m12y1 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>                                  <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>                                  <span class="at">m =</span> <span class="fu">c</span>(<span class="st">&quot;m11&quot;</span>, <span class="st">&quot;m12&quot;</span>),</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>                                  <span class="at">fit =</span> fit_lm,</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>                                  <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>                                  <span class="at">boot_out =</span> boot_out_lm,</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>                                  <span class="at">standardized_x =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>                                  <span class="at">standardized_y =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>std_x1m11m12y1</span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt;                                            </span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="co">#&gt;  Path:               x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.039                 </span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.004 to 0.085]      </span></span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="co">#&gt;   (b.m11~x1)*(b.m12~m11)*(b.y1~m12)*sd_x1/sd_y1</span></span>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.45408)*(0.23402)*(1.11605)/(1.06579)</span></span>
+<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
+<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a><span class="co">#&gt;   m11~x1       0.352</span></span>
+<span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a><span class="co">#&gt;  m12~m11       0.454</span></span>
+<span id="cb9-29"><a href="#cb9-29" tabindex="-1"></a><span class="co">#&gt;   y1~m12       0.234</span></span>
+<span id="cb9-30"><a href="#cb9-30" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-31"><a href="#cb9-31" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: The effects of the component paths are from the model, not standardized.</span></span></code></pre></div>
 <p>The standardized indirect effect is 0.039, with 95% confidence
 interval [0.004,0.085].</p>
 <p>Similarly, we can estimate the standardized indirect effect from
 <code>x1</code> to <code>y1</code> through <code>m2</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>std_x1m2y1 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m2&quot;</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">fit =</span> fit_lm,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">boot_out =</span> boot_out_lm,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">standardized_x =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">standardized_y =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>std_x1m2y1</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x1 -&gt; m2 -&gt; y1   </span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.010           </span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.069 to 0.067]</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m2~x1)*(b.y1~m2)*sd_x1/sd_y1</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.02233)*(-0.43300)*(1.11605)/(1.06579)</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m2~x1      0.0223</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  y1~m2     -0.4330</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: The effects of the component paths are from the model, not standardized.</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>std_x1m2y1 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m2&quot;</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>                              <span class="at">fit =</span> fit_lm,</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>                              <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>                              <span class="at">boot_out =</span> boot_out_lm,</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>                              <span class="at">standardized_x =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>                              <span class="at">standardized_y =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>std_x1m2y1</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="co">#&gt;  Path:               x1 -&gt; m2 -&gt; y1   </span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.010           </span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.069 to 0.067]</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a><span class="co">#&gt;   (b.m2~x1)*(b.y1~m2)*sd_x1/sd_y1</span></span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a><span class="co">#&gt;   (0.02233)*(-0.43300)*(1.11605)/(1.06579)</span></span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
+<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a><span class="co">#&gt;  m2~x1      0.0223</span></span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="co">#&gt;  y1~m2     -0.4330</span></span>
+<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: The effects of the component paths are from the model, not standardized.</span></span></code></pre></div>
 <p>The standardized indirect effect is -0.010, with 95% confidence
 interval [-0.069, 0.067].</p>
 </div>
@@ -630,106 +630,106 @@ effects along the following paths:</p>
 </ol>
 <p>The indirect effects along Path a has already been computed. We
 compute the indirect effects along Paths b, c, and d below:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>out_x1m11y1 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">m =</span> <span class="st">&quot;m11&quot;</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">fit =</span> fit_lm,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">boot_out =</span> boot_out_lm)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>out_x1m11y1</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x1 -&gt; m11 -&gt; y1  </span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.052            </span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.036 to 0.103]</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m11~x1)*(b.y1~m11)</span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.14694)</span></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Path Coefficient</span></span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m11~x1       0.352</span></span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  y1~m11       0.147</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>out_x1m12y1 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">m =</span> <span class="st">&quot;m12&quot;</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">fit =</span> fit_lm,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">boot_out =</span> boot_out_lm)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>out_x1m12y1</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                        </span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x1 -&gt; m12 -&gt; y1   </span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.050            </span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.125 to -0.000]</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m12~x1)*(b.y1~m12)</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (-0.21182)*(0.23402)</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Path Coefficient</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m12~x1      -0.212</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  y1~m12       0.234</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>out_x1m2y1 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">m =</span> <span class="st">&quot;m2&quot;</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">fit =</span> fit_lm,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">boot_out =</span> boot_out_lm)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>out_x1m2y1</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x1 -&gt; m2 -&gt; y1   </span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.010           </span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.077 to 0.064]</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m2~x1)*(b.y1~m2)</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.02233)*(-0.43300)</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m2~x1      0.0223</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  y1~m2     -0.4330</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>out_x1m11y1 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>                               <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>                               <span class="at">m =</span> <span class="st">&quot;m11&quot;</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>                               <span class="at">fit =</span> fit_lm,</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>                               <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>                               <span class="at">boot_out =</span> boot_out_lm)</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>out_x1m11y1</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt;  Path:               x1 -&gt; m11 -&gt; y1  </span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.052            </span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.036 to 0.103]</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="co">#&gt;   (b.m11~x1)*(b.y1~m11)</span></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.14694)</span></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a><span class="co">#&gt;    Path Coefficient</span></span>
+<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a><span class="co">#&gt;  m11~x1       0.352</span></span>
+<span id="cb11-26"><a href="#cb11-26" tabindex="-1"></a><span class="co">#&gt;  y1~m11       0.147</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>out_x1m12y1 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>                               <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>                               <span class="at">m =</span> <span class="st">&quot;m12&quot;</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>                               <span class="at">fit =</span> fit_lm,</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>                               <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>                               <span class="at">boot_out =</span> boot_out_lm)</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>out_x1m12y1</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="co">#&gt;                                        </span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co">#&gt;  Path:               x1 -&gt; m12 -&gt; y1   </span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.050            </span></span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.125 to -0.000]</span></span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="co">#&gt;   (b.m12~x1)*(b.y1~m12)</span></span>
+<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a><span class="co">#&gt;   (-0.21182)*(0.23402)</span></span>
+<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a><span class="co">#&gt;    Path Coefficient</span></span>
+<span id="cb12-25"><a href="#cb12-25" tabindex="-1"></a><span class="co">#&gt;  m12~x1      -0.212</span></span>
+<span id="cb12-26"><a href="#cb12-26" tabindex="-1"></a><span class="co">#&gt;  y1~m12       0.234</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>out_x1m2y1 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>                               <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>                               <span class="at">m =</span> <span class="st">&quot;m2&quot;</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>                               <span class="at">fit =</span> fit_lm,</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>                               <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>                               <span class="at">boot_out =</span> boot_out_lm)</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>out_x1m2y1</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="co">#&gt;  Path:               x1 -&gt; m2 -&gt; y1   </span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.010           </span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.077 to 0.064]</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="co">#&gt;   (b.m2~x1)*(b.y1~m2)</span></span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="co">#&gt;   (0.02233)*(-0.43300)</span></span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
+<span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a><span class="co">#&gt;  m2~x1      0.0223</span></span>
+<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a><span class="co">#&gt;  y1~m2     -0.4330</span></span></code></pre></div>
 <p>We can now compute the total <em>indirect</em> effect:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>out_x1y1_total <span class="ot">&lt;-</span> out_x1m11m12y1 <span class="sc">+</span> out_x1m11y1 <span class="sc">+</span> out_x1m12y1 <span class="sc">+</span> out_x1m2y1</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>out_x1y1_total</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                             </span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m11 -&gt; y1       </span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m12 -&gt; y1       </span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m2 -&gt; y1        </span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Function of Effects: 0.030                 </span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI:  [-0.088 to 0.132]     </span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation of the Function of Effects:</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  (((x1-&gt;m11-&gt;m12-&gt;y1)</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x1-&gt;m11-&gt;y1))</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x1-&gt;m12-&gt;y1))</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x1-&gt;m2-&gt;y1) </span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>out_x1y1_total <span class="ot">&lt;-</span> out_x1m11m12y1 <span class="sc">+</span> out_x1m11y1 <span class="sc">+</span> out_x1m12y1 <span class="sc">+</span> out_x1m2y1</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>out_x1y1_total</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="co">#&gt;                                             </span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m11 -&gt; y1       </span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m12 -&gt; y1       </span></span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m2 -&gt; y1        </span></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="co">#&gt;  Function of Effects: 0.030                 </span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI:  [-0.088 to 0.132]     </span></span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a><span class="co">#&gt; Computation of the Function of Effects:</span></span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a><span class="co">#&gt;  (((x1-&gt;m11-&gt;m12-&gt;y1)</span></span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a><span class="co">#&gt; +(x1-&gt;m11-&gt;y1))</span></span>
+<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a><span class="co">#&gt; +(x1-&gt;m12-&gt;y1))</span></span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a><span class="co">#&gt; +(x1-&gt;m2-&gt;y1) </span></span>
+<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
 <p>The total effect of <code>f1</code> on <code>f4</code> is 0.030, with
 95% confidence interval [-0.088, 0.132].</p>
 <p>See <code>help(&quot;math_indirect&quot;)</code> for further details on
@@ -743,23 +743,23 @@ we can compute the difference between the indirect effect of
 <code>x1</code> on <code>y1</code> through <code>m11</code> and
 <code>m12</code> and the indirect effect of <code>x1</code> on
 <code>y1</code> through <code>m2</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>out_x1_diff <span class="ot">&lt;-</span> out_x1m11m12y1 <span class="sc">-</span> out_x1m2y1</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>out_x1_diff</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                             </span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m2 -&gt; y1        </span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Function of Effects: 0.047                 </span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI:  [-0.038 to 0.118]     </span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation of the Function of Effects:</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  (x1-&gt;m11-&gt;m12-&gt;y1)</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -(x1-&gt;m2-&gt;y1) </span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>out_x1_diff <span class="ot">&lt;-</span> out_x1m11m12y1 <span class="sc">-</span> out_x1m2y1</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>out_x1_diff</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="co">#&gt;                                             </span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m2 -&gt; y1        </span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="co">#&gt;  Function of Effects: 0.047                 </span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI:  [-0.038 to 0.118]     </span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="co">#&gt; Computation of the Function of Effects:</span></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="co">#&gt;  (x1-&gt;m11-&gt;m12-&gt;y1)</span></span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a><span class="co">#&gt; -(x1-&gt;m2-&gt;y1) </span></span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
 <p>The difference in effects is 0.047, with 95% confidence interval
 [-0.038, 0.118].</p>
 <p>See <code>help(&quot;math_indirect&quot;)</code> for further details on
@@ -771,80 +771,80 @@ Indirect paths</h1>
 <p>If there are several indirect paths in a model, the function
 <code>all_indirect_paths()</code> can be used to automatically identify
 all indirect paths (a path with at least one mediator) in a model:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>all_paths <span class="ot">&lt;-</span> <span class="fu">all_indirect_paths</span>(<span class="at">fit =</span> fit_lm)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>all_paths</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call: </span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; all_indirect_paths(fit = fit_lm)</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Path(s): </span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    path                  </span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  m11 -&gt; m12 -&gt; y1      </span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  m11 -&gt; m12 -&gt; y2      </span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  x1 -&gt; m11 -&gt; m12      </span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  x1 -&gt; m11 -&gt; y1       </span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  x1 -&gt; m12 -&gt; y1       </span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7  x1 -&gt; m2 -&gt; y1        </span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8  x1 -&gt; m11 -&gt; m12 -&gt; y2</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9  x1 -&gt; m11 -&gt; y2       </span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 x1 -&gt; m12 -&gt; y2       </span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 x1 -&gt; m2 -&gt; y2        </span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 x2 -&gt; m11 -&gt; m12      </span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13 x2 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14 x2 -&gt; m11 -&gt; y1       </span></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15 x2 -&gt; m12 -&gt; y1       </span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16 x2 -&gt; m2 -&gt; y1        </span></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17 x2 -&gt; m11 -&gt; m12 -&gt; y2</span></span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18 x2 -&gt; m11 -&gt; y2       </span></span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19 x2 -&gt; m12 -&gt; y2       </span></span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20 x2 -&gt; m2 -&gt; y2        </span></span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21 c1 -&gt; m11 -&gt; m12      </span></span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22 c1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23 c1 -&gt; m11 -&gt; y1       </span></span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24 c1 -&gt; m12 -&gt; y1       </span></span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25 c1 -&gt; m2 -&gt; y1        </span></span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26 c1 -&gt; m11 -&gt; m12 -&gt; y2</span></span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27 c1 -&gt; m11 -&gt; y2       </span></span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28 c1 -&gt; m12 -&gt; y2       </span></span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29 c1 -&gt; m2 -&gt; y2        </span></span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30 c2 -&gt; m11 -&gt; m12      </span></span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 31 c2 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
-<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 32 c2 -&gt; m11 -&gt; y1       </span></span>
-<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 33 c2 -&gt; m12 -&gt; y1       </span></span>
-<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 34 c2 -&gt; m2 -&gt; y1        </span></span>
-<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 35 c2 -&gt; m11 -&gt; m12 -&gt; y2</span></span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 36 c2 -&gt; m11 -&gt; y2       </span></span>
-<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 37 c2 -&gt; m12 -&gt; y2       </span></span>
-<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 38 c2 -&gt; m2 -&gt; y2</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>all_paths <span class="ot">&lt;-</span> <span class="fu">all_indirect_paths</span>(<span class="at">fit =</span> fit_lm)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>all_paths</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="co">#&gt; Call: </span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="co">#&gt; all_indirect_paths(fit = fit_lm)</span></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="co">#&gt; Path(s): </span></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a><span class="co">#&gt;    path                  </span></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a><span class="co">#&gt; 1  m11 -&gt; m12 -&gt; y1      </span></span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a><span class="co">#&gt; 2  m11 -&gt; m12 -&gt; y2      </span></span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a><span class="co">#&gt; 3  x1 -&gt; m11 -&gt; m12      </span></span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="co">#&gt; 4  x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a><span class="co">#&gt; 5  x1 -&gt; m11 -&gt; y1       </span></span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a><span class="co">#&gt; 6  x1 -&gt; m12 -&gt; y1       </span></span>
+<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a><span class="co">#&gt; 7  x1 -&gt; m2 -&gt; y1        </span></span>
+<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a><span class="co">#&gt; 8  x1 -&gt; m11 -&gt; m12 -&gt; y2</span></span>
+<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a><span class="co">#&gt; 9  x1 -&gt; m11 -&gt; y2       </span></span>
+<span id="cb16-16"><a href="#cb16-16" tabindex="-1"></a><span class="co">#&gt; 10 x1 -&gt; m12 -&gt; y2       </span></span>
+<span id="cb16-17"><a href="#cb16-17" tabindex="-1"></a><span class="co">#&gt; 11 x1 -&gt; m2 -&gt; y2        </span></span>
+<span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a><span class="co">#&gt; 12 x2 -&gt; m11 -&gt; m12      </span></span>
+<span id="cb16-19"><a href="#cb16-19" tabindex="-1"></a><span class="co">#&gt; 13 x2 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
+<span id="cb16-20"><a href="#cb16-20" tabindex="-1"></a><span class="co">#&gt; 14 x2 -&gt; m11 -&gt; y1       </span></span>
+<span id="cb16-21"><a href="#cb16-21" tabindex="-1"></a><span class="co">#&gt; 15 x2 -&gt; m12 -&gt; y1       </span></span>
+<span id="cb16-22"><a href="#cb16-22" tabindex="-1"></a><span class="co">#&gt; 16 x2 -&gt; m2 -&gt; y1        </span></span>
+<span id="cb16-23"><a href="#cb16-23" tabindex="-1"></a><span class="co">#&gt; 17 x2 -&gt; m11 -&gt; m12 -&gt; y2</span></span>
+<span id="cb16-24"><a href="#cb16-24" tabindex="-1"></a><span class="co">#&gt; 18 x2 -&gt; m11 -&gt; y2       </span></span>
+<span id="cb16-25"><a href="#cb16-25" tabindex="-1"></a><span class="co">#&gt; 19 x2 -&gt; m12 -&gt; y2       </span></span>
+<span id="cb16-26"><a href="#cb16-26" tabindex="-1"></a><span class="co">#&gt; 20 x2 -&gt; m2 -&gt; y2        </span></span>
+<span id="cb16-27"><a href="#cb16-27" tabindex="-1"></a><span class="co">#&gt; 21 c1 -&gt; m11 -&gt; m12      </span></span>
+<span id="cb16-28"><a href="#cb16-28" tabindex="-1"></a><span class="co">#&gt; 22 c1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
+<span id="cb16-29"><a href="#cb16-29" tabindex="-1"></a><span class="co">#&gt; 23 c1 -&gt; m11 -&gt; y1       </span></span>
+<span id="cb16-30"><a href="#cb16-30" tabindex="-1"></a><span class="co">#&gt; 24 c1 -&gt; m12 -&gt; y1       </span></span>
+<span id="cb16-31"><a href="#cb16-31" tabindex="-1"></a><span class="co">#&gt; 25 c1 -&gt; m2 -&gt; y1        </span></span>
+<span id="cb16-32"><a href="#cb16-32" tabindex="-1"></a><span class="co">#&gt; 26 c1 -&gt; m11 -&gt; m12 -&gt; y2</span></span>
+<span id="cb16-33"><a href="#cb16-33" tabindex="-1"></a><span class="co">#&gt; 27 c1 -&gt; m11 -&gt; y2       </span></span>
+<span id="cb16-34"><a href="#cb16-34" tabindex="-1"></a><span class="co">#&gt; 28 c1 -&gt; m12 -&gt; y2       </span></span>
+<span id="cb16-35"><a href="#cb16-35" tabindex="-1"></a><span class="co">#&gt; 29 c1 -&gt; m2 -&gt; y2        </span></span>
+<span id="cb16-36"><a href="#cb16-36" tabindex="-1"></a><span class="co">#&gt; 30 c2 -&gt; m11 -&gt; m12      </span></span>
+<span id="cb16-37"><a href="#cb16-37" tabindex="-1"></a><span class="co">#&gt; 31 c2 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
+<span id="cb16-38"><a href="#cb16-38" tabindex="-1"></a><span class="co">#&gt; 32 c2 -&gt; m11 -&gt; y1       </span></span>
+<span id="cb16-39"><a href="#cb16-39" tabindex="-1"></a><span class="co">#&gt; 33 c2 -&gt; m12 -&gt; y1       </span></span>
+<span id="cb16-40"><a href="#cb16-40" tabindex="-1"></a><span class="co">#&gt; 34 c2 -&gt; m2 -&gt; y1        </span></span>
+<span id="cb16-41"><a href="#cb16-41" tabindex="-1"></a><span class="co">#&gt; 35 c2 -&gt; m11 -&gt; m12 -&gt; y2</span></span>
+<span id="cb16-42"><a href="#cb16-42" tabindex="-1"></a><span class="co">#&gt; 36 c2 -&gt; m11 -&gt; y2       </span></span>
+<span id="cb16-43"><a href="#cb16-43" tabindex="-1"></a><span class="co">#&gt; 37 c2 -&gt; m12 -&gt; y2       </span></span>
+<span id="cb16-44"><a href="#cb16-44" tabindex="-1"></a><span class="co">#&gt; 38 c2 -&gt; m2 -&gt; y2</span></span></code></pre></div>
 <p>The initial list is very long because control variables
 (<code>c1</code> and <code>c2</code>) are included in the search.
 Moreover, paths that start from a mediator or end at a mediator are also
 included. Users can customize the search:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>all_paths <span class="ot">&lt;-</span> <span class="fu">all_indirect_paths</span>(<span class="at">fit =</span> fit_lm,</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>),</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y =</span> <span class="fu">c</span>(<span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>),</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">exclude =</span> <span class="fu">c</span>(<span class="st">&quot;c1&quot;</span>, <span class="st">&quot;c2&quot;</span>))</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>all_paths</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call: </span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; all_indirect_paths(fit = fit_lm, exclude = c(&quot;c1&quot;, &quot;c2&quot;), x = c(&quot;x1&quot;, </span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &quot;x2&quot;), y = c(&quot;y1&quot;, &quot;y2&quot;))</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Path(s): </span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    path                  </span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  x1 -&gt; m11 -&gt; y1       </span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  x1 -&gt; m12 -&gt; y1       </span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  x1 -&gt; m2 -&gt; y1        </span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  x1 -&gt; m11 -&gt; m12 -&gt; y2</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  x1 -&gt; m11 -&gt; y2       </span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7  x1 -&gt; m12 -&gt; y2       </span></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8  x1 -&gt; m2 -&gt; y2        </span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9  x2 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 x2 -&gt; m11 -&gt; y1       </span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 x2 -&gt; m12 -&gt; y1       </span></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 x2 -&gt; m2 -&gt; y1        </span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13 x2 -&gt; m11 -&gt; m12 -&gt; y2</span></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14 x2 -&gt; m11 -&gt; y2       </span></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15 x2 -&gt; m12 -&gt; y2       </span></span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16 x2 -&gt; m2 -&gt; y2</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>all_paths <span class="ot">&lt;-</span> <span class="fu">all_indirect_paths</span>(<span class="at">fit =</span> fit_lm,</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>                                <span class="at">x =</span> <span class="fu">c</span>(<span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>),</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>                                <span class="at">y =</span> <span class="fu">c</span>(<span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>),</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>                                <span class="at">exclude =</span> <span class="fu">c</span>(<span class="st">&quot;c1&quot;</span>, <span class="st">&quot;c2&quot;</span>))</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>all_paths</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a><span class="co">#&gt; Call: </span></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="co">#&gt; all_indirect_paths(fit = fit_lm, exclude = c(&quot;c1&quot;, &quot;c2&quot;), x = c(&quot;x1&quot;, </span></span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a><span class="co">#&gt;     &quot;x2&quot;), y = c(&quot;y1&quot;, &quot;y2&quot;))</span></span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="co">#&gt; Path(s): </span></span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="co">#&gt;    path                  </span></span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a><span class="co">#&gt; 1  x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a><span class="co">#&gt; 2  x1 -&gt; m11 -&gt; y1       </span></span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a><span class="co">#&gt; 3  x1 -&gt; m12 -&gt; y1       </span></span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a><span class="co">#&gt; 4  x1 -&gt; m2 -&gt; y1        </span></span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a><span class="co">#&gt; 5  x1 -&gt; m11 -&gt; m12 -&gt; y2</span></span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a><span class="co">#&gt; 6  x1 -&gt; m11 -&gt; y2       </span></span>
+<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a><span class="co">#&gt; 7  x1 -&gt; m12 -&gt; y2       </span></span>
+<span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a><span class="co">#&gt; 8  x1 -&gt; m2 -&gt; y2        </span></span>
+<span id="cb17-19"><a href="#cb17-19" tabindex="-1"></a><span class="co">#&gt; 9  x2 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
+<span id="cb17-20"><a href="#cb17-20" tabindex="-1"></a><span class="co">#&gt; 10 x2 -&gt; m11 -&gt; y1       </span></span>
+<span id="cb17-21"><a href="#cb17-21" tabindex="-1"></a><span class="co">#&gt; 11 x2 -&gt; m12 -&gt; y1       </span></span>
+<span id="cb17-22"><a href="#cb17-22" tabindex="-1"></a><span class="co">#&gt; 12 x2 -&gt; m2 -&gt; y1        </span></span>
+<span id="cb17-23"><a href="#cb17-23" tabindex="-1"></a><span class="co">#&gt; 13 x2 -&gt; m11 -&gt; m12 -&gt; y2</span></span>
+<span id="cb17-24"><a href="#cb17-24" tabindex="-1"></a><span class="co">#&gt; 14 x2 -&gt; m11 -&gt; y2       </span></span>
+<span id="cb17-25"><a href="#cb17-25" tabindex="-1"></a><span class="co">#&gt; 15 x2 -&gt; m12 -&gt; y2       </span></span>
+<span id="cb17-26"><a href="#cb17-26" tabindex="-1"></a><span class="co">#&gt; 16 x2 -&gt; m2 -&gt; y2</span></span></code></pre></div>
 <ul>
 <li><p><code>x</code> is a vector of names. Only paths start from these
 variables will be included.</p></li>
@@ -855,90 +855,90 @@ these variables will be excluded.</p></li>
 </ul>
 <p>The output is a <code>all_paths</code>-class object. It can be used
 in <code>many_indirect_effects()</code></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>out_all <span class="ot">&lt;-</span> <span class="fu">many_indirect_effects</span>(<span class="at">paths =</span> all_paths,</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">fit =</span> fit_lm,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">boot_out =</span> boot_out_lm)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>out_all <span class="ot">&lt;-</span> <span class="fu">many_indirect_effects</span>(<span class="at">paths =</span> all_paths,</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>                                 <span class="at">fit =</span> fit_lm,</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>                                 <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>                                 <span class="at">boot_out =</span> boot_out_lm)</span></code></pre></div>
 <p>The first argument, <code>paths</code>, is the output of
 <code>all_indirect_paths()</code>. The other arguments will be passed to
 <code>indirect_effect()</code>.</p>
 <p>The output is an <code>indirect_list</code>-class object, which is a
 list of the outputs of <code>indirect_effects()</code>. If printed, a
 summary of the indirect effects will be printed:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>out_all</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ==  Indirect Effect(s)   ==</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                           ind  CI.lo  CI.hi Sig</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m11 -&gt; m12 -&gt; y1  0.037  0.003  0.077 Sig</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m11 -&gt; y1         0.052 -0.036  0.103    </span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m12 -&gt; y1        -0.050 -0.125 -0.000 Sig</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m2 -&gt; y1         -0.010 -0.077  0.064    </span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m11 -&gt; m12 -&gt; y2  0.022 -0.015  0.065    </span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m11 -&gt; y2         0.009 -0.086  0.093    </span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m12 -&gt; y2        -0.029 -0.089  0.014    </span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m2 -&gt; y2         -0.010 -0.074  0.068    </span></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m11 -&gt; m12 -&gt; y1 -0.005 -0.044  0.017    </span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m11 -&gt; y1        -0.007 -0.055  0.034    </span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m12 -&gt; y1        -0.017 -0.054  0.049    </span></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m2 -&gt; y1         -0.125 -0.258 -0.031 Sig</span></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m11 -&gt; m12 -&gt; y2 -0.003 -0.021  0.022    </span></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m11 -&gt; y2        -0.001 -0.021  0.052    </span></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m12 -&gt; y2        -0.010 -0.056  0.045    </span></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m2 -&gt; y2         -0.126 -0.233 -0.043 Sig</span></span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo to CI.hi] are 95.0% percentile confidence intervals by</span></span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    nonparametric bootstrapping with 100 samples.</span></span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - The &#39;ind&#39; column shows the indirect effects.</span></span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>out_all</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="co">#&gt; ==  Indirect Effect(s)   ==</span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="co">#&gt;                           ind  CI.lo  CI.hi Sig</span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m11 -&gt; m12 -&gt; y1  0.037  0.003  0.077 Sig</span></span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m11 -&gt; y1         0.052 -0.036  0.103    </span></span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m12 -&gt; y1        -0.050 -0.125 -0.000 Sig</span></span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m2 -&gt; y1         -0.010 -0.077  0.064    </span></span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m11 -&gt; m12 -&gt; y2  0.022 -0.015  0.065    </span></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m11 -&gt; y2         0.009 -0.086  0.093    </span></span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m12 -&gt; y2        -0.029 -0.089  0.014    </span></span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a><span class="co">#&gt; x1 -&gt; m2 -&gt; y2         -0.010 -0.074  0.068    </span></span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m11 -&gt; m12 -&gt; y1 -0.005 -0.044  0.017    </span></span>
+<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m11 -&gt; y1        -0.007 -0.055  0.034    </span></span>
+<span id="cb19-15"><a href="#cb19-15" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m12 -&gt; y1        -0.017 -0.054  0.049    </span></span>
+<span id="cb19-16"><a href="#cb19-16" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m2 -&gt; y1         -0.125 -0.258 -0.031 Sig</span></span>
+<span id="cb19-17"><a href="#cb19-17" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m11 -&gt; m12 -&gt; y2 -0.003 -0.021  0.022    </span></span>
+<span id="cb19-18"><a href="#cb19-18" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m11 -&gt; y2        -0.001 -0.021  0.052    </span></span>
+<span id="cb19-19"><a href="#cb19-19" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m12 -&gt; y2        -0.010 -0.056  0.045    </span></span>
+<span id="cb19-20"><a href="#cb19-20" tabindex="-1"></a><span class="co">#&gt; x2 -&gt; m2 -&gt; y2         -0.126 -0.233 -0.043 Sig</span></span>
+<span id="cb19-21"><a href="#cb19-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb19-22"><a href="#cb19-22" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo to CI.hi] are 95.0% percentile confidence intervals by</span></span>
+<span id="cb19-23"><a href="#cb19-23" tabindex="-1"></a><span class="co">#&gt;    nonparametric bootstrapping with 100 samples.</span></span>
+<span id="cb19-24"><a href="#cb19-24" tabindex="-1"></a><span class="co">#&gt;  - The &#39;ind&#39; column shows the indirect effects.</span></span>
+<span id="cb19-25"><a href="#cb19-25" tabindex="-1"></a><span class="co">#&gt; </span></span></code></pre></div>
 <p>The output of <code>many_indirect_effects()</code> is a named list,
 names being the path name as appeared in the output. Individual indirect
 effects can be extracted using either the indices or the path names</p>
 <p>An example using index:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>out1 <span class="ot">&lt;-</span> out_all[[<span class="dv">1</span>]]</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>out1</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                            </span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.037                 </span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.003 to 0.077]      </span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m11~x1)*(b.m12~m11)*(b.y1~m12)</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.45408)*(0.23402)</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   m11~x1       0.352</span></span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m12~m11       0.454</span></span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   y1~m12       0.234</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>out1 <span class="ot">&lt;-</span> out_all[[<span class="dv">1</span>]]</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>out1</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a><span class="co">#&gt;                                            </span></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a><span class="co">#&gt;  Path:               x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.037                 </span></span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.003 to 0.077]      </span></span>
+<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a><span class="co">#&gt;   (b.m11~x1)*(b.m12~m11)*(b.y1~m12)</span></span>
+<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb20-13"><a href="#cb20-13" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.45408)*(0.23402)</span></span>
+<span id="cb20-14"><a href="#cb20-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb20-15"><a href="#cb20-15" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb20-16"><a href="#cb20-16" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb20-17"><a href="#cb20-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb20-18"><a href="#cb20-18" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb20-19"><a href="#cb20-19" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
+<span id="cb20-20"><a href="#cb20-20" tabindex="-1"></a><span class="co">#&gt;   m11~x1       0.352</span></span>
+<span id="cb20-21"><a href="#cb20-21" tabindex="-1"></a><span class="co">#&gt;  m12~m11       0.454</span></span>
+<span id="cb20-22"><a href="#cb20-22" tabindex="-1"></a><span class="co">#&gt;   y1~m12       0.234</span></span></code></pre></div>
 <p>An example using path name (though not recommended because the name
 is usually long):</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> out_all[[<span class="st">&quot;x2 -&gt; m2 -&gt; y2&quot;</span>]]</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>out2</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                        </span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:               x2 -&gt; m2 -&gt; y2    </span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.126            </span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.233 to -0.043]</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (b.m2~x2)*(b.y2~m2)</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (0.28901)*(-0.43598)</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m2~x2       0.289</span></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  y2~m2      -0.436</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> out_all[[<span class="st">&quot;x2 -&gt; m2 -&gt; y2&quot;</span>]]</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>out2</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a><span class="co">#&gt;                                        </span></span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a><span class="co">#&gt;  Path:               x2 -&gt; m2 -&gt; y2    </span></span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     -0.126            </span></span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.233 to -0.043]</span></span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a><span class="co">#&gt;   (b.m2~x2)*(b.y2~m2)</span></span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a><span class="co">#&gt;   (0.28901)*(-0.43598)</span></span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-18"><a href="#cb21-18" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb21-19"><a href="#cb21-19" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
+<span id="cb21-20"><a href="#cb21-20" tabindex="-1"></a><span class="co">#&gt;  m2~x2       0.289</span></span>
+<span id="cb21-21"><a href="#cb21-21" tabindex="-1"></a><span class="co">#&gt;  y2~m2      -0.436</span></span></code></pre></div>
 <p>The extracted element can be used just like the outputs of
 <code>indirect_effect()</code> in previous section.</p>
 <p>See the help page of <code>all_indirect_paths()</code> and
@@ -948,29 +948,29 @@ is usually long):</p>
 Effect</h2>
 <p>The total indirect effect between two variables in a list of paths
 can be computed by <code>total_indirect_effect()</code>.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>total_x1_y1 <span class="ot">&lt;-</span> <span class="fu">total_indirect_effect</span>(out_all,</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>total_x1_y1</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                             </span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m11 -&gt; y1       </span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m12 -&gt; y1       </span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m2 -&gt; y1        </span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Function of Effects: 0.030                 </span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI:  [-0.088 to 0.132]     </span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computation of the Function of Effects:</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  (((x1-&gt;m11-&gt;m12-&gt;y1)</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x1-&gt;m11-&gt;y1))</span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x1-&gt;m12-&gt;y1))</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; +(x1-&gt;m2-&gt;y1) </span></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>total_x1_y1 <span class="ot">&lt;-</span> <span class="fu">total_indirect_effect</span>(out_all,</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>                                     <span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>                                     <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>total_x1_y1</span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a><span class="co">#&gt;                                             </span></span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m11 -&gt; m12 -&gt; y1</span></span>
+<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m11 -&gt; y1       </span></span>
+<span id="cb22-10"><a href="#cb22-10" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m12 -&gt; y1       </span></span>
+<span id="cb22-11"><a href="#cb22-11" tabindex="-1"></a><span class="co">#&gt;  Path:                x1 -&gt; m2 -&gt; y1        </span></span>
+<span id="cb22-12"><a href="#cb22-12" tabindex="-1"></a><span class="co">#&gt;  Function of Effects: 0.030                 </span></span>
+<span id="cb22-13"><a href="#cb22-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI:  [-0.088 to 0.132]     </span></span>
+<span id="cb22-14"><a href="#cb22-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-15"><a href="#cb22-15" tabindex="-1"></a><span class="co">#&gt; Computation of the Function of Effects:</span></span>
+<span id="cb22-16"><a href="#cb22-16" tabindex="-1"></a><span class="co">#&gt;  (((x1-&gt;m11-&gt;m12-&gt;y1)</span></span>
+<span id="cb22-17"><a href="#cb22-17" tabindex="-1"></a><span class="co">#&gt; +(x1-&gt;m11-&gt;y1))</span></span>
+<span id="cb22-18"><a href="#cb22-18" tabindex="-1"></a><span class="co">#&gt; +(x1-&gt;m12-&gt;y1))</span></span>
+<span id="cb22-19"><a href="#cb22-19" tabindex="-1"></a><span class="co">#&gt; +(x1-&gt;m2-&gt;y1) </span></span>
+<span id="cb22-20"><a href="#cb22-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-21"><a href="#cb22-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-22"><a href="#cb22-22" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb22-23"><a href="#cb22-23" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span></code></pre></div>
 <p>The first argument is the output of
 <code>many_indirect_effects()</code> or a list of
 <code>indirect</code>-class object. <code>x</code> is the name of the
