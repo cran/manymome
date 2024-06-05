@@ -12,7 +12,7 @@
 
 <meta name="author" content="Shu Fai Cheung &amp; Sing-Hang Cheung" />
 
-<meta name="date" content="2023-10-06" />
+<meta name="date" content="2024-06-04" />
 
 <title>Generate Bootstrap Estimates</title>
 
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Generate Bootstrap Estimates</h1>
 <h4 class="author">Shu Fai Cheung &amp; Sing-Hang Cheung</h4>
-<h4 class="date">2023-10-06</h4>
+<h4 class="date">2024-06-04</h4>
 
 
 
@@ -350,7 +350,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <code>do_boot()</code> from the package <a href="https://sfcheung.github.io/manymome/index.html">manymome</a> (<a href="https://doi.org/10.3758/s13428-023-02224-z">Cheung &amp; Cheung,
 2023</a>) to generate bootstrap estimates for
 <code>indirect_effect()</code> and <code>cond_indirect_effects()</code>
-to form percentile bootstrap confidence intervals.</p>
+to form bootstrap confidence intervals.</p>
 <p>Although <code>indirect_effect()</code> and
 <code>cond_indirect_effects()</code> can also be used to generate
 bootstrap estimates when they are called (see
@@ -394,7 +394,7 @@ one outcome variable (<code>y</code>), and two control variables
 <p>This simple mediation model with two control variables
 (<code>c1</code> and <code>c2</code>) will be fitted:</p>
 <div class="float">
-<img src="data:image/png;base64,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" alt="plot of chunk do_boot_draw_model" />
+<img src="data:image/png;base64,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" alt="plot of chunk do_boot_draw_model" />
 <div class="figcaption">plot of chunk do_boot_draw_model</div>
 </div>
 <p>We first fit the model by <code>lavaan::sem()</code>:</p>
@@ -407,7 +407,7 @@ one outcome variable (<code>y</code>), and two control variables
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>           <span class="at">fixed.x =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>           <span class="at">estimator =</span> <span class="st">&quot;MLR&quot;</span>)</span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="fu">summary</span>(fit_lavaan)</span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; lavaan 0.6.16 ended normally after 1 iteration</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; lavaan 0.6.17 ended normally after 1 iteration</span></span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt;   Estimator                                         ML</span></span>
 <span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt;   Optimization method                           NLMINB</span></span>
@@ -470,7 +470,7 @@ variances of <code>m</code> and <code>y</code>, which are not free
 parameters but are needed to form the confidence interval of the
 <em>standardized</em> indirect effect.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>boot_out_lavaan <span class="ot">&lt;-</span> <span class="fu">do_boot</span>(<span class="at">fit =</span> fit_lavaan,</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>                           <span class="at">R =</span> <span class="dv">100</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>                           <span class="at">R =</span> <span class="dv">500</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                           <span class="at">ncores =</span> <span class="dv">1</span>,</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                           <span class="at">seed =</span> <span class="dv">58491</span>)</span></code></pre></div>
 <p>Usually, just three arguments are needed:</p>
@@ -478,7 +478,7 @@ parameters but are needed to form the confidence interval of the
 <li><p><code>fit</code>: The output of
 <code>lavaan::sem()</code>.</p></li>
 <li><p><code>R</code>: The number of bootstrap samples. Should be at
-least 2000 or even 5000 in real research. 100 is used here just for
+least 2000 or even 5000 in real research. 500 is used here just for
 illustration.</p></li>
 <li><p><code>ncores</code>: The number of CPU cores to be used in
 generating bootstrap estimates in parallel processing.</p></li>
@@ -519,8 +519,8 @@ probably a more popular function.</p>
 <p>When calling <code>indirect_effect()</code> or
 <code>cond_indirect_effects()</code>, the argument <code>boot_out</code>
 can be assigned the output of <code>do_bout()</code>. They will then
-retrieve he stored bootstrap estimates to form the bootstrap confidence
-intervals, if requested.</p>
+retrieve he stored bootstrap estimates to form the percentile bootstrap
+confidence intervals, if requested.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>out_lavaan <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>                              <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                              <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
@@ -529,11 +529,11 @@ intervals, if requested.</p>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                              <span class="at">boot_out =</span> boot_out_lavaan)</span>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>out_lavaan</span>
 <span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect  ==</span></span>
 <span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt;                                      </span></span>
 <span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; m -&gt; y     </span></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.733           </span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.279 to 1.202]</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect:    0.733           </span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.270 to 1.228]</span></span>
 <span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
 <span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt;   (b.m~x)*(b.y~m)</span></span>
@@ -541,7 +541,7 @@ intervals, if requested.</p>
 <span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt;   (0.93469)*(0.78469)</span></span>
 <span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt; with 500 bootstrap samples.</span></span>
 <span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
 <span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="co">#&gt;  Path Coefficient</span></span>
@@ -550,6 +550,12 @@ intervals, if requested.</p>
 <p>Reusing the bootstrap estimates can ensure that all analysis with
 bootstrap confidence intervals are based on the same set of bootstrap
 samples.</p>
+<p>The function also supports bias-corrected (BC) confidence interval,
+which can be requested by adding <code>boot_type = &quot;bc&quot;</code> to the
+call of <code>indirect_effect()</code>. However, authors in some recent
+work do not advocate this method (e.g., Falk &amp; Biesanz, 2015; Hayes,
+2022; Tofighi &amp; Kelley, 2020). Therefore, this option is provided
+merely for research purpose.</p>
 </div>
 </div>
 <div id="demonstration-lm" class="section level1" number="4">
@@ -586,41 +592,41 @@ predicts <code>y</code>:</p>
 <span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 0.8425 on 96 degrees of freedom</span></span>
 <span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.5981, Adjusted R-squared:  0.5855 </span></span>
-<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="co">#&gt; F-statistic: 47.62 on 3 and 96 DF,  p-value: &lt; 2.2e-16</span></span>
-<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="co"># ###### Regression: Predict y ######</span></span>
-<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a><span class="fu">summary</span>(lm_y)</span>
-<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
-<span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a><span class="co">#&gt; lm(formula = y ~ m + x + c1 + c2, data = dat)</span></span>
-<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-35"><a href="#cb6-35" tabindex="-1"></a><span class="co">#&gt; Residuals:</span></span>
-<span id="cb6-36"><a href="#cb6-36" tabindex="-1"></a><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
-<span id="cb6-37"><a href="#cb6-37" tabindex="-1"></a><span class="co">#&gt; -4.1336 -1.3365 -0.1014  1.4597  6.5470 </span></span>
-<span id="cb6-38"><a href="#cb6-38" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-39"><a href="#cb6-39" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
-<span id="cb6-40"><a href="#cb6-40" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)   </span></span>
-<span id="cb6-41"><a href="#cb6-41" tabindex="-1"></a><span class="co">#&gt; (Intercept)   4.4152     3.3016   1.337  0.18432   </span></span>
-<span id="cb6-42"><a href="#cb6-42" tabindex="-1"></a><span class="co">#&gt; m             0.7847     0.2495   3.145  0.00222 **</span></span>
-<span id="cb6-43"><a href="#cb6-43" tabindex="-1"></a><span class="co">#&gt; x             0.5077     0.3057   1.661  0.10004   </span></span>
-<span id="cb6-44"><a href="#cb6-44" tabindex="-1"></a><span class="co">#&gt; c1            0.1405     0.1941   0.724  0.47093   </span></span>
-<span id="cb6-45"><a href="#cb6-45" tabindex="-1"></a><span class="co">#&gt; c2           -0.1544     0.2554  -0.604  0.54695   </span></span>
-<span id="cb6-46"><a href="#cb6-46" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
-<span id="cb6-47"><a href="#cb6-47" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb6-48"><a href="#cb6-48" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-49"><a href="#cb6-49" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 2.06 on 95 degrees of freedom</span></span>
-<span id="cb6-50"><a href="#cb6-50" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.3576, Adjusted R-squared:  0.3305 </span></span>
-<span id="cb6-51"><a href="#cb6-51" tabindex="-1"></a><span class="co">#&gt; F-statistic: 13.22 on 4 and 95 DF,  p-value: 1.336e-08</span></span></code></pre></div>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="co">#&gt; F-statistic: 47.62 on 3 and 96 DF,  p-value: &lt; 2.2e-16</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co"># ###### Regression: Predict y ######</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="fu">summary</span>(lm_y)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt; lm(formula = y ~ m + x + c1 + c2, data = dat)</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt; Residuals:</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; -4.1336 -1.3365 -0.1014  1.4597  6.5470 </span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)   </span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt; (Intercept)   4.4152     3.3016   1.337  0.18432   </span></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co">#&gt; m             0.7847     0.2495   3.145  0.00222 **</span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co">#&gt; x             0.5077     0.3057   1.661  0.10004   </span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">#&gt; c1            0.1405     0.1941   0.724  0.47093   </span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co">#&gt; c2           -0.1544     0.2554  -0.604  0.54695   </span></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 2.06 on 95 degrees of freedom</span></span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.3576, Adjusted R-squared:  0.3305 </span></span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a><span class="co">#&gt; F-statistic: 13.22 on 4 and 95 DF,  p-value: 1.336e-08</span></span></code></pre></div>
 <p>To use <code>do_boot()</code>, we first combine the regression
 outputs to one object using <code>lm2list()</code>. The output is an
 <code>lm_list</code>-class object.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>fit_lm <span class="ot">&lt;-</span> <span class="fu">lm2list</span>(lm_m, lm_y)</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>fit_lm</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt; The models:</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt; m ~ x + c1 + c2</span></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt; y ~ m + x + c1 + c2</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>fit_lm <span class="ot">&lt;-</span> <span class="fu">lm2list</span>(lm_m, lm_y)</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>fit_lm</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co">#&gt; The models:</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co">#&gt; m ~ x + c1 + c2</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co">#&gt; y ~ m + x + c1 + c2</span></span></code></pre></div>
 </div>
 <div id="generate-bootstrap-estimates-1" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Generate Bootstrap
@@ -628,10 +634,10 @@ Estimates</h2>
 <p>We can now use <code>do_boot()</code> as described above, using the
 output of <code>lm2list()</code> instead of the output of
 <code>lavaan::sem()</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>boot_out_lm <span class="ot">&lt;-</span> <span class="fu">do_boot</span>(<span class="at">fit =</span> fit_lm,</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>                       <span class="at">R =</span> <span class="dv">100</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>                       <span class="at">seed =</span> <span class="dv">98715</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>                       <span class="at">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>boot_out_lm <span class="ot">&lt;-</span> <span class="fu">do_boot</span>(<span class="at">fit =</span> fit_lm,</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>                       <span class="at">R =</span> <span class="dv">500</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>                       <span class="at">seed =</span> <span class="dv">98715</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>                       <span class="at">ncores =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>Like working on the outputs of <code>lavaan::lavaan()</code>,
 parallel processing is also used by default. <code>ncores</code> is the
 number of CPU cores to be used. Because the output may not be saved, it
@@ -647,32 +653,37 @@ samples will be generated every time.</p>
 <p>When calling <code>indirect_effect()</code> or
 <code>cond_indirect_effects()</code>, we cab set the argument
 <code>boot_out</code> to the output of <code>do_bout()</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>out_lm <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>                          <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>                          <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>                          <span class="at">fit =</span> fit_lm,</span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>                          <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>                          <span class="at">boot_out =</span> boot_out_lm)</span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>out_lm</span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt;                                      </span></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; m -&gt; y     </span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.733           </span></span>
-<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.277 to 1.206]</span></span>
-<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
-<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co">#&gt;   (b.m~x)*(b.y~m)</span></span>
-<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="co">#&gt;   (0.93469)*(0.78469)</span></span>
-<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a><span class="co">#&gt;  Path Coefficient</span></span>
-<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a><span class="co">#&gt;   m~x       0.935</span></span>
-<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a><span class="co">#&gt;   y~m       0.785</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>out_lm <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>                          <span class="at">y =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>                          <span class="at">m =</span> <span class="st">&quot;m&quot;</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>                          <span class="at">fit =</span> fit_lm,</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>                          <span class="at">boot_ci =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>                          <span class="at">boot_out =</span> boot_out_lm)</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>out_lm</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect  ==</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co">#&gt;                                      </span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="co">#&gt;  Path:               x -&gt; m -&gt; y     </span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect:    0.733           </span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.292 to 1.201]</span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a><span class="co">#&gt;   (b.m~x)*(b.y~m)</span></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a><span class="co">#&gt;   (0.93469)*(0.78469)</span></span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="co">#&gt; with 500 bootstrap samples.</span></span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a><span class="co">#&gt;  Path Coefficient</span></span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a><span class="co">#&gt;   m~x       0.935</span></span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a><span class="co">#&gt;   y~m       0.785</span></span></code></pre></div>
+<p>As long as users are aware of the potential problem with
+bias-corrected (BC) bootstrap confidence interval (see the references
+cited above), <code>boot_type = &quot;bc&quot;</code> can be used to request BC
+bootstrap confidence interval instead of the default percentile
+bootstrap confidence interval.</p>
 </div>
 </div>
 <div id="the-structure-of-the-output" class="section level1" number="5">
@@ -686,45 +697,45 @@ class <code>boot_out</code>, which is a list of <code>R</code> lists,
 each with three elements: <code>est</code>, <code>implied_stats</code>,
 and <code>ok</code>.</p>
 <p>This is the content of <code>est</code> of the first list:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>boot_out_lavaan[[<span class="dv">1</span>]]<span class="sc">$</span>est</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="co">#&gt;    lhs op rhs    est</span></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co">#&gt; 1    m  ~   x  0.828</span></span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">#&gt; 2    m  ~  c1  0.224</span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">#&gt; 3    m  ~  c2 -0.231</span></span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">#&gt; 4    y  ~   m  1.257</span></span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">#&gt; 5    y  ~   x  0.089</span></span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co">#&gt; 6    y  ~  c1 -0.118</span></span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co">#&gt; 7    y  ~  c2 -0.632</span></span>
-<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co">#&gt; 8    m ~~   m  0.571</span></span>
-<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="co">#&gt; 9    y ~~   y  4.317</span></span>
-<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="co">#&gt; 10   x ~~   x  1.207</span></span>
-<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="co">#&gt; 11   x ~~  c1  0.146</span></span>
-<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="co">#&gt; 12   x ~~  c2  0.115</span></span>
-<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="co">#&gt; 13  c1 ~~  c1  1.331</span></span>
-<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a><span class="co">#&gt; 14  c1 ~~  c2  0.153</span></span>
-<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a><span class="co">#&gt; 15  c2 ~~  c2  0.688</span></span>
-<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a><span class="co">#&gt; 16   m r2   m  0.618</span></span>
-<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="co">#&gt; 17   y r2   y  0.396</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>boot_out_lavaan[[<span class="dv">1</span>]]<span class="sc">$</span>est</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co">#&gt;    lhs op rhs    est</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="co">#&gt; 1    m  ~   x  0.828</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co">#&gt; 2    m  ~  c1  0.224</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt; 3    m  ~  c2 -0.231</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt; 4    y  ~   m  1.257</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt; 5    y  ~   x  0.089</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; 6    y  ~  c1 -0.118</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt; 7    y  ~  c2 -0.632</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt; 8    m ~~   m  0.571</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt; 9    y ~~   y  4.317</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt; 10   x ~~   x  1.207</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="co">#&gt; 11   x ~~  c1  0.146</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="co">#&gt; 12   x ~~  c2  0.115</span></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co">#&gt; 13  c1 ~~  c1  1.331</span></span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="co">#&gt; 14  c1 ~~  c2  0.153</span></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt; 15  c2 ~~  c2  0.688</span></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt; 16   m r2   m  0.618</span></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="co">#&gt; 17   y r2   y  0.396</span></span></code></pre></div>
 <p>The content is just the first four columns of the output of
 <code>lavaan::parameterEstimates()</code>. Note that only fixed and free
 parameters are used so other rows, if any, are not used even if
 present.</p>
 <p>This is the content of <code>implied_stats</code> of the first
 list:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>boot_out_lavaan[[<span class="dv">1</span>]]<span class="sc">$</span>implied_stats</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co">#&gt; $cov</span></span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="co">#&gt;         m      y      x     c1     c2</span></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co">#&gt; m   1.497                            </span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt; y   1.944  7.150                     </span></span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt; x   1.006  1.281  1.207              </span></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt; c1  0.383  0.241  0.146  1.331       </span></span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; c2 -0.030 -0.480  0.115  0.153  0.688</span></span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt; $mean</span></span>
-<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt; numeric(0)</span></span>
-<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="co">#&gt; $mean_lv</span></span>
-<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="co">#&gt; numeric(0)</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>boot_out_lavaan[[<span class="dv">1</span>]]<span class="sc">$</span>implied_stats</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co">#&gt; $cov</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="co">#&gt;         m      y      x     c1     c2</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="co">#&gt; m   1.497                            </span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co">#&gt; y   1.944  7.150                     </span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="co">#&gt; x   1.006  1.281  1.207              </span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co">#&gt; c1  0.383  0.241  0.146  1.331       </span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="co">#&gt; c2 -0.030 -0.480  0.115  0.153  0.688</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="co">#&gt; $mean</span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co">#&gt; numeric(0)</span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="co">#&gt; $mean_lv</span></span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="co">#&gt; numeric(0)</span></span></code></pre></div>
 <p>It has three elements. <code>cov</code> is the implied variances and
 covariances of all variables. If a model has latent variables, they will
 be included too. The other elements, <code>mean</code> and
@@ -746,34 +757,34 @@ used in forming confidence intervals.</p>
 <code>boot_out</code>, which is a list of <code>R</code> lists, each
 with two elements: <code>est</code> and <code>implied_stats</code>.</p>
 <p>This is the content of <code>est</code> of the first list:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>boot_out_lm[[<span class="dv">1</span>]]<span class="sc">$</span>est</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co">#&gt;   lhs op rhs        est</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="co">#&gt; 1   m  ~   x  0.9583396</span></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="co">#&gt; 2   m  ~  c1  0.2808811</span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co">#&gt; 3   m  ~  c2 -0.3040130</span></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="co">#&gt; 4   m ~1      9.9351030</span></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co">#&gt; 5   y  ~   m  0.3986059</span></span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="co">#&gt; 6   y  ~   x  0.5626298</span></span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="co">#&gt; 7   y  ~  c1  0.5010449</span></span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="co">#&gt; 8   y  ~  c2 -0.3614863</span></span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co">#&gt; 9   y ~1     11.7212742</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>boot_out_lm[[<span class="dv">1</span>]]<span class="sc">$</span>est</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="co">#&gt;   lhs op rhs        est</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="co">#&gt; 1   m  ~   x  0.9583396</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co">#&gt; 2   m  ~  c1  0.2808811</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="co">#&gt; 3   m  ~  c2 -0.3040130</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="co">#&gt; 4   m ~1      9.9351030</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="co">#&gt; 5   y  ~   m  0.3986059</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="co">#&gt; 6   y  ~   x  0.5626298</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="co">#&gt; 7   y  ~  c1  0.5010449</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="co">#&gt; 8   y  ~  c2 -0.3614863</span></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="co">#&gt; 9   y ~1     11.7212742</span></span></code></pre></div>
 <p>The content is similar in structure to the output of
 <code>lavaan::parameterEstimates()</code>. However, the estimates are
 the estimates based on <code>lm()</code>.</p>
 <p>This is the content of <code>implied_stats</code> of the first
 list:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>boot_out_lm[[<span class="dv">1</span>]]<span class="sc">$</span>implied_stats</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="co">#&gt; $cov</span></span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="co">#&gt;             m          x         c1          c2          y</span></span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co">#&gt; m   1.7489520 0.99463099 0.32168750 -0.15480736  1.4738922</span></span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="co">#&gt; x   0.9946310 1.03034065 0.04418569  0.01709202  0.9921266</span></span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="co">#&gt; c1  0.3216875 0.04418569 1.13244802  0.12743087  0.6744295</span></span>
-<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="co">#&gt; c2 -0.1548074 0.01709202 0.12743087  0.68082701 -0.2343517</span></span>
-<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="co">#&gt; y   1.4738922 0.99212663 0.67442949 -0.23435172  5.4383227</span></span>
-<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="co">#&gt; $mean</span></span>
-<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="co">#&gt;         m         x        c1        c2         y </span></span>
-<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="co">#&gt; 18.487194  9.848009  2.329366  5.065314 23.967238</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>boot_out_lm[[<span class="dv">1</span>]]<span class="sc">$</span>implied_stats</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="co">#&gt; $cov</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="co">#&gt;             m          x         c1          c2          y</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="co">#&gt; m   1.7489520 0.99463099 0.32168750 -0.15480736  1.4738922</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="co">#&gt; x   0.9946310 1.03034065 0.04418569  0.01709202  0.9921266</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="co">#&gt; c1  0.3216875 0.04418569 1.13244802  0.12743087  0.6744295</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="co">#&gt; c2 -0.1548074 0.01709202 0.12743087  0.68082701 -0.2343517</span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="co">#&gt; y   1.4738922 0.99212663 0.67442949 -0.23435172  5.4383227</span></span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="co">#&gt; $mean</span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a><span class="co">#&gt;         m         x        c1        c2         y </span></span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a><span class="co">#&gt; 18.487194  9.848009  2.329366  5.065314 23.967238</span></span></code></pre></div>
 <p>It has two elements. <code>cov</code> is the variances and
 covariances of all variables. Unlike the output based on
 <code>lavaan::sem()</code>, the content is just the sample variances and
@@ -788,13 +799,24 @@ Information</h1>
 <p>For further information on <code>do_boot()</code>, please refer to
 its help page.</p>
 </div>
-<div id="reference" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Reference</h1>
+<div id="references" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> References</h1>
 <p>Cheung, S. F., &amp; Cheung, S.-H. (2023). <em>manymome</em>: An R
 package for computing the indirect effects, conditional effects, and
 conditional indirect effects, standardized or unstandardized, and their
 bootstrap confidence intervals, in many (though not all) models.
 <em>Behavior Research Methods</em>. <a href="https://doi.org/10.3758/s13428-023-02224-z" class="uri">https://doi.org/10.3758/s13428-023-02224-z</a></p>
+<p>Falk, C. F., &amp; Biesanz, J. C. (2015). Inference and interval
+estimation methods for indirect effects with latent variable models.
+<em>Structural Equation Modeling: A Multidisciplinary Journal,
+22</em>(1), 24–38. <a href="https://doi.org/10.1080/10705511.2014.935266" class="uri">https://doi.org/10.1080/10705511.2014.935266</a></p>
+<p>Hayes, A. F. (2022). <em>Introduction to mediation, moderation, and
+conditional process analysis: A regression-based approach</em> (Third
+Edition). The Guilford Press.</p>
+<p>Tofighi, D., &amp; Kelley, K. (2020). Indirect effects in sequential
+mediation models: Evaluating methods for hypothesis testing and
+confidence interval formation. <em>Multivariate Behavioral Research,
+55</em>(2), 188–210. <a href="https://doi.org/10.1080/00273171.2019.1618545" class="uri">https://doi.org/10.1080/00273171.2019.1618545</a></p>
 </div>
 
 

@@ -1,3 +1,41 @@
+# manymome 0.2.2
+
+## New Features
+
+- Added support for bias-corrected (BC)
+  confidence intervals when bootstrapping
+  is done. This can be requested by
+  adding `boot_type = "bc"` in applicable
+  funcion. BC confidence interval is
+  not recommended in some recent works
+  (see [Get Started](https://sfcheung.github.io/manymome/articles/manymome.html)
+  for selected references). It is added
+  merely for research purpose. (0.2.1.4)
+
+## Miscellaneous
+
+- Try not setting the environment when
+  calling `gen_boot_i_lavaan()`, which
+  may not be necessary. (0.2.1.2)
+
+- Factored out confidence interval
+  computation into an internal function.
+  (0.2.1.3)
+
+- `lm2list()` now supports having only
+  one regression model as the input.
+  This allows users to use functions
+  such as `cond_indirect_effects()`
+  on a model with only moderators.
+  (0.2.1.5)
+
+## Bug Fixes
+
+- Fix a bug in `do_boot()` for
+  multigroup models when all groups
+  have exactly the same number of
+  cases. (0.2.2.1)
+
 # manymome 0.2.1
 
 ## New Features
