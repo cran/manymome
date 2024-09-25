@@ -23,10 +23,64 @@
 #' a path with exactly one moderator,
 #' and the moderator is a numeric variable.
 #'
-#' @return A [ggplot2] graph. Plotted if
+#' ## Using Original Standard Errors
+#'
+#' If the following conditions are met, the
+#' stored standard errors, if available,
+#' will be used to
+#' form the confidence intervals:
+#'
+#' - Confidence intervals have not been
+#'  formed (e.g., by bootstrapping or
+#'  Monte Carlo).
+#'
+#' - The path has no mediators.
+#'
+#' - The model has only one group.
+#'
+#' - The path is moderated by one or
+#'  more moderator.
+#'
+#' - Both the `x`-variable and the
+#'  `y`-variable are not standardized.
+#'
+#' If the model is fitted by OLS
+#' regression (e.g., using [stats::lm()]),
+#' then the variance-covariance matrix
+#' of the coefficient estimates will be
+#' used, and confidence
+#' intervals are computed from the *t*
+#' statistic.
+#'
+#' If the model is fitted by structural
+#' equation modeling using `lavaan`, then
+#' the variance-covariance computed by
+#' `lavaan` will be used,
+#' and confidence intervals are computed
+#' from the *z* statistic.
+#'
+#' ## Caution
+#'
+#' If the model is fitted by structural
+#' equation modeling and has moderators,
+#' the standard errors, *p*-values,
+#' and confidence interval computed
+#' from the variance-covariance matrices
+#' for conditional effects
+#' can only be trusted if all covariances
+#' involving the product terms are free.
+#' If any of them are fixed, for example,
+#' fixed to zero, it is possible
+#' that the model is not invariant to
+#' linear transformation of the variables.
+#'
+#'
+#' @return
+#' [plot_effect_vs_w()] returns a
+#' `ggplot2` graph. Plotted if
 #' not assigned to a name. It can be
 #' further modified like a usual
-#' [ggplot2] graph.
+#' `ggplot2` graph.
 #'
 #' @param object The output of
 #' [cond_indirect_effects()].
@@ -180,6 +234,13 @@
 #' at zero.
 #' Default is `list()`.
 #'
+#' @param level The level of confidence
+#' for the confidence intervals computed
+#' from the original standard errors. Used only for
+#' paths without mediators and both
+#' `x`- and `y`-variables are not
+#' standardized.
+#'
 #' @seealso [cond_indirect_effects()]
 #'
 #' @examples
@@ -239,11 +300,17 @@ plot_effect_vs_w <- function(object,
                              line_args = list(),
                              band_args = list(),
                              intervals_args = list(),
-                             zero_line_args = list()) {
+                             zero_line_args = list(),
+                             level = .95) {
     full_output_1 <- attr(object, "full_output")[[1]]
+    has_m <- isTRUE(!is.null(full_output_1$m))
+    standardized_x <- full_output_1$standardized_x
+    standardized_y <- full_output_1$standardized_y
     path_str <- path_name(full_output_1)
     wlevels <- attr(object, "wlevels")
-    w_types <- attr(wlevels, "w_types")
+    w_type <- attr(wlevels, "w_type")
+    has_wlevels <- cond_indirect_effects_has_wlevels(object)
+    has_groups <- cond_indirect_effects_has_groups(object)
     if (ncol(wlevels) > 1) {
         stop("Only an effect with one moderator is supported.")
       }
@@ -259,9 +326,24 @@ plot_effect_vs_w <- function(object,
     wvalue <- wlevels[, w]
     ind <- stats::coef(object)
     has_ci <- "CI.lo" %in% colnames(object)
+    se_out <- cond_effects_original_se(object,
+                                      level = level,
+                                      append = FALSE)
+    has_original_se <- !is.null(se_out)
+
+    if (!has_ci &&
+        !has_m &&
+        !has_groups &&
+        has_wlevels &&
+        !standardized_x &&
+        !standardized_y &&
+        has_original_se) {
+        has_ci <- TRUE
+      }
+
     if (has_ci) {
-        ci_lower <- stats::confint(object)[, 1]
-        ci_upper <- stats::confint(object)[, 2]
+        ci_lower <- stats::confint(object, level = level)[, 1]
+        ci_upper <- stats::confint(object, level = level)[, 2]
       } else {
         ci_lower <- NULL
         ci_upper <- NULL
@@ -339,4 +421,113 @@ plot_effect_vs_w <- function(object,
               do.call(ggplot2::geom_hline, zero_line_args_final)
       }
     p
+  }
+
+#' @details
+#' The function [fill_wlevels()] is
+#' a helper to automatically
+#' fill in additional levels
+#' of the moderators, to plot a graph
+#' with smooth confidence band. It
+#' accepts the output of [cond_indirect_effects()]
+#' or [pseudo_johnson_neyman()], finds
+#' the range of the values of the
+#' moderator, and returns an output
+#' of [cond_indirect_effects()] with
+#' the desired number of levels within
+#' this range. It is intended to be a
+#' helper. If it does not work, users
+#' can still get the desired number of
+#' levels by setting the values manually
+#' when calling [cond_indirect_effects()].
+#'
+#' @param to_fill The output of
+#' [cond_indirect_effects()] or
+#' [pseudo_johnson_neyman()], for which
+#' additional levels of the moderator
+#' will be added.
+#'
+#' @param cond_out If `to_fill` is
+#' the output of [pseudo_johnson_neyman()],
+#' the original output of [cond_indirect_effects()]
+#' used in the call to [pseudo_johnson_neyman()]
+#' need to be supplied through this argument.
+#'
+#' @param k The desired number of levels
+#' of the moderator.
+#'
+#' @return
+#' [fill_wlevels()] returns an updated
+#' output of [cond_indirect_effects()]
+#' with the desired number of levels of
+#' the moderator.
+#'
+#' @examples
+#'
+#' # Use fill_wlevels to add moderator levels:
+#'
+#' dat <- data_med_mod_a
+#' lm_m <- lm(m ~ x*w + c1 + c2, dat)
+#' lm_y <- lm(y ~ m + x + c1 + c2, dat)
+#' fit_lm <- lm2list(lm_m, lm_y)
+#' wlevels <- mod_levels(w = "w",
+#'                       sd_from_mean = c(-3, 0, 3),
+#'                       fit = fit_lm)
+#' wlevels
+#' cond_out <- cond_indirect_effects(wlevels = wlevels,
+#'                                   x = "x",
+#'                                   y = "m",
+#'                                   fit = fit_lm)
+#' cond_out
+#' # Only 3 points
+#' p1 <- plot_effect_vs_w(cond_out)
+#' p1
+#' # Increase the number of levels to 15
+#' cond_out_filled <- fill_wlevels(cond_out,
+#'                                 k = 15)
+#' cond_out_filled
+#' p2 <- plot_effect_vs_w(cond_out_filled)
+#' p2
+#'
+#'
+#' @rdname plot_effect_vs_w
+#' @export
+
+fill_wlevels <- function(to_fill,
+                         cond_out = NULL,
+                         k = 21) {
+    is_jn <- inherits(to_fill, "pseudo_johnson_neyman")
+    if (is_jn && is.null(cond_out)) {
+        stop("The original cond_indirect_effects output is required",
+             "if the 'to_fill' is the output of 'pseudo_johnson_neyman()'.")
+      }
+    if (is_jn) {
+        jn_cond <- to_fill$cond_effects
+        wlevels <- attr(jn_cond, "wlevels")
+      } else {
+        cond_out <- to_fill
+        wlevels <- attr(cond_out, "wlevels")
+      }
+    call0 <- attr(cond_out, "call")
+    fit <- attr(cond_out, "fit")
+    if (ncol(wlevels) > 1) {
+        stop("Only support a path with one moderator.")
+      }
+    w <- colnames(wlevels)
+    wlevels_raw <- attr(wlevels, "wlevels")
+    wvalues <- wlevels[, w, drop = TRUE]
+    if (length(wvalues) >= k) {
+        return(cond_out)
+      }
+    wvalues_new <- seq(from = min(wvalues),
+                       to = max(wvalues),
+                       length.out = k)
+    wlevels_new <- mod_levels(w = w,
+                              fit = fit,
+                              values = wvalues_new)
+    call1 <- call0
+    call1$wlevels <- wlevels_new
+    out <- eval(call1,
+                envir = parent.frame())
+    out
   }

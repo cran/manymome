@@ -478,7 +478,7 @@
 #' cond_indirect(x = "x", y = "m1",
 #'               wvalues = c(w1 = hi_w1), fit = fit)
 #'
-#' # Indirect effect from x1 through m2 to y
+#' # Direct effect from x to y (direct because no 'm' variables)
 #' indirect_effect(x = "x", y = "y", fit = fit)
 #'
 #' # Conditional Indirect effect from x1 through m1 to y, when w1 is 1 SD above mean
@@ -629,12 +629,16 @@ cond_indirect <- function(x,
         fit0 <- fit
         if (is.null(est)) est <- lavaan::parameterEstimates(fit)
         if (is.null(implied_stats)) implied_stats <- lav_implied_all(fit)
+        est_vcov <- tryCatch(get_vcov(fit), error = function(e) NULL)
+        df_residual <- tryCatch(lav_df_residual(fit), error = function(e) NULL)
         fit_data <- lavaan::lavInspect(fit, "data")
       }
     if (fit_type == "lavaan.mi") {
         fit0 <- fit
         if (is.null(est)) est <- lav_est(fit)
         if (is.null(implied_stats)) implied_stats <- lav_implied_all(fit)
+        est_vcov <- tryCatch(get_vcov(fit), error = function(e) NULL)
+        df_residual <- tryCatch(lav_df_residual(fit), error = function(e) NULL)
         fit_data <- lav_data_used(fit, drop_colon = FALSE)
       }
     if (fit_type == "lm") {
@@ -642,6 +646,16 @@ cond_indirect <- function(x,
         lm_est <- lm2ptable(fit)
         if (is.null(est)) est <- lm_est$est
         if (is.null(implied_stats)) implied_stats <- lm_est$implied_stats
+        if (is.null(lm_est$vcov)) {
+            est_vcov <- lm_list_vcov(fit)
+          } else {
+            est_vcov <- lm_est$vcov
+          }
+        if (is.null(lm_est$df_residual)) {
+            df_residual <- lm_list_vcov(fit)
+          } else {
+            df_residual <- lm_df_residual(fit)
+          }
         fit_data <- lm_est$data
       }
     if (is.null(prods)) {
@@ -670,7 +684,9 @@ cond_indirect <- function(x,
                      standardized_x = standardized_x,
                      standardized_y = standardized_y,
                      prods = prods,
-                     group = group)
+                     group = group,
+                     est_vcov = est_vcov,
+                     df_residual = df_residual)
     if (mc_ci) {
         out_mc <- mapply(indirect_i,
                            est = lapply(mc_out, function(x) x$est),
@@ -1368,6 +1384,15 @@ cond_indirect_effects <- function(wlevels,
       }
   }
 
+#' @describeIn cond_indirect Just
+#' an alias to [cond_indirect_effects()],
+#' a better name when a path has no
+#' moderator.
+#'
+#' @export
+#' @order 4
+cond_effects <- cond_indirect_effects
+
 #' @param paths The output of [all_indirect_paths()]
 #'
 #' @param ... For [many_indirect_effects()],
@@ -1429,7 +1454,7 @@ cond_indirect_effects <- function(wlevels,
 #' It call [indirect_effect()] once for
 #' each of the path.
 #'
-#' @order 4
+#' @order 5
 
 many_indirect_effects <- function(paths, ...) {
     path_names <- names(paths)

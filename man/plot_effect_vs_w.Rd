@@ -2,6 +2,7 @@
 % Please edit documentation in R/plot_effect_vs_w.R
 \name{plot_effect_vs_w}
 \alias{plot_effect_vs_w}
+\alias{fill_wlevels}
 \title{Plot an Effect Against a Moderator}
 \usage{
 plot_effect_vs_w(
@@ -26,8 +27,11 @@ plot_effect_vs_w(
   line_args = list(),
   band_args = list(),
   intervals_args = list(),
-  zero_line_args = list()
+  zero_line_args = list(),
+  level = 0.95
 )
+
+fill_wlevels(to_fill, cond_out = NULL, k = 21)
 }
 \arguments{
 \item{object}{The output of
@@ -181,12 +185,40 @@ additional arguments to be passed
 to \code{\link[ggplot2:geom_path]{ggplot2::geom_line()}} for the line
 at zero.
 Default is \code{list()}.}
+
+\item{level}{The level of confidence
+for the confidence intervals computed
+from the original standard errors. Used only for
+paths without mediators and both
+\code{x}- and \code{y}-variables are not
+standardized.}
+
+\item{to_fill}{The output of
+\code{\link[=cond_indirect_effects]{cond_indirect_effects()}} or
+\code{\link[=pseudo_johnson_neyman]{pseudo_johnson_neyman()}}, for which
+additional levels of the moderator
+will be added.}
+
+\item{cond_out}{If \code{to_fill} is
+the output of \code{\link[=pseudo_johnson_neyman]{pseudo_johnson_neyman()}},
+the original output of \code{\link[=cond_indirect_effects]{cond_indirect_effects()}}
+used in the call to \code{\link[=pseudo_johnson_neyman]{pseudo_johnson_neyman()}}
+need to be supplied through this argument.}
+
+\item{k}{The desired number of levels
+of the moderator.}
 }
 \value{
-A \link{ggplot2} graph. Plotted if
+\code{\link[=plot_effect_vs_w]{plot_effect_vs_w()}} returns a
+\code{ggplot2} graph. Plotted if
 not assigned to a name. It can be
 further modified like a usual
-\link{ggplot2} graph.
+\code{ggplot2} graph.
+
+\code{\link[=fill_wlevels]{fill_wlevels()}} returns an updated
+output of \code{\link[=cond_indirect_effects]{cond_indirect_effects()}}
+with the desired number of levels of
+the moderator.
 }
 \description{
 It plots an effect, direct
@@ -212,6 +244,72 @@ as illustrated in the example.
 Currently, this function only supports
 a path with exactly one moderator,
 and the moderator is a numeric variable.
+\subsection{Using Original Standard Errors}{
+
+If the following conditions are met, the
+stored standard errors, if available,
+will be used to
+form the confidence intervals:
+\itemize{
+\item Confidence intervals have not been
+formed (e.g., by bootstrapping or
+Monte Carlo).
+\item The path has no mediators.
+\item The model has only one group.
+\item The path is moderated by one or
+more moderator.
+\item Both the \code{x}-variable and the
+\code{y}-variable are not standardized.
+}
+
+If the model is fitted by OLS
+regression (e.g., using \code{\link[stats:lm]{stats::lm()}}),
+then the variance-covariance matrix
+of the coefficient estimates will be
+used, and confidence
+intervals are computed from the \emph{t}
+statistic.
+
+If the model is fitted by structural
+equation modeling using \code{lavaan}, then
+the variance-covariance computed by
+\code{lavaan} will be used,
+and confidence intervals are computed
+from the \emph{z} statistic.
+}
+
+\subsection{Caution}{
+
+If the model is fitted by structural
+equation modeling and has moderators,
+the standard errors, \emph{p}-values,
+and confidence interval computed
+from the variance-covariance matrices
+for conditional effects
+can only be trusted if all covariances
+involving the product terms are free.
+If any of them are fixed, for example,
+fixed to zero, it is possible
+that the model is not invariant to
+linear transformation of the variables.
+}
+
+The function \code{\link[=fill_wlevels]{fill_wlevels()}} is
+a helper to automatically
+fill in additional levels
+of the moderators, to plot a graph
+with smooth confidence band. It
+accepts the output of \code{\link[=cond_indirect_effects]{cond_indirect_effects()}}
+or \code{\link[=pseudo_johnson_neyman]{pseudo_johnson_neyman()}}, finds
+the range of the values of the
+moderator, and returns an output
+of \code{\link[=cond_indirect_effects]{cond_indirect_effects()}} with
+the desired number of levels within
+this range. It is intended to be a
+helper. If it does not work, users
+can still get the desired number of
+levels by setting the values manually
+when calling \code{\link[=cond_indirect_effects]{cond_indirect_effects()}}.
 }
 \examples{
 
@@ -246,6 +344,33 @@ library(ggplot2)
 p2 <- p + geom_vline(xintercept = mean(dat$w),
                      color = "red")
 p2
+
+
+# Use fill_wlevels to add moderator levels:
+
+dat <- data_med_mod_a
+lm_m <- lm(m ~ x*w + c1 + c2, dat)
+lm_y <- lm(y ~ m + x + c1 + c2, dat)
+fit_lm <- lm2list(lm_m, lm_y)
+wlevels <- mod_levels(w = "w",
+                      sd_from_mean = c(-3, 0, 3),
+                      fit = fit_lm)
+wlevels
+cond_out <- cond_indirect_effects(wlevels = wlevels,
+                                  x = "x",
+                                  y = "m",
+                                  fit = fit_lm)
+cond_out
+# Only 3 points
+p1 <- plot_effect_vs_w(cond_out)
+p1
+# Increase the number of levels to 15
+cond_out_filled <- fill_wlevels(cond_out,
+                                k = 15)
+cond_out_filled
+p2 <- plot_effect_vs_w(cond_out_filled)
+p2
+
 
 }
 \seealso{

@@ -12,7 +12,7 @@
 
 <meta name="author" content="Shu Fai Cheung &amp; Sing-Hang Cheung" />
 
-<meta name="date" content="2023-10-06" />
+<meta name="date" content="2024-09-25" />
 
 <title>Mediation Models with Latent Variables</title>
 
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Mediation Models with Latent Variables</h1>
 <h4 class="author">Shu Fai Cheung &amp; Sing-Hang Cheung</h4>
-<h4 class="date">2023-10-06</h4>
+<h4 class="date">2024-09-25</h4>
 
 
 
@@ -369,7 +369,7 @@ factors: <code>f1</code>, <code>f2</code>, <code>f3</code>, and
 <code>f4</code>.</p>
 <p>Suppose this is the model to be fitted:</p>
 <div class="float">
-<img src="data:image/png;base64,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" alt="plot of chunk mde_lav_draw_model" />
+<img src="data:image/png;base64,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" alt="plot of chunk mde_lav_draw_model" />
 <div class="figcaption">plot of chunk mde_lav_draw_model</div>
 </div>
 <p>This model can be fitted by <code>lavaan::sem()</code>:</p>
@@ -432,10 +432,10 @@ to <code>f4</code> through <code>f3</code>:</p>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                              <span class="at">boot_out =</span> boot_out_med)</span>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>out_f1f3f4</span>
 <span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect  ==</span></span>
 <span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
 <span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt;  Path:               f1 -&gt; f3 -&gt; f4   </span></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.098            </span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect:    0.098            </span></span>
 <span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.007 to 0.216]</span></span>
 <span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
@@ -462,10 +462,10 @@ to <code>f4</code> through <code>f3</code>:</p>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>                              <span class="at">boot_out =</span> boot_out_med)</span>
 <span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>out_f2f3f4</span>
 <span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect  ==</span></span>
 <span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt;                                      </span></span>
 <span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt;  Path:               f2 -&gt; f3 -&gt; f4  </span></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.131           </span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect:    0.131           </span></span>
 <span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.049 to 0.254]</span></span>
 <span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
@@ -500,10 +500,10 @@ effects</h1>
 <span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>                              <span class="at">standardized_y =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>std_f1f3f4</span>
 <span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect (Both &#39;f1&#39; and &#39;f4&#39; Standardized) ==</span></span>
 <span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
 <span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt;  Path:               f1 -&gt; f3 -&gt; f4   </span></span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.073            </span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect:    0.073            </span></span>
 <span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.005 to 0.157]</span></span>
 <span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
@@ -519,7 +519,9 @@ effects</h1>
 <span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a><span class="co">#&gt;  f3~f1       0.243</span></span>
 <span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a><span class="co">#&gt;  f4~f3       0.402</span></span>
 <span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: The effects of the component paths are from the model, not standardized.</span></span></code></pre></div>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">:</span></span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a><span class="co">#&gt; - The effects of the component paths are from the model, not</span></span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a><span class="co">#&gt;   standardized.</span></span></code></pre></div>
 <p>The standardized indirect effect is 0.073, with 95% confidence
 interval [-0.005, 0.157].</p>
 <p>Similarly, we can estimate the standardized indirect effect from
@@ -534,10 +536,10 @@ interval [-0.005, 0.157].</p>
 <span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>                              <span class="at">standardized_y =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>std_f2f3f4</span>
 <span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect (Both &#39;f2&#39; and &#39;f4&#39; Standardized) ==</span></span>
 <span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co">#&gt;                                      </span></span>
 <span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co">#&gt;  Path:               f2 -&gt; f3 -&gt; f4  </span></span>
-<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.116           </span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect:    0.116           </span></span>
 <span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.044 to 0.204]</span></span>
 <span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
@@ -553,7 +555,9 @@ interval [-0.005, 0.157].</p>
 <span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a><span class="co">#&gt;  f3~f2       0.326</span></span>
 <span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a><span class="co">#&gt;  f4~f3       0.402</span></span>
 <span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: The effects of the component paths are from the model, not standardized.</span></span></code></pre></div>
+<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">:</span></span>
+<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a><span class="co">#&gt; - The effects of the component paths are from the model, not</span></span>
+<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a><span class="co">#&gt;   standardized.</span></span></code></pre></div>
 <p>The standardized indirect effect is 0.116, with 95% confidence
 interval [0.044, 0.204].</p>
 <p>Note that, unlike the confidence intervals in
@@ -580,10 +584,10 @@ interval:</p>
 <span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>                            <span class="at">boot_out =</span> boot_out_med)</span>
 <span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>out_f1f4</span>
 <span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; ==  Effect ==</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; ==  Effect  ==</span></span>
 <span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt;                                      </span></span>
 <span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt;  Path:               f1 -&gt; f4        </span></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt;  Effect              0.447           </span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt;  Effect:             0.447           </span></span>
 <span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.203 to 0.753]</span></span>
 <span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
@@ -597,7 +601,7 @@ interval:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>out_f1_total <span class="ot">&lt;-</span> out_f1f3f4 <span class="sc">+</span> out_f1f4</span>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>out_f1_total</span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect  ==</span></span>
 <span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
 <span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">#&gt;  Path:                f1 -&gt; f3 -&gt; f4  </span></span>
 <span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">#&gt;  Path:                f1 -&gt; f4        </span></span>
@@ -624,7 +628,7 @@ we can compute the difference between the indirect effect of
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>out_f1_diff <span class="ot">&lt;-</span> out_f1f4 <span class="sc">-</span> out_f1f3f4</span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>out_f1_diff</span>
 <span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect  ==</span></span>
 <span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt;                                        </span></span>
 <span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt;  Path:                f1 -&gt; f4         </span></span>
 <span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt;  Path:                f1 -&gt; f3 -&gt; f4   </span></span>
@@ -685,10 +689,10 @@ effects can be extracted using either the indices or the path names</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>out1 <span class="ot">&lt;-</span> out_all[[<span class="dv">1</span>]]</span>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>out1</span>
 <span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect  ==</span></span>
 <span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="co">#&gt;                                       </span></span>
 <span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="co">#&gt;  Path:               f1 -&gt; f3 -&gt; f4   </span></span>
-<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.098            </span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect:    0.098            </span></span>
 <span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [-0.007 to 0.216]</span></span>
 <span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
@@ -708,10 +712,10 @@ is usually long):</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> out_all[[<span class="st">&quot;f2 -&gt; f3 -&gt; f4&quot;</span>]]</span>
 <span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>out2</span>
 <span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect ==</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="co">#&gt; == Indirect Effect  ==</span></span>
 <span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="co">#&gt;                                      </span></span>
 <span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a><span class="co">#&gt;  Path:               f2 -&gt; f3 -&gt; f4  </span></span>
-<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect     0.131           </span></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a><span class="co">#&gt;  Indirect Effect:    0.131           </span></span>
 <span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a><span class="co">#&gt;  95.0% Bootstrap CI: [0.049 to 0.254]</span></span>
 <span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>

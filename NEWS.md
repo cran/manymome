@@ -1,3 +1,62 @@
+# manymome 0.2.3
+
+## New Features
+
+- Added support for using model-based
+  standard errors (and the covariances)
+  of estimates to compute the standard
+  errors, *p*-values, and confidence
+  intervals for conditional effects.
+  This should be used only for effects
+  without mediators and with both `x`-
+  and `y`-variables not standardized.
+  The standard errors, *p*-values,
+  and confidence intervals are printed
+  by default when certain conditions
+  are met. These statistics are for
+  models fitted by multiple regression.
+  They should be used with cautions for
+  models fitted by structural equation
+  modeling because the model may not be
+  invariant to linear transformation of
+  variables if some covariances involving
+  the product terms are not freely
+  estimated. (0.2.2.1)
+
+- Updated `pseudo_johnson_neyman()` to
+  support the SE-based test. The method
+  is equivalent to the (true)
+  Johnson-Neyman when SE-based test is
+  used. Added `johnson_neyman()` as an
+  alias to `pseudo_johnson_neyman()`.
+  (0.2.2.4)
+
+- Added `fill_wlevels()` to add levels
+  of moderator to an output of
+  `cond_indirect_effects()`, such that
+  the confidence band of a plot of
+  effects against a moderator can be
+  smoother. (0.2.2.7)
+
+## Bug Fixes
+
+- Fixed some issues related to
+  `mod_levels()` in some special
+  cases. (0.2.2.5)
+
+## Miscellaneous
+
+- Fixed a minor typo in the example
+  of `indirect_effect()`. (0.2.2.8)
+
+- Added `cond_effects()`, an alias to
+  `cond_indirect_effects()`. A better
+  name when a path has no mediator.
+  (0.2.2.9)
+
+- Finalize 0.2.3. Kept only updates
+  relevant to users of 0.2.2. (0.2.3)
+
 # manymome 0.2.2
 
 ## New Features
