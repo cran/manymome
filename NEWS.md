@@ -1,3 +1,89 @@
+# manymome 0.2.4
+
+## New Features
+
+- The `plot()` method of the output
+  of `cond_indirect_effect()` now supports
+  using `facet_grid()` to plot the
+  conditional effects when there are
+  two or more moderators in a path.
+  (0.2.3.3, 0.2.3.5, 0.2.3.6, 0.2.3.13)
+
+## Improvement
+
+- If all paths have the same `x`
+  variables, the argument `x` can be
+  omitted when calling
+  `total_indirect_effect()`. Similarly,
+  if all paths have the same `y`
+  variables, the argument `y` can also be
+  omitted when calling
+  `total_indirect_effect()`. (0.2.3.2)
+
+- If appropriate, most functions will
+  automatically convert a single
+  model fitted by `lm()` to a list by
+  `lm2list()`. This allows users to
+  use the output of `lm()` directly,
+  such as when computing effects in a
+  moderation-only model. (0.2.3.4)
+
+- *P*-values and confidence intervals
+  based on standard errors will now be
+  computed even for direct paths not
+  moderated. (0.2.3.8)
+
+- Added `print_all_cond_indirect_effects()`
+  and `print_all_cond_effects()` for
+  printing the full output of all
+  conditional indirect effects.
+  (0.2.3.9)
+
+- Updated the `print` method of
+  indirect effect to print *p*-value
+  and confidence interval computed from
+  original standard error when
+  appropriate. (0.2.3.10)
+
+- Added `for_each_path` argument to the
+  `print`-method of `indirect_list`
+  objects. Setting it to `TRUE` to print
+  each path in the output of
+  `many_indirect_effects()` individually.
+  (0.2.3.12)
+
+- Added `wrap_computation` to the argument
+  of `print.indirect()` to wrap the printout
+  of long computational formulas. Default
+  set to `TRUE`.
+  (0.2.3.14)
+
+- Updated `plot_effect_vs_w()` to check
+  whether a moderator is numeric.
+  (0.2.3.15)
+
+- Updated `print.cond_indirect_effects()`.
+  Disabled the printing of the (only)
+  component path when a path has no
+  mediator. (0.2.3.16)
+
+## Documentation and Notes
+
+- Corrected `README` to remark that
+  dichotomous `x`-variables are supported
+  by most functions if coded as a
+  numeric dummy variable. (0.2.3.7)
+
+- Fix the wording in the printout
+  of `lm_list` objects. (0.2.3.11)
+
+## Bug Fixes
+
+- Fixed an issue related to
+  the internal function
+  `merge_model_matrix()` in some special
+  cases. (0.2.3.1)
+
 # manymome 0.2.3
 
 ## New Features

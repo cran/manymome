@@ -12,7 +12,7 @@
 
 <meta name="author" content="Shu Fai Cheung &amp; Sing-Hang Cheung" />
 
-<meta name="date" content="2024-09-25" />
+<meta name="date" content="2024-10-04" />
 
 <title>Generate Bootstrap Estimates</title>
 
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Generate Bootstrap Estimates</h1>
 <h4 class="author">Shu Fai Cheung &amp; Sing-Hang Cheung</h4>
-<h4 class="date">2024-09-25</h4>
+<h4 class="date">2024-10-04</h4>
 
 
 
@@ -407,7 +407,7 @@ one outcome variable (<code>y</code>), and two control variables
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>           <span class="at">fixed.x =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>           <span class="at">estimator =</span> <span class="st">&quot;MLR&quot;</span>)</span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="fu">summary</span>(fit_lavaan)</span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; lavaan 0.6-18 ended normally after 1 iteration</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; lavaan 0.6-19 ended normally after 1 iteration</span></span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt;   Estimator                                         ML</span></span>
 <span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt;   Optimization method                           NLMINB</span></span>
@@ -537,16 +537,18 @@ confidence intervals, if requested.</p>
 <span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
 <span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt;   (b.m~x)*(b.y~m)</span></span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt;   (0.93469)*(0.78469)</span></span>
-<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt; with 500 bootstrap samples.</span></span>
-<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="co">#&gt;  Path Coefficient</span></span>
-<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="co">#&gt;   m~x       0.935</span></span>
-<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="co">#&gt;   y~m       0.785</span></span></code></pre></div>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt;   (0.93469)*(0.78469)</span></span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="co">#&gt; with 500 bootstrap samples.</span></span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="co">#&gt;  Path Coefficient</span></span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a><span class="co">#&gt;   m~x       0.935</span></span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a><span class="co">#&gt;   y~m       0.785</span></span></code></pre></div>
 <p>Reusing the bootstrap estimates can ensure that all analysis with
 bootstrap confidence intervals are based on the same set of bootstrap
 samples.</p>
@@ -624,7 +626,7 @@ outputs to one object using <code>lm2list()</code>. The output is an
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>fit_lm <span class="ot">&lt;-</span> <span class="fu">lm2list</span>(lm_m, lm_y)</span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>fit_lm</span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt; The models:</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt; The model(s):</span></span>
 <span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt; m ~ x + c1 + c2</span></span>
 <span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt; y ~ m + x + c1 + c2</span></span></code></pre></div>
 </div>
@@ -669,16 +671,18 @@ samples will be generated every time.</p>
 <span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
 <span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co">#&gt;   (b.m~x)*(b.y~m)</span></span>
-<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="co">#&gt;   (0.93469)*(0.78469)</span></span>
-<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="co">#&gt; with 500 bootstrap samples.</span></span>
-<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a><span class="co">#&gt;  Path Coefficient</span></span>
-<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a><span class="co">#&gt;   m~x       0.935</span></span>
-<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a><span class="co">#&gt;   y~m       0.785</span></span></code></pre></div>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="co">#&gt;   (0.93469)*(0.78469)</span></span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="co">#&gt; with 500 bootstrap samples.</span></span>
+<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a><span class="co">#&gt;  Path Coefficient</span></span>
+<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a><span class="co">#&gt;   m~x       0.935</span></span>
+<span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a><span class="co">#&gt;   y~m       0.785</span></span></code></pre></div>
 <p>As long as users are aware of the potential problem with
 bias-corrected (BC) bootstrap confidence interval (see the references
 cited above), <code>boot_type = &quot;bc&quot;</code> can be used to request BC

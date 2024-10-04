@@ -20,6 +20,10 @@
   point_size = 5,
   graph_type = c("default", "tumble"),
   use_implied_stats = TRUE,
+  facet_grid_cols = NULL,
+  facet_grid_rows = NULL,
+  facet_grid_args = list(as.table = FALSE, labeller = "label_both"),
+  digits = 4,
   ...
 )
 }
@@ -136,6 +140,25 @@ data is
 used to compute the means and SDs.
 For latent variables, model implied
 statistics are always used.}
+
+\item{facet_grid_cols, facet_grid_rows}{If either or both of them are set
+to character vector(s) of moderator
+names, then \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}
+will be used to plot the graph,
+with \code{facet_grid_cols} used as \code{cols}
+and \code{facet_grid_rows} used as \code{rows}
+when calling \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}.}
+
+\item{facet_grid_args}{The list of
+arguments to be used in calling
+\code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}. Ignored
+if \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}} is not
+used.}
+
+\item{digits}{The number of decimal
+places to be printed for numerical
+moderators when \code{facet_grid} is used.
+Default is 4.}
 
 \item{...}{Additional arguments.
 Ignored.}

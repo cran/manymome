@@ -12,7 +12,7 @@
 
 <meta name="author" content="Shu Fai Cheung &amp; Sing-Hang Cheung" />
 
-<meta name="date" content="2024-09-25" />
+<meta name="date" content="2024-10-04" />
 
 <title>Mediation Analysis by Multiple Regression</title>
 
@@ -341,7 +341,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">Mediation Analysis by Multiple
 Regression</h1>
 <h4 class="author">Shu Fai Cheung &amp; Sing-Hang Cheung</h4>
-<h4 class="date">2024-09-25</h4>
+<h4 class="date">2024-10-04</h4>
 
 
 
@@ -397,7 +397,7 @@ models into one object (a system of regression models) using
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>fit_lm <span class="ot">&lt;-</span> <span class="fu">lm2list</span>(lm_m11, lm_m12, lm_m2, lm_y1, lm_y2)</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>fit_lm</span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt; The models:</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt; The model(s):</span></span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt; m11 ~ x1 + x2 + c1 + c2</span></span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt; m12 ~ m11 + x1 + x2 + c1 + c2</span></span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt; m2 ~ x1 + x2 + c1 + c2</span></span>
@@ -457,17 +457,19 @@ to <code>y1</code> through <code>m11</code> and <code>m12</code>:</p>
 <span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
 <span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co">#&gt;   (b.m11~x1)*(b.m12~m11)*(b.y1~m12)</span></span>
-<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.45408)*(0.23402)</span></span>
-<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
-<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co">#&gt;   m11~x1       0.352</span></span>
-<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="co">#&gt;  m12~m11       0.454</span></span>
-<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="co">#&gt;   y1~m12       0.234</span></span></code></pre></div>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.45408)*(0.23402)</span></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="co">#&gt;   m11~x1       0.352</span></span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="co">#&gt;  m12~m11       0.454</span></span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="co">#&gt;   y1~m12       0.234</span></span></code></pre></div>
 <p>The indirect effect is 0.037, with 95% confidence interval [0.003,
 0.077].</p>
 <p>Similarly, we can estimate the indirect effect from <code>x2</code>
@@ -488,16 +490,18 @@ to <code>y2</code> through <code>m2</code>:</p>
 <span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
 <span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co">#&gt;   (b.m2~x2)*(b.y2~m2)</span></span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">#&gt;   (0.28901)*(-0.43598)</span></span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
-<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a><span class="co">#&gt;  m2~x2       0.289</span></span>
-<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a><span class="co">#&gt;  y2~m2      -0.436</span></span></code></pre></div>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co">#&gt;   (0.28901)*(-0.43598)</span></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a><span class="co">#&gt;  m2~x2       0.289</span></span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a><span class="co">#&gt;  y2~m2      -0.436</span></span></code></pre></div>
 <p>The indirect effect is -0.126, with 95% confidence interval [-0.233,
 -0.043].</p>
 <p>Note that any indirect path in the model can be estimated this way.
@@ -520,16 +524,18 @@ indirect effect from <code>x2</code> to <code>m12</code> through
 <span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
 <span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="co">#&gt;   (b.m11~x2)*(b.m12~m11)</span></span>
-<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="co">#&gt;   (-0.04471)*(0.45408)</span></span>
-<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
-<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="co">#&gt;   m11~x2     -0.0447</span></span>
-<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="co">#&gt;  m12~m11      0.4541</span></span></code></pre></div>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co">#&gt;   (-0.04471)*(0.45408)</span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
+<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a><span class="co">#&gt;   m11~x2     -0.0447</span></span>
+<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a><span class="co">#&gt;  m12~m11      0.4541</span></span></code></pre></div>
 <p>The indirect effect is -0.020, with 95% confidence interval [-0.139,
 0.110].</p>
 <p>There is no limit on the path to be estimated, as long as all
@@ -564,21 +570,23 @@ estimated by setting <code>standardized_x</code> and
 <span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
 <span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="co">#&gt;   (b.m11~x1)*(b.m12~m11)*(b.y1~m12)*sd_x1/sd_y1</span></span>
-<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.45408)*(0.23402)*(1.11605)/(1.06579)</span></span>
-<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
-<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a><span class="co">#&gt;   m11~x1       0.352</span></span>
-<span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a><span class="co">#&gt;  m12~m11       0.454</span></span>
-<span id="cb9-29"><a href="#cb9-29" tabindex="-1"></a><span class="co">#&gt;   y1~m12       0.234</span></span>
-<span id="cb9-30"><a href="#cb9-30" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-31"><a href="#cb9-31" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">:</span></span>
-<span id="cb9-32"><a href="#cb9-32" tabindex="-1"></a><span class="co">#&gt; - The effects of the component paths are from the model, not</span></span>
-<span id="cb9-33"><a href="#cb9-33" tabindex="-1"></a><span class="co">#&gt;   standardized.</span></span></code></pre></div>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.45408)*(0.23402)*(1.11605)/(1.06579)</span></span>
+<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
+<span id="cb9-29"><a href="#cb9-29" tabindex="-1"></a><span class="co">#&gt;   m11~x1       0.352</span></span>
+<span id="cb9-30"><a href="#cb9-30" tabindex="-1"></a><span class="co">#&gt;  m12~m11       0.454</span></span>
+<span id="cb9-31"><a href="#cb9-31" tabindex="-1"></a><span class="co">#&gt;   y1~m12       0.234</span></span>
+<span id="cb9-32"><a href="#cb9-32" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-33"><a href="#cb9-33" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">:</span></span>
+<span id="cb9-34"><a href="#cb9-34" tabindex="-1"></a><span class="co">#&gt; - The effects of the component paths are from the model, not</span></span>
+<span id="cb9-35"><a href="#cb9-35" tabindex="-1"></a><span class="co">#&gt;   standardized.</span></span></code></pre></div>
 <p>The standardized indirect effect is 0.039, with 95% confidence
 interval [0.004,0.085].</p>
 <p>Similarly, we can estimate the standardized indirect effect from
@@ -601,20 +609,22 @@ interval [0.004,0.085].</p>
 <span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
 <span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a><span class="co">#&gt;   (b.m2~x1)*(b.y1~m2)*sd_x1/sd_y1</span></span>
-<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a><span class="co">#&gt;   (0.02233)*(-0.43300)*(1.11605)/(1.06579)</span></span>
-<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
-<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a><span class="co">#&gt;  m2~x1      0.0223</span></span>
-<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="co">#&gt;  y1~m2     -0.4330</span></span>
-<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">:</span></span>
-<span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a><span class="co">#&gt; - The effects of the component paths are from the model, not</span></span>
-<span id="cb10-32"><a href="#cb10-32" tabindex="-1"></a><span class="co">#&gt;   standardized.</span></span></code></pre></div>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="co">#&gt;   (0.02233)*(-0.43300)*(1.11605)/(1.06579)</span></span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
+<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="co">#&gt;  m2~x1      0.0223</span></span>
+<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="co">#&gt;  y1~m2     -0.4330</span></span>
+<span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-32"><a href="#cb10-32" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">:</span></span>
+<span id="cb10-33"><a href="#cb10-33" tabindex="-1"></a><span class="co">#&gt; - The effects of the component paths are from the model, not</span></span>
+<span id="cb10-34"><a href="#cb10-34" tabindex="-1"></a><span class="co">#&gt;   standardized.</span></span></code></pre></div>
 <p>The standardized indirect effect is -0.010, with 95% confidence
 interval [-0.069, 0.067].</p>
 </div>
@@ -650,16 +660,18 @@ compute the indirect effects along Paths b, c, and d below:</p>
 <span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
 <span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="co">#&gt;   (b.m11~x1)*(b.y1~m11)</span></span>
-<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.14694)</span></span>
-<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a><span class="co">#&gt;    Path Coefficient</span></span>
-<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a><span class="co">#&gt;  m11~x1       0.352</span></span>
-<span id="cb11-26"><a href="#cb11-26" tabindex="-1"></a><span class="co">#&gt;  y1~m11       0.147</span></span></code></pre></div>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.14694)</span></span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb11-26"><a href="#cb11-26" tabindex="-1"></a><span class="co">#&gt;    Path Coefficient</span></span>
+<span id="cb11-27"><a href="#cb11-27" tabindex="-1"></a><span class="co">#&gt;  m11~x1       0.352</span></span>
+<span id="cb11-28"><a href="#cb11-28" tabindex="-1"></a><span class="co">#&gt;  y1~m11       0.147</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>out_x1m12y1 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>                               <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>,</span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>                               <span class="at">m =</span> <span class="st">&quot;m12&quot;</span>,</span>
@@ -676,16 +688,18 @@ compute the indirect effects along Paths b, c, and d below:</p>
 <span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
 <span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="co">#&gt;   (b.m12~x1)*(b.y1~m12)</span></span>
-<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a><span class="co">#&gt;   (-0.21182)*(0.23402)</span></span>
-<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a><span class="co">#&gt;    Path Coefficient</span></span>
-<span id="cb12-25"><a href="#cb12-25" tabindex="-1"></a><span class="co">#&gt;  m12~x1      -0.212</span></span>
-<span id="cb12-26"><a href="#cb12-26" tabindex="-1"></a><span class="co">#&gt;  y1~m12       0.234</span></span></code></pre></div>
+<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a><span class="co">#&gt;   (-0.21182)*(0.23402)</span></span>
+<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-25"><a href="#cb12-25" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb12-26"><a href="#cb12-26" tabindex="-1"></a><span class="co">#&gt;    Path Coefficient</span></span>
+<span id="cb12-27"><a href="#cb12-27" tabindex="-1"></a><span class="co">#&gt;  m12~x1      -0.212</span></span>
+<span id="cb12-28"><a href="#cb12-28" tabindex="-1"></a><span class="co">#&gt;  y1~m12       0.234</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>out_x1m2y1 <span class="ot">&lt;-</span> <span class="fu">indirect_effect</span>(<span class="at">x =</span> <span class="st">&quot;x1&quot;</span>,</span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>                               <span class="at">y =</span> <span class="st">&quot;y1&quot;</span>,</span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>                               <span class="at">m =</span> <span class="st">&quot;m2&quot;</span>,</span>
@@ -702,16 +716,18 @@ compute the indirect effects along Paths b, c, and d below:</p>
 <span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
 <span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="co">#&gt;   (b.m2~x1)*(b.y1~m2)</span></span>
-<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="co">#&gt;   (0.02233)*(-0.43300)</span></span>
-<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
-<span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a><span class="co">#&gt;  m2~x1      0.0223</span></span>
-<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a><span class="co">#&gt;  y1~m2     -0.4330</span></span></code></pre></div>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="co">#&gt;   (0.02233)*(-0.43300)</span></span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
+<span id="cb13-27"><a href="#cb13-27" tabindex="-1"></a><span class="co">#&gt;  m2~x1      0.0223</span></span>
+<span id="cb13-28"><a href="#cb13-28" tabindex="-1"></a><span class="co">#&gt;  y1~m2     -0.4330</span></span></code></pre></div>
 <p>We can now compute the total <em>indirect</em> effect:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>out_x1y1_total <span class="ot">&lt;-</span> out_x1m11m12y1 <span class="sc">+</span> out_x1m11y1 <span class="sc">+</span> out_x1m12y1 <span class="sc">+</span> out_x1m2y1</span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>out_x1y1_total</span>
@@ -909,17 +925,19 @@ effects can be extracted using either the indices or the path names</p>
 <span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
 <span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a><span class="co">#&gt;   (b.m11~x1)*(b.m12~m11)*(b.y1~m12)</span></span>
-<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb20-13"><a href="#cb20-13" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.45408)*(0.23402)</span></span>
-<span id="cb20-14"><a href="#cb20-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb20-15"><a href="#cb20-15" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb20-16"><a href="#cb20-16" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb20-17"><a href="#cb20-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb20-18"><a href="#cb20-18" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb20-19"><a href="#cb20-19" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
-<span id="cb20-20"><a href="#cb20-20" tabindex="-1"></a><span class="co">#&gt;   m11~x1       0.352</span></span>
-<span id="cb20-21"><a href="#cb20-21" tabindex="-1"></a><span class="co">#&gt;  m12~m11       0.454</span></span>
-<span id="cb20-22"><a href="#cb20-22" tabindex="-1"></a><span class="co">#&gt;   y1~m12       0.234</span></span></code></pre></div>
+<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb20-13"><a href="#cb20-13" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb20-14"><a href="#cb20-14" tabindex="-1"></a><span class="co">#&gt;   (0.35204)*(0.45408)*(0.23402)</span></span>
+<span id="cb20-15"><a href="#cb20-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb20-16"><a href="#cb20-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb20-17"><a href="#cb20-17" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb20-18"><a href="#cb20-18" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb20-19"><a href="#cb20-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb20-20"><a href="#cb20-20" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb20-21"><a href="#cb20-21" tabindex="-1"></a><span class="co">#&gt;     Path Coefficient</span></span>
+<span id="cb20-22"><a href="#cb20-22" tabindex="-1"></a><span class="co">#&gt;   m11~x1       0.352</span></span>
+<span id="cb20-23"><a href="#cb20-23" tabindex="-1"></a><span class="co">#&gt;  m12~m11       0.454</span></span>
+<span id="cb20-24"><a href="#cb20-24" tabindex="-1"></a><span class="co">#&gt;   y1~m12       0.234</span></span></code></pre></div>
 <p>An example using path name (though not recommended because the name
 is usually long):</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> out_all[[<span class="st">&quot;x2 -&gt; m2 -&gt; y2&quot;</span>]]</span>
@@ -933,16 +951,18 @@ is usually long):</p>
 <span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a><span class="co">#&gt; Computation Formula:</span></span>
 <span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a><span class="co">#&gt;   (b.m2~x2)*(b.y2~m2)</span></span>
-<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
-<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a><span class="co">#&gt;   (0.28901)*(-0.43598)</span></span>
-<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
-<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
-<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-18"><a href="#cb21-18" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
-<span id="cb21-19"><a href="#cb21-19" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
-<span id="cb21-20"><a href="#cb21-20" tabindex="-1"></a><span class="co">#&gt;  m2~x2       0.289</span></span>
-<span id="cb21-21"><a href="#cb21-21" tabindex="-1"></a><span class="co">#&gt;  y2~m2      -0.436</span></span></code></pre></div>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a><span class="co">#&gt; Computation:</span></span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a><span class="co">#&gt;   (0.28901)*(-0.43598)</span></span>
+<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a><span class="co">#&gt; Percentile confidence interval formed by nonparametric bootstrapping</span></span>
+<span id="cb21-18"><a href="#cb21-18" tabindex="-1"></a><span class="co">#&gt; with 100 bootstrap samples.</span></span>
+<span id="cb21-19"><a href="#cb21-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-20"><a href="#cb21-20" tabindex="-1"></a><span class="co">#&gt; Coefficients of Component Paths:</span></span>
+<span id="cb21-21"><a href="#cb21-21" tabindex="-1"></a><span class="co">#&gt;   Path Coefficient</span></span>
+<span id="cb21-22"><a href="#cb21-22" tabindex="-1"></a><span class="co">#&gt;  m2~x2       0.289</span></span>
+<span id="cb21-23"><a href="#cb21-23" tabindex="-1"></a><span class="co">#&gt;  y2~m2      -0.436</span></span></code></pre></div>
 <p>The extracted element can be used just like the outputs of
 <code>indirect_effect()</code> in previous section.</p>
 <p>See the help page of <code>all_indirect_paths()</code> and

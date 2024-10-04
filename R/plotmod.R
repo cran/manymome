@@ -172,6 +172,26 @@
 #' For latent variables, model implied
 #' statistics are always used.
 #'
+#' @param facet_grid_cols,facet_grid_rows
+#' If either or both of them are set
+#' to character vector(s) of moderator
+#' names, then [ggplot2::facet_grid()]
+#' will be used to plot the graph,
+#' with `facet_grid_cols` used as `cols`
+#' and `facet_grid_rows` used as `rows`
+#' when calling [ggplot2::facet_grid()].
+#'
+#' @param facet_grid_args The list of
+#' arguments to be used in calling
+#' [ggplot2::facet_grid()]. Ignored
+#' if [ggplot2::facet_grid()] is not
+#' used.
+#'
+#' @param digits The number of decimal
+#' places to be printed for numerical
+#' moderators when `facet_grid` is used.
+#' Default is 4.
+#'
 #' @param ... Additional arguments.
 #' Ignored.
 #'
@@ -265,6 +285,11 @@ plot.cond_indirect_effects <- function(
                             point_size = 5,
                             graph_type = c("default", "tumble"),
                             use_implied_stats = TRUE,
+                            facet_grid_cols = NULL,
+                            facet_grid_rows = NULL,
+                            facet_grid_args = list(as.table = FALSE,
+                                                   labeller = "label_both"),
+                            digits = 4,
                             ...
                     ) {
     has_groups <- cond_indirect_effects_has_groups(x)
@@ -567,19 +592,100 @@ plot.cond_indirect_effects <- function(
         plot_df_xend$wlevels <- rownames(wlevels)
       }
     plot_df <- rbind(plot_df_xstart, plot_df_xend)
-    p <- ggplot2::ggplot() +
-          ggplot2::geom_point(ggplot2::aes(x = .data[[x]],
-                                           y = .data[[y]],
-                                           colour = .data[["wlevels"]]),
-                              data = plot_df,
-                              size = point_size) +
-          ggplot2::geom_segment(ggplot2::aes(
-                x =  plot_df_xstart[, x],
-                xend =  plot_df_xend[, x],
-                y =  plot_df_xstart[, y],
-                yend = plot_df_xend[, y],
-                colour = plot_df_xstart$wlevels
-              ), linewidth = line_width)
+    if (is.null(facet_grid_cols) &&
+        is.null(facet_grid_rows)) {
+        p <- ggplot2::ggplot() +
+              ggplot2::geom_point(ggplot2::aes(x = .data[[x]],
+                                              y = .data[[y]],
+                                              colour = .data[["wlevels"]]),
+                                  data = plot_df,
+                                  size = point_size) +
+              ggplot2::geom_segment(ggplot2::aes(
+                    x =  plot_df_xstart[, x],
+                    xend =  plot_df_xend[, x],
+                    y =  plot_df_xstart[, y],
+                    yend = plot_df_xend[, y],
+                    colour = plot_df_xstart$wlevels
+                  ), linewidth = line_width)
+      } else {
+        if (!is.null(facet_grid_cols)) {
+            if (!all(facet_grid_cols %in% w_names)) {
+                stop("'facet_grid_cols' must be among the moderators.")
+              }
+          }
+        if (!is.null(facet_grid_rows)) {
+            if (!all(facet_grid_rows %in% w_names)) {
+                stop("'facet_grid_rows' must be among the moderators.")
+              }
+          }
+        w_names_in <- setdiff(w_names, union(facet_grid_cols, facet_grid_rows))
+        if (length(w_names_in) == 0) {
+            w_names_in <- NULL
+          }
+        plot_df_tmp <- w_to_numeric(plot_df,
+                                    w_names = w_names,
+                                    digits = digits)
+        plot_df_xstart_tmp <- w_to_numeric(plot_df_xstart,
+                                           w_names = w_names,
+                                           digits = digits)
+        plot_df_xend_tmp <- w_to_numeric(plot_df_xend,
+                                         w_names = w_names,
+                                         digits = digits)
+        plot_df_xstart_end <- plot_df_xstart_tmp
+        plot_df_xstart_end[paste0(x, "___end")] <- plot_df_xend_tmp[, x, drop = TRUE]
+        plot_df_xstart_end[paste0(y, "___end")] <- plot_df_xend_tmp[, y, drop = TRUE]
+        p <- ggplot2::ggplot()
+        if (is.null(w_names_in)) {
+            # This solution is not ideal. Code duplicated.
+            # But work for now.
+            p <- p + ggplot2::geom_point(ggplot2::aes(x = .data[[x]],
+                                                      y = .data[[y]]),
+                                         data = plot_df_tmp,
+                                         size = point_size) +
+                      ggplot2::geom_segment(ggplot2::aes(x =  .data[[x]],
+                                                         xend =  .data[[paste0(x, "___end")]],
+                                                         y =  .data[[y]],
+                                                         yend = .data[[paste0(y, "___end")]]),
+                                            data = plot_df_xstart_end,
+                                            linewidth = line_width)
+          } else {
+            p <- p + ggplot2::geom_point(ggplot2::aes(x = .data[[x]],
+                                                      y = .data[[y]],
+                                                      colour = .data[[w_names_in]]),
+                                         data = plot_df_tmp,
+                                         size = point_size) +
+                      ggplot2::geom_segment(ggplot2::aes(x =  .data[[x]],
+                                                         xend =  .data[[paste0(x, "___end")]],
+                                                         y =  .data[[y]],
+                                                         yend = .data[[paste0(y, "___end")]],
+                                                         colour =  .data[[w_names_in]]),
+                                            data = plot_df_xstart_end,
+                                            linewidth = line_width)
+          }
+        if (!is.null(facet_grid_cols)) {
+            cols_tmp <- sapply(facet_grid_cols,
+                               function(xx) paste0(".data[[", sQuote(xx), "]]"))
+            cols_tmp <- paste0("quote(ggplot2::vars(",
+                          paste(cols_tmp, collapse = ","),
+                          "))")
+          } else {
+            cols_tmp <- "NULL"
+          }
+        if (!is.null(facet_grid_rows)) {
+            rows_tmp <- sapply(facet_grid_rows,
+                              function(xx) paste0(".data[[", sQuote(xx), "]]"))
+            rows_tmp <- paste0("quote(ggplot2::vars(",
+                          paste(rows_tmp, collapse = ","),
+                          "))")
+          } else {
+            rows_tmp <- "NULL"
+          }
+        facet_grid_args_final <- utils::modifyList(facet_grid_args,
+                                                   list(cols = eval(parse(text = cols_tmp)),
+                                                        rows = eval(parse(text = rows_tmp))))
+        p <- p + do.call(ggplot2::facet_grid,
+                         facet_grid_args_final)
+      }
 
     if (note_standardized & !is.null(cap_std)) {
         if (!is.null(cap_txt)) {
@@ -618,3 +724,18 @@ plot.cond_indirect_effects <- function(
 
 utils::globalVariables(".data")
 
+#' @noRd
+
+w_to_numeric <- function(xx,
+                         w_names,
+                         digits = 4) {
+    for (i in colnames(xx)) {
+        if (is.numeric(xx[, i]) &&
+            (i %in% w_names)) {
+            xx[, i] <- as.factor(formatC(xx[, i],
+                                         digits = digits,
+                                         format = "f"))
+          }
+      }
+    xx
+  }
