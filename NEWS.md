@@ -1,3 +1,64 @@
+# manymome 0.2.5
+
+## New Features
+
+- Added the `as.data.frame` method
+  (`as.data.frame.cond_indirect_effects()`)
+  for `cond_indirect_effects` objects.
+  The `print` method (`print.cond_indirect_effects()`)
+  now calls this method internally. (0.2.4.4)
+
+## Improvement
+
+- Though rare in real studies,
+  `merge_mod_levels()` was revised to
+  support merging `wlevel` objects
+  that have only one level in each of
+  them. (0.2.4.1)
+
+- When bootstrapping is done by `lavaan`,
+  only bootstrap estimates with no
+  errors will be kept (previously, they
+  will be set to `NA`). This also makes
+  the number of bootstrap samples reported
+  consistent with the number of successful
+  bootstrap replications. (0.2.4.2)
+
+- For functions such as `cond_effects()`,
+  if the model has only one outcome
+  variable (e.g., moderation only and
+  has no mediator), then the `y` argument
+  can be omitted. (0.2.4.6)
+
+## Bugs
+
+- Remove a warning that may occur when
+  retrieving `lavaan` bootstrap estimates.
+  (0.2.4.2)
+
+## Miscellaneous
+
+- Corrected the help page of
+  `indirect_effects_from_list()`. It
+  works on an object of the class
+  `indirect_list`, not of the class
+  `cond_indirect_effects`. (0.2.4.3)
+
+- Updated the vignettes (0.2.4.5).
+
+- Updated the internal `lavaan.mi` objects
+  used for tests. (0.2.4.7)
+
+- Add `on.exit()` to ensure that the clusters
+  created will be cleared if a function
+  is aborted (e.g., terminated by users).
+  (0.2.4.8)
+
+- Updated the way the expected CPU time
+  for bootstrapping, and the time is
+  displayed only if `progress` is
+  `FALSE`. (0.2.4.9)
+
 # manymome 0.2.4
 
 ## New Features
