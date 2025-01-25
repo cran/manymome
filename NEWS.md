@@ -1,3 +1,38 @@
+# manymome 0.2.7
+
+## New Features
+
+- Added several "quick" functions for
+  fitting regression models and testing
+  indirect effects in one call:
+  `q_simple_mediation()`,
+  `q_serial_mediation()`, and
+  `q_parallel_mediation()` for
+  simple, serial, and parallel
+  mediation models, respectively. Also
+  added an article to the website to
+  introduce these functions.
+  (0.2.5.1, 0.2.5.2, 0.2.5.3, 0.2.5.4)
+
+## Miscellaneous
+
+- Updated the summary
+  method of `lm_list`
+  objects (`print.summary_lm_list()` and
+  `summary.lm_list()`) for computing
+  confidence intervals and proper
+  standardized coefficients (only
+  numerical variables standardized,
+  and derived terms formed after
+  standardization). They are disabled
+  by default (`betaselect = FALSE` and
+  `ci = FALSE`) for backward compatibility.
+  (0.2.5.4)
+
+- Made some examples faster to run to
+  meet the CRAN requirement on examples.
+  (0.2.7)
+
 # manymome 0.2.5
 
 ## New Features

@@ -169,17 +169,20 @@ print.indirect_list <- function(x, digits = 3,
       }
     # Should always have mediators
     has_m <- TRUE
+    all_m_null <- sapply(x,
+                         function(xx) {is.null(xx$m)})
+    if (all(all_m_null)) has_m <- FALSE
     coef0 <- indirect_effects_from_list(xold,
                                         add_sig = TRUE,
                                         pvalue = pvalue,
                                         se = se)
     if (has_ci && (ci_type == "boot") && pvalue) {
-        coef0$pvalue <- formatC(coef0$pvalue,
+        coef0$pvalue <- formatC(as.numeric(coef0$pvalue),
                                 digits = pvalue_digits,
                                 format = "f")
       }
     if (has_ci && se) {
-        coef0$SE <- formatC(coef0$SE,
+        coef0$SE <- formatC(as.numeric(coef0$SE),
                             digits = digits,
                             format = "f")
       }
@@ -393,7 +396,7 @@ indirect_effects_from_list <- function(object,
     standardized_y <- object[[1]]$standardized_y
     standardized <- (standardized_x && standardized_y)
     coef0 <- sapply(object, stats::coef)
-    if (standardized_x || standardized_x) {
+    if (standardized_x || standardized_y) {
         out <- data.frame(std = coef0)
       } else {
         out <- data.frame(ind = coef0)
