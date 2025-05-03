@@ -1,7 +1,7 @@
 Package: manymome
 Title: Mediation, Moderation and Moderated-Mediation After Model
         Fitting
-Version: 0.2.7
+Version: 0.2.8
 Authors@R: 
     c(person(given = "Shu Fai",
            family = "Cheung",
@@ -29,8 +29,8 @@ BugReports: https://github.com/sfcheung/manymome/issues
 License: GPL (>= 3)
 Encoding: UTF-8
 RoxygenNote: 7.3.2
-Suggests: knitr, rmarkdown, semPlot, semptools, semTools, Amelia, mice,
-        testthat (>= 3.0.0)
+Suggests: knitr, rmarkdown, semPlot, semptools, lavaan.mi, Amelia,
+        mice, testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Config/testthat/start-first: cond_indirect_*
@@ -40,9 +40,10 @@ Depends: R (>= 3.5.0)
 LazyData: true
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2025-01-25 00:18:34 UTC; shufa
-Author: Shu Fai Cheung [aut, cre] (<https://orcid.org/0000-0002-9871-9448>),
-  Sing-Hang Cheung [aut] (<https://orcid.org/0000-0001-5182-0752>)
+Packaged: 2025-05-03 09:24:46 UTC; shufa
+Author: Shu Fai Cheung [aut, cre] (ORCID:
+    <https://orcid.org/0000-0002-9871-9448>),
+  Sing-Hang Cheung [aut] (ORCID: <https://orcid.org/0000-0001-5182-0752>)
 Maintainer: Shu Fai Cheung <shufai.cheung@gmail.com>
 Repository: CRAN
-Date/Publication: 2025-01-25 06:10:02 UTC
+Date/Publication: 2025-05-03 10:20:02 UTC

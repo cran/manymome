@@ -6,7 +6,13 @@
 \title{Bootstrap Estimates for \code{lm}
 Outputs}
 \usage{
-lm2boot_out(outputs, R = 100, seed = NULL, progress = TRUE)
+lm2boot_out(
+  outputs,
+  R = 100,
+  seed = NULL,
+  progress = TRUE,
+  compute_implied_stats = TRUE
+)
 
 lm2boot_out_parallel(
   outputs,
@@ -15,7 +21,8 @@ lm2boot_out_parallel(
   parallel = FALSE,
   ncores = max(parallel::detectCores(logical = FALSE) - 1, 1),
   make_cluster_args = list(),
-  progress = TRUE
+  progress = TRUE,
+  compute_implied_stats = TRUE
 )
 }
 \arguments{
@@ -31,6 +38,13 @@ resampling. Default is \code{NULL}.}
 
 \item{progress}{Logical. Display
 progress or not. Default is \code{TRUE}.}
+
+\item{compute_implied_stats}{If
+\code{TRUE}, default, implied statistics
+will be computed for each bootstrap
+sample. Letting users to disable this
+is an experimental features to let
+the process run faster.}
 
 \item{parallel}{Logical. Whether
 parallel processing will be used.

@@ -22,8 +22,8 @@
 #'
 #' It also supports a model estimated
 #' by multiple imputation using
-#' [semTools::runMI()] or its wrapper,
-#' such as [semTools::sem.mi()].
+#' [lavaan.mi::lavaan.mi()] or its wrapper,
+#' such as [lavaan.mi::sem.mi()].
 #' The pooled estimates and their
 #' variance-covariance matrix will be used
 #' to generate the Monte Carlo estimates.
@@ -65,8 +65,8 @@
 #' It can also be
 #' a `lavaan.mi` object
 #' returned by
-#' [semTools::runMI()] or
-#' its wrapper, such as [semTools::sem.mi()].
+#' [lavaan.mi::lavaan.mi()] or
+#' its wrapper, such as [lavaan.mi::sem.mi()].
 #' The output of
 #' [stats::lm()] is not supported.
 #'
@@ -76,6 +76,13 @@
 #' @param seed The seed for the
 #' generating Monte Carlo estimates.
 #' Default is `NULL` and seed is not set.
+#'
+#' @param compute_implied_stats If
+#' `TRUE`, default, implied statistics
+#' will be computed for each replication.
+#' Letting users to disable this
+#' is an experimental features to let
+#' the process run faster.
 #'
 #' @param parallel Not used. Kept
 #' for compatibility with [do_boot()].
@@ -133,7 +140,8 @@ do_mc <- function(fit,
                     parallel = TRUE,
                     ncores = max(parallel::detectCores(logical = FALSE) - 1, 1),
                     make_cluster_args = list(),
-                    progress = TRUE) {
+                    progress = TRUE,
+                    compute_implied_stats = TRUE) {
     if (!missing(fit)) {
          fit <- auto_lm2list(fit)
       }
@@ -142,7 +150,9 @@ do_mc <- function(fit,
         fit0 <- gen_mc_est(fit = fit,
                           seed = seed,
                           R = R)
-        out <- fit2mc_out(fit0, progress = progress)
+        out <- fit2mc_out(fit0,
+                          compute_implied_stats = compute_implied_stats,
+                          progress = progress)
       }
     if (fit_type == "lm") {
         stop("Monte Carlo method does not support lm outputs.")

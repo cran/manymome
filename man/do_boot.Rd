@@ -13,7 +13,8 @@ do_boot(
   parallel = TRUE,
   ncores = max(parallel::detectCores(logical = FALSE) - 1, 1),
   make_cluster_args = list(),
-  progress = TRUE
+  progress = TRUE,
+  compute_implied_stats = TRUE
 )
 }
 \arguments{
@@ -58,6 +59,13 @@ additional arguments.}
 
 \item{progress}{Logical. Display
 progress or not. Default is \code{TRUE}.}
+
+\item{compute_implied_stats}{If
+\code{TRUE}, default, implied statistics
+will be computed for each bootstrap
+sample. Letting users to disable this
+is an experimental features to let
+the process run faster.}
 }
 \value{
 A \code{boot_out}-class object

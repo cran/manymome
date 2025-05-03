@@ -6,7 +6,7 @@
 \title{Bootstrap Estimates for a
 \code{lavaan} Output}
 \usage{
-fit2boot_out(fit)
+fit2boot_out(fit, compute_implied_stats = TRUE)
 
 fit2boot_out_do_boot(
   fit,
@@ -16,6 +16,7 @@ fit2boot_out_do_boot(
   ncores = max(parallel::detectCores(logical = FALSE) - 1, 1),
   make_cluster_args = list(),
   progress = TRUE,
+  compute_implied_stats = TRUE,
   internal = list()
 )
 }
@@ -23,6 +24,13 @@ fit2boot_out_do_boot(
 \item{fit}{The fit object. This
 function only supports a
 \link[lavaan:lavaan-class]{lavaan::lavaan} object.}
+
+\item{compute_implied_stats}{If
+\code{TRUE}, default, implied statistics
+will be computed for each bootstrap
+sample. Letting users to disable this
+is an experimental features to let
+the process run faster.}
 
 \item{R}{The number of bootstrap
 samples. Default is 100.}

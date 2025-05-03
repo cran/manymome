@@ -1,3 +1,31 @@
+# manymome 0.2.8
+
+## New Features
+
+- Updated to use `lavaan.mi` instead of
+  `semTools`. (0.2.7.2, 0.2.7.3)
+
+## Miscellaneous
+
+- Added the option to disable the
+  computation of implied statistics
+  in `do_boot()` and `do_mc()`. This
+  experimental feature allow faster
+  computation of Monte Carlo estimates,
+  and does not affect the computation of
+  unstandardized effects. Should be used
+  only by developers and advanced users.
+  (0.2.7.1)
+
+- Moved `compute_implied_stats` to the
+  end of the argument list to avoid
+  conflicting with calls that do not
+  name the arguments. (0.2.7.4)
+
+- Revised `mod_levels()` to prepare
+  for latent variable moderation.
+  (0.2.7.5)
+
 # manymome 0.2.7
 
 ## New Features
