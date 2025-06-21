@@ -1,3 +1,26 @@
+# manymome 0.2.9
+
+## Miscellaneous
+
+- Optimized the speed of `do_mc()`.
+  It now runs much faster than previous
+  versions. (0.2.8.1, 0.2.8.2)
+
+- Optimized the speed of `do_boot()`.
+  It now runs faster than previous
+  versions. (0.2.8.3)
+
+- Removed `semTools` and `semptools`
+  from `Suggests` because vignettes
+  that use them are precomputed. They
+  are not needed to generate the vignettes.
+
+## Bug Fixes
+
+- Fixed the error raised in some
+  special cases when plotting a direct path
+  with many product terms. (0.2.8.4)
+
 # manymome 0.2.8
 
 ## New Features
