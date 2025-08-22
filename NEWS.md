@@ -1,3 +1,49 @@
+# manymome 0.3.1
+
+## New Features
+
+- Updated the `q_*` functions
+  (`q_mediation()`, `q_simple_mediation()`,
+  `q_serial_mediation()` and `q_parallel_mediation()`)
+  to support fitting a model by
+  path analysis using `lavaan::sem()`,
+  with the option to handle missing data
+  using full information maximum likelihood.
+  (0.2.9.3)
+
+- Added a plot method for the output
+  of `q_mediation()`
+  and its friends. Requires `semptools`
+  (0.3.2 or above), which needs to be
+  installed separately.
+  (0.2.9.4, 0.2.9.5, 0.2.9.6)
+
+- Updated `q_mediation()` to support
+  a user-specified mediation model.
+  (0.2.9.3)
+
+## Miscellaneous
+
+- Improved the printout of a list of
+  indirect effects. (0.2.9.1, 0.2.9.2)
+
+- Added the `skip_indicators` argument to
+  `get_prod()` and related functions
+  for skipping observed indicators when
+  identifying product terms. Set to
+  `TRUE` by default. Models using the
+  product-of-indicator approach is not
+  supported anyway and so they can be
+  skipped. (0.2.9.8)
+
+## Bug Fixes
+
+- Fixed the error raised when `do_mc()`
+  is used for some multigroup models with
+  latent variables. No impact on results
+  because latent means are not
+  used for now. (0.2.9.7)
+
 # manymome 0.2.9
 
 ## Miscellaneous

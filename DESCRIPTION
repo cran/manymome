@@ -1,7 +1,7 @@
 Package: manymome
 Title: Mediation, Moderation and Moderated-Mediation After Model
         Fitting
-Version: 0.2.9
+Version: 0.3.1
 Authors@R: 
     c(person(given = "Shu Fai",
            family = "Cheung",
@@ -11,7 +11,11 @@ Authors@R:
       person(given = "Sing-Hang",
            family = "Cheung",
            role = c("aut"),
-           comment = c(ORCID = "0000-0001-5182-0752")))
+           comment = c(ORCID = "0000-0001-5182-0752")),
+      person(given = "Rong Wei",
+             family = "Sun",
+             role = c("ctb"),
+             comment = c(ORCID = "0000-0003-0034-1422")))
 Description: Computes indirect effects, conditional effects, and conditional
   indirect effects in a structural equation model or path model after model
   fitting, with no need to define any user parameters or label any paths in
@@ -29,21 +33,22 @@ BugReports: https://github.com/sfcheung/manymome/issues
 License: GPL (>= 3)
 Encoding: UTF-8
 RoxygenNote: 7.3.2
-Suggests: knitr, rmarkdown, lavaan.mi, Amelia, mice, testthat (>=
-        3.0.0)
+Suggests: knitr, rmarkdown, lavaan.mi, Amelia, mice, semPlot, semptools
+        (>= 0.3.2), testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Config/testthat/start-first: cond_indirect_*
 Imports: lavaan, boot, parallel, pbapply, stats, ggplot2, igraph, MASS,
-        methods
+        methods, lmhelprs
 Depends: R (>= 3.5.0)
 LazyData: true
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2025-06-21 07:13:46 UTC; shufa
+Packaged: 2025-08-21 13:17:35 UTC; shufa
 Author: Shu Fai Cheung [aut, cre] (ORCID:
     <https://orcid.org/0000-0002-9871-9448>),
-  Sing-Hang Cheung [aut] (ORCID: <https://orcid.org/0000-0001-5182-0752>)
+  Sing-Hang Cheung [aut] (ORCID: <https://orcid.org/0000-0001-5182-0752>),
+  Rong Wei Sun [ctb] (ORCID: <https://orcid.org/0000-0003-0034-1422>)
 Maintainer: Shu Fai Cheung <shufai.cheung@gmail.com>
 Repository: CRAN
-Date/Publication: 2025-06-21 08:00:02 UTC
+Date/Publication: 2025-08-22 05:40:02 UTC
