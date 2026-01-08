@@ -1,6 +1,6 @@
-c0e7af0aef21c728aa085bf68641dc5d *DESCRIPTION
+3082799a7dad929f5db78ffa6db70d24 *DESCRIPTION
 dfa411aa96286d3c58f51119176ea423 *NAMESPACE
-4d11108bfe79162136d9b4df71d27f60 *NEWS.md
+675a8fb8cbc813dead85dc88447dfeec *NEWS.md
 2e33fab058fc2d3d31a1eccb0630e84c *R/add_na.R
 4bfd901ceedc7c0f617c2d14dad35423 *R/all_indirect_paths.R
 d185bdbd4db8f6eca0e970ecc595a502 *R/boot2est_lavaan.R
@@ -31,7 +31,7 @@ c5dad4e3583e435d456620780345a7d2 *R/dat_mome_demo_missing.R
 769a414968107d05a00c3f95f3de3b06 *R/dat_sem.R
 3f3361a5ab8b14ec6be4435d7fc315cd *R/dat_serial_parallel_latent.R
 1016e0b7705816eed11619e7c5081fb6 *R/dat_simple_mediation_latent.R
-72ab59f2c1e4fe75e30fae230aa27ae5 *R/delta_med.R
+4e3a1a801ef75dd19fd588830fab2041 *R/delta_med.R
 f9d9f718c778caf529d9ad07edc5d0e9 *R/do_boot.R
 540f28f0730de9f7bb17b70dfdc0514d *R/do_mc.R
 6cecb7239cb9e7ae5c901a687f94174f *R/est2p.R
@@ -80,7 +80,7 @@ e36de58892e30ffd3825095575ad4d94 *R/pseudo_jn.r
 0998fa830d3810fc3214fca62e0399b3 *R/summary_lm_list.R
 c01dc7d5bd601b0002561b33b9fa1994 *R/total_indirect_effect_list.R
 572a3c8f9c4edfe26c28b9c5254246b7 *R/wlevels_subset.R
-53c8cab734ef410a482450ce030cacd6 *README.md
+1bbff47d5c28f359b35a23085f62a7f3 *README.md
 d54042561b90aafd8a9a202ea63e1e4b *build/partial.rdb
 112d8822c0913b3025c56a2eb1c789ab *build/vignette.rds
 b6d433d565834277eea229dee89d3ebf *data/data_med.rda
@@ -125,7 +125,7 @@ a6a28a42ccf43b4b0d3d0606adb8c4fc *inst/doc/med_lav.Rmd
 a1be7c62541690cc32356180f616bd11 *inst/doc/med_lm.html
 a951225f2586db3682ace6e8d28b5865 *inst/doc/mod_levels.R
 6e8a52cb687984304d296d0d13798662 *inst/doc/mod_levels.Rmd
-8e5a861a7650732a665ac52ee655ac68 *inst/doc/mod_levels.html
+9817ce68af915dbd83474a9bb2019509 *inst/doc/mod_levels.html
 27c8f2855158fc070f51ce96fdd9b6ef *inst/doc/mome_lm.Rmd
 e4dc1ee928e9656e690ae82507dbb76f *inst/doc/mome_lm.html
 18ef39c45868e7fd56afac09919c528b *inst/extdata/mi_test_data.RData
@@ -170,7 +170,7 @@ da8be118cca54dcd54d7aa45d7fc5cf5 *man/data_mod2.Rd
 8465733c5cbff0de6f3890b17f6afb9e *man/data_serial.Rd
 fff12eaf7f0c37fcdfe58b0a8fec4b8e *man/data_serial_parallel.Rd
 abc4524cedd0e057415c56f883761145 *man/data_serial_parallel_latent.Rd
-d40ae588ce22f8c0936d3aeb95a9dd92 *man/delta_med.Rd
+f6aa77d21bd4fde2cc8674c7f2a38c74 *man/delta_med.Rd
 7ddaf02c0dd1c7063db32d961ff00816 *man/do_boot.Rd
 570736c5e01a19369e470fd68193b64c *man/do_mc.Rd
 7af02bb488d3a1c6f69defb22d4ac9f5 *man/factor2var.Rd
@@ -299,7 +299,7 @@ b35875e2751f31a424dd99990cf90e7e *tests/testthat/test_indirect_with_prods.R
 da132b8363876e08f9c1b0e928b45d0e *tests/testthat/test_lav_data_used_mi.R
 698cea5da7d28e214776f9455a34fc93 *tests/testthat/test_lav_data_used_mi_no_means.R
 69d34b7917b08d232edce033018cbc21 *tests/testthat/test_lav_implied_all.R
-a1530d45ac7773cf508597b4009dfa92 *tests/testthat/test_lavaan2lm_list.R
+3d84c158e2447a4df33e40ba9c3496cf *tests/testthat/test_lavaan2lm_list.R
 27e8d577f3b43f7b45a761ef7adfda37 *tests/testthat/test_lm2boot_out.R
 8441351b196c3725121109ca5bbc6c1e *tests/testthat/test_lm2boot_out_parallel.R
 83dacb0cb3379dfdc5b8021805e50885 *tests/testthat/test_lm2boot_out_parallel_mini.R
