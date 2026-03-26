@@ -12,7 +12,7 @@
 
 <meta name="author" content="Shu Fai Cheung &amp; Sing-Hang Cheung" />
 
-<meta name="date" content="2025-08-10" />
+<meta name="date" content="2026-03-26" />
 
 <title>Monte Carlo Confidence Intervals with Multiple Imputation</title>
 
@@ -341,7 +341,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">Monte Carlo Confidence Intervals with
 Multiple Imputation</h1>
 <h4 class="author">Shu Fai Cheung &amp; Sing-Hang Cheung</h4>
-<h4 class="date">2025-08-10</h4>
+<h4 class="date">2026-03-26</h4>
 
 
 
@@ -424,110 +424,96 @@ one outcome variable (<code>y</code>), and two control variables
 (van Buuren, 2018). For the sake of illustration, we just use the
 default of <code>mice::mice()</code> to do the imputation:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(mice)</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;mice&#39;</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:stats&#39;:</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt;     filter</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt;     cbind, rbind</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">26245</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>out_mice <span class="ot">&lt;-</span> <span class="fu">mice</span>(dat, <span class="at">m =</span> <span class="dv">5</span>, <span class="at">printFlag =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>dat_mi <span class="ot">&lt;-</span> <span class="fu">complete</span>(out_mice, <span class="at">action =</span> <span class="st">&quot;all&quot;</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co"># The first imputed dataset</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="fu">head</span>(dat_mi[[<span class="dv">1</span>]])</span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt;           x        m        y       c1       c2</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; 1  9.762412 17.89644 20.73893 1.426513 6.103290</span></span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt; 2  8.331493 17.92150 25.68452 2.940388 3.832698</span></span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt; 3 10.327471 17.83178 22.14201 3.012678 3.969419</span></span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt; 4 11.196969 20.01750 24.87107 3.120056 4.654931</span></span>
-<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt; 5 11.887811 20.82502 28.47312 4.440018 3.959033</span></span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt; 6  8.198297 16.95198 20.73549 2.495083 3.763712</span></span>
-<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co"># The last imputed dataset</span></span>
-<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="fu">head</span>(dat_mi[[<span class="dv">5</span>]])</span>
-<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="co">#&gt;           x        m        y       c1       c2</span></span>
-<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="co">#&gt; 1  8.301276 17.89644 20.73893 1.426513 6.103290</span></span>
-<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="co">#&gt; 2  8.331493 17.92150 22.93143 2.940388 3.832698</span></span>
-<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="co">#&gt; 3 10.327471 17.83178 22.14201 3.012678 6.238426</span></span>
-<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="co">#&gt; 4 11.196969 20.01750 26.90840 3.120056 4.654931</span></span>
-<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="co">#&gt; 5 11.887811 20.82502 28.47312 4.440018 3.959033</span></span>
-<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="co">#&gt; 6  8.198297 16.95198 20.73549 2.495083 3.763712</span></span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">26245</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>out_mice <span class="ot">&lt;-</span> <span class="fu">mice</span>(dat, <span class="at">m =</span> <span class="dv">5</span>, <span class="at">printFlag =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>dat_mi <span class="ot">&lt;-</span> <span class="fu">complete</span>(out_mice, <span class="at">action =</span> <span class="st">&quot;all&quot;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># The first imputed dataset</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">head</span>(dat_mi[[<span class="dv">1</span>]])</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt;           x        m        y       c1       c2</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; 1  9.762412 17.89644 20.73893 1.426513 6.103290</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt; 2  8.331493 17.92150 25.68452 2.940388 3.832698</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; 3 10.327471 17.83178 22.14201 3.012678 3.969419</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt; 4 11.196969 20.01750 24.87107 3.120056 4.654931</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt; 5 11.887811 20.82502 28.47312 4.440018 3.959033</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt; 6  8.198297 16.95198 20.73549 2.495083 3.763712</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co"># The last imputed dataset</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="fu">head</span>(dat_mi[[<span class="dv">5</span>]])</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt;           x        m        y       c1       c2</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt; 1  8.301276 17.89644 20.73893 1.426513 6.103290</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt; 2  8.331493 17.92150 22.93143 2.940388 3.832698</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt; 3 10.327471 17.83178 22.14201 3.012678 6.238426</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt; 4 11.196969 20.01750 26.90840 3.120056 4.654931</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt; 5 11.887811 20.82502 28.47312 4.440018 3.959033</span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co">#&gt; 6  8.198297 16.95198 20.73549 2.495083 3.763712</span></span></code></pre></div>
 </div>
 <div id="fit-a-model-by-lavaan.misem.mi" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Fit a Model by
 <code>lavaan.mi::sem.mi()</code></h2>
 <p>We then fit the model by <code>lavaan.mi::sem.mi()</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(lavaan.mi)</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#&gt; ###################################################################</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#&gt; This is lavaan.mi 0.1-0</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt; See the README file on github.com/TDJorgensen/lavaan.mi</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#&gt; for a table comparing it with deprecated semTools features.</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt; ###################################################################</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>mod <span class="ot">&lt;-</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="st">m ~ x + c1 + c2</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="st">y ~ m + x + c1 + c2</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>fit_lavaan <span class="ot">&lt;-</span> <span class="fu">sem.mi</span>(<span class="at">model =</span> mod,</span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>                     <span class="at">data =</span> dat_mi)</span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="fu">summary</span>(fit_lavaan)</span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#&gt; lavaan.mi object fit to 5 imputed data sets using:</span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co">#&gt;  - lavaan    (0.6-19)</span></span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co">#&gt;  - lavaan.mi (0.1-0)</span></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="co">#&gt; See class?lavaan.mi help page for available methods. </span></span>
-<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="co">#&gt; Convergence information:</span></span>
-<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="co">#&gt; The model converged on 5 imputed data sets.</span></span>
-<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="co">#&gt; Standard errors were available for all imputations.</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>mod <span class="ot">&lt;-</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="st">m ~ x + c1 + c2</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="st">y ~ m + x + c1 + c2</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>fit_lavaan <span class="ot">&lt;-</span> <span class="fu">sem.mi</span>(<span class="at">model =</span> mod,</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>                     <span class="at">data =</span> dat_mi)</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">summary</span>(fit_lavaan)</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt; lavaan.mi object fit to 5 imputed data sets using:</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt;  - lavaan    (0.6-21)</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt;  - lavaan.mi (0.1-0)</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">#&gt; See class?lavaan.mi help page for available methods. </span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co">#&gt; Convergence information:</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#&gt; The model converged on 5 imputed data sets.</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co">#&gt; Standard errors were available for all imputations.</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="co">#&gt;   Estimator                                         ML</span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="co">#&gt;   Optimization method                           NLMINB</span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="co">#&gt;   Number of model parameters                         9</span></span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a><span class="co">#&gt;   Number of observations                           100</span></span>
 <span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="co">#&gt;   Estimator                                         ML</span></span>
-<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="co">#&gt;   Optimization method                           NLMINB</span></span>
-<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="co">#&gt;   Number of model parameters                         9</span></span>
-<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="co">#&gt;   Number of observations                           100</span></span>
-<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="co">#&gt; Model Test User Model:</span></span>
-<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="co">#&gt;   Test statistic                                 0.000</span></span>
-<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="co">#&gt;   Degrees of freedom                                 0</span></span>
-<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a><span class="co">#&gt;   P-value                                        1.000</span></span>
-<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="co">#&gt;   Pooling method                                    D4</span></span>
-<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a><span class="co">#&gt; Parameter Estimates:</span></span>
-<span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a><span class="co">#&gt;   Standard errors                                    Standard</span></span>
-<span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a><span class="co">#&gt;   Information                                        Expected</span></span>
-<span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a><span class="co">#&gt;   Information saturated (h1) model                 Structured</span></span>
-<span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a><span class="co">#&gt;                                                              </span></span>
-<span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a><span class="co">#&gt;   Pooled across imputations              Rubin&#39;s (1987) rules</span></span>
-<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a><span class="co">#&gt;   Augment within-imputation variance     Scale by average RIV</span></span>
-<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a><span class="co">#&gt;   Wald test for pooled parameters          t(df) distribution</span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a><span class="co">#&gt; Model Test User Model:</span></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="co">#&gt;   Test statistic                                 0.000</span></span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="co">#&gt;   Degrees of freedom                                 0</span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="co">#&gt;   P-value                                        1.000</span></span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="co">#&gt;   Pooling method                                    D4</span></span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="co">#&gt; Parameter Estimates:</span></span>
+<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="co">#&gt;   Standard errors                                   Standard</span></span>
+<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a><span class="co">#&gt;   Information                                       Expected</span></span>
+<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="co">#&gt;   Information saturated (h1) model                Structured</span></span>
+<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="co">#&gt;                                                             </span></span>
+<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a><span class="co">#&gt;   Pooled across imputations             Rubin&#39;s (1987) rules</span></span>
+<span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a><span class="co">#&gt;   Augment within-imputation variance    Scale by average RIV</span></span>
+<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a><span class="co">#&gt;   Wald test for pooled parameters         t(df) distribution</span></span>
+<span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a><span class="co">#&gt;   Pooled t statistics with df &gt;= 1000 are displayed with</span></span>
+<span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a><span class="co">#&gt;   df = Inf(inity) to save space. Although the t distribution</span></span>
+<span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a><span class="co">#&gt;   with large df closely approximates a standard normal</span></span>
+<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a><span class="co">#&gt;   distribution, exact df for reporting these t tests can be</span></span>
+<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a><span class="co">#&gt;   obtained from parameterEstimates.mi() </span></span>
 <span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a><span class="co">#&gt;   Pooled t statistics with df &gt;= 1000 are displayed with</span></span>
-<span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a><span class="co">#&gt;   df = Inf(inity) to save space. Although the t distribution</span></span>
-<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a><span class="co">#&gt;   with large df closely approximates a standard normal</span></span>
-<span id="cb3-51"><a href="#cb3-51" tabindex="-1"></a><span class="co">#&gt;   distribution, exact df for reporting these t tests can be</span></span>
-<span id="cb3-52"><a href="#cb3-52" tabindex="-1"></a><span class="co">#&gt;   obtained from parameterEstimates.mi() </span></span>
-<span id="cb3-53"><a href="#cb3-53" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-54"><a href="#cb3-54" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-55"><a href="#cb3-55" tabindex="-1"></a><span class="co">#&gt; Regressions:</span></span>
-<span id="cb3-56"><a href="#cb3-56" tabindex="-1"></a><span class="co">#&gt;                    Estimate  Std.Err  t-value       df  P(&gt;|t|)</span></span>
-<span id="cb3-57"><a href="#cb3-57" tabindex="-1"></a><span class="co">#&gt;   m ~                                                          </span></span>
-<span id="cb3-58"><a href="#cb3-58" tabindex="-1"></a><span class="co">#&gt;     x                 0.891    0.080   11.117      Inf    0.000</span></span>
-<span id="cb3-59"><a href="#cb3-59" tabindex="-1"></a><span class="co">#&gt;     c1                0.162    0.077    2.118      Inf    0.034</span></span>
-<span id="cb3-60"><a href="#cb3-60" tabindex="-1"></a><span class="co">#&gt;     c2               -0.114    0.102   -1.117      Inf    0.264</span></span>
-<span id="cb3-61"><a href="#cb3-61" tabindex="-1"></a><span class="co">#&gt;   y ~                                                          </span></span>
-<span id="cb3-62"><a href="#cb3-62" tabindex="-1"></a><span class="co">#&gt;     m                 0.736    0.251    2.935      Inf    0.003</span></span>
-<span id="cb3-63"><a href="#cb3-63" tabindex="-1"></a><span class="co">#&gt;     x                 0.616    0.298    2.065  383.680    0.040</span></span>
-<span id="cb3-64"><a href="#cb3-64" tabindex="-1"></a><span class="co">#&gt;     c1                0.181    0.193    0.939      Inf    0.348</span></span>
-<span id="cb3-65"><a href="#cb3-65" tabindex="-1"></a><span class="co">#&gt;     c2               -0.156    0.254   -0.616      Inf    0.538</span></span>
-<span id="cb3-66"><a href="#cb3-66" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-67"><a href="#cb3-67" tabindex="-1"></a><span class="co">#&gt; Variances:</span></span>
-<span id="cb3-68"><a href="#cb3-68" tabindex="-1"></a><span class="co">#&gt;                    Estimate  Std.Err  t-value       df  P(&gt;|t|)</span></span>
-<span id="cb3-69"><a href="#cb3-69" tabindex="-1"></a><span class="co">#&gt;    .m                 0.682    0.098    6.959      Inf    0.000</span></span>
-<span id="cb3-70"><a href="#cb3-70" tabindex="-1"></a><span class="co">#&gt;    .y                 4.151    0.597    6.958      Inf    0.000</span></span></code></pre></div>
+<span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a><span class="co">#&gt; Regressions:</span></span>
+<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a><span class="co">#&gt;                    Estimate  Std.Err  t-value       df  P(&gt;|t|)</span></span>
+<span id="cb3-51"><a href="#cb3-51" tabindex="-1"></a><span class="co">#&gt;   m ~                                                          </span></span>
+<span id="cb3-52"><a href="#cb3-52" tabindex="-1"></a><span class="co">#&gt;     x                 0.891    0.080   11.117      Inf    0.000</span></span>
+<span id="cb3-53"><a href="#cb3-53" tabindex="-1"></a><span class="co">#&gt;     c1                0.162    0.077    2.118      Inf    0.034</span></span>
+<span id="cb3-54"><a href="#cb3-54" tabindex="-1"></a><span class="co">#&gt;     c2               -0.114    0.102   -1.117      Inf    0.264</span></span>
+<span id="cb3-55"><a href="#cb3-55" tabindex="-1"></a><span class="co">#&gt;   y ~                                                          </span></span>
+<span id="cb3-56"><a href="#cb3-56" tabindex="-1"></a><span class="co">#&gt;     m                 0.736    0.251    2.935      Inf    0.003</span></span>
+<span id="cb3-57"><a href="#cb3-57" tabindex="-1"></a><span class="co">#&gt;     x                 0.616    0.298    2.065  383.680    0.040</span></span>
+<span id="cb3-58"><a href="#cb3-58" tabindex="-1"></a><span class="co">#&gt;     c1                0.181    0.193    0.939      Inf    0.348</span></span>
+<span id="cb3-59"><a href="#cb3-59" tabindex="-1"></a><span class="co">#&gt;     c2               -0.156    0.254   -0.616      Inf    0.538</span></span>
+<span id="cb3-60"><a href="#cb3-60" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-61"><a href="#cb3-61" tabindex="-1"></a><span class="co">#&gt; Variances:</span></span>
+<span id="cb3-62"><a href="#cb3-62" tabindex="-1"></a><span class="co">#&gt;                    Estimate  Std.Err  t-value       df  P(&gt;|t|)</span></span>
+<span id="cb3-63"><a href="#cb3-63" tabindex="-1"></a><span class="co">#&gt;    .m                 0.682    0.098    6.959      Inf    0.000</span></span>
+<span id="cb3-64"><a href="#cb3-64" tabindex="-1"></a><span class="co">#&gt;    .y                 4.151    0.597    6.958      Inf    0.000</span></span></code></pre></div>
 </div>
 <div id="generate-monte-carlo-estimates" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Generate Monte Carlo

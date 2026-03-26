@@ -1,3 +1,54 @@
+# manymome 0.3.4
+
+## Improvements
+
+- The `plot`-method of `cond_indirect_effects`
+  objects will keep the order of the
+  moderator levels (from bottom to top)
+  as appeared in the object.
+  Set `keep_wlevels_order` to `FALSE` to
+  revert to the old behavior. Default
+  is `NULL`, and the order will be
+  determined internally.
+  (0.3.3.4, 0.3.4)
+
+## Miscellaneous
+
+- The argument `na.action` in
+  `q_mediation()` and friends is no
+  longer supported because it is
+  unnecessary, and using it can be
+  confusing. For `fit_method = "sem"`,
+  we can just set `missing` to
+  `"listwise"` to request
+  listwise deletion. (0.3.3.1)
+
+- Updated `lavaan.mi` test objects
+  for `lavaan 0.6-21`. (0.3.3.2)
+
+- No more warning (a false alarm) when
+  some category names have one
+  or more white spaces.
+  (0.3.3.6)
+
+## Bug Fixes
+
+- Fixed the error message
+  of `plot.cond_indirect_effects()`
+  when a model has no latent
+  variables but `x_method` is set to
+  `"percentile"`. (0.3.3.3)
+
+- The `print` method of the outputs of
+  `q_mediation()` and friends now prints
+  the total indirect effects for an
+  arbitrary model. (0.3.3.5)
+
+- Fixed a bug in `plot.cond_indirect_effects()`
+  with `facet_grid_*` when the options
+  `useFancyQuotes` is set to `TRUE`.
+  (0.3.3.7)
+
 # manymome 0.3.3
 
 ## Miscellaneous
