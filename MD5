@@ -1,6 +1,6 @@
-9c32e1d6fa6f520bd9c0e0038115ec3b *DESCRIPTION
+fcd2f7c210e550fc22116f799ea2e170 *DESCRIPTION
 a9b32223b7d3f92f084a220064206c8c *NAMESPACE
-ba377c3f59a829598f8a667f51203a3b *NEWS.md
+b3e0dae93c85f3fde3ac3a93f2f22638 *NEWS.md
 2e33fab058fc2d3d31a1eccb0630e84c *R/add_na.R
 4bfd901ceedc7c0f617c2d14dad35423 *R/all_indirect_paths.R
 db202cce97acac3c1c0466503a971de6 *R/boot2est_lavaan.R
@@ -83,7 +83,7 @@ efb7babbbb24826a3381b509a3bdecc3 *R/q_mediation_plot.R
 0998fa830d3810fc3214fca62e0399b3 *R/summary_lm_list.R
 c01dc7d5bd601b0002561b33b9fa1994 *R/total_indirect_effect_list.R
 572a3c8f9c4edfe26c28b9c5254246b7 *R/wlevels_subset.R
-5be810cba5bd7d9d0856bd946fe1f11f *README.md
+a17e18e881e2955503b0e17ab2c5c339 *README.md
 9d5d57306c989a862d29353812d857e7 *build/partial.rdb
 274dea02a4807390bd8d46e142fb804c *build/vignette.rds
 dd757a58f2483a7772bbd30e5d1b5db3 *data/data_indicators.rda
@@ -130,7 +130,7 @@ e0d94d1b29398ffe683547ac9ae24708 *inst/doc/med_lm.Rmd
 5a8b1305feee03f3c82a8908686da6c2 *inst/doc/med_lm.html
 a951225f2586db3682ace6e8d28b5865 *inst/doc/mod_levels.R
 6e8a52cb687984304d296d0d13798662 *inst/doc/mod_levels.Rmd
-8e8b2e03744f43a5415a5e34c1a6d467 *inst/doc/mod_levels.html
+c7dbdf1a1cb26ee2f444f1639846c82a *inst/doc/mod_levels.html
 e1d7b9d7e20425045c63f7b1ad92b7fd *inst/doc/mome_lm.Rmd
 eacf282e7009e1d72472c56d75c4cb0e *inst/doc/mome_lm.html
 f27b24eead855f59b0e7dedeb183f42f *inst/extdata/mi_test_data.RData
@@ -322,7 +322,7 @@ aa629e528b3b9c44ffc5ac3e93d0c702 *tests/testthat/test_lav_implied_all.R
 7bbe9d91691055d64d7a0629da78ef0f *tests/testthat/test_merge_mod_levels.R
 125f29ab14053fb7dddc4c4ca5665522 *tests/testthat/test_merge_mod_levels_one_level.R
 6dd77b5f028311f941f8531f30c6bf59 *tests/testthat/test_merge_model_frame.R
-139bd25a90f27ec196f2d98940a5163f *tests/testthat/test_mg_boot.R
+d102bd248687a0cceecef85a180d23fc *tests/testthat/test_mg_boot.R
 1f56f5f3c4544289afa763c230b3125d *tests/testthat/test_mi_lavaan_mi_no_means.R
 4a2759a6c7727f185e98de2ba131eb5f *tests/testthat/test_mi_template.R
 9adc3274ff021f72aec7ffa86d396969 *tests/testthat/test_mod_levels_lavaan.R
@@ -364,16 +364,16 @@ f7f30f4b652c6a4b5f848ae97d46008f *tests/testthat/test_q_fct_mediation_sem_indica
 5fde0066babab52edb6e7fdc652520e6 *tests/testthat/test_q_fct_mediation_sem_listwise.R
 30c215a654bf864214f6de49bfb2b14c *tests/testthat/test_q_fct_mediation_sem_lm2lav.R
 5c645c231ec385d00662cad34a40e75b *tests/testthat/test_q_fct_mediation_sem_mc.R
-ca081eaba3fc68c2f134c892022ec4b6 *tests/testthat/test_sam.R
+f09471f8343baff1c35c33b71abe9efb *tests/testthat/test_sam.R
 88493686ce17153037e6d6c91eb9ffa0 *tests/testthat/test_sam_do_boot.R
 8e5e4de959a51ed827934d75ed27dd85 *tests/testthat/test_sam_do_boot_mod.R
 3b2ea4e56e9d55f40f55e54ae3d85587 *tests/testthat/test_sam_implied.R
-e83c5cb95d0acc4a40568fa06ea93839 *tests/testthat/test_sam_indirect_effect_std.R
-d7ad2e670a93cb084d5f9dc3ceb39ffa *tests/testthat/test_sam_mediation_mg.R
-e9472e5422f264395859ba617f2d5ad3 *tests/testthat/test_sam_q_mediation.R
+2a3549d6adc4897a6dff0bca7741404a *tests/testthat/test_sam_indirect_effect_std.R
+733de15a4ae5eae418431eeb3e654245 *tests/testthat/test_sam_mediation_mg.R
+12e3669393af45f89c9339cc778e7b43 *tests/testthat/test_sam_q_mediation.R
 bb55fa4c95267ddd23d0e85aa2ae23b8 *tests/testthat/test_sam_q_mediation_std.R
 916bffe1d327e031f47319deef3b43a5 *tests/testthat/test_sam_update.R
-69253fc2061e1a438f121c46c7ddd9dc *tests/testthat/test_sam_update_internal.R
+d1a665b06a2ea02295bf84a0c80fc0e0 *tests/testthat/test_sam_update_internal.R
 c0d5794501fc53075768d26115655c73 *tests/testthat/test_skip_ci_mc_1.R
 17337920553d38e3f26668f5e74fcc7b *tests/testthat/test_skip_ci_mc_2.R
 3f456fa378dcf0b6a5d9d03ec81e84f4 *tests/testthat/test_skip_ci_min_size_1.R

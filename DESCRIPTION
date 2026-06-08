@@ -1,7 +1,7 @@
 Package: manymome
 Title: Mediation, Moderation and Moderated-Mediation After Model
         Fitting
-Version: 0.3.5
+Version: 0.3.6
 Authors@R: 
     c(person(given = "Shu Fai",
            family = "Cheung",
@@ -44,11 +44,11 @@ LazyData: true
 VignetteBuilder: knitr
 Config/roxygen2/version: 8.0.0
 NeedsCompilation: no
-Packaged: 2026-06-01 16:14:56 UTC; shufa
+Packaged: 2026-06-08 00:02:14 UTC; shufa
 Author: Shu Fai Cheung [aut, cre] (ORCID:
     <https://orcid.org/0000-0002-9871-9448>),
   Sing-Hang Cheung [aut] (ORCID: <https://orcid.org/0000-0001-5182-0752>),
   Rong Wei Sun [ctb] (ORCID: <https://orcid.org/0000-0003-0034-1422>)
 Maintainer: Shu Fai Cheung <shufai.cheung@gmail.com>
 Repository: CRAN
-Date/Publication: 2026-06-01 19:10:16 UTC
+Date/Publication: 2026-06-08 07:40:02 UTC
