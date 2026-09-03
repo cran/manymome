@@ -59,8 +59,8 @@
 #' @param compute_implied_stats If
 #' `TRUE`, default, implied statistics
 #' will be computed for each bootstrap
-#' sample. Letting users to disable this
-#' is an experimental features to let
+#' sample. Letting users disable this
+#' is an experimental feature to let
 #' the process run faster.
 #'
 #' @param seed The seed for the
@@ -121,25 +121,55 @@ lm2boot_out <- function(outputs, R = 100,
     n <- nrow(dat)
     if (!is.null(seed)) set.seed(seed)
     coefs_template <- lapply(outputs, coef2lor)
+    ids <- replicate(
+      R,
+      sample.int(n, replace = TRUE),
+      simplify = FALSE
+    )
     if (progress) {
-        out0 <- pbapply::pbreplicate(R, lm_boot2est_i(d = dat,
-                                          i = sample.int(n, replace = TRUE),
-                                          outputs = outputs,
-                                          compute_implied_stats = compute_implied_stats,
-                                          coefs_template = coefs_template), simplify = FALSE)
+        # out0 <- pbapply::pbreplicate(R, lm_boot2est_i(d = dat,
+        #                                   i = sample.int(n, replace = TRUE),
+        #                                   outputs = outputs,
+        #                                   compute_implied_stats = compute_implied_stats,
+        #                                   coefs_template = coefs_template), simplify = FALSE)
+        out0 <- pbapply::pbsapply(
+                  ids,
+                  function(ids_i) {
+                    lm_boot2est_i(
+                      d = dat,
+                      i = ids_i,
+                      outputs = outputs,
+                      compute_implied_stats = compute_implied_stats,
+                      coefs_template = coefs_template)
+                  },
+                  simplify = FALSE
+                )
       } else {
-        out0 <- replicate(R, lm_boot2est_i(d = dat,
-                                          i = sample.int(n, replace = TRUE),
-                                          outputs = outputs,
-                                          compute_implied_stats = compute_implied_stats,
-                                          coefs_template = coefs_template), simplify = FALSE)
+        # out0 <- replicate(R, lm_boot2est_i(d = dat,
+        #                                   i = sample.int(n, replace = TRUE),
+        #                                   outputs = outputs,
+        #                                   compute_implied_stats = compute_implied_stats,
+        #                                   coefs_template = coefs_template), simplify = FALSE)
+        out0 <- sapply(
+                  ids,
+                  function(ids_i) {
+                    lm_boot2est_i(
+                      d = dat,
+                      i = ids_i,
+                      outputs = outputs,
+                      compute_implied_stats = compute_implied_stats,
+                      coefs_template = coefs_template)
+                  },
+                  simplify = FALSE
+                )
       }
+    attr(out0, "ids") <- ids
     class(out0) <- "boot_out"
     out0
   }
 
 # Generate the function for bootstrapping.
-# Return a parameter estimates tables.
+# Return a parameter estimates table.
 #' @noRd
 
 lm_boot2est_i <- function(d, i = NULL, outputs,
@@ -170,7 +200,7 @@ lm_boot2est_i <- function(d, i = NULL, outputs,
 #' CPU cores to use when `parallel` is
 #' `TRUE`. Default is the number of
 #' non-logical cores minus one (one
-#' minimum). Will raise an error if
+#' minimum). Will raise a warning if
 #' greater than the number of cores
 #' detected by
 #' [parallel::detectCores()]. If
@@ -199,7 +229,7 @@ lm2boot_out_parallel <- function(outputs,
                                  R = 100,
                                  seed = NULL,
                                  parallel = FALSE,
-                                 ncores = max(parallel::detectCores(logical = FALSE) - 1, 1),
+                                 ncores = max(parallel::detectCores(logical = FALSE) - 1, 1, na.rm = TRUE),
                                  make_cluster_args = list(),
                                  progress = TRUE,
                                  compute_implied_stats = TRUE) {
@@ -220,7 +250,7 @@ lm2boot_out_parallel <- function(outputs,
     if (parallel) {
         if (is.numeric(ncores)) {
             ncores0 <- parallel::detectCores()
-            if (ncores == ncores0) {
+            if (isTRUE(ncores >= ncores0)) {
                 warning(paste0("'ncores' >= The number of detected cores (",
                                ncores0,"). The computer may not be responsive",
                                " when bootstrapping is running."),
@@ -307,6 +337,7 @@ lm2boot_out_parallel <- function(outputs,
                                                             outputs = outputs)))
           }
       }
+    attr(out, "ids") <- ids
     class(out) <- "boot_out"
     out
   }

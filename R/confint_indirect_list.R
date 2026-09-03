@@ -23,17 +23,17 @@
 #' the future, and uses them to form the
 #' percentile confidence interval.
 #'
+#' @inheritParams confint.indirect
+#'
 #' @param object The output of
 #' [many_indirect_effects()].
 #'
 #' @param parm Ignored for now.
 #'
-#' @param level The level of confidence,
-#' default is .95, returning the 95%
-#' confidence interval.
-#'
 #' @param ...  Additional arguments.
-#' Ignored by the function.
+#' To be passed to [confint.indirect()].
+#' (This new behavior applies to 0.3.6.15
+#' and later versions.)
 #'
 #' @return A two-column data frame.
 #' The columns are the limits of
@@ -62,7 +62,7 @@
 #' # Indirect effect estimates
 #' # R should be 2000 or even 5000 in real research
 #' # parallel should be used in real research.
-#' fit_boot <- do_boot(fit, R = 45, seed = 8974,
+#' fit_boot <- do_boot(fit, R = 40, seed = 2345,
 #'                     parallel = FALSE,
 #'                     progress = FALSE)
 #' out <- many_indirect_effects(paths,
@@ -76,8 +76,18 @@
 #'
 #' @export
 
-confint.indirect_list <- function(object, parm = NULL, level = .95, ...) {
+confint.indirect_list <- function(
+  object,
+  parm = NULL,
+  level = NULL,
+  ...
+) {
     p <- length(object)
+
+    # ==== Handle level ====
+
+    # No need to set it here. Will be handled by confint.indirect().
+
     has_ci <- FALSE
     if (isTRUE(!is.null(object[[1]]$boot_ci))) {
         has_ci <- TRUE
@@ -88,6 +98,7 @@ confint.indirect_list <- function(object, parm = NULL, level = .95, ...) {
         ci_type <- "mc"
       }
     if (has_ci) {
+        # Always call confint() again
         confint0 <- lapply(object, stats::confint,
                            parm = parm,
                            level = level, ...)

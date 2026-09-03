@@ -1,3 +1,126 @@
+# manymome 0.3.7
+
+## New Features
+
+- Update the `q_*` functions
+  (`q_mediation()`, `q_simple_mediation()`,
+  `q_serial_mediation()` and `q_parallel_mediation()`)
+  to support models with moderators
+  (moderated mediation). The paths moderated
+  are specified by the argument `moderators`.
+  Models fitted by multiple regression
+  or structural equation modelling on
+  observed variables only are supported.
+  If a model has latent variables and is
+  fitted by structural equation modeling,
+  then the `indicator_method` must be set
+  to `"sam"` to use the
+  structural-after-measurement method.
+  (0.3.6.3)
+
+- Updated `index_of_mome()` and
+  `index_of_momome()` to use standard
+  deviation as the unit of the moderator
+  to compute the index, as proposed by
+  Cheung and Cheung (2024), enabled by
+  the arguments `w_unit` and `z_unit`.
+  Also added two wrappers,
+  `z_index_mome()` and `z_index_of_momome()`,
+  with `w_unit` and `z_unit` set to
+  `"sd"` automatically.
+  (0.3.6.13)
+
+## Improvement
+
+- Users can specify the change of moderator
+  values when calling `index_of_mome()`
+  and `index_of_momome()` via the new
+  arguments `increase_from`, `increase_to`,
+  `w_increase_from`, `w_increase_to`,
+  `z_increase_from`, and `z_increase_to`.
+  (0.3.6.5)
+
+- Added the argument `cond_indirect_effects_args`
+  to the `q_*` functions for customizing
+  the computation of conditional indirect
+  effects or conditional effects.
+  (0.3.6.14)
+
+- Most `confint` methods now can make use
+  of the value set to `level`. If not
+  set, the default is `NULL` and the stored
+  value of `level` (e.g., when calling
+  `indirect_effect()`) will be used.
+  (0.3.6.15)
+
+- Added the argument `wlevels_not_found`
+  to `cond_indirect_effects()`. If
+  a variable in `wlevels` is not found
+  among the component of the product
+  term(s), a warning will be issued by
+  default. These variables can be
+  ignored silently by setting `wlevels_not_found`
+  to `"ignore"`. If desired, an error can
+  be raised by setting `wlevels_not_found`
+  to `"error"`.
+  (0.3.6.17)
+
+- The `print` method of
+  `cond_indirect_effects` objects
+  (`print.cond_indirect_effects()`) will
+  now print the computation formula.
+  (0.3.6.18)
+
+## Miscellaneous
+
+- Updated some tests for the forthcoming
+  `lavaan` 0.7-1.
+  (0.3.6.1)
+
+- Fixed handling a special case: `x:w:w == x`.
+  (0.3.6.2)
+
+- Updated to handle possible `NA` from
+  `parallel::detectCores()`.
+  (0.3.6.4)
+
+- Added `pkgdown` website articles on
+  regression models with moderators
+  (no mediators).
+  (0.3.6.7)
+
+- Suppressed a `lavaan` 0.7-2 warning
+  that does not affect the computation.
+  (0.3.6.8)
+
+- Fixed a typo in a help page of
+  `data_mod_cat_num_2w`.
+  (0.3.6.8)
+
+- Fixed some tests to work with
+  `auto.cov.x = TRUE` in `lavaan`
+  (default to `FALSE` in `lavaan` 0.7-2).
+  (0.3.6.9)
+
+- Amended some tests to allow for
+  optimization noise.
+  (0.3.6.10)
+
+- Stored indices of sampled cases
+  (`ids` or `design`, if available).
+  (0.3.6.11)
+
+- Updated `many_indirect_effects()` to
+  do bootstrapping or Monte Carlo simulation
+  only once when `ci_type` is set.
+  (0.3.6.12)
+
+## Bug Fixes
+
+- Fixed a bug in finding a product
+  term automatically in some special cases.
+  (0.3.6.16)
+
 # manymome 0.3.6
 
 ## New Features

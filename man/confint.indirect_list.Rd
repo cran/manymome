@@ -6,7 +6,7 @@
 Indirect Effects in an 'indirect_list'
 Object}
 \usage{
-\method{confint}{indirect_list}(object, parm = NULL, level = 0.95, ...)
+\method{confint}{indirect_list}(object, parm = NULL, level = NULL, ...)
 }
 \arguments{
 \item{object}{The output of
@@ -14,12 +14,24 @@ Object}
 
 \item{parm}{Ignored for now.}
 
-\item{level}{The level of confidence,
-default is .95, returning the 95\%
-confidence interval.}
+\item{level}{If set to \code{NULL}, the default,
+then the
+level of confidence used to generate
+\code{object}
+is used. If set to a value,
+this value will be used
+to recompute the confidence intervals.
+If the confidence interval is to be
+computed from the standard error,
+and so \code{level} is not set in \code{object},
+then the default value is .95.
+(This new behavior applies to 0.3.6.15
+and later versions.)}
 
 \item{...}{Additional arguments.
-Ignored by the function.}
+To be passed to \code{\link[=confint.indirect]{confint.indirect()}}.
+(This new behavior applies to 0.3.6.15
+and later versions.)}
 }
 \value{
 A two-column data frame.
@@ -70,7 +82,7 @@ paths
 # Indirect effect estimates
 # R should be 2000 or even 5000 in real research
 # parallel should be used in real research.
-fit_boot <- do_boot(fit, R = 45, seed = 8974,
+fit_boot <- do_boot(fit, R = 40, seed = 2345,
                     parallel = FALSE,
                     progress = FALSE)
 out <- many_indirect_effects(paths,

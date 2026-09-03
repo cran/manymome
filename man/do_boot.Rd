@@ -11,7 +11,7 @@ do_boot(
   R = 100,
   seed = NULL,
   parallel = TRUE,
-  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1),
+  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1, na.rm = TRUE),
   make_cluster_args = list(),
   progress = TRUE,
   compute_implied_stats = TRUE
@@ -42,7 +42,7 @@ Default is \code{TRUE}.}
 CPU cores to use when \code{parallel} is
 \code{TRUE}. Default is the number of
 non-logical cores minus one (one
-minimum). Will raise an error if
+minimum). Will raise a warning if
 greater than the number of cores
 detected by
 \code{\link[parallel:detectCores]{parallel::detectCores()}}. If
@@ -63,8 +63,8 @@ progress or not. Default is \code{TRUE}.}
 \item{compute_implied_stats}{If
 \code{TRUE}, default, implied statistics
 will be computed for each bootstrap
-sample. Letting users to disable this
-is an experimental features to let
+sample. Allowing users to disable this
+is an experimental feature to let
 the process run faster.}
 }
 \value{
@@ -155,5 +155,5 @@ out
 \code{\link[=lm2boot_out]{lm2boot_out()}},
 \code{\link[=fit2boot_out]{fit2boot_out()}}, and
 \code{\link[=fit2boot_out_do_boot]{fit2boot_out_do_boot()}}, which
-implements the bootstrapping.
+implement the bootstrapping.
 }

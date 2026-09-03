@@ -13,7 +13,7 @@ fit2boot_out_do_boot(
   R = 100,
   seed = NULL,
   parallel = FALSE,
-  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1),
+  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1, na.rm = TRUE),
   make_cluster_args = list(),
   progress = TRUE,
   compute_implied_stats = TRUE,
@@ -29,8 +29,8 @@ function only supports a
 \item{compute_implied_stats}{If
 \code{TRUE}, default, implied statistics
 will be computed for each bootstrap
-sample. Letting users to disable this
-is an experimental features to let
+sample. Allowing users to disable this
+is an experimental feature to let
 the process run faster.}
 
 \item{R}{The number of bootstrap
@@ -47,7 +47,7 @@ Default is \code{NULL}.}
 CPU cores to use when \code{parallel} is
 \code{TRUE}. Default is the number of
 non-logical cores minus one (one
-minimum). Will raise an error if
+minimum). Will raise a warning if
 greater than the number of cores
 detected by
 \code{\link[parallel:detectCores]{parallel::detectCores()}}. If
@@ -170,7 +170,7 @@ fit <- sem(model = mod, data = dat, fixed.x = FALSE,
            se = "none", baseline = FALSE)
 fit_boot_out <- fit2boot_out_do_boot(fit = fit,
                                      R = 40,
-                                     seed = 1234,
+                                     seed = 2345,
                                      progress = FALSE)
 out <- cond_indirect_effects(wlevels = "w",
                              x = "x",

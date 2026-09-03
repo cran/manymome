@@ -77,8 +77,8 @@
 #' @param compute_implied_stats If
 #' `TRUE`, default, implied statistics
 #' will be computed for each bootstrap
-#' sample. Letting users to disable this
-#' is an experimental features to let
+#' sample. Allowing users to disable this
+#' is an experimental feature to let
 #' the process run faster.
 #'
 #' @param parallel Logical. Whether
@@ -89,7 +89,7 @@
 #' CPU cores to use when `parallel` is
 #' `TRUE`. Default is the number of
 #' non-logical cores minus one (one
-#' minimum). Will raise an error if
+#' minimum). Will raise a warning if
 #' greater than the number of cores
 #' detected by
 #' [parallel::detectCores()]. If
@@ -110,7 +110,7 @@
 #' @seealso [lm2boot_out()],
 #' [fit2boot_out()], and
 #' [fit2boot_out_do_boot()], which
-#' implements the bootstrapping.
+#' implement the bootstrapping.
 #'
 #' @examples
 #' data(data_med_mod_ab1)
@@ -144,7 +144,7 @@ do_boot <- function(fit,
                     R = 100,
                     seed = NULL,
                     parallel = TRUE,
-                    ncores = max(parallel::detectCores(logical = FALSE) - 1, 1),
+                    ncores = max(parallel::detectCores(logical = FALSE) - 1, 1, na.rm = TRUE),
                     make_cluster_args = list(),
                     progress = TRUE,
                     compute_implied_stats = TRUE) {

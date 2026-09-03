@@ -9,7 +9,7 @@
 #' This method requires the
 #' `semptools` and `semPlot` packages.
 #' They are not installed by default.
-#' Install them first before using the
+#' Install them before using the
 #' plot method.
 #'
 #' This method draws the path models
@@ -262,8 +262,6 @@
 #' plot(out)
 #' plot(out,
 #'      v_pos = "lower")
-#' plot(out,
-#'      v_pos = "upper")
 #'
 #' # ===== A user-specified mediation model
 #'
@@ -297,6 +295,11 @@ plot.q_mediation <- function(
                 plot_now = TRUE,
                 ...
               ) {
+
+  # Does not support a model with moderators, for now
+  if (q_mediation_has_moderators(x)) {
+    stop("The plot method does not (yet) support a model with moderators.")
+  }
 
   v_pos <- match.arg(v_pos)
   v_preference <- match.arg(v_preference)

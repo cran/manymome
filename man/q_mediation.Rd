@@ -2,9 +2,13 @@
 % Please edit documentation in R/q_mediation.R
 \name{q_mediation}
 \alias{q_mediation}
+\alias{q_moderated_mediation}
 \alias{q_simple_mediation}
+\alias{q_moderated_simple_mediation}
 \alias{q_serial_mediation}
+\alias{q_moderated_serial_mediation}
 \alias{q_parallel_mediation}
+\alias{q_moderated_parallel_mediation}
 \alias{get_fit}
 \alias{print.q_mediation}
 \title{Mediation Models By Regression
@@ -15,6 +19,7 @@ q_mediation(
   y,
   m = NULL,
   cov = NULL,
+  moderators = NULL,
   indicators = NULL,
   data = NULL,
   boot_ci = TRUE,
@@ -30,9 +35,38 @@ q_mediation(
   missing = "fiml",
   fixed.x = TRUE,
   sem_args = list(),
+  cond_indirect_effects_args = list(),
   na.action = NA,
   parallel = TRUE,
-  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1),
+  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1, na.rm = TRUE),
+  progress = TRUE
+)
+
+q_moderated_mediation(
+  x,
+  y,
+  m = NULL,
+  cov = NULL,
+  moderators = NULL,
+  indicators = NULL,
+  data = NULL,
+  boot_ci = TRUE,
+  mc_ci = FALSE,
+  level = 0.95,
+  R = 100,
+  seed = NULL,
+  ci_type = NULL,
+  boot_type = c("perc", "bc"),
+  model = NULL,
+  fit_method = c("lm", "regression", "sem", "lavaan"),
+  indicator_method = NULL,
+  missing = "fiml",
+  fixed.x = TRUE,
+  sem_args = list(),
+  cond_indirect_effects_args = list(),
+  na.action = NA,
+  parallel = TRUE,
+  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1, na.rm = TRUE),
   progress = TRUE
 )
 
@@ -41,6 +75,7 @@ q_simple_mediation(
   y,
   m = NULL,
   cov = NULL,
+  moderators = NULL,
   indicators = NULL,
   data = NULL,
   boot_ci = TRUE,
@@ -56,9 +91,38 @@ q_simple_mediation(
   missing = "fiml",
   fixed.x = TRUE,
   sem_args = list(),
+  cond_indirect_effects_args = list(),
   na.action = NA,
   parallel = TRUE,
-  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1),
+  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1, na.rm = TRUE),
+  progress = TRUE
+)
+
+q_moderated_simple_mediation(
+  x,
+  y,
+  m = NULL,
+  cov = NULL,
+  moderators = NULL,
+  indicators = NULL,
+  data = NULL,
+  boot_ci = TRUE,
+  mc_ci = FALSE,
+  level = 0.95,
+  R = 100,
+  seed = NULL,
+  ci_type = NULL,
+  boot_type = c("perc", "bc"),
+  fit_method = c("lm", "regression", "sem", "lavaan"),
+  indicator_method = ifelse(fit_method \%in\% c("lm", "regression"), "scale_scores",
+    "measurement_model"),
+  missing = "fiml",
+  fixed.x = TRUE,
+  sem_args = list(),
+  cond_indirect_effects_args = list(),
+  na.action = NA,
+  parallel = TRUE,
+  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1, na.rm = TRUE),
   progress = TRUE
 )
 
@@ -67,6 +131,7 @@ q_serial_mediation(
   y,
   m = NULL,
   cov = NULL,
+  moderators = NULL,
   indicators = NULL,
   data = NULL,
   boot_ci = TRUE,
@@ -82,9 +147,38 @@ q_serial_mediation(
   missing = "fiml",
   fixed.x = TRUE,
   sem_args = list(),
+  cond_indirect_effects_args = list(),
   na.action = NA,
   parallel = TRUE,
-  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1),
+  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1, na.rm = TRUE),
+  progress = TRUE
+)
+
+q_moderated_serial_mediation(
+  x,
+  y,
+  m = NULL,
+  cov = NULL,
+  moderators = NULL,
+  indicators = NULL,
+  data = NULL,
+  boot_ci = TRUE,
+  mc_ci = FALSE,
+  level = 0.95,
+  R = 100,
+  seed = NULL,
+  ci_type = NULL,
+  boot_type = c("perc", "bc"),
+  fit_method = c("lm", "regression", "sem", "lavaan"),
+  indicator_method = ifelse(fit_method \%in\% c("lm", "regression"), "scale_scores",
+    "measurement_model"),
+  missing = "fiml",
+  fixed.x = TRUE,
+  sem_args = list(),
+  cond_indirect_effects_args = list(),
+  na.action = NA,
+  parallel = TRUE,
+  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1, na.rm = TRUE),
   progress = TRUE
 )
 
@@ -93,6 +187,7 @@ q_parallel_mediation(
   y,
   m = NULL,
   cov = NULL,
+  moderators = NULL,
   indicators = NULL,
   data = NULL,
   boot_ci = TRUE,
@@ -108,9 +203,38 @@ q_parallel_mediation(
   missing = "fiml",
   fixed.x = TRUE,
   sem_args = list(),
+  cond_indirect_effects_args = list(),
   na.action = NA,
   parallel = TRUE,
-  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1),
+  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1, na.rm = TRUE),
+  progress = TRUE
+)
+
+q_moderated_parallel_mediation(
+  x,
+  y,
+  m = NULL,
+  cov = NULL,
+  moderators = NULL,
+  indicators = NULL,
+  data = NULL,
+  boot_ci = TRUE,
+  mc_ci = FALSE,
+  level = 0.95,
+  R = 100,
+  seed = NULL,
+  ci_type = NULL,
+  boot_type = c("perc", "bc"),
+  fit_method = c("lm", "regression", "sem", "lavaan"),
+  indicator_method = ifelse(fit_method \%in\% c("lm", "regression"), "scale_scores",
+    "measurement_model"),
+  missing = "fiml",
+  fixed.x = TRUE,
+  sem_args = list(),
+  cond_indirect_effects_args = list(),
+  na.action = NA,
+  parallel = TRUE,
+  ncores = max(parallel::detectCores(logical = FALSE) - 1, 1, na.rm = TRUE),
   progress = TRUE
 )
 
@@ -148,10 +272,10 @@ functions.}
 \item{m}{A character vector of the
 name(s) of the mediator(s). For
 a simple mediation model, it must
-has only one name. For serial and
+have only one name. For serial and
 parallel mediation models, it can
 have one or more names. For a serial
-mediation models, the direction of
+mediation model, the direction of
 the paths go from the first names to
 the last names. For example,
 \code{c("m1", "m3", "m4")} denoted that
@@ -169,6 +293,23 @@ element. For example, \code{list(m1 = "c1", dv = c("c2", "c3"))}
 indicates that \code{c1} predicts \code{"m1"},
 while \code{c2} and \code{c3} predicts \code{"dv"}.
 Default is \code{NULL}, no covariates.}
+
+\item{moderators}{A named list to
+specify paths that are moderated.
+For example, \code{list("x -> y" = "w1", "x -> m" = "w2")}
+indicates that the path \code{x -> y} is
+moderated by \code{"w1"} and the path
+\code{x -> m} is moderated by \code{"w2"}.
+For now, moderators are supported only
+if \code{fit_method} is \code{"lm"} or \code{"regression"}.
+To fit the model by \code{lavaan}, please
+specify the model manually and use
+other functions in \code{manymome}.
+A path can be moderated by more than
+one moderator (e.g., \code{"x -> y" = c("w1", "w2")}).
+If each path is moderated by exactly
+one moderator, a named character vector
+can also be used (e.g., \code{c("x -> y" = "w1", "x -> m" = "w2")}).}
 
 \item{indicators}{Optional. A named
 vector of indicator names for scales or
@@ -220,7 +361,7 @@ Can be either \code{"boot"} (bootstrapping)
 or \code{"mc"} (Monte Carlo). If not
 supplied or is \code{NULL}, will check
 other arguments
-(e.g, \code{boot_ci} and \code{mc_ci}). If
+(e.g., \code{boot_ci} and \code{mc_ci}). If
 supplied, will override \code{boot_ci}
 and \code{mc_ci}. If \code{fit_method} is
 \code{"regression"} or \code{"lm"}, then only
@@ -275,7 +416,7 @@ the regression coefficients}
 
 \item{missing}{If \code{fit_method} is
 set to \code{"sem"} or \code{"lavaan"}, this
-argument determine how missing data
+argument determines how missing data
 is handled. The default value is
 \code{"fiml"} and full information maximum
 likelihood will be used to handle
@@ -303,6 +444,11 @@ Arguments
 listed here will not override
 \code{missing} and \code{fixed.x}.}
 
+\item{cond_indirect_effects_args}{A named list of additional arguments
+to be passed to \code{\link[=cond_indirect_effects]{cond_indirect_effects()}}
+when computing conditional effects
+or conditional indirect effects.}
+
 \item{na.action}{This argument is
 no longer supported because using it
 with \code{missing} is confusing. Use
@@ -320,7 +466,7 @@ doing bootstrapping.}
 CPU cores to use when \code{parallel} is
 \code{TRUE}. Default is the number of
 non-logical cores minus one (one
-minimum). Will raise an error if
+minimum). Will raise a warning if
 greater than the number of cores
 detected by
 \code{\link[parallel:detectCores]{parallel::detectCores()}}. If
@@ -339,7 +485,7 @@ display. Default is 4.}
 \item{annotation}{Logical. Whether
 the annotation after the table of
 effects is to be printed. Default is
-\code{TRUE.}}
+\code{TRUE}.}
 
 \item{pvalue}{Logical. If \code{TRUE},
 asymmetric \emph{p}-values based on
@@ -371,7 +517,7 @@ to compute them from stored
 standard error if the original
 standard error is to be used.
 Ignored
-if confidence interval has already
+if the confidence interval has already
 been computed. Default
 is \code{TRUE}.}
 
@@ -405,7 +551,7 @@ is \code{TRUE}.}
 of the confidence interval. Ignored
 if \code{lm_ci} is not \code{TRUE}.}
 
-\item{sem_style}{How the for the
+\item{sem_style}{How the
 model is to be printed if the model
 is fitted by structural equation
 modeling (using \code{lavaan}). Default
@@ -523,7 +669,7 @@ Note that they are \emph{not} intended to
 be flexible. For more complex models,
 it is recommended to fit the models
 manually, either by structural
-equation modelling (e.g.,
+equation modeling (e.g.,
 \code{\link[lavaan:sem]{lavaan::sem()}}) or by regression
 analysis using \code{\link[stats:lm]{stats::lm()}} or
 \code{\link[lmhelprs:many_lm]{lmhelprs::many_lm()}}. See
@@ -623,7 +769,7 @@ compute the total indirect effect.
 \item Return all the results for printing.
 }
 
-The output of the "q" functions have
+The output of the "q" functions has
 a \code{print} method for
 printing all the major results.
 }
@@ -680,9 +826,46 @@ are supported.
 
 \subsection{Printing the Results}{
 
-The output of the "q" functions have
+The output of the "q" functions has
 a \code{print} method for
 printing all the major results.
+}
+
+\subsection{Moderated Mediation}{
+
+Support for moderated mediation
+has been added since Version 0.3.6.3
+for models fitted by multiple regression
+(\code{fit_method = "regression"}), and
+for models fitted
+by structural equation modeling
+(\code{fit_method = "sem"}) if a model
+has no latent variables. If a model
+has latent variables, the
+\code{indicator_method} must be \code{"sam"}
+(structural-after-measurement).
+See the description of the argument
+\code{moderators} on how to specify a
+moderated path.
+
+Only two-way interaction is supported
+for now, although a path can have
+any number of moderators. For higher-order
+interaction (e.g., moderated-moderated-mediation),
+please specify the model manually as
+usual, and then call functions such as
+\code{\link[=cond_indirect_effects]{cond_indirect_effects()}} directly.
+
+The functions \code{\link[=q_moderated_mediation]{q_moderated_mediation()}},
+\code{\link[=q_moderated_parallel_mediation]{q_moderated_parallel_mediation()}},
+\code{\link[=q_moderated_serial_mediation]{q_moderated_serial_mediation()}}, and
+\code{\link[=q_moderated_simple_mediation]{q_moderated_simple_mediation()}} are
+merely aliases to their nonmoderated
+counterparts. The functions
+\code{\link[=q_mediation]{q_mediation()}}, \code{\link[=q_parallel_mediation]{q_parallel_mediation()}},
+\code{\link[=q_serial_mediation]{q_serial_mediation()}}, and
+\code{\link[=q_simple_mediation]{q_simple_mediation()}} can also be
+used for models with moderators.
 }
 
 \subsection{Notes}{

@@ -6,7 +6,7 @@
 Indirect Effects or Conditional
 Indirect Effects}
 \usage{
-\method{confint}{cond_indirect_effects}(object, parm, level = 0.95, ...)
+\method{confint}{cond_indirect_effects}(object, parm, level = NULL, ...)
 }
 \arguments{
 \item{object}{The output of
@@ -16,14 +16,24 @@ Indirect Effects}
 the confidence intervals of
 the effects for all levels stored.}
 
-\item{level}{The level of confidence,
-default is .95, returning the 95\%
-confidence interval. Ignored for now
-and will use the level of the stored
-intervals.}
+\item{level}{If set to \code{NULL}, the default,
+then the
+level of confidence used to generate
+\code{object}
+is used. If set to a value,
+this value will be used
+to recompute the confidence intervals.
+If the confidence interval is to be
+computed from the standard error,
+and so \code{level} is not set in \code{object},
+then the default value is .95.
+(This new behavior applies to 0.3.6.15
+and later versions.)}
 
 \item{...}{Additional arguments.
-Ignored by the function.}
+To be passed to \code{\link[=confint.indirect]{confint.indirect()}}.
+(This new behavior applies to 0.3.6.15
+and later versions.)}
 }
 \value{
 A data frame with two
@@ -54,8 +64,8 @@ intervals stored.
 
 If the following conditions are met, the
 stored standard errors, if available,
-will be used test an effect and
-form it confidence interval:
+will be used to test an effect and
+form its confidence interval:
 \itemize{
 \item Confidence intervals have not been
 formed (e.g., by bootstrapping or
@@ -63,7 +73,7 @@ Monte Carlo).
 \item The path has no mediators.
 \item The model has only one group.
 \item The path is moderated by one or
-more moderator.
+more moderators.
 \item Both the \code{x}-variable and the
 \code{y}-variable are not standardized.
 }
@@ -87,7 +97,7 @@ from the \emph{z} statistic.
 If the model is fitted by structural
 equation modeling and has moderators,
 the standard errors, \emph{p}-values,
-and confidence interval computed
+and confidence intervals computed
 from the variance-covariance matrices
 for conditional effects
 can only be trusted if all covariances

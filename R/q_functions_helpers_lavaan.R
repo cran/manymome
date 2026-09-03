@@ -308,7 +308,9 @@ lm_from_lavaan_list_for_q <- function(
                                         level = ci_level,
                                         rsquare = TRUE,
                                         remove.step1 = FALSE)
-    std <- lavaan::standardizedSolution(
+    # 2026-07-18:
+    # - Suppress a harmless warning introduced in lavaan 0.7-2
+    std <- suppressWarnings(lavaan::standardizedSolution(
               fit,
               type = "std.nox",
               se = FALSE,
@@ -316,7 +318,7 @@ lm_from_lavaan_list_for_q <- function(
               pvalue = FALSE,
               ci = FALSE,
               cov.std = FALSE
-            )
+            ))
     std$lavlabel <- lavaan::lav_partable_labels(std)
     ptable$lavlabel <- lavaan::lav_partable_labels(ptable)
     tmp <- intersect(std$lavlabel, ptable$lavlabel)
@@ -335,6 +337,13 @@ lm_from_lavaan_list_for_q <- function(
     #                                     remove.step1 = FALSE)
     # ptable$std.nox <- NA
   }
+  # ==== Handle standardized product terms ====
+
+  ptable <- std_prods(
+    ptable,
+    fit = fit
+  )
+
   b_names <- mm$b_names
   # ==== Get all dvs (ov.nox, lv.ox) ====
   dvs <- names(b_names)
@@ -478,9 +487,13 @@ lm_coef_from_lavaan_i <- function(
   ci.lower <- lav_coefs$ci.lower
   ci.upper <- lav_coefs$ci.upper
   betas <- lav_coefs$std.all
-  tmp <- which(!(term_types %in% c("(Intercept)", "numeric")))
+  tmp <- which(!(term_types %in% c("(Intercept)", "numeric", "product")))
   if (length(tmp) > 0) {
     betas[tmp] <- lav_coefs$std.nox[tmp]
+  }
+  tmp <- which((term_types %in% "product"))
+  if (length(tmp) > 0) {
+    betas[tmp] <- lav_coefs$std.prod[tmp]
   }
   betas[which(rownames(out) == "(Intercept)")] <- NA
   j1 <- which(colnames(out) == "Estimate")
@@ -507,6 +520,7 @@ terms_types <- function(mm, y) {
   #   But not urgent as we do not yet support moderation.
   data_classes <- attr(mm$terms[[y]], "dataClasses")
   term_labels <- attr(mm$terms[[y]], "term.labels")
+  term_factors <- attr(mm$terms[[y]], "factors")
   mm_assign <- attr(mm$model_matrices[[y]], "assign")
   b_names <- mm$b_names[[y]]
   b_types <- b_names
@@ -516,6 +530,10 @@ terms_types <- function(mm, y) {
     if (mm_assign[xx] %in% j) {
       b_types[xx] <- data_classes[term_labels[mm_assign[xx]]]
     }
+  }
+  b_products <- colSums(term_factors) > 1
+  if (any(b_products)) {
+    b_types[names(b_products[b_products])] <- "product"
   }
   b_types
 }

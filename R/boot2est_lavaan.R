@@ -67,8 +67,8 @@
 #' @param compute_implied_stats If
 #' `TRUE`, default, implied statistics
 #' will be computed for each bootstrap
-#' sample. Letting users to disable this
-#' is an experimental features to let
+#' sample. Allowing users to disable this
+#' is an experimental feature to let
 #' the process run faster.
 #'
 #' @param compute_rsquare If
@@ -101,7 +101,7 @@
 #'            se = "none", baseline = FALSE)
 #' fit_boot_out <- fit2boot_out_do_boot(fit = fit,
 #'                                      R = 40,
-#'                                      seed = 1234,
+#'                                      seed = 2345,
 #'                                      progress = FALSE)
 #' out <- cond_indirect_effects(wlevels = "w",
 #'                              x = "x",
@@ -137,6 +137,7 @@ fit2boot_out <- function(fit,
                   y = boot_implied,
                   SIMPLIFY = FALSE)
     names(out) <- names(boot_est)
+    attr(out, "boot_design") <- attr(boot_est, "boot_design")
     class(out) <- "boot_out"
     out
   }
@@ -155,7 +156,7 @@ fit2boot_out <- function(fit,
 #' CPU cores to use when `parallel` is
 #' `TRUE`. Default is the number of
 #' non-logical cores minus one (one
-#' minimum). Will raise an error if
+#' minimum). Will raise a warning if
 #' greater than the number of cores
 #' detected by
 #' [parallel::detectCores()]. If
@@ -191,7 +192,7 @@ fit2boot_out_do_boot <- function(fit,
                                  R = 100,
                                  seed = NULL,
                                  parallel = FALSE,
-                                 ncores = max(parallel::detectCores(logical = FALSE) - 1, 1),
+                                 ncores = max(parallel::detectCores(logical = FALSE) - 1, 1, na.rm = TRUE),
                                  make_cluster_args = list(),
                                  progress = TRUE,
                                  compute_implied_stats = TRUE,
@@ -300,7 +301,7 @@ fit2boot_out_do_boot <- function(fit,
     if (parallel) {
         if (is.numeric(ncores)) {
             ncores0 <- parallel::detectCores()
-            if (ncores == ncores0) {
+            if (isTRUE(ncores >= ncores0)) {
                 warning(paste0("'ncores' >= The number of detected cores (",
                                ncores0,"). The computer may not be responsive",
                                " when bootstrapping is running."),
@@ -392,6 +393,7 @@ fit2boot_out_do_boot <- function(fit,
       } else if (n_ok == 0) {
         stop("Estimation failed in all bootstrap samples.")
       }
+    attr(out, "ids") <- ids
     class(out) <- "boot_out"
     out
   }
@@ -413,11 +415,23 @@ boot2est <- function(fit) {
         boot_est0 <- boot_est0[-tmp, ]
       }
     ptable <- lavaan::parameterTable(fit)
+    tmp <- tryCatch(suppressWarnings(
+            lavaan::parameterEstimates(
+                fit,
+                boot.ci.type = "bca"
+              )),
+            error = function(e) e)
+    if (!is.null(tmp) && !inherits(tmp, "error")) {
+      boot_design <- tmp
+    } else {
+      boot_design <- NULL
+    }
     p_free <- ptable$free > 0
     boot_est <- split(boot_est0, row(boot_est0))
     out_all <- lapply(boot_est, set_est_i,
                         fit = fit,
                         p_free = p_free)
+    attr(out_all, "boot_design") <- boot_design
     out_all
   }
 
@@ -448,7 +462,7 @@ boot2implied <- function(fit) {
     out_all
   }
 
-# Convert set the estimates in a parameter estimates tables.
+# Set the estimates in a parameter estimates table.
 #' @noRd
 
 set_est_i <- function(est0,

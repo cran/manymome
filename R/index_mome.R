@@ -158,7 +158,7 @@
 #' or `"mc"` (Monte Carlo). If not
 #' supplied or is `NULL`, will check
 #' other arguments
-#' (e.g, `boot_ci` and `mc_ci`). If
+#' (e.g., `boot_ci` and `mc_ci`). If
 #' supplied, will override `boot_ci`
 #' and `mc_ci`.
 #'
@@ -177,6 +177,27 @@
 #' the search for product terms. Default
 #' is `TRUE`.
 #'
+#' @param increase_from,increase_to The
+#' change in the value of the moderator
+#' on which the index is to be computed.
+#' The default is a one-unit increase
+#' (e.g., from 0 to 1), as proposed by
+#' Hayes (2015).
+#'
+#' @param w_unit The unit used
+#' by `increase_from` and `increase_to`.
+#' If `"raw"`, the original unit of `w`
+#' is used. If `"sd"`, then distance
+#' from the mean in standard deviations
+#' is used. Therefore, if
+#' `increase_from = 0`, `increase_to = 1`,
+#' and `w_unit == "sd"`, the
+#' *z-index of moderated mediation*
+#' proposed by Cheung and Cheung (2024)
+#' is computed. (For [index_of_momome()],
+#' the corresponding arguments are
+#' `w_increase_from` and `w_increase_to`.)
+#'
 #' @param ... Arguments to be passed to
 #' [cond_indirect_effects()]
 #'
@@ -184,6 +205,17 @@
 #' @seealso [cond_indirect_effects()]
 #'
 #' @references
+#'
+#' Cheung, S. F., & Cheung, S.-H. (2024).
+#' *manymome*: An R package for computing
+#' the indirect effects, conditional effects,
+#' and conditional indirect effects,
+#' standardized or unstandardized, and their
+#' bootstrap confidence intervals, in many
+#' (though not all) models.
+#' *Behavior Research Methods, 56*(5),
+#' 4862-4882. \doi{10.3758/s13428-023-02224-z}
+#'
 #' Hayes, A. F. (2015). An index and test of linear moderated mediation.
 #' *Multivariate Behavioral Research, 50*(1), 1-22.
 #' \doi{10.1080/00273171.2014.962683}
@@ -215,8 +247,8 @@
 #' out_mome <- index_of_mome(x = "x", y = "y", m = "m1", w = "w1",
 #'                           fit = fit,
 #'                           boot_ci = TRUE,
-#'                           R = 42,
-#'                           seed = 4314,
+#'                           R = 40,
+#'                           seed = 2345,
 #'                           parallel = FALSE,
 #'                           progress = FALSE)
 #' out_mome
@@ -232,7 +264,6 @@
 #' index of moderated mediation.
 #'
 #' @order 1
-
 index_of_mome <- function(x,
                           y,
                           m = NULL,
@@ -250,13 +281,30 @@ index_of_mome <- function(x,
                           ci_out = NULL,
                           boot_type = c("perc", "bc"),
                           skip_indicators = TRUE,
+                          increase_from = 0,
+                          increase_to = 1,
+                          w_unit = c("raw", "sd"),
                           ...) {
     fit <- auto_lm2list(fit)
     boot_type <- match.arg(boot_type)
+    w_unit <- match.arg(w_unit)
     if (is.null(w) || length(w) != 1) {
         stop("The path must have exactly one moderator.")
       }
-    mm_w <- mod_levels(w, fit = fit, values = c(0, 1))
+    mm_w <- switch(
+      w_unit,
+      raw = mod_levels(
+              w,
+              fit = fit,
+              values = unname(c(increase_from, increase_to))
+            ),
+      sd = mod_levels(
+              w,
+              fit = fit,
+              w_method = "sd",
+              sd_from_mean = unname(c(increase_from, increase_to))
+            )
+    )
     prods <- cond_indirect(wvalues = mm_w[1, ],
                             x = x,
                             y = y,
@@ -285,6 +333,89 @@ index_of_mome <- function(x,
     out
   }
 
+#' @export
+#'
+#' @describeIn index_of_mome Compute the
+#' *z* index of moderated mediation
+#' proposed by Cheung and Cheung (2024).
+#' A wrapper of [index_of_mome()] with
+#' `w_unit` set to `"sd"`,
+#' `increase_from` set to 0,
+#' and `increase_to` set to 1.
+#'
+#' @order 3
+z_index_of_mome <- function(
+  x,
+  y,
+  m = NULL,
+  w = NULL,
+  fit = NULL,
+  boot_ci = FALSE,
+  level = .95,
+  boot_out = NULL,
+  R = 100,
+  seed = NULL,
+  progress = TRUE,
+  mc_ci = FALSE,
+  mc_out = NULL,
+  ci_type = NULL,
+  ci_out = NULL,
+  boot_type = c("perc", "bc"),
+  skip_indicators = TRUE,
+  increase_from = 0,
+  increase_to = 1,
+  w_unit = c("raw", "sd"),
+  ...) {
+  if (missing(x) || missing(y)) {
+    stop("Both 'x' and 'y' must be specified.")
+  }
+  boot_type <- match.arg(boot_type)
+  index_of_mome(
+    x = x,
+    y = y,
+    m = m,
+    w = w,
+    fit = fit,
+    boot_ci = boot_ci,
+    level = level,
+    boot_out = boot_out,
+    R = R,
+    seed = seed,
+    progress = progress,
+    mc_ci = mc_ci,
+    mc_out = mc_out,
+    ci_type = ci_type,
+    ci_out = ci_out,
+    boot_type = boot_type,
+    skip_indicators = skip_indicators,
+    increase_from = 0,
+    increase_to = 1,
+    w_unit = "sd",
+    ...
+  )
+}
+
+#' @param w_increase_from,w_increase_to The
+#' change in the value of the moderator `w`
+#' on which the index is to be computed.
+#' The default is a one-unit increase
+#' (e.g., from 0 to 1), as proposed by
+#' Hayes (2015).
+#'
+#' @param z_increase_from,z_increase_to The
+#' change in the value of the moderator `z`
+#' on which the index is to be computed.
+#' The default is a one-unit increase
+#' (e.g., from 0 to 1), as proposed by
+#' Hayes (2015).
+#'
+#' @param z_unit The unit used to
+#' by `z_increase_from` and `z_increase_to`.
+#' If `"raw"`, the original unit of `z`
+#' is used. If `"sd"`, then distance
+#' from the mean in standard deviations
+#' is used.
+#'
 #' @examples
 #'
 #' library(lavaan)
@@ -337,16 +468,50 @@ index_of_momome <- function(x,
                             ci_out = NULL,
                             boot_type = c("perc", "bc"),
                             skip_indicators = TRUE,
+                            w_increase_from = 0,
+                            w_increase_to = 1,
+                            z_increase_from = 0,
+                            z_increase_to = 1,
+                            w_unit = c("raw", "sd"),
+                            z_unit = c("raw", "sd"),
                             ...) {
     dotdotdot <- list(...)
     fit <- auto_lm2list(fit)
     boot_type <- match.arg(boot_type)
+    w_unit <- match.arg(w_unit)
+    z_unit <- match.arg(z_unit)
     if (is.null(w) || is.null(z) ||
         length(w) != 1 || length(z) != 1) {
         stop("The path must have exactly two moderators.")
       }
-    mm_w <- mod_levels(w, fit = fit, values = c(0, 1))
-    mm_z <- mod_levels(z, fit = fit, values = c(0, 1))
+    mm_w <- switch(
+      w_unit,
+      raw = mod_levels(
+              w,
+              fit = fit,
+              values = unname(c(w_increase_from, w_increase_to))
+            ),
+      sd = mod_levels(
+              w,
+              fit = fit,
+              w_method = "sd",
+              sd_from_mean = unname(c(w_increase_from, w_increase_to))
+            ),
+    )
+    mm_z <- switch(
+      z_unit,
+      raw = mod_levels(
+              z,
+              fit = fit,
+              values = unname(c(z_increase_from, z_increase_to))
+            ),
+      sd = mod_levels(
+              z,
+              fit = fit,
+              w_method = "sd",
+              sd_from_mean = unname(c(z_increase_from, z_increase_to))
+            )
+    )
     mm <- merge_mod_levels(mm_w, mm_z)
     prods <- cond_indirect(wvalues = mm[1, ],
                             x = x,
@@ -479,3 +644,75 @@ n_prods <- function(prods) {
     return(np)
   }
 
+#' @export
+#'
+#' @describeIn index_of_mome Compute the
+#' *z* index of moderated moderated
+#' mediation, based on the idea proposed
+#' by Cheung and Cheung (2024). A wrapper
+#' of [index_of_momome()] with
+#' `w_unit = "sd"`, `z_unit = "sd"`,
+#' `w_increase_from = 0`,
+#' `w_increase_to = 1`.
+#' `z_increase_from = 0`, and
+#' `z_increase_to = 1`.
+#'
+#' @order 2
+
+z_index_of_momome <- function(
+  x,
+  y,
+  m = NULL,
+  w = NULL,
+  z = NULL,
+  fit = NULL,
+  boot_ci = FALSE,
+  level = .95,
+  boot_out = NULL,
+  R = 100,
+  seed = NULL,
+  progress = TRUE,
+  mc_ci = FALSE,
+  mc_out = NULL,
+  ci_type = NULL,
+  ci_out = NULL,
+  boot_type = c("perc", "bc"),
+  skip_indicators = TRUE,
+  w_increase_from = 0,
+  w_increase_to = 1,
+  z_increase_from = 0,
+  z_increase_to = 1,
+  w_unit = c("raw", "sd"),
+  z_unit = c("raw", "sd"),
+  ...) {
+  if (missing(x) || missing(y)) {
+    stop("Both 'x' and 'y' must be specified.")
+  }
+  boot_type <- match.arg(boot_type)
+  index_of_momome(
+    x = x,
+    y = y,
+    m = m,
+    w = w,
+    z = z,
+    fit = fit,
+    boot_ci = boot_ci,
+    level = level,
+    boot_out = boot_out,
+    R = R,
+    seed = seed,
+    progress = progress,
+    mc_ci = mc_ci,
+    mc_out = mc_out,
+    ci_type = ci_type,
+    ci_out = ci_out,
+    boot_type = boot_type,
+    skip_indicators = skip_indicators,
+    w_increase_from = 0,
+    w_increase_to = 1,
+    z_increase_from = 0,
+    z_increase_to = 1,
+    w_unit = "sd",
+    z_unit = "sd",
+    ...)
+}

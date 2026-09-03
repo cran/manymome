@@ -15,7 +15,7 @@
 #' Note that these *p*-values are asymmetric
 #' bootstrap *p*-values based on the
 #' distribution of the bootstrap estimates.
-#' They not computed based on the
+#' They are not computed based on the
 #' distribution under the null hypothesis.
 #'
 #' For a *p*-value of *a*, it means that
@@ -32,8 +32,8 @@
 #'
 #' If these conditions are met, the
 #' stored standard errors, if available,
-#' will be used test an effect and
-#' form it confidence interval:
+#' will be used to test an effect and
+#' form its confidence interval:
 #'
 #' - Confidence intervals have not been
 #'  formed (e.g., by bootstrapping or
@@ -44,7 +44,7 @@
 #' - The model has only one group.
 #'
 #' - The path is moderated by one or
-#'  more moderator.
+#'  more moderators.
 #'
 #' - Both the `x`-variable and the
 #'  `y`-variable are not standardized.
@@ -69,7 +69,7 @@
 #' If the model is fitted by structural
 #' equation modeling and has moderators,
 #' the standard errors, *p*-values,
-#' and confidence interval computed
+#' and confidence intervals computed
 #' from the variance-covariance matrices
 #' for conditional effects
 #' can only be trusted if all covariances
@@ -92,7 +92,7 @@
 #' @param annotation Logical. Whether
 #' the annotation after the table of
 #' effects is to be printed. Default is
-#' `TRUE.`
+#' `TRUE`.
 #'
 #' @param pvalue Logical. If `TRUE`,
 #' asymmetric *p*-values based on
@@ -456,9 +456,36 @@ print.cond_indirect_effects <- function(x, digits = 3,
                     collapse = ", ")
       cat("\n Conditional on group(s):", tmp)
     }
+
+  # ==== Print computational symbols ====
+
+  full_computation_symbol <- sapply(
+      full_output,
+      function(x) {
+        tmp <- x$computation_symbol
+        if (is.null(tmp)) {
+          return(NA_character_)
+        } else {
+          return(tmp)
+        }
+      }
+  )
+  # Assume computation_symbol is the same for all rows
+  full_computation_symbol <- unique(full_computation_symbol)
+  if (is.character(full_computation_symbol)) {
+    cat("\n Computation Formula:")
+    tmp <- strwrap(
+              full_computation_symbol,
+              indent = 3,
+              exdent = 3
+            )
+    cat("\n")
+    cat(tmp, sep = "\n")
+  }
+
   xold <- x
   x <- out1
-  cat("\n\n")
+  cat("\n")
   NextMethod()
   if (annotation) {
       if (has_ci) {
@@ -580,6 +607,11 @@ print.cond_indirect_effects <- function(x, digits = 3,
               "conditional on",
               tmp), exdent = 3), sep = "\n")
         }
+      tmp <- paste("\n - Call",
+                   sQuote("print_all_cond_indirect_effects()"),
+                   " to print the detailed outputs of all levels."
+                  )
+      cat(strwrap(tmp, exdent = 3, indent = 1), sep = "\n")
       cat("\n")
     }
   invisible(x)

@@ -2,7 +2,7 @@
 title: "Simple Mediation Models Corrected for Measurement Error"
 subtitle: "Using `q_mediation()`"
 author: "Shu Fai Cheung & Sing-Hang Cheung"
-date: "2026-06-01"
+date: "2026-08-30"
 output:
   html_document:
     fig.align: "center"
@@ -16,10 +16,6 @@ csl: apa.csl
 
 
 # Introduction
-
-(This document is for Version 0.3.4.25 or later, currently
-on GitHub only. The new version is scheduled to be available
-on CRAN in June 2026.)
 
 This article is a brief illustration of how to use
 the all-in-one "quick" functions from
@@ -46,7 +42,7 @@ structural equation modeling (SEM).
 
 NOTE: This is part of a series of similar articles
 with duplicated sections, each dedicated
-to one form of models. See a full list
+to one form of model. See a full list
 of articles [here](./index.html#all-in-one-functions).
 
 # Data Set
@@ -88,7 +84,7 @@ will be used:
 - `x_1`, `x_2`, `x_3`, and `x_4`:
   The indicators
   of `fx`, the predictor.
-  The indicator `x_4` is a reverse items.
+  The indicator `x_4` is a reverse item.
 
 - `m1_1`, `m1_2`, `m1_3`, and `m1_4`:
   The indicators
@@ -97,7 +93,7 @@ will be used:
 - `y_1`, `y_2`, `y_3`, and `y_4`:
   The indicators
   of `fy`, the outcome variable.
-  The indicator `y_4` is a reverse items.
+  The indicator `y_4` is a reverse item.
 
 - `c1_1`, `c1_2`, `c1_3`, and `c1_4`:
   The indicators
@@ -125,7 +121,7 @@ using nonparametric bootstrapping.
 
 # Analysis
 
-We can do that in one single step using
+We can do that in a single step using
 `q_simple_mediation()`:
 
 
@@ -170,7 +166,7 @@ These are the arguments:
   will be reverse-coded (multiplied by `-1`)
   before fitting the model. If a variable
   in `x`, `y`, `m`, or `cov` is not one
-  of the latent factor, it is an observed
+  of the latent factors, it is an observed
   variable.
 
 
@@ -192,7 +188,7 @@ These are the arguments:
   integer to make the results reproducible.
 
 The computation may take some time to run,
-especially if missing data is presence,
+especially if missing data is present,
 due to the processing time combining
 bootstrapping and full-information maximum
 likelihood (FIML), the default way to
@@ -337,13 +333,13 @@ results related to each latent factor:
 
 - The reliability coefficient for each
   latent factor, based on the factor loadings.
-  Omega coefficient is used, computed by
+  The omega coefficient is used, computed by
   `semTools::compRelSEM()`.
 
 ## Model Fit
 
 The section `Structural Equation Modeling Results`
-print the results from `lavaan` for the model.
+prints the results from `lavaan` for the model.
 
 
 ```
@@ -352,6 +348,11 @@ print the results from `lavaan` for the model.
 #>   Test statistic                               121.132
 #>   Degrees of freedom                               112
 #>   P-value (Chi-square)                           0.262
+#>                                                       
+#>   Browne's residual (NT model-based) test             
+#>   Test statistic                               113.356
+#>   Degrees of freedom                               112
+#>   P-value (Chi-square)                           0.446
 #> 
 #> Model Test Baseline Model:
 #> 
@@ -363,6 +364,9 @@ print the results from `lavaan` for the model.
 #> 
 #>   Comparative Fit Index (CFI)                    0.997
 #>   Tucker-Lewis Index (TLI)                       0.996
+#>                                                       
+#>   Robust Comparative Fit Index (CFI)             0.997
+#>   Robust Tucker-Lewis Index (TLI)                0.996
 #> 
 #> Root Mean Square Error of Approximation:
 #> 
@@ -371,6 +375,12 @@ print the results from `lavaan` for the model.
 #>   Confidence interval - upper                    0.024
 #>   P-value H_0: RMSEA <= 0.050                    1.000
 #>   P-value H_0: RMSEA >= 0.080                    0.000
+#>                                                       
+#>   Robust RMSEA                                   0.012
+#>   Confidence interval - lower                    0.000
+#>   Confidence interval - upper                       NA
+#>   P-value H_0: Robust RMSEA <= 0.050             1.000
+#>   P-value H_0: Robust RMSEA >= 0.080             0.000
 #> 
 #> Standardized Root Mean Square Residual:
 #> 
@@ -420,16 +430,15 @@ These are the results in predicting `fm`:
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> 
-#> - BetaS are standardized coefficients with (a) only numeric variables
-#>   standardized and (b) product terms formed after standardization.
-#>   Variable(s) standardized is/are: fm, fx, fc1, c2
+#> - BetaS are standardized coefficients with only numeric variables
+#>   standardized. Variable(s) standardized is/are: fm, fx, fc1, c2
 #> - CI.lo and CI.hi are the 95.0% confidence levels of 'Estimate'
 #>   computed from the z values and standard errors.
 ```
 
 
 
-These are the results in predicting `y`:
+These are the results of predicting `y`:
 
 
 ```
@@ -458,9 +467,8 @@ These are the results in predicting `y`:
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> 
-#> - BetaS are standardized coefficients with (a) only numeric variables
-#>   standardized and (b) product terms formed after standardization.
-#>   Variable(s) standardized is/are: fy, fm, fx, fc1, c2
+#> - BetaS are standardized coefficients with only numeric variables
+#>   standardized. Variable(s) standardized is/are: fy, fm, fx, fc1, c2
 #> - CI.lo and CI.hi are the 95.0% confidence levels of 'Estimate'
 #>   computed from the z values and standard errors.
 ```
@@ -665,9 +673,9 @@ list does not have control variables.
 ## Customize The Printout
 
 The `print` method of the output of
-the quick mediation functions have
+the quick mediation functions has
 arguments for customizing the output.
-These are arguments that likely may be
+These are arguments that may be
 used:
 
 - `digits`: The number of digits after
@@ -684,9 +692,9 @@ for other arguments.
 ## Speed and Parallel Processing
 
 By default, parallel processing is used.
-If this failed for some reasons,
-add `parallel` to `FALSE`. It will take
-longer, sometimes much long, to run
+If this fails for some reason,
+set `parallel` to `FALSE`. It will take
+longer, sometimes much longer, to run
 if `parallel` is set to `FALSE`. Therefore,
 use parallel processing whenever possible.
 
@@ -729,7 +737,7 @@ for more complicated models.
 # Final Remarks
 
 For details on the all-in-one functions,
-please refer to the help page of
+please refer to the help page for
 `q_mediation()`.
 
 
