@@ -1,3 +1,63 @@
+# manymome 0.3.8
+
+## New Features
+
+- Updated `q_mediation()`
+  to support auxiliary variables when
+  missing data is handled by FIML and
+  the model is fitted by SEM. Implemented
+  by `semTools::auxiliary().`
+  (0.3.7.3)
+
+- Updated the following functions to
+  the output of `q_mediation()` and
+  friends: `index_of_mome()`,
+  `index_of_momome()`,
+  `z_index_of_mome()`,
+  `z_index_of_momome()`,
+  `print_all_cond_indirect_effects()`,
+  `johnson_neyman()`,
+  `pseudo_johnson_neyman()`, and
+  `plot_effect_vs_w()`.
+  (0.3.7.5)
+
+## Improvement
+
+- Added initial support for
+  Monte Carlo confidence
+  intervals when the model is fitted by
+  regression (`lm()`). Only unstandardized
+  effects are supported.
+  (0.3.7.1)
+
+- Updated `fill_wlevels()` to work with
+  the output of `pseudo_johnson_neyman()`
+  without the need for the original
+  `cond_indirect_effects()` output.
+  (0.3.7.6)
+
+- Updated `plot_effect_vs_w()` to work
+  with the output of `pseudo_johnson_neyman()`.
+  It can also call `fill_wlevels()`
+  automatically to fill in more levels.
+  Controlled by the new argument
+  `minimum_wlevels`.
+  (0.3.7.7)
+
+## Miscellaneous
+
+- Improved the printout of conditional
+  effects in `q_mediation()`.
+  (0.3.7.4)
+
+## Bug Fixes
+
+- Fixed a bug in refusing to compute
+  index of moderated mediation for
+  Model 8. The function `index_of_mome()`
+  will compute the index for Model 8 now.
+  (0.3.7.2)
+
 # manymome 0.3.7
 
 ## New Features

@@ -12,7 +12,7 @@
 
 <meta name="author" content="Shu Fai Cheung &amp; Sing-Hang Cheung" />
 
-<meta name="date" content="2026-08-30" />
+<meta name="date" content="2026-11-07" />
 
 <title>Moderated Mediation Analysis by Multiple Regression</title>
 
@@ -341,7 +341,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">Moderated Mediation Analysis by Multiple
 Regression</h1>
 <h4 class="author">Shu Fai Cheung &amp; Sing-Hang Cheung</h4>
-<h4 class="date">2026-08-30</h4>
+<h4 class="date">2026-11-07</h4>
 
 
 
@@ -497,19 +497,18 @@ to <code>y</code> through <code>m</code>, conditional on
 <span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt;  Computation Formula:</span></span>
 <span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co">#&gt;    (b.m~x + (b.x:w)*(w))*(b.y~m)</span></span>
 <span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co">#&gt;       [w]   (w)   ind  CI.lo CI.hi Sig   m~x   y~m</span></span>
-<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co">#&gt; 1 M+1.0SD 3.164 3.060  2.168 4.039 Sig 3.192 0.959</span></span>
-<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co">#&gt; 2 Mean    2.179 2.136  1.407 2.925 Sig 2.228 0.959</span></span>
-<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co">#&gt; 3 M-1.0SD 1.194 1.212 -0.288 2.564     1.265 0.959</span></span>
-<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo to CI.hi] are 95.0% percentile confidence intervals by</span></span>
-<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co">#&gt;    nonparametric bootstrapping with 100 samples.</span></span>
-<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="co">#&gt;  - The &#39;ind&#39; column shows the conditional indirect effects.</span></span>
-<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="co">#&gt;  - &#39;m~x&#39;,&#39;y~m&#39; is/are the path coefficient(s) along the path conditional</span></span>
-<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="co">#&gt;    on the moderator(s).</span></span>
-<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="co">#&gt;  - Call &#39;print_all_cond_indirect_effects()&#39; to print the detailed</span></span>
-<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a><span class="co">#&gt;    outputs of all levels.</span></span></code></pre></div>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">#&gt;       [w]   (w)   ind  CI.lo CI.hi Sig   m~x   y~m</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co">#&gt; 1 M+1.0SD 3.164 3.060  2.168 4.039 Sig 3.192 0.959</span></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co">#&gt; 2 Mean    2.179 2.136  1.407 2.925 Sig 2.228 0.959</span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co">#&gt; 3 M-1.0SD 1.194 1.212 -0.288 2.564     1.265 0.959</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo to CI.hi] are 95.0% percentile confidence intervals by</span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co">#&gt;    nonparametric bootstrapping with 100 samples.</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co">#&gt;  - The &#39;ind&#39; column shows the conditional indirect effects.</span></span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="co">#&gt;  - &#39;m~x&#39;,&#39;y~m&#39; is/are the path coefficient(s) along the path conditional</span></span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="co">#&gt;    on the moderator(s).</span></span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="co">#&gt;  - Call &#39;print_all_cond_indirect_effects()&#39; to print the detailed</span></span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="co">#&gt;    outputs of all levels.</span></span></code></pre></div>
 <p>When <code>w</code> is one standard deviation below the mean, the
 indirect effect is 1.212, with a 95% confidence interval [-0.288,
 2.564].</p>
@@ -552,19 +551,18 @@ index of moderated mediation of <code>w</code> on the path
 <span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt;  Computation Formula:</span></span>
 <span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co">#&gt;    (b.m~x + (b.x:w)*(w))*(b.y~m)</span></span>
 <span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co">#&gt;   [w] (w)   ind  CI.lo CI.hi Sig   m~x   y~m</span></span>
-<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="co">#&gt; 1   1   1 1.030 -0.622 2.543     1.074 0.959</span></span>
-<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="co">#&gt; 2   0   0 0.092 -2.389 2.434     0.096 0.959</span></span>
-<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a><span class="co">#&gt; == Index of Moderated Mediation ==</span></span>
-<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a><span class="co">#&gt; Levels compared: Row 1 - Row 2</span></span>
-<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a><span class="co">#&gt;       x y Index CI.lo CI.hi</span></span>
-<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a><span class="co">#&gt; Index x y 0.938 0.178 1.732</span></span>
-<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo, CI.hi]: 95% percentile confidence interval.</span></span></code></pre></div>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">#&gt;   [w] (w)   ind  CI.lo CI.hi Sig   m~x   y~m</span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co">#&gt; 1   1   1 1.030 -0.622 2.543     1.074 0.959</span></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a><span class="co">#&gt; 2   0   0 0.092 -2.389 2.434     0.096 0.959</span></span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a><span class="co">#&gt; == Index of Moderated Mediation ==</span></span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="co">#&gt; Levels compared: Row 1 - Row 2</span></span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a><span class="co">#&gt;       x y Index CI.lo CI.hi</span></span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a><span class="co">#&gt; Index x y 0.938 0.178 1.732</span></span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo, CI.hi]: 95% percentile confidence interval.</span></span></code></pre></div>
 <p>In this model, the index of moderated mediation is 0.938, with a 95%
 bootstrap confidence interval [0.178, 1.732]. The indirect effect of
 <code>x</code> on <code>y</code> through <code>m</code> significantly
@@ -588,7 +586,7 @@ be estimated by setting <code>standardized_x</code> and
 <span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>                                      <span class="at">standardized_y =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>std_xmy_on_w</span>
 <span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co">#&gt; == Conditional indirect effects ==</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co">#&gt; == Conditional indirect effects (Both x-variable(s) and y-variable(s) Standardized) ==</span></span>
 <span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co">#&gt;  Path: x -&gt; m -&gt; y</span></span>
 <span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co">#&gt;  Conditional on moderator(s): w</span></span>
@@ -596,20 +594,19 @@ be estimated by setting <code>standardized_x</code> and
 <span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co">#&gt;  Computation Formula:</span></span>
 <span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="co">#&gt;    (b.m~x + (b.x:w)*(w))*(b.y~m)*sd_x/sd_y</span></span>
 <span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co">#&gt;       [w]   (w)   std  CI.lo CI.hi Sig   m~x   y~m   ind</span></span>
-<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="co">#&gt; 1 M+1.0SD 3.164 0.318  0.220 0.437 Sig 3.192 0.959 3.060</span></span>
-<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a><span class="co">#&gt; 2 Mean    2.179 0.222  0.134 0.309 Sig 2.228 0.959 2.136</span></span>
-<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="co">#&gt; 3 M-1.0SD 1.194 0.126 -0.031 0.260     1.265 0.959 1.212</span></span>
-<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo to CI.hi] are 95.0% percentile confidence intervals by</span></span>
-<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a><span class="co">#&gt;    nonparametric bootstrapping with 100 samples.</span></span>
-<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a><span class="co">#&gt;  - std: The standardized conditional indirect effects. </span></span>
-<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a><span class="co">#&gt;  - ind: The unstandardized conditional indirect effects.</span></span>
-<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a><span class="co">#&gt;  - &#39;m~x&#39;,&#39;y~m&#39; is/are the path coefficient(s) along the path conditional</span></span>
-<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a><span class="co">#&gt;    on the moderator(s).</span></span>
-<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a><span class="co">#&gt;  - Call &#39;print_all_cond_indirect_effects()&#39; to print the detailed</span></span>
-<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a><span class="co">#&gt;    outputs of all levels.</span></span></code></pre></div>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co">#&gt;       [w]   (w)   std  CI.lo CI.hi Sig   m~x   y~m   ind</span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co">#&gt; 1 M+1.0SD 3.164 0.318  0.220 0.437 Sig 3.192 0.959 3.060</span></span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="co">#&gt; 2 Mean    2.179 0.222  0.134 0.309 Sig 2.228 0.959 2.136</span></span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a><span class="co">#&gt; 3 M-1.0SD 1.194 0.126 -0.031 0.260     1.265 0.959 1.212</span></span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="co">#&gt;  - [CI.lo to CI.hi] are 95.0% percentile confidence intervals by</span></span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="co">#&gt;    nonparametric bootstrapping with 100 samples.</span></span>
+<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a><span class="co">#&gt;  - std: The standardized conditional indirect effects. </span></span>
+<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a><span class="co">#&gt;  - ind: The unstandardized conditional indirect effects.</span></span>
+<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a><span class="co">#&gt;  - &#39;m~x&#39;,&#39;y~m&#39; is/are the path coefficient(s) along the path conditional</span></span>
+<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a><span class="co">#&gt;    on the moderator(s).</span></span>
+<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a><span class="co">#&gt;  - Call &#39;print_all_cond_indirect_effects()&#39; to print the detailed</span></span>
+<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a><span class="co">#&gt;    outputs of all levels.</span></span></code></pre></div>
 <p>The standardized indirect effect is 0.126, with a 95% confidence
 interval [-0.031, 0.260].</p>
 </div>
